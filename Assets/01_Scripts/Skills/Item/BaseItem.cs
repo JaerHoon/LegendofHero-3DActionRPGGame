@@ -5,13 +5,15 @@ using UnityEngine;
 [System.Serializable]
 public class BaseItem 
 {
+    public int itemID;
     public string itemName;
     public Sprite itemIcon;
     public string itemDescription;
     
 
-    public BaseItem(string _name, Sprite icon, string description)
+    public BaseItem(int ID ,string _name, Sprite icon, string description)
     {
+        itemID = ID;
         itemName = _name;
         itemIcon = icon;
         itemDescription = description;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WarriorAttack0 : SkillParent//전사의 평타 스크립트
+public class WarriorSkill : SkillParent
 {
 
     // Start is called before the first frame update
@@ -21,4 +21,5 @@ public class WarriorAttack0 : SkillParent//전사의 평타 스크립트
     {
         base.UsedSkill(damage, cd, gcd, scale, speedRate, eventRate, damageCount, skillCount, damageRate);
     }
+
 }

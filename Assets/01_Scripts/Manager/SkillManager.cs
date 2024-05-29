@@ -12,12 +12,14 @@ public class SkillManager : MonoBehaviour
             instance = this;
         else
             Destroy(this);
+
+        CreateSkill();
     }
 
     public List<Skills> WarriorSkills = new List<Skills>();
     public List<Skills> ArcherSkills = new List<Skills>();
 
-    private void Start()
+    private void CreateSkill()
     {
         Skills wAttack = new Skills(220f, 0f, 1.5f, 1f, 1f, 1f, 1, 1, 1);//0~3 ∆Ú≈∏
         WarriorSkills.Add(wAttack);
