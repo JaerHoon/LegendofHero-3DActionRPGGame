@@ -17,9 +17,9 @@ public class WarriorSkill : SkillParent
         
     }
 
-    public override void UsedSkill(Skills skill)
+    public override void UsedSkill(Skills skill, float playerCritDamage, float chargeRate)
     {
-        base.UsedSkill(skill);
+        base.UsedSkill(skill, playerCritDamage, chargeRate);
     }
 
 }

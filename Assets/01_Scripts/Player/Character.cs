@@ -104,13 +104,6 @@ public class Character : MonoBehaviour
         }
     }
 
-    float CalTotalDamage(float Damage)//아이템 효과를 적용, 크리티컬 적용, 최종 데미지 데미지
-    {
-        int randCirtRate = Random.Range(0, 10);
-        if (randCirtRate < 2) playerCritDamage = 1.5f + ItemManager.instance.itemToAddCritDamage;
-        else playerCritDamage = 1f;
-        return (Damage + ItemManager.instance.itemToAllSkillDamage)  * playerCritDamage;//(스킬 데미지 + 추가 위력) *  크리티컬
-    }
 
     IEnumerator CoolDownNonHitTime()
     {
@@ -145,7 +138,7 @@ public class Character : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && playerAttackCD == 0)
             {
-                skills[0].UsedSkill(playerAttack);
+                skills[0].UsedSkill(playerAttack, playerCritDamage,playerAttackChargeRate);
                 playerAttackCD = playerAttack.CD;
                 playerGCD = playerAttack.GCD + ItemManager.instance.itemToSkillGCD;
                 GlobalCoolDownSKill();
@@ -153,7 +146,7 @@ public class Character : MonoBehaviour
             }
             if (Input.GetMouseButtonDown(1) && playerSkillCD == 0)
             {
-                skills[1].UsedSkill(playerSkill);
+                skills[1].UsedSkill(playerSkill, playerCritDamage, playerAttackChargeRate);
                playerSkillCD = playerSkill.CD;
                 playerGCD = playerSkill.GCD + ItemManager.instance.itemToSkillGCD;
                 GlobalCoolDownSKill();

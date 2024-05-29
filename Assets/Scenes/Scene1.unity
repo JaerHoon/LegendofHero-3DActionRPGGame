@@ -306,6 +306,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6461081161248779464, guid: ea4324e39606b124fbc8962ece08c421, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7832642073980982862, guid: ea4324e39606b124fbc8962ece08c421, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1893,7 +1897,7 @@ Animation:
   m_GameObject: {fileID: 1878321970}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 345275505875579249, guid: 15428c8a8560e7c44808898a1fcc82a0, type: 3}
+  m_Animation: {fileID: 7624655660056751624, guid: 15428c8a8560e7c44808898a1fcc82a0, type: 3}
   m_Animations:
   - {fileID: 2613239370480212521, guid: 15428c8a8560e7c44808898a1fcc82a0, type: 3}
   - {fileID: 3543698089625107784, guid: 15428c8a8560e7c44808898a1fcc82a0, type: 3}
