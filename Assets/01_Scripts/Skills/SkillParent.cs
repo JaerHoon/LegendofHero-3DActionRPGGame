@@ -18,7 +18,7 @@ public class SkillParent : MonoBehaviour
 
     public virtual void UsedSkill(float damage, float cd, float gcd, float scale, float speedRate, float eventRate, int damageCount, int skillCount, int damageRate)
     {
-
+        print($"스킬발동, 데미지 : {damage}");
     }
 
 }

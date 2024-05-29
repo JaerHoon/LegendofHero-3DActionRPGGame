@@ -14,6 +14,6 @@ public class Archer : Character
     // Update is called once per frame
     void Update()
     {
-        UseSkill();
+        OnUseSkill();
     }
 }
