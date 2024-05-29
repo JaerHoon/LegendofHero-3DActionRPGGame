@@ -24,10 +24,10 @@ public class Character : MonoBehaviour
     protected Skills playerAttack;//플레이어 평타 정보
     protected Skills playerSkill;//스킬 정보
 
-    protected SkillParent[] skills = new SkillParent[2];
+    protected SkillParent[] skills = new SkillParent[2];//평타 및 스킬 슬롯
 
 
-
+    
 
     protected void GlobalCoolDownSKill()
     {
@@ -145,7 +145,7 @@ public class Character : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && playerAttackCD == 0)
             {
-                skills[0].UsedSkill(CalTotalDamage(playerAttack.Damage) * ItemManager.instance.itemToAttackDamageRate * playerAttackChargeRate, playerAttack.CD, playerAttack.GCD, playerAttack.Scale, playerAttack.SpeedRate, playerAttack.EventRate, playerAttack.DamageCount, playerAttack.SkillCount, playerAttack.DamageRate);
+                skills[0].UsedSkill(playerAttack);
                 playerAttackCD = playerAttack.CD;
                 playerGCD = playerAttack.GCD + ItemManager.instance.itemToSkillGCD;
                 GlobalCoolDownSKill();
@@ -153,8 +153,8 @@ public class Character : MonoBehaviour
             }
             if (Input.GetMouseButtonDown(1) && playerSkillCD == 0)
             {
-                skills[1].UsedSkill(CalTotalDamage(playerSkill.Damage) * playerSkillChargeRate, playerSkill.CD, playerSkill.GCD, playerSkill.Scale, playerSkill.SpeedRate, playerSkill.EventRate, playerSkill.DamageCount, playerSkill.SkillCount, playerSkill.DamageRate);
-                playerSkillCD = playerSkill.CD;
+                skills[1].UsedSkill(playerSkill);
+               playerSkillCD = playerSkill.CD;
                 playerGCD = playerSkill.GCD + ItemManager.instance.itemToSkillGCD;
                 GlobalCoolDownSKill();
                 CoolDownSKill();

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
-
     public float itemToSkillGCD;
     public float itemToAllSkillDamage;
     public float itemToAttackDamageRate;

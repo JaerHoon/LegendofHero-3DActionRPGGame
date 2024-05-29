@@ -17,8 +17,9 @@ public class WarriorAttack0 : SkillParent//전사의 평타 스크립트
         
     }
 
-    public override void UsedSkill(float damage, float cd, float gcd, float scale, float speedRate, float eventRate, int damageCount, int skillCount, int damageRate)
+    public override void UsedSkill(Skills skill)
     {
-        base.UsedSkill(damage, cd, gcd, scale, speedRate, eventRate, damageCount, skillCount, damageRate);
+        base.UsedSkill(skill);
     }
+    
 }

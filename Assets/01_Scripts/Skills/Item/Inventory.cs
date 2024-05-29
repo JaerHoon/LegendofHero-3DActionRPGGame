@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Inventory : MonoBehaviour
 {
@@ -11,6 +12,15 @@ public class Inventory : MonoBehaviour
     {
         invenItems.Add(item);
         print($"{item.itemName} æ∆¿Ã≈€ »πµÊ!.");
+        itemOdrer(invenItems);
+
+
+    }
+
+    public void itemOdrer(List<BaseItem> baseItems)
+    {
+        invenItems = invenItems.OrderBy(data => data.itemID)
+                     .ToList();
     }
 
     public BaseItem GetItemName(string itemName)

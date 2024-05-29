@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SkillParent : MonoBehaviour
 {
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +17,9 @@ public class SkillParent : MonoBehaviour
         
     }
 
-    public virtual void UsedSkill(float damage, float cd, float gcd, float scale, float speedRate, float eventRate, int damageCount, int skillCount, int damageRate)
+    public virtual void UsedSkill(Skills skill)
     {
+        float damage = skill.Damage;
         print($"스킬발동, 데미지 : {damage}");
     }
 
