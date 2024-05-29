@@ -10,7 +10,9 @@ public class PlayerAttack : MonoBehaviour
     ParticleSystem slash;
     [SerializeField]
     ParticleSystem slasher;
-
+    [SerializeField]
+    ParticleSystem shield;
+    
     Animator anim;
     private void Awake()
     {
@@ -20,6 +22,7 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        slash = GameObject.Find("Snow slash").GetComponentInChildren<ParticleSystem>();
     }
     void usedRay()
     {
@@ -64,12 +67,36 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    public void block()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            anim.SetBool("block", true);
+            shield.Play();
+            StartCoroutine(Endblock());
+        }
+    }
 
+    IEnumerator Endblock()
+    {
+        yield return new WaitForSeconds(1.5f);
+        anim.SetBool("block", false);
+        shield.Stop();
+    }
+
+    private void OnParticleTrigger()
+    {
+        if(slash.isPlaying)
+        {
+            Debug.Log("충돌감지");
+        }
+    }
     // Update is called once per frame
     void Update()
     {
         KnightAttack();
         skillAttack();
+        block();
 
     }
 }
