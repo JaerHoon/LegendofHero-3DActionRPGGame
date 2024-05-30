@@ -9,11 +9,17 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     ParticleSystem slash;
     [SerializeField]
-    ParticleSystem slasher;
-    [SerializeField]
     ParticleSystem shield;
-    
+    [SerializeField]
+    GameObject skill;
+    [SerializeField]
+    Transform skillPos;
+    [SerializeField]
+    float skillPower;
+
     Animator anim;
+    Rigidbody rb;
+    trigger skillTrigger;
     private void Awake()
     {
         if (instance == null)
@@ -22,7 +28,8 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        slash = GameObject.Find("Snow slash").GetComponentInChildren<ParticleSystem>();
+        rb = GetComponent<Rigidbody>();
+        skillTrigger = GetComponentInChildren<trigger>();
     }
     void usedRay()
     {
@@ -45,11 +52,13 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) // 마우스 왼쪽버튼 클릭했을 때 발동하도록 설정한다.
         {
+            skillTrigger.OnCollider();
             usedRay();
             //마우스 클릭시 공격 애니메이션이 발동된다.
             anim.SetTrigger("Attack");
             //공격 모션에 맞춰서 슬래시 파티클 애니메이션 실행
             slash.Play();
+            slash.transform.localPosition = new Vector3(-0.05f,1.44f,0.87f);
         }
 
     }
@@ -59,10 +68,12 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetMouseButtonDown(1)) // 마우스 오른쪽버튼 클릭했을 때 발동하도록 설정한다.
         {
             usedRay();
+            GameObject swordWave = Instantiate(skill, transform.position, transform.rotation);
+            swordWave.transform.position = skillPos.position;
             //마우스 클릭시 공격 애니메이션이 발동된다.
             anim.SetTrigger("Attack");
             //공격 모션에 맞춰서 슬래시 파티클 애니메이션 실행
-            slasher.Play();
+            //slasher.Play();
 
         }
     }
@@ -84,13 +95,6 @@ public class PlayerAttack : MonoBehaviour
         shield.Stop();
     }
 
-    private void OnParticleTrigger()
-    {
-        if(slash.isPlaying)
-        {
-            Debug.Log("충돌감지");
-        }
-    }
     // Update is called once per frame
     void Update()
     {

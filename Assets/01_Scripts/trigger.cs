@@ -4,19 +4,42 @@ using UnityEngine;
 
 public class trigger : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
+    
     void Start()
     {
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag=="Monster")
+        {
+            Debug.Log("충돌감지!!");
+        }
+
+    }
+
+    public void OnCollider()
+    {
+        Invoke("OnColliders", 0.2f);
+        Invoke("offCollider", 0.3f);
+    }
+
+    void OnColliders()
+    {
+        gameObject.GetComponent<BoxCollider>().enabled = true;
         
     }
 
-    private void OnParticleCollision(GameObject other)
+    void offCollider()
     {
-        Debug.Log("충돌감지됨!!");
+        gameObject.GetComponent<BoxCollider>().enabled = false;
     }
+
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 }
