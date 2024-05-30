@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
-<<<<<<< HEAD
-    private void OnParticleCollision(GameObject other)
-    {
-        Debug.Log("Ãæµ¹Cube");
-=======
-    
+
     void Start()
     {
         
@@ -22,6 +17,6 @@ public class Cube : MonoBehaviour
     void Update()
     {
         
->>>>>>> GuHakGyun
+
     }
 }
