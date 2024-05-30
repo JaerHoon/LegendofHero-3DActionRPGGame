@@ -22,4 +22,5 @@ public class WarriorSkill : SkillParent
         base.UsedSkill(skill);
     }
 
+    
 }

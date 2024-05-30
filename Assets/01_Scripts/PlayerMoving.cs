@@ -10,9 +10,11 @@ public class PlayerMoving : MonoBehaviour
     float rotSpeed; // 플레이어 회전속도
 
     Animator anim;
+    Camera cam;
     void Start()
     {
         anim = GetComponent<Animator>();
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     private void Move()
@@ -44,10 +46,31 @@ public class PlayerMoving : MonoBehaviour
         }
     }
 
+    
+    private void Rotate()
+    {
+        Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        Plane GroupPlane = new Plane(Vector3.up, Vector3.zero);
+
+        float rayLength;
+
+        if (GroupPlane.Raycast(cameraRay, out rayLength))
+
+        {
+
+            Vector3 pointTolook = cameraRay.GetPoint(rayLength);
+
+            transform.LookAt(new Vector3(pointTolook.x, transform.position.y, pointTolook.z));
+
+        }
+    }
     // Update is called once per frame
     void Update()
     {
         Move();
-      
+        Rotate();
+
+
     }
 }
