@@ -27,9 +27,9 @@ public class SkillParent : MonoBehaviour
 
 
 
-    public virtual void UsedSkill(Skills skill,float playerCritDamage, float chargeRate)
+    public virtual void UsedSkill(SkillInfo skill,float playerCritDamage, float chargeRate)
     {
-        float damage = CalTotalDamage(skill.Damage, playerCritDamage) * ItemManager.instance.itemToAttackDamageRate * chargeRate;
+        float damage = CalTotalDamage(skill.damage, playerCritDamage) * ItemManager.instance.itemToAttackDamageRate * chargeRate;
         print($"스킬발동, 데미지 : {damage}");
     }
 

@@ -1,24 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ItemManager : MonoBehaviour
 {
-    public float itemToSkillGCD;
+    public static ItemManager instance;
+
+    [HideInInspector]
+    public float itemToSkillGCD;//아이템으로 적용된 글로벌 쿨다운
+    [HideInInspector]
     public float itemToAllSkillDamage;
+    [HideInInspector]
     public float itemToAttackDamageRate;
+    [HideInInspector]
     public float itemToSpeed;
+    [HideInInspector]
     public float itemToAddCritDamage;
+    [HideInInspector]
     public float itemToNonHitTime;
-
-    public Dictionary<int, int> itemDic = new Dictionary<int, int>();
-
+    
     Inventory inventory;
 
-    public static ItemManager instance;
     public List<BaseItem> items = new List<BaseItem>();
+
+
+
+    public Dictionary<int, int> itemDic = new Dictionary<int, int>();
     public List<Relic> RelicItems = new List<Relic>();
     public List<Skill_Item> SkillItems = new List<Skill_Item>();
+
+
+
     private void Awake()
     {
         if (instance == null)
@@ -26,7 +39,7 @@ public class ItemManager : MonoBehaviour
         else
             Destroy(this);
 
-        SetItem();
+        CreateItem();
     }
 
     private void Start()
@@ -36,10 +49,10 @@ public class ItemManager : MonoBehaviour
         {
             itemDic.Add(i, 0);
         }
-        init();
+        Init();
     }
 
-    void init()
+    void Init()
     {
         for (int i = 0; i < 10; i++)
         {
@@ -54,7 +67,7 @@ public class ItemManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void SetItem()
+    void CreateItem()
     {
         Relic relic = new Relic(0, "비둘기의 활", null, "3초마다 타겟을 향해 투사체를 발사하여 70 데미지를 준다.", 70f, 0, 3f);
         items.Add(relic); RelicItems.Add(relic);
@@ -89,7 +102,7 @@ public class ItemManager : MonoBehaviour
 
     void AddDicItem()//아이템 딕셔너리에 넣기
     {
-        init();//먹을 때마다 아이템 증가효과를 리셋하고 다시 적용
+        Init();//먹을 때마다 아이템 증가효과를 리셋하고 다시 적용
         for (int i = 0; i < inventory.invenItems.Count; i++)//인벤토리에 있는 아이템 만큼 돌기
         {
             for (int j = 0; j < 10; j++)//아이템 종류 만큼 돌기
@@ -133,6 +146,8 @@ public class ItemManager : MonoBehaviour
     {
         while(true)
         {
+            Relic relic = (Relic)items[0];
+            relic.power = 10;
             print($"바둘기의 활 발사!, 데미지 : {RelicItems[0].power}, {RelicItems[0].cd}초에 한발 발사");
             yield return new WaitForSeconds(RelicItems[0].cd);
         }
