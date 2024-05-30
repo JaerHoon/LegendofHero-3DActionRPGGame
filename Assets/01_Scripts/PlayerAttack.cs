@@ -31,7 +31,7 @@ public class PlayerAttack : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         skillTrigger = GetComponentInChildren<trigger>();
     }
-    void usedRay()
+    /*void usedRay()
     {
         //ScreenPointToRay 함수를 이용해서 마우스 클릭한 위치를 3D 월드 좌표값으로 반환한다.
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -45,7 +45,7 @@ public class PlayerAttack : MonoBehaviour
             //LookAt 함수를 이용하여 lookAtPos 방향값으로 플레이어가 바라보게 만든다.
             transform.LookAt(lookAtPos);
         }
-    }
+    }*/
 
 
     public void KnightAttack()
@@ -53,7 +53,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) // 마우스 왼쪽버튼 클릭했을 때 발동하도록 설정한다.
         {
             skillTrigger.OnCollider();
-            usedRay();
+            //usedRay();
             //마우스 클릭시 공격 애니메이션이 발동된다.
             anim.SetTrigger("Attack");
             //공격 모션에 맞춰서 슬래시 파티클 애니메이션 실행
@@ -67,7 +67,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1)) // 마우스 오른쪽버튼 클릭했을 때 발동하도록 설정한다.
         {
-            usedRay();
+            //usedRay();
             GameObject swordWave = Instantiate(skill, transform.position, transform.rotation);
             swordWave.transform.position = skillPos.position;
             //마우스 클릭시 공격 애니메이션이 발동된다.
