@@ -39,10 +39,12 @@ public class PlayerMoving : MonoBehaviour
             //계산된 방향으로 플레이어를 이동시킨다.                             ↓플레이어 이동을 월드좌표계 기준으로 설정한다.
             transform.Translate(moveDir.normalized * moveSpeed * Time.deltaTime, Space.World);
             anim.SetBool("isMove", true); // 이동시에 run 애니메이션 실행
+            //anim.CrossFade("Run", 0.3f);
         }
         else
         {
             anim.SetBool("isMove", false); // 멈췄을때 idle 상태로 전환
+            //anim.CrossFade("Idle", 0.3f);
         }
     }
 
