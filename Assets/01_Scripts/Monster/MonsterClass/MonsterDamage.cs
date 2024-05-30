@@ -5,7 +5,11 @@ using UnityEngine;
 public class MonsterDamage : MonoBehaviour
 {
     protected Monster monster;
-    protected bool IsDamage;
+
+    protected void Init()
+    {
+        monster = GetComponent<Monster>();
+    }
 
     public virtual void OnDamage(float pow)
     {

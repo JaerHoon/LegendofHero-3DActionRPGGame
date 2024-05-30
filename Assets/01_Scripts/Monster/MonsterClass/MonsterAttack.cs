@@ -7,10 +7,11 @@ public class MonsterAttack : MonoBehaviour
     protected Monster monster;
     protected bool IsATK;
 
-    private void Start()
+    protected void Init()
     {
         monster = GetComponent<Monster>();
     }
+
 
     public virtual void OnATK()
     {
@@ -21,4 +22,6 @@ public class MonsterAttack : MonoBehaviour
     {
         IsATK = false;
     }
+
+   
 }

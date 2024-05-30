@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    
     public MonsterData monsterData;
     public MonsterAnim anim;
     public MonsterAttack monsterAtk;
@@ -44,7 +43,9 @@ public class Monster : MonoBehaviour
         }
     }
 
-    public void Start()
+  
+
+    protected void Init()
     {
         anim = GetComponent<MonsterAnim>();
         monsterAtk = GetComponent<MonsterAttack>();
@@ -52,6 +53,7 @@ public class Monster : MonoBehaviour
         monsterMove = GetComponent<MonsterMove>();
         monsterStat = MonsterStat.Generate;
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
+        ChangeStat(monsterStat);
     }
 
     public void OnDamage()
@@ -111,7 +113,7 @@ public class Monster : MonoBehaviour
     protected virtual void GenerateStat()
     {
         //애니메이션 적용
-        //생성이 다 끝나면 그때...
+        //생성이 다 끝나면 그때..
         StartCoroutine(CheckStat());
     }
 
@@ -131,6 +133,7 @@ public class Monster : MonoBehaviour
     {
         monsterAtk.OnATK();
         monsterMove.OffMove();
+        anim.OnAtkAnim();
         // 어택 애니메이션은 몬스터 어택스크립트에서 호출
     }
 
@@ -150,6 +153,11 @@ public class Monster : MonoBehaviour
     protected virtual void OnDie()
     {
 
+    }
+
+    private void Update()
+    {
+        print(monsterStat);
     }
 }
 
