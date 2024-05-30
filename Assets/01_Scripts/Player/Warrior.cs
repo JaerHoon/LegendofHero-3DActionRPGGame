@@ -8,25 +8,25 @@ public class Warrior : Character
     void Start()
     {
         WarriorInit();
-        playerAttack = SkillManager.instance.WarriorSkills[0];
-        playerSkill = SkillManager.instance.WarriorSkills[7];
-        skills[0] = this.gameObject.GetComponent<WarriorAttack0>();
-        skills[1] = this.gameObject.GetComponent<WarriorSkill>();
+        playerSkillsSlot[0] = SkillManager.instance.warriorSkills[0];
+        playerSkillsSlot[1] = SkillManager.instance.warriorSkills[4];
+        playerSkillsSlot[2] = SkillManager.instance.warriorSkills[8];
+        //playerAttack = SkillManager.instance.warriorSkills[0];
+        //playerSkill = SkillManager.instance.warriorSkills[7];
+        //skills[0] = this.gameObject.GetComponent<WarriorAttack0>();
+        //skills[1] = this.gameObject.GetComponent<WarriorSkill>();
+        skillSc = this.gameObject.GetComponent<WarriorSkill>();
     }
 
     void WarriorInit()
     {
         playerHp = 10;
-        playerAttackCD = 0;
-        playerSkillCD = 0;
-        playerNonHitCD_cur = 0;
-        playerNonHitCD = 15;
-        playerGCD = 0;
         playerSpeed = 1;
         playerCritDamage = 1.5f;
         playerAttackChargeRate = 1;
         playerSkillChargeRate = 1;
-        playerNonHitTime = 1.5f;
+
+        for (int i = 0; i < 4; i++) isReadySkills[i] = true;
 
         isNonHit = false;
     }
@@ -35,11 +35,11 @@ public class Warrior : Character
     {
         if(SKillNum >= 0 && SKillNum <= 4)
         {
-            playerAttack = SkillManager.instance.WarriorSkills[SKillNum];
+            playerSkillsSlot[0] = SkillManager.instance.warriorSkills[SKillNum];
         }
         else
         {
-            playerSkill = SkillManager.instance.WarriorSkills[SKillNum];
+            playerSkillsSlot[1] = SkillManager.instance.warriorSkills[SKillNum];
         }
     }
 
