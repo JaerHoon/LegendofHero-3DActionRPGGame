@@ -15,11 +15,18 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     Transform skillPos;
     [SerializeField]
+    Transform skillPos2;
+    [SerializeField]
+    Transform skillPos3;
+    [SerializeField]
     float skillPower;
 
     Animator anim;
     Rigidbody rb;
     PlayerTrigger playerTrigger;
+    bool isButtonPressed = false;
+    bool isButtonPressed2 = false;
+    bool isButtonPressed3 = false;
     private void Awake()
     {
         if (instance == null)
@@ -70,13 +77,54 @@ public class PlayerAttack : MonoBehaviour
             //usedRay();
             GameObject swordWave = Instantiate(skill, transform.position, transform.rotation);
             swordWave.transform.position = skillPos.position;
-            GameObject swordWave2 = Instantiate(skill, transform.position,transform.rotation);
+            
             //마우스 클릭시 공격 애니메이션이 발동된다.
             anim.SetTrigger("Attack");
             //공격 모션에 맞춰서 슬래시 파티클 애니메이션 실행
             //slasher.Play();
 
+            if (isButtonPressed)
+            {
+                skillsetting1();
+            }
+            else if (isButtonPressed2)
+            {
+                skillsetting2(swordWave);
+            }
+
+
         }
+    }
+
+    public void OnButtonSkill_First()
+    {
+        isButtonPressed = !isButtonPressed;
+    }
+
+    public void OnButtonSkill_Second()
+    {
+        isButtonPressed2 = !isButtonPressed2;
+    }
+
+    public void OnButtonSkill_Third()
+    {
+        isButtonPressed3 = !isButtonPressed3;
+    }
+
+    void skillsetting1()
+    {
+        Quaternion WaveRot2 = transform.rotation * Quaternion.Euler(0, 50.0f, 0);
+        Quaternion WaveRot3 = transform.rotation * Quaternion.Euler(0, -50.0f, 0);
+
+        GameObject swordWave2 = Instantiate(skill, transform.position, WaveRot2);
+        GameObject swordWave3 = Instantiate(skill, transform.position, WaveRot3);
+        swordWave2.transform.position = skillPos2.position;
+        swordWave3.transform.position = skillPos3.position;
+    }
+
+    void skillsetting2(GameObject wave)
+    {
+        wave.transform.localScale = new Vector3(2.0f, 1.0f, 2.0f);
     }
 
     public void block() // 보호막 함수

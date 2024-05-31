@@ -8,7 +8,13 @@ public class SwordWave : MonoBehaviour
     float skillPower;
     void Start()
     {
+        StartCoroutine(DestroyWave());
+    }
 
+    IEnumerator DestroyWave()
+    {
+        yield return new WaitForSeconds(4.0f);
+        Destroy(this.gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
