@@ -13,4 +13,112 @@ MonoBehaviour:
   m_Name: ArcherSkills
   m_EditorClassIdentifier: 
   ClassType: Warrior
-  SkillInfo: []
+  SkillInfo:
+  - ID: 0
+    SkillDescription: 
+    Image: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
+  - ID: 0
+    SkillDescription: 
+    Image: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
+  - ID: 0
+    SkillDescription: 
+    Image: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
+  - ID: 0
+    SkillDescription: 
+    Image: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
+  - ID: 0
+    SkillDescription: 
+    Image: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
+  - ID: 0
+    SkillDescription: 
+    Image: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
+  - ID: 0
+    SkillDescription: 
+    Image: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
+  - ID: 0
+    SkillDescription: 
+    Image: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
+  - ID: 0
+    SkillDescription: 
+    Image: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
