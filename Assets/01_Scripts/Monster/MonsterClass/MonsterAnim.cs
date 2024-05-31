@@ -5,7 +5,6 @@ using UnityEngine;
 public class MonsterAnim : MonoBehaviour
 {
     protected Monster monster;
-    protected Transform playerTr;
     protected Animator animator;
 
     protected int Idle = 0;
@@ -19,7 +18,6 @@ public class MonsterAnim : MonoBehaviour
     protected void Init()
     {
         monster = GetComponent<Monster>();
-        playerTr = GameObject.FindGameObjectWithTag("Player").transform;
         animator = GetComponent<Animator>();
     }
  

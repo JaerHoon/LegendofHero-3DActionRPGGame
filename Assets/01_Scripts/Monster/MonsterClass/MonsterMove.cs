@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class MonsterMove : MonoBehaviour
 {
     protected Monster monster;
-    protected Transform playerTr;
     protected NavMeshAgent agent;
 
     protected bool IsMove;
@@ -15,7 +14,6 @@ public class MonsterMove : MonoBehaviour
     protected virtual void Init()
     {
         monster = GetComponent<Monster>();
-        playerTr = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = monster.monsterData.MoveSpeed;
        
@@ -42,7 +40,7 @@ public class MonsterMove : MonoBehaviour
 
     protected virtual void Move()
     {
-        agent.destination = playerTr.position;
+        agent.destination = monster.playerTr.position;
     }
 
     private void Update()
