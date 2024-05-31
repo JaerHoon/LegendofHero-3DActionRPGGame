@@ -19,7 +19,7 @@ public class PlayerAttack : MonoBehaviour
 
     Animator anim;
     Rigidbody rb;
-    trigger skillTrigger;
+    PlayerTrigger playerTrigger;
     private void Awake()
     {
         if (instance == null)
@@ -29,7 +29,7 @@ public class PlayerAttack : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        skillTrigger = GetComponentInChildren<trigger>();
+        playerTrigger = GetComponentInChildren<PlayerTrigger>();
     }
     /*void usedRay()
     {
@@ -48,11 +48,11 @@ public class PlayerAttack : MonoBehaviour
     }*/
 
 
-    public void KnightAttack()
+    public void KnightAttack() // 기본공격 함수
     {
         if (Input.GetMouseButtonDown(0)) // 마우스 왼쪽버튼 클릭했을 때 발동하도록 설정한다.
         {
-            skillTrigger.OnCollider();
+            playerTrigger.OnCollider();
             //usedRay();
             //마우스 클릭시 공격 애니메이션이 발동된다.
             anim.SetTrigger("Attack");
@@ -63,13 +63,14 @@ public class PlayerAttack : MonoBehaviour
 
     }
 
-    public void skillAttack()
+    public void skillAttack() // 스킬 함수
     {
         if (Input.GetMouseButtonDown(1)) // 마우스 오른쪽버튼 클릭했을 때 발동하도록 설정한다.
         {
             //usedRay();
             GameObject swordWave = Instantiate(skill, transform.position, transform.rotation);
             swordWave.transform.position = skillPos.position;
+            GameObject swordWave2 = Instantiate(skill, transform.position,transform.rotation);
             //마우스 클릭시 공격 애니메이션이 발동된다.
             anim.SetTrigger("Attack");
             //공격 모션에 맞춰서 슬래시 파티클 애니메이션 실행
@@ -78,7 +79,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    public void block()
+    public void block() // 보호막 함수
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {

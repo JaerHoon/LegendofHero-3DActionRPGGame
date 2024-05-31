@@ -11,6 +11,17 @@ public class Arrow : MonoBehaviour
         
     }
 
+   
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Monster")
+        {
+            Debug.Log("화살 충돌!!");
+            Destroy(this.gameObject);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

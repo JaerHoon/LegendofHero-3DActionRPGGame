@@ -6,11 +6,23 @@ AvatarMask:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArcherMask
+  m_Name: KnightMask
   m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
   m_Elements:
   - m_Path: 
     m_Weight: 1
+  - m_Path: Knight_ArmLeft
+    m_Weight: 0
+  - m_Path: Knight_ArmRight
+    m_Weight: 0
+  - m_Path: Knight_Body
+    m_Weight: 0
+  - m_Path: Knight_Head
+    m_Weight: 0
+  - m_Path: Knight_LegLeft
+    m_Weight: 0
+  - m_Path: Knight_LegRight
+    m_Weight: 0
   - m_Path: Rig
     m_Weight: 0
   - m_Path: Rig/root
@@ -55,19 +67,29 @@ AvatarMask:
     m_Weight: 0
   - m_Path: Rig/root/hips/spine/chest/head
     m_Weight: 1
-  - m_Path: Rig/root/hips/spine/chest/Rogue_Cape
+  - m_Path: Rig/root/hips/spine/chest/head/Knight_Helmet
+    m_Weight: 0
+  - m_Path: Rig/root/hips/spine/chest/Knight_Cape
     m_Weight: 0
   - m_Path: Rig/root/hips/spine/chest/upperarm.l
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Rig/root/hips/spine/chest/upperarm.l/lowerarm.l
     m_Weight: 1
   - m_Path: Rig/root/hips/spine/chest/upperarm.l/lowerarm.l/wrist.l
     m_Weight: 1
   - m_Path: Rig/root/hips/spine/chest/upperarm.l/lowerarm.l/wrist.l/hand.l
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Rig/root/hips/spine/chest/upperarm.l/lowerarm.l/wrist.l/hand.l/handslot.l
+    m_Weight: 1
+  - m_Path: Rig/root/hips/spine/chest/upperarm.l/lowerarm.l/wrist.l/hand.l/handslot.l/1H_Sword_Offhand
     m_Weight: 0
-  - m_Path: Rig/root/hips/spine/chest/upperarm.l/lowerarm.l/wrist.l/hand.l/handslot.l/Knife_Offhand
+  - m_Path: Rig/root/hips/spine/chest/upperarm.l/lowerarm.l/wrist.l/hand.l/handslot.l/Badge_Shield
+    m_Weight: 0
+  - m_Path: Rig/root/hips/spine/chest/upperarm.l/lowerarm.l/wrist.l/hand.l/handslot.l/Rectangle_Shield
+    m_Weight: 0
+  - m_Path: Rig/root/hips/spine/chest/upperarm.l/lowerarm.l/wrist.l/hand.l/handslot.l/Round_Shield
+    m_Weight: 0
+  - m_Path: Rig/root/hips/spine/chest/upperarm.l/lowerarm.l/wrist.l/hand.l/handslot.l/Spike_Shield
     m_Weight: 0
   - m_Path: Rig/root/hips/spine/chest/upperarm.r
     m_Weight: 1
@@ -79,13 +101,9 @@ AvatarMask:
     m_Weight: 1
   - m_Path: Rig/root/hips/spine/chest/upperarm.r/lowerarm.r/wrist.r/hand.r/handslot.r
     m_Weight: 1
-  - m_Path: Rig/root/hips/spine/chest/upperarm.r/lowerarm.r/wrist.r/hand.r/handslot.r/1H_Crossbow
-    m_Weight: 1
-  - m_Path: Rig/root/hips/spine/chest/upperarm.r/lowerarm.r/wrist.r/hand.r/handslot.r/2H_Crossbow
-    m_Weight: 1
-  - m_Path: Rig/root/hips/spine/chest/upperarm.r/lowerarm.r/wrist.r/hand.r/handslot.r/Knife
+  - m_Path: Rig/root/hips/spine/chest/upperarm.r/lowerarm.r/wrist.r/hand.r/handslot.r/1H_Sword
     m_Weight: 0
-  - m_Path: Rig/root/hips/spine/chest/upperarm.r/lowerarm.r/wrist.r/hand.r/handslot.r/Throwable
+  - m_Path: Rig/root/hips/spine/chest/upperarm.r/lowerarm.r/wrist.r/hand.r/handslot.r/2H_Sword
     m_Weight: 0
   - m_Path: Rig/root/hips/upperleg.l
     m_Weight: 0
@@ -104,18 +122,6 @@ AvatarMask:
   - m_Path: Rig/root/hips/upperleg.r/lowerleg.r/foot.r/toes.r
     m_Weight: 0
   - m_Path: Rig/root/kneeIK.l
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Rig/root/kneeIK.r
-    m_Weight: 0
-  - m_Path: Rogue_ArmLeft
-    m_Weight: 0
-  - m_Path: Rogue_ArmRight
-    m_Weight: 0
-  - m_Path: Rogue_Body
-    m_Weight: 0
-  - m_Path: Rogue_Head_Hooded
-    m_Weight: 0
-  - m_Path: Rogue_LegLeft
-    m_Weight: 0
-  - m_Path: Rogue_LegRight
-    m_Weight: 0
+    m_Weight: 1
