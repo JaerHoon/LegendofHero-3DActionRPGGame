@@ -44,7 +44,7 @@ public class MonsterAnim : MonoBehaviour
 
     public virtual void OnAtkAnim()
     {
-        print("ATK");
+       
         animator.SetInteger(Stat, Attack);
     }
 

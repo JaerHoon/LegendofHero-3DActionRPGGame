@@ -4,8 +4,5 @@ using UnityEngine;
 
 public class MonsterWrriorUIModel : MonsterUIModel
 {
-    private void Start()
-    {
-        Init();
-    }
+   
 }

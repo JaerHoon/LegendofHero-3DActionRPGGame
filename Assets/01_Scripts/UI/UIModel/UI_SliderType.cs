@@ -9,12 +9,13 @@ public class UI_SliderType : UI
     {
         Init();
         UIUpdate();
-        slider.maxValue = (float)value;
-        slider.value = (float)value2;
     }
     public override void UIUpdate()
     {
-        slider.maxValue = (float)value;
-        slider.value = (float)value2;
+        value = GetValue(SetectedValue);
+        value2 = GetValue(SetectedValue1);
+       
+        slider.maxValue = value != null ? (float)value : 0;
+        slider.value = value2 != null ? (float)value2 : 0;
     }
 }

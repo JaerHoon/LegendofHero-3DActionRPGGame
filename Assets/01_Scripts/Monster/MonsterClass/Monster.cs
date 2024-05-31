@@ -46,9 +46,9 @@ public class Monster : MonoBehaviour
             else
             {
                 curHP = value;
-                monsterUI.UIupdate();
+                
             }
-           
+            monsterUI.UIupdate();
         }
     }
 
@@ -60,11 +60,13 @@ public class Monster : MonoBehaviour
         monsterAtk = GetComponent<MonsterAttack>();
         monsterdDmg = GetComponent<MonsterDamage>();
         monsterMove = GetComponent<MonsterMove>();
+        monsterUI = GetComponent<MonsterUIModel>();
         monsterStat = MonsterStat.Generate;
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
         GenerateStat();
         MaxHP = monsterData.HP;
         curHP = MaxHP;
+        monsterUI.Init();
     }
 
     public void OnDamage()
@@ -155,6 +157,7 @@ public class Monster : MonoBehaviour
            case MonsterStat.Attack: AttackStat(); break;
            case MonsterStat.Trace: TraceStat(); break;
            case MonsterStat.Damage: DamageStat(); break;
+           case MonsterStat.Die: DieStat(); break;
         }
     }
 
@@ -187,6 +190,8 @@ public class Monster : MonoBehaviour
     protected virtual void DamageStat()
     {
         OnDamage();
+        anim.OnDamageAnim();
+        monsterAtk.OffATK();
         monsterMove.OffMove();
     }
 
@@ -204,7 +209,7 @@ public class Monster : MonoBehaviour
 
     private void Update()
     {
-       
+      
     }
 }
 

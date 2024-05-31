@@ -10,19 +10,20 @@ public class MonsterUIModel : UIModel
     public float maxhp;
     public float curhp;
    
-
-    protected virtual void Init()
+    public virtual void Init()
     {
         monster = GetComponent<Monster>();
-        maxhp = monster.MaxHP;
-        curhp = monster.CurrenHP;
+       
+        UIupdate();
 
     }
 
     public virtual void UIupdate()
     {
+        
         maxhp = monster.MaxHP;
         curhp = monster.CurrenHP;
+       
         ChangeUI();
     }
 

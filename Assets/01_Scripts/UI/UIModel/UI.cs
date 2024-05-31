@@ -31,6 +31,8 @@ public class UI : MonoBehaviour
     [HideInInspector]
     public string valueText;
     [HideInInspector]
+    public string valueText2;
+    [HideInInspector]
     public object value;
     [HideInInspector]
     public object value2;
@@ -64,23 +66,24 @@ public class UI : MonoBehaviour
 
     protected void SetComopnent(ViewType view)
     {
+
         switch ((int)view)
         {
             case 0:
             case 1:
+            case 6:
             case 7:
-            case 8:
                 TryGetComponent<Image>(out image);
                 break;
+            case 2:
             case 3:
-            case 4:
                 TryGetComponent<TextMeshProUGUI>(out textMesh);
                 break;
+            case 4:
             case 5:
-            case 6:
                 TryGetComponent<Button>(out button);
                 break;
-            case 9:
+            case 8:
                 TryGetComponent<Slider>(out slider);
                 break;
         }
@@ -91,6 +94,12 @@ public class UI : MonoBehaviour
 
     }
 
+    protected virtual object GetValue(string ValueName)
+    {
+        object va = viewController.GetValue(uITypeNumber, ValueName);
+
+        return va;
+    }
 
 
 }
