@@ -13,4 +13,129 @@ MonoBehaviour:
   m_Name: WarriorSkills
   m_EditorClassIdentifier: 
   ClassType: Warrior
-  SkillInfo: []
+  SkillInfo:
+  - ID: 0
+    SkillDescription: "\uC8FC\uBCC0 \uD070 \uBC94\uC704\uC5D0 220 \uB370\uBBF8\uC9C0\uB97C
+      \uC900\uB2E4. (GCD : 1.5\uCD08)"
+    Image: {fileID: 0}
+    Damage: 220
+    CD: 0
+    GCD: 1.5
+    Scale: 1
+    SpeedRate: 1
+    EventRate: 1
+    DamageCount: 1
+    SkillCount: 1
+    DamageRate: 1
+  - ID: 1
+    SkillDescription: "\uC8FC\uBCC0 \uD070 \uBC94\uC704\uC5D0 400 \uB370\uBBF8\uC9C0\uB97C
+      \uC900\uB2E4. \uB370\uBBF8\uC9C0\uC640 \uBC94\uC704\uAC00 \uCEE4\uC9C0\uC9C0\uB9CC
+      GCD\uAC00 \uC99D\uAC00\uD55C\uB2E4 \uC0AC\uC6A9 \uC2DC \uC6C0\uC9C1\uC784\uC774
+      \uB290\uB824\uC9C4\uB2E4 (GCD : 2\uCD08) "
+    Image: {fileID: 0}
+    Damage: 400
+    CD: 0
+    GCD: 2
+    Scale: 1.5
+    SpeedRate: 0.75
+    EventRate: 1
+    DamageCount: 1
+    SkillCount: 1
+    DamageRate: 1
+  - ID: 2
+    SkillDescription: "\uC8FC\uBCC0 \uD070 \uBC94\uC704\uC5D0 220 \uB370\uBBF8\uC9C0\uB97C
+      \uC900\uB2E4. GCD\uAC00 \uAC10\uC18C\uD55C\uB2E4. (GCD : 1.1\uCD08)"
+    Image: {fileID: 0}
+    Damage: 220
+    CD: 0
+    GCD: 1.1
+    Scale: 1
+    SpeedRate: 1
+    EventRate: 1
+    DamageCount: 1
+    SkillCount: 1
+    DamageRate: 1
+  - ID: 3
+    SkillDescription: "\uC804\uBC29 \uC881\uC740 \uBC94\uC704\uC5D0 110\uB370\uBBF8\uC9C0\uB97C
+      3\uD68C \uC900\uB2E4 (GCD : 1.5\uCD08)"
+    Image: {fileID: 0}
+    Damage: 110
+    CD: 0
+    GCD: 1.5
+    Scale: 1
+    SpeedRate: 1
+    EventRate: 1
+    DamageCount: 1
+    SkillCount: 1
+    DamageRate: 1
+  - ID: 4
+    SkillDescription: "\uC804\uBC29 \uC9C1\uC120 \uBC94\uC704\uC5D0 60 \uB370\uBBF8\uC9C0\uB97C
+      \uC900\uB2E4 \uB2E4\uC74C \uC77C\uBC18 \uD3C9\uD0C0\uAC00 1.5\uBC30 \uB370\uBBF8\uC9C0\uB97C
+      \uC900\uB2E4 (GCD : 1.5\uCD08)"
+    Image: {fileID: 0}
+    Damage: 60
+    CD: 0
+    GCD: 1.5
+    Scale: 1
+    SpeedRate: 1
+    EventRate: 1
+    DamageCount: 1
+    SkillCount: 1
+    DamageRate: 1
+  - ID: 5
+    SkillDescription: "\uC8FC\uBCC0 \uD070 \uBC94\uC704\uC5D0 400 \uB370\uBBF8\uC9C0\uB97C
+      \uC900\uB2E4. \uB370\uBBF8\uC9C0\uC640 \uBC94\uC704\uAC00 \uCEE4\uC9C0\uC9C0\uB9CC
+      GCD\uAC00 \uC99D\uAC00\uD55C\uB2E4 \uC0AC\uC6A9 \uC2DC \uC6C0\uC9C1\uC784\uC774
+      \uB290\uB824\uC9C4\uB2E4 (GCD : 2\uCD08) "
+    Image: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0.5
+    Scale: 1
+    SpeedRate: 1.3
+    EventRate: 1
+    DamageCount: 1
+    SkillCount: 1
+    DamageRate: 1
+  - ID: 6
+    SkillDescription: "\uC804\uBC29 \uC9C1\uC120 \uBC94\uC704\uC5D0 220 \uB370\uBBF8\uC9C0\uB97C
+      \uC900\uB2E4 \uB2E4\uC74C \uC77C\uBC18 \uD3C9\uD0C0\uAC00 1.5\uBC30 \uB370\uBBF8\uC9C0\uB97C
+      \uC900\uB2E4. \uBC94\uC704\uC640 \uB370\uBBF8\uC9C0\uAC00 \uC99D\uAC00\uD55C\uB2E4
+      (GCD : 1.5\uCD08)"
+    Image: {fileID: 0}
+    Damage: 220
+    CD: 0
+    GCD: 1.5
+    Scale: 1
+    SpeedRate: 1
+    EventRate: 1
+    DamageCount: 1
+    SkillCount: 1
+    DamageRate: 1
+  - ID: 7
+    SkillDescription: "\uB2E4\uC74C \uC77C\uBC18 \uD3C9\uD0C0\uAC00 3\uBC30 \uB370\uBBF8\uC9C0\uB97C
+      \uC900\uB2E4. \uB370\uBBF8\uC9C0\uB97C \uC8FC\uC9C0 \uC54A\uC73C\uBA70 \uC0AC\uC6A9
+      \uC2DC \uC6C0\uC9C1\uC77C \uC218 \uC5C6\uB2E4.(GCD : 1.5\uCD08) (\uCFE8\uB2E4\uC6B4
+      : 5\uCD08)"
+    Image: {fileID: 0}
+    Damage: 0
+    CD: 5
+    GCD: 1.5
+    Scale: 1
+    SpeedRate: 1
+    EventRate: 1
+    DamageCount: 1
+    SkillCount: 1
+    DamageRate: 1
+  - ID: 8
+    SkillDescription: 
+    Image: {fileID: 0}
+    Damage: 0
+    CD: 15
+    GCD: 1.5
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
