@@ -6,10 +6,13 @@ public class MonsterAttack : MonoBehaviour
 {
     protected Monster monster;
     protected bool IsATK;
+    protected BoxCollider hitBox;
+    
 
     protected void Init()
     {
         monster = GetComponent<Monster>();
+        hitBox = GetComponentInChildren<BoxCollider>();
     }
 
 
@@ -22,6 +25,18 @@ public class MonsterAttack : MonoBehaviour
     {
         IsATK = false;
     }
+    public virtual void Attack()
+    {
 
-   
+    }
+
+    public virtual void EndAttack()
+    {
+
+    }
+
+    public virtual void Hit(CharacterDamage player)
+    {
+        
+    }
 }

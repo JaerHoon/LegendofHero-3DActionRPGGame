@@ -14,6 +14,7 @@ public class Monster : MonoBehaviour
     public enum MonsterStat { Generate, Idle, Trace, Damage ,Attack ,Die }
     public MonsterStat monsterStat;
     protected bool IsDamage;
+    protected bool IsPlayerdetected;
 
     public Transform playerTr;
     [SerializeField]
@@ -51,7 +52,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-  
+    
 
     protected void Init()
     {
@@ -61,7 +62,7 @@ public class Monster : MonoBehaviour
         monsterMove = GetComponent<MonsterMove>();
         monsterStat = MonsterStat.Generate;
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
-        ChangeStat(monsterStat);
+        GenerateStat();
         MaxHP = monsterData.HP;
         curHP = MaxHP;
     }
@@ -75,20 +76,38 @@ public class Monster : MonoBehaviour
         IsDamage = false;
     }
 
-    
-    protected IEnumerator CheckStat()
+    public void DetectedPlayer()
+    {
+        IsPlayerdetected = true;
+    }
+
+    public void CheckStart()
+    {
+        StartCoroutine(CheckStat());
+    }
+
+    public IEnumerator CheckStat()
     {
         while(monsterStat != MonsterStat.Die)
         {
             yield return waitForSeconds;
             if (IsDamage == false)
             {
-                CheckPlayer();
+                if (IsPlayerdetected)
+                {
+                    TracePlayer();
+                }
+                else
+                {
+                    CheckPlayer();
+                }
+               
             }
         }
     }
     protected virtual void CheckPlayer()
     {
+       
         float distance = Vector3.Distance(playerTr.position, transform.position);
         if (distance > AttackDistanc && distance < TraceDistanc)
         {
@@ -99,12 +118,30 @@ public class Monster : MonoBehaviour
         }
         else if (distance > 0.1f && distance < AttackDistanc)
         {
+            IsPlayerdetected = true;
             ChangeStat(MonsterStat.Attack);
         }
         else
         {
             ChangeStat(MonsterStat.Idle);
         }
+    }
+
+    protected virtual void TracePlayer()
+    {
+        float distance = Vector3.Distance(playerTr.position, transform.position);
+
+        if (distance > 0.1f && distance < AttackDistanc)
+        {
+            IsPlayerdetected = true;
+            ChangeStat(MonsterStat.Attack);
+        }
+        else
+        {
+            ChangeStat(MonsterStat.Trace);
+        }
+
+
     }
 
     public void ChangeStat(MonsterStat Stat)
@@ -121,11 +158,10 @@ public class Monster : MonoBehaviour
         }
     }
 
+
     protected virtual void GenerateStat()
     {
-        //애니메이션 적용
-        //생성이 다 끝나면 그때..
-        StartCoroutine(CheckStat());
+        anim.OnGenerateAnim();
     }
 
     protected virtual void IdleStat()
@@ -168,7 +204,7 @@ public class Monster : MonoBehaviour
 
     private void Update()
     {
-        print(monsterStat);
+       
     }
 }
 

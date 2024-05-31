@@ -6,6 +6,8 @@ public class MonsterAnim : MonoBehaviour
 {
     protected Monster monster;
     protected Animator animator;
+    [SerializeField]
+    GameObject GenFX;
 
     protected int Idle = 0;
     protected int Run = 2;
@@ -15,10 +17,24 @@ public class MonsterAnim : MonoBehaviour
 
     protected string Stat = "Stat";
 
+ 
     protected void Init()
     {
         monster = GetComponent<Monster>();
         animator = GetComponent<Animator>();
+    }
+
+    public virtual void OnGenerateAnim()
+    {
+        GenFX.SetActive(true);
+        StartCoroutine(OffGenerateAnim());
+    }
+
+    IEnumerator OffGenerateAnim()
+    {
+        yield return new WaitForSeconds(2f);
+        monster.CheckStart();
+        GenFX.SetActive(false);
     }
  
     public virtual void OnIdleAnim()

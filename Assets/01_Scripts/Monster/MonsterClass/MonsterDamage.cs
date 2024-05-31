@@ -13,6 +13,7 @@ public class MonsterDamage : MonoBehaviour
 
     public virtual void OnDamage(float pow)
     {
+        monster.DetectedPlayer();
         monster.monsterStat = Monster.MonsterStat.Damage;
         monster.CurrenHP -= pow;
         DamageFx(pow);
