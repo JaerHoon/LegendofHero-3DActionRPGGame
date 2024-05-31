@@ -9,6 +9,7 @@ public class Monster : MonoBehaviour
     public MonsterAttack monsterAtk;
     public MonsterDamage monsterdDmg;
     public MonsterMove monsterMove;
+    public MonsterUIModel monsterUI;
 
     public enum MonsterStat { Generate, Idle, Trace, Damage ,Attack ,Die }
     public MonsterStat monsterStat;
@@ -20,6 +21,12 @@ public class Monster : MonoBehaviour
     [SerializeField]
     protected float AttackDistanc;
     protected WaitForSeconds waitForSeconds = new WaitForSeconds(0.1f);
+    float maxHP;
+
+    public float MaxHP { get; set; }
+    
+
+    
 
     float curHP;
     public float CurrenHP
@@ -38,6 +45,7 @@ public class Monster : MonoBehaviour
             else
             {
                 curHP = value;
+                monsterUI.UIupdate();
             }
            
         }
@@ -54,6 +62,8 @@ public class Monster : MonoBehaviour
         monsterStat = MonsterStat.Generate;
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
         ChangeStat(monsterStat);
+        MaxHP = monsterData.HP;
+        curHP = MaxHP;
     }
 
     public void OnDamage()
@@ -99,6 +109,7 @@ public class Monster : MonoBehaviour
 
     public void ChangeStat(MonsterStat Stat)
     {
+        if (monsterStat == Stat) return;
         monsterStat = Stat;
         switch (Stat)
         {
