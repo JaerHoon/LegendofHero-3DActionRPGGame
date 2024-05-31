@@ -8,4 +8,5 @@ public class MonsterWrriorDamage : MonsterDamage
     {
         Init();
     }
+    
 }
