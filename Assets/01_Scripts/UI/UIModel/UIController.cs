@@ -9,17 +9,16 @@ using System.Linq;
 
 public class UIController : MonoBehaviour
 {
-    public enum UIType { PlayerInfo, SkillInfo }
+   
     public List<UIModel> viewModels = new List<UIModel>();
 
     public delegate void Eventchain();
     public delegate void SlotEventchain(int parameter);
     public delegate void UpDateUI();
 
-    public virtual object GetValue(UIType uIType, string valueName)
+    public virtual object GetValue(int viewModelNum, string valueName)
     {
-        int num = (int)uIType;
-        UIModel viewModel = viewModels[num];
+        UIModel viewModel = viewModels[viewModelNum];
         Type type = viewModel.GetType();
         FieldInfo field = type.GetFields(BindingFlags.Public | BindingFlags.Instance)
                                   .FirstOrDefault(f => f.Name == valueName);
@@ -29,12 +28,12 @@ public class UIController : MonoBehaviour
         return value;
     }
 
-    public virtual object GetSlotValue(UIType uIType, string listName, string valueName, int Slotnum)
+    public virtual object GetSlotValue(int viewModelNum, string listName, string valueName, int Slotnum)
     {
         object value = default;
 
-        int num = (int)uIType;
-        UIModel viewModel = viewModels[num];
+        
+        UIModel viewModel = viewModels[viewModelNum];
         Type type = viewModel.GetType();
         FieldInfo field = type.GetFields(BindingFlags.Public | BindingFlags.Instance)
                                  .FirstOrDefault(f => f.Name == listName);
@@ -56,10 +55,9 @@ public class UIController : MonoBehaviour
         return value;
     }
 
-    public virtual void GetMethod(UIType uIType, ref Eventchain eventchain, string MethodName)
+    public virtual void GetMethod(int viewModelNum, ref Eventchain eventchain, string MethodName)
     {
-        int num = (int)uIType;
-        UIModel viewModel = viewModels[num];
+        UIModel viewModel = viewModels[viewModelNum];
         Type type = viewModel.GetType();
         MethodInfo method = type.GetMethod(MethodName, BindingFlags.Public | BindingFlags.Instance);
 
@@ -72,10 +70,10 @@ public class UIController : MonoBehaviour
 
     }
 
-    public virtual void GetSlotMethod(UIType uIType, ref SlotEventchain eventchain, string MethodName, int slotnum)
+    public virtual void GetSlotMethod(int viewModelNum, ref SlotEventchain eventchain, string MethodName, int slotnum)
     {
-        int num = (int)uIType;
-        UIModel viewModel = viewModels[num];
+      
+        UIModel viewModel = viewModels[viewModelNum];
         Type type = viewModel.GetType();
         MethodInfo method = type.GetMethod(MethodName, BindingFlags.Public | BindingFlags.Instance);
 

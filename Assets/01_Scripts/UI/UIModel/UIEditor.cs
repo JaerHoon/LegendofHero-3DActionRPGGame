@@ -9,17 +9,8 @@ using System.Reflection;
 [CustomEditor(typeof(UI), true)] // View 클래스의 객체의 에디터에 적용, 및 자식클래스에도 적용
 public class ViewEditor : Editor
 {
-    // ViewModel의 자식 클래스의 타입을 모두 담을 배열
-    private Type[] derivedtype;
     UI viewtarget;
 
-    private void OnEnable()
-    {
-        // ViewModel을 상속받는 모든 클래스를 찾아서 배열로 저장
-        derivedtype = Assembly.GetAssembly(typeof(UIModel)).GetTypes()
-            .Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(UIModel)))
-            .ToArray();
-    }
 
     public override void OnInspectorGUI()
     {
@@ -27,34 +18,54 @@ public class ViewEditor : Editor
 
         viewtarget.viewController = (UIController)EditorGUILayout.ObjectField("UIController", viewtarget.viewController, typeof(UIController), true);
 
-        //ViewController.UIType 이넘을 인스팩터에 표시해라."UI_Type" 라는 이름으로...
-        viewtarget.uIType = (UIController.UIType)EditorGUILayout.EnumPopup("UIModelName", viewtarget.uIType);
-
         viewtarget.viewType = (UI.ViewType)EditorGUILayout.EnumPopup("UIType", viewtarget.viewType);
 
-        //viewtarget.uIType에서 선택된 이넘 값과 이름을 같은 클래스를 찾아서 Type를 저장
-        Type selectedtype = derivedtype.FirstOrDefault(t => t.Name == viewtarget.uIType.ToString());
-
-        
-
-        if (selectedtype != null)
+        if (viewtarget.viewController.viewModels.Count > 0)
         {
-            switch ((int)viewtarget.viewType)
+            string[] viewModelName = new string[viewtarget.viewController.viewModels.Count];
+            for (int i = 0; i < viewtarget.viewController.viewModels.Count; i++)
             {
-                case 0: ImageType(selectedtype); break;
-                case 1: ImageSlotType(selectedtype); break;
-                case 2: TextType(selectedtype); break;
-                case 3: TextSlotType(selectedtype); break;
-                case 4: ButtonType(selectedtype); break;
-                case 5: ButtonSlotType(selectedtype); break;
-                case 6: DragNDrop(selectedtype); break;
-                case 7: DragNDropSlotType(selectedtype); break;
-                case 8: SliderType(selectedtype); break;
+                viewModelName[i] = viewtarget.viewController.viewModels[i].name;
+            }
+            
+            viewtarget.uITypeNumber = EditorGUILayout.Popup("UIModelName", viewtarget.uITypeNumber, viewModelName);
 
+
+            UIModel uIModel = viewtarget.viewController.viewModels[viewtarget.uITypeNumber];
+
+            viewtarget.uIModel = uIModel;
+
+            Type selectedtype = typeof(UIModel);
+
+            if (selectedtype != null)
+            {
+                switch ((int)viewtarget.viewType)
+                {
+                    case 0: ImageType(selectedtype); break;
+                    case 1: ImageSlotType(selectedtype); break;
+                    case 2: TextType(selectedtype); break;
+                    case 3: TextSlotType(selectedtype); break;
+                    case 4: ButtonType(selectedtype); break;
+                    case 5: ButtonSlotType(selectedtype); break;
+                    case 6: DragNDrop(selectedtype); break;
+                    case 7: DragNDropSlotType(selectedtype); break;
+                    case 8: SliderType(selectedtype); break;
+
+
+                }
 
             }
 
         }
+
+
+        //ViewController.UIType 이넘을 인스팩터에 표시해라."UI_Type" 라는 이름으로...
+        // viewtarget.uIType = (UIController.UIType)EditorGUILayout.EnumPopup("UIModelName", viewtarget.uIType);
+
+
+        
+        //viewtarget.uIType에서 선택된 이넘 값과 이름을 같은 클래스를 찾아서 Type를 저장
+
 
 
         if (GUI.changed)
@@ -85,7 +96,7 @@ public class ViewEditor : Editor
 
             viewtarget.SetectedValue = fieldNames[selectedIndex];
 
-            object va = viewtarget.viewController.GetValue(viewtarget.uIType, viewtarget.SetectedValue);
+            object va = viewtarget.viewController.GetValue(viewtarget.uITypeNumber, viewtarget.SetectedValue);
             viewtarget.value = va;
             Sprite sp = (Sprite)va;
             viewtarget.valueText = sp.name;
@@ -139,7 +150,7 @@ public class ViewEditor : Editor
 
                 viewtarget.SelectedValue1 = spriteFields[selectedIndex1];
 
-                object obj = viewtarget.viewController.GetSlotValue(viewtarget.uIType, viewtarget.SetectedValue, viewtarget.SelectedValue1, viewtarget.slotNumber);
+                object obj = viewtarget.viewController.GetSlotValue(viewtarget.uITypeNumber, viewtarget.SetectedValue, viewtarget.SelectedValue1, viewtarget.slotNumber);
 
                 viewtarget.value = obj;
 
@@ -178,7 +189,7 @@ public class ViewEditor : Editor
 
             viewtarget.SetectedValue = fieldNames[selectedIndex];
 
-            object va = viewtarget.viewController.GetValue(viewtarget.uIType, viewtarget.SetectedValue);
+            object va = viewtarget.viewController.GetValue(viewtarget.uITypeNumber, viewtarget.SetectedValue);
             viewtarget.value = va;
             viewtarget.valueText = va.ToString();
 
@@ -233,7 +244,7 @@ public class ViewEditor : Editor
 
 
 
-                object obj = viewtarget.viewController.GetSlotValue(viewtarget.uIType, viewtarget.SetectedValue, viewtarget.SelectedValue1, viewtarget.slotNumber);
+                object obj = viewtarget.viewController.GetSlotValue(viewtarget.uITypeNumber, viewtarget.SetectedValue, viewtarget.SelectedValue1, viewtarget.slotNumber);
 
                 viewtarget.value = obj;
 
@@ -271,7 +282,7 @@ public class ViewEditor : Editor
 
             viewtarget.ButtonPressed = null;
 
-            viewtarget.viewController.GetMethod(viewtarget.uIType, ref viewtarget.ButtonPressed, viewtarget.SetectedValue);
+            viewtarget.viewController.GetMethod(viewtarget.uITypeNumber, ref viewtarget.ButtonPressed, viewtarget.SetectedValue);
 
 
         }
@@ -302,7 +313,7 @@ public class ViewEditor : Editor
 
             viewtarget.SlotButtonPressed = null;
 
-            viewtarget.viewController.GetSlotMethod(viewtarget.uIType, ref viewtarget.SlotButtonPressed, viewtarget.SetectedValue, viewtarget.slotNumber);
+            viewtarget.viewController.GetSlotMethod(viewtarget.uITypeNumber, ref viewtarget.SlotButtonPressed, viewtarget.SetectedValue, viewtarget.slotNumber);
         }
 
 
@@ -330,7 +341,7 @@ public class ViewEditor : Editor
 
             viewtarget.Ondrag = null;
 
-            viewtarget.viewController.GetMethod(viewtarget.uIType, ref viewtarget.Ondrag, viewtarget.SetectedValue);
+            viewtarget.viewController.GetMethod(viewtarget.uITypeNumber, ref viewtarget.Ondrag, viewtarget.SetectedValue);
 
             int selectedIndex1 = Array.IndexOf(MethodNames, viewtarget.SetectedValue1);
             if (selectedIndex1 == -1) selectedIndex1 = 0; //만약 선택된 값이 없다면 인덱스 번호 초기화
@@ -342,7 +353,7 @@ public class ViewEditor : Editor
 
             viewtarget.Dragging = null;
 
-            viewtarget.viewController.GetMethod(viewtarget.uIType, ref viewtarget.Dragging, viewtarget.SetectedValue1);
+            viewtarget.viewController.GetMethod(viewtarget.uITypeNumber, ref viewtarget.Dragging, viewtarget.SetectedValue1);
 
             int selectedIndex2 = Array.IndexOf(MethodNames, viewtarget.SetectedValue2);
             if (selectedIndex2 == -1) selectedIndex2 = 0; //만약 선택된 값이 없다면 인덱스 번호 초기화
@@ -354,7 +365,7 @@ public class ViewEditor : Editor
 
             viewtarget.OffDrag = null;
 
-            viewtarget.viewController.GetMethod(viewtarget.uIType, ref viewtarget.OffDrag, viewtarget.SetectedValue2);
+            viewtarget.viewController.GetMethod(viewtarget.uITypeNumber, ref viewtarget.OffDrag, viewtarget.SetectedValue2);
 
             int selectedIndex3 = Array.IndexOf(MethodNames, viewtarget.SetectedValue3);
             if (selectedIndex3 == -1) selectedIndex3 = 0; //만약 선택된 값이 없다면 인덱스 번호 초기화
@@ -366,7 +377,7 @@ public class ViewEditor : Editor
 
             viewtarget.Drop = null;
 
-            viewtarget.viewController.GetMethod(viewtarget.uIType, ref viewtarget.Drop, viewtarget.SetectedValue3);
+            viewtarget.viewController.GetMethod(viewtarget.uITypeNumber, ref viewtarget.Drop, viewtarget.SetectedValue3);
 
 
         }
@@ -399,7 +410,7 @@ public class ViewEditor : Editor
 
             viewtarget.SlotOndrag = null;
 
-            viewtarget.viewController.GetSlotMethod(viewtarget.uIType, ref viewtarget.SlotOndrag, viewtarget.SetectedValue, viewtarget.slotNumber);
+            viewtarget.viewController.GetSlotMethod(viewtarget.uITypeNumber, ref viewtarget.SlotOndrag, viewtarget.SetectedValue, viewtarget.slotNumber);
 
             int selectedIndex1 = Array.IndexOf(MethodNames, viewtarget.SetectedValue1);
             if (selectedIndex1 == -1) selectedIndex1 = 0; //만약 선택된 값이 없다면 인덱스 번호 초기화
@@ -411,7 +422,7 @@ public class ViewEditor : Editor
 
             viewtarget.SlotDragging = null;
 
-            viewtarget.viewController.GetSlotMethod(viewtarget.uIType, ref viewtarget.SlotDragging, viewtarget.SetectedValue1, viewtarget.slotNumber);
+            viewtarget.viewController.GetSlotMethod(viewtarget.uITypeNumber, ref viewtarget.SlotDragging, viewtarget.SetectedValue1, viewtarget.slotNumber);
 
             int selectedIndex2 = Array.IndexOf(MethodNames, viewtarget.SetectedValue2);
             if (selectedIndex2 == -1) selectedIndex2 = 0; //만약 선택된 값이 없다면 인덱스 번호 초기화
@@ -423,7 +434,7 @@ public class ViewEditor : Editor
 
             viewtarget.SlotOffDarg = null;
 
-            viewtarget.viewController.GetSlotMethod(viewtarget.uIType, ref viewtarget.SlotOffDarg, viewtarget.SetectedValue2, viewtarget.slotNumber);
+            viewtarget.viewController.GetSlotMethod(viewtarget.uITypeNumber, ref viewtarget.SlotOffDarg, viewtarget.SetectedValue2, viewtarget.slotNumber);
 
             int selectedIndex3 = Array.IndexOf(MethodNames, viewtarget.SetectedValue3);
             if (selectedIndex3 == -1) selectedIndex3 = 0; //만약 선택된 값이 없다면 인덱스 번호 초기화
@@ -435,7 +446,7 @@ public class ViewEditor : Editor
 
             viewtarget.SlotDrop = null;
 
-            viewtarget.viewController.GetSlotMethod(viewtarget.uIType, ref viewtarget.SlotDrop, viewtarget.SetectedValue3, viewtarget.slotNumber);
+            viewtarget.viewController.GetSlotMethod(viewtarget.uITypeNumber, ref viewtarget.SlotDrop, viewtarget.SetectedValue3, viewtarget.slotNumber);
 
         }
 
@@ -466,7 +477,7 @@ public class ViewEditor : Editor
 
             viewtarget.SetectedValue = fieldNames[selectedIndex];
 
-            object va = viewtarget.viewController.GetValue(viewtarget.uIType, viewtarget.SetectedValue);
+            object va = viewtarget.viewController.GetValue(viewtarget.uITypeNumber, viewtarget.SetectedValue);
             viewtarget.value = va;
             viewtarget.valueText = va.ToString();
 
@@ -480,7 +491,7 @@ public class ViewEditor : Editor
 
             viewtarget.SetectedValue1 = fieldNames[selectedIndex1];
 
-            object va2 = viewtarget.viewController.GetValue(viewtarget.uIType, viewtarget.SetectedValue1);
+            object va2 = viewtarget.viewController.GetValue(viewtarget.uITypeNumber, viewtarget.SetectedValue1);
             viewtarget.value2 = va2;
             viewtarget.valueText = va.ToString();
 

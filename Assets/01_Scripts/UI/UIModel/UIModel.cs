@@ -7,7 +7,7 @@ public class UIModel : MonoBehaviour
 
     public UIController.UpDateUI upDateUI;
 
-    public virtual void UIUpDate()
+    public virtual void ChangeUI()
     {
         upDateUI?.Invoke();
     }

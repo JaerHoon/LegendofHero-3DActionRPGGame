@@ -11,11 +11,14 @@ public class UI : MonoBehaviour
     public ViewType viewType;
     [HideInInspector]
     public int slotNumber;
+    [HideInInspector]
+    public UIModel uIModel;
 
     public UIController viewController;
 
+   
     [HideInInspector]
-    public UIController.UIType uIType;
+    public int uITypeNumber;
 
     [HideInInspector]
     public string SetectedValue;
@@ -56,6 +59,7 @@ public class UI : MonoBehaviour
     protected void Init()
     {
         SetComopnent(viewType);
+        uIModel.upDateUI += UIUpdate;
     }
 
     protected void SetComopnent(ViewType view)

@@ -286,7 +286,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234386065}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5371753, y: 0.00000002176961, z: -0.000000013864261, w: 0.8434707}
+  m_LocalRotation: {x: 0.5371753, y: -0.000000021769617, z: 0.000000013864264, w: 0.8434707}
   m_LocalPosition: {x: 3.15, y: 16.04, z: 4.679471}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -435,35 +435,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 671511846}
-  - component: {fileID: 671511845}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: UIController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &671511845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 671511844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e005a43745aaf8d40945da4e20cc2404, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monsterData: {fileID: 0}
-  anim: {fileID: 0}
-  monsterAtk: {fileID: 0}
-  monsterdDmg: {fileID: 0}
-  monsterMove: {fileID: 0}
-  monsterStat: 0
-  playerTr: {fileID: 0}
-  TraceDistanc: 0
-  AttackDistanc: 0
 --- !u!4 &671511846
 Transform:
   m_ObjectHideFlags: 0
@@ -476,7 +454,8 @@ Transform:
   m_LocalPosition: {x: -2.3046043, y: -10.869623, z: 11.528559}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 780419644}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &736844565
@@ -549,6 +528,51 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81c52596cf8758d4489c92dfaa4df42c, type: 3}
+--- !u!1 &780419643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 780419644}
+  - component: {fileID: 780419645}
+  m_Layer: 0
+  m_Name: MonsterUIController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &780419644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780419643}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 671511846}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &780419645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780419643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8848cae33eb8f79449240e847e44408b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewModels: []
 --- !u!1 &835612095 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7da949c57b16be240a5a27c41f11572e, type: 3}
@@ -856,7 +880,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072499351}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5371753, y: 0.00000002176961, z: -0.000000013864261, w: 0.8434707}
+  m_LocalRotation: {x: 0.5371753, y: -0.000000021769617, z: 0.000000013864264, w: 0.8434707}
   m_LocalPosition: {x: 3.15, y: 16.04, z: 4.679471}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
