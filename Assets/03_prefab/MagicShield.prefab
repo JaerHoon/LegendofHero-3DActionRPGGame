@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9177617559803299915}
   - component: {fileID: 7757637655747179010}
   - component: {fileID: 854771624861513635}
+  - component: {fileID: 3575671000075823665}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -3677,9 +3678,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -3854,8 +3855,8 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
-    collidesWithDynamic: 1
+    collisionMessages: 1
+    collidesWithDynamic: 0
     interiorCollisions: 0
   TriggerModule:
     enabled: 0
@@ -4888,6 +4889,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &3575671000075823665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218445161328205943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c60f32dd594142459599fa0d7d48321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1042104273844466424
 GameObject:
   m_ObjectHideFlags: 0
@@ -4899,6 +4912,7 @@ GameObject:
   - component: {fileID: 1894577509797006406}
   - component: {fileID: 3624787497725627397}
   - component: {fileID: 8759692568233576882}
+  - component: {fileID: 3137803376171016533}
   m_Layer: 0
   m_Name: MagicShield
   m_TagString: Untagged
@@ -8566,9 +8580,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -8743,8 +8757,8 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
-    collidesWithDynamic: 1
+    collisionMessages: 1
+    collidesWithDynamic: 0
     interiorCollisions: 0
   TriggerModule:
     enabled: 0
@@ -9777,3 +9791,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &3137803376171016533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042104273844466424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c60f32dd594142459599fa0d7d48321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
