@@ -68,4 +68,9 @@ public class GolemAnim : MonsterAnim
     {
         animator.SetInteger(Stat, IDLE);
     }
+
+    public override void OnGenerateAnim()
+    {
+        
+    }
 }

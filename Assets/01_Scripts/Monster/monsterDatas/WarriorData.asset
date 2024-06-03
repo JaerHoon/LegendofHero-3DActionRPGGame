@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d7f747543173d948bd799e12ea2db92, type: 3}
   m_Name: WarriorData
   m_EditorClassIdentifier: 
-  MonsterName: 
+  MonsterName: golem
   MonsterID: 
-  HP: 100
+  HP: 10000
   ATKPow: 5
   Lv: 1
   MoveSpeed: 4

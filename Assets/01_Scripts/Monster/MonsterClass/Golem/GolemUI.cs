@@ -1,28 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class GolemDamage : MonsterDamage
+public class GolemUI : MonoBehaviour
 {
-    Golem golem;
 
+    public Image hpBar;
+    Monster monster;
     // Start is called before the first frame update
     void Start()
     {
-        Init();
-        golem = GetComponent<Golem>();
+        monster = GetComponent<Monster>();
     }
 
-
-    private void OnMouseEnter()
+    public void UI_Update()
     {
-        OnDamage(100f);
+        hpBar.fillAmount = monster.CurrenHP / monster.MaxHP;
     }
 
-    public override void OnDamage(float pow)
-    {
-        golem.CurrentHP -= pow;
-    }
+
     // Update is called once per frame
     void Update()
     {
