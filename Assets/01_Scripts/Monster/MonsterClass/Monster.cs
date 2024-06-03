@@ -37,7 +37,7 @@ public class Monster : MonoBehaviour
 
     
 
-    float curHP;
+    protected float curHP;
     public float CurrenHP
     {
         get
@@ -62,7 +62,7 @@ public class Monster : MonoBehaviour
 
     
 
-    protected void Init()
+    protected virtual void Init()
     {
         anim = GetComponent<MonsterAnim>();
         monsterAtk = GetComponent<MonsterAttack>();
@@ -155,6 +155,7 @@ public class Monster : MonoBehaviour
     }
 
     public void ChangeStat(MonsterStat Stat)
+
     {
         if (monsterStat == Stat) return;
         monsterStat = Stat;

@@ -5,21 +5,59 @@ using UnityEngine;
 public class Golem : Monster
 {
 
-    enum MONSTERSTATE { Wait, Rise, Idle, Trace, Attack, Die }
-    MONSTERSTATE monsterstate;
+    public enum MONSTERSTATE { Wait, Rise, Idle, Trace, Attack, Die }
+    public MONSTERSTATE monsterstate;
     public enum BOSSATTACKTYPE { None,Attack, AttackProjectile, AttackGround}
-    BOSSATTACKTYPE bossAttackType;
+    public BOSSATTACKTYPE bossAttackType;
+
+    public GolemUI golemUI;
 
     // Start is called before the first frame update
     void Start()
     {
         Init();
-        ChangeStat(MONSTERSTATE.Wait);
+        golemUI = GetComponent<GolemUI>();
+        ChangeState(MONSTERSTATE.Wait);
         //StartCoroutine(CheckStat());
         StartCoroutine(CalDis());
+        golemUI.UI_Update();
     }
 
-    
+
+    protected override void Init()
+    {
+        anim = GetComponent<MonsterAnim>();
+        monsterAtk = GetComponent<MonsterAttack>();
+        monsterdDmg = GetComponent<MonsterDamage>();
+        monsterMove = GetComponent<MonsterMove>();
+        playerTr = GameObject.FindGameObjectWithTag("Player").transform;
+        MaxHP = monsterData.HP;
+        curHP = MaxHP;
+
+    }
+
+    public float CurrentHP
+    {
+        get
+        {
+            return curHP;
+        }
+        set
+        {
+            if (value <= 0)
+            {
+                ChangeState(MONSTERSTATE.Die);
+                curHP = 0;
+            }
+            else
+            {
+                curHP = value;
+
+            }
+            golemUI.UI_Update();
+        }
+    }
+
 
     IEnumerator CalDis()
     {
@@ -79,18 +117,18 @@ public class Golem : Monster
         if (distance > AttackDistanc)
         {
 
-            ChangeStat(MONSTERSTATE.Trace);
+            ChangeState(MONSTERSTATE.Trace);
 
 
         }
         else
         {
-            ChangeStat(MONSTERSTATE.Attack);
+            ChangeState(MONSTERSTATE.Attack);
         }
        
     }
 
-    void ChangeStat(MONSTERSTATE State)
+    public void ChangeState(MONSTERSTATE State)
     {
         if (monsterstate == State) return;
         monsterstate = State;
@@ -142,15 +180,18 @@ public class Golem : Monster
         anim.OnRiseAnim();
     }
 
+    public void asd()
+    {
 
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q)) { ChangeStat(MONSTERSTATE.Rise); }
-        else if (Input.GetKeyDown(KeyCode.W)) { ChangeStat(MONSTERSTATE.Idle); }
-        else if(Input.GetKeyDown(KeyCode.E)) { ChangeStat(MONSTERSTATE.Trace); }
-        else if(Input.GetKeyDown(KeyCode.R)) { ChangeStat(MONSTERSTATE.Attack); }
-        else if(Input.GetKeyDown(KeyCode.T)) { ChangeStat(MONSTERSTATE.Die); }
+        if (Input.GetKeyDown(KeyCode.Q)) { ChangeState(MONSTERSTATE.Rise); }
+        else if (Input.GetKeyDown(KeyCode.W)) { ChangeState(MONSTERSTATE.Idle); }
+        else if(Input.GetKeyDown(KeyCode.E)) { ChangeState(MONSTERSTATE.Trace); }
+        else if(Input.GetKeyDown(KeyCode.R)) { ChangeState(MONSTERSTATE.Attack); }
+        else if(Input.GetKeyDown(KeyCode.T)) { ChangeState(MONSTERSTATE.Die); }
     }
 }
