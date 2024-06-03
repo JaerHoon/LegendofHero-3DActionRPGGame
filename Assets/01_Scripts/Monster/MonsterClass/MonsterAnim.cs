@@ -80,11 +80,12 @@ public class MonsterAnim : MonoBehaviour
     public virtual void OnDyingAnim()
     {
         animator.SetTrigger(Die);
+        Invoke("OffDyingAnim", 2f);
     }
 
     public virtual void OffDyingAnim()
     {
-
+        this.gameObject.SetActive(false);
     }
 
     public virtual void OnAtk1Anim()

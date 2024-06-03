@@ -11,30 +11,31 @@ public class DamageText : MonoBehaviour
     float speed = 2f;
     [SerializeField]
     float Maxtime=0.5f;
+    Transform cam;
 
     WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
-    WaitForSeconds waitForSeconds = new WaitForSeconds(0.5f);
+    WaitForSeconds waitForSeconds = new WaitForSeconds(0.3f);
     
     Vector3 initialScale = new Vector3(1,1,1);
 
-    public float Damage;
+    public float Damage=0;
 
     private void Awake()
     {
         textcomponent = GetComponent<TextMeshPro>();
         initialScale = new Vector3(0.4f, 0.4f, 0.4f);
+        cam = GameObject.FindGameObjectWithTag("FallowCam").transform;
     }
   
 
     private void OnEnable()
     {
         gameObject.transform.localScale = initialScale;
-        OnTexting();
         StartCoroutine(texting());
     }
-    public void OnTexting()
+    public void OnTexting(float amount)
     {
-        textcomponent.text = Damage.ToString();
+        textcomponent.text = amount.ToString();
     }
 
     IEnumerator texting()
@@ -42,7 +43,7 @@ public class DamageText : MonoBehaviour
         float time = 0;
         
 
-        Vector3 finalScale = new Vector3(1, 1, 1);
+        Vector3 finalScale = new Vector3(1.5f, 1.5f, 1.5f);
         while (time < Maxtime)
         {
             time += Time.deltaTime;
@@ -56,6 +57,12 @@ public class DamageText : MonoBehaviour
         }
 
         yield return waitForSeconds;
-        gameObject.SetActive(false);
+        PoolFactroy.instance.OutPool(this.gameObject, Consts.DamageText);
+    }
+
+    private void LateUpdate()
+    {
+        transform.LookAt(transform.position + cam.rotation * Vector3.forward,
+                         cam.rotation * Vector3.up);
     }
 }

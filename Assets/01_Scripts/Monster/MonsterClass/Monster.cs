@@ -5,17 +5,25 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     public MonsterData monsterData;
+    [HideInInspector]
     public MonsterAnim anim;
+    [HideInInspector]
     public MonsterAttack monsterAtk;
+    [HideInInspector]
     public MonsterDamage monsterdDmg;
+    [HideInInspector]
     public MonsterMove monsterMove;
+    [HideInInspector]
     public MonsterUIModel monsterUI;
 
-    public enum MonsterStat { Generate, Idle, Trace, Damage ,Attack ,Die }
+    public enum MonsterStat { Generate, Idle, Trace, Damage ,Attack ,Die}
+    [HideInInspector]
     public MonsterStat monsterStat;
     protected bool IsDamage;
     protected bool IsPlayerdetected;
+    protected bool IsFreeze;
 
+    [HideInInspector]
     public Transform playerTr;
     [SerializeField]
     protected float TraceDistanc;
@@ -90,10 +98,10 @@ public class Monster : MonoBehaviour
 
     public IEnumerator CheckStat()
     {
-        while(monsterStat != MonsterStat.Die)
+        while (monsterStat != MonsterStat.Die)
         {
             yield return waitForSeconds;
-            if (IsDamage == false)
+            if (IsDamage == false && IsFreeze == false)
             {
                 if (IsPlayerdetected)
                 {
@@ -205,6 +213,17 @@ public class Monster : MonoBehaviour
     protected virtual void OnDie()
     {
 
+    }
+
+
+    public virtual void OnFreeze()
+    {
+        IsFreeze = true;
+    }
+
+    public virtual void OffFreeze()
+    {
+        IsFreeze = false;
     }
 
     private void Update()

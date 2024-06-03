@@ -7,7 +7,9 @@ using UnityEngine;
 public class MonsterUIModel : UIModel
 {
     Monster monster;
+    [HideInInspector]
     public float maxhp;
+    [HideInInspector]
     public float curhp;
    
     public virtual void Init()
