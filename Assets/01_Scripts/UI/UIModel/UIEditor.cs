@@ -20,6 +20,7 @@ public class ViewEditor : Editor
 
         viewtarget.viewType = (UI.ViewType)EditorGUILayout.EnumPopup("UIType", viewtarget.viewType);
 
+        if (viewtarget.viewController == null) return;
         if (viewtarget.viewController.viewModels.Count > 0)
         {
             string[] viewModelName = new string[viewtarget.viewController.viewModels.Count];
@@ -35,7 +36,7 @@ public class ViewEditor : Editor
 
             viewtarget.uIModel = uIModel;
 
-            Type selectedtype = typeof(UIModel);
+            Type selectedtype = uIModel.GetType();
 
             if (selectedtype != null)
             {
@@ -169,9 +170,10 @@ public class ViewEditor : Editor
     void TextType(Type selectedType)
     {
         FieldInfo[] field = selectedType.GetFields(BindingFlags.Public | BindingFlags.Instance);
-        FieldInfo[] nonSpriteFields = field.Where(field => field.FieldType != typeof(Sprite)
-                                       && !(field.FieldType.IsGenericType && field.FieldType.GetGenericTypeDefinition() == typeof(List<>)))
-                                       .ToArray();
+        FieldInfo[] nonSpriteFields = field.Where(field => field.FieldType != typeof(Sprite) &&
+            !(field.FieldType.IsGenericType && field.FieldType.GetGenericTypeDefinition() == typeof(List<>)) &&
+            !typeof(Delegate).IsAssignableFrom(field.FieldType))
+           .ToArray();
 
         if (nonSpriteFields.Length > 0)
         {
@@ -201,7 +203,11 @@ public class ViewEditor : Editor
     void TextSlotType(Type selectedType)
     {
         FieldInfo[] field = selectedType.GetFields(BindingFlags.Public | BindingFlags.Instance);
-        string[] listFieldNames = field
+        FieldInfo[] fields = field.Where(field => field.FieldType != typeof(Sprite) &&
+            !(field.FieldType.IsGenericType && field.FieldType.GetGenericTypeDefinition() == typeof(List<>)) &&
+            !typeof(Delegate).IsAssignableFrom(field.FieldType))
+           .ToArray();
+        string[] listFieldNames = fields
             .Where(field => field.FieldType.IsGenericType && field.FieldType.GetGenericTypeDefinition() == typeof(List<>))
             .Select(field => field.Name)
             .ToArray();
@@ -457,9 +463,10 @@ public class ViewEditor : Editor
     void SliderType(Type selectedType)
     {
         FieldInfo[] field = selectedType.GetFields(BindingFlags.Public | BindingFlags.Instance);
-        FieldInfo[] nonSpriteFields = field.Where(field => field.FieldType != typeof(Sprite)
-                                       && !(field.FieldType.IsGenericType && field.FieldType.GetGenericTypeDefinition() == typeof(List<>)))
-                                       .ToArray();
+        FieldInfo[] nonSpriteFields = field.Where(field => field.FieldType != typeof(Sprite) &&
+            !(field.FieldType.IsGenericType && field.FieldType.GetGenericTypeDefinition() == typeof(List<>)) &&
+            !typeof(Delegate).IsAssignableFrom(field.FieldType))
+           .ToArray();
 
         if (nonSpriteFields.Length > 0)
         {
@@ -467,6 +474,8 @@ public class ViewEditor : Editor
             for (int i = 0; i < nonSpriteFields.Length; i++)
             {
                 fieldNames[i] = nonSpriteFields[i].Name;
+               
+
             }
 
             int selectedIndex = Array.IndexOf(fieldNames, viewtarget.SetectedValue);
@@ -493,9 +502,9 @@ public class ViewEditor : Editor
 
             object va2 = viewtarget.viewController.GetValue(viewtarget.uITypeNumber, viewtarget.SetectedValue1);
             viewtarget.value2 = va2;
-            viewtarget.valueText = va.ToString();
+            viewtarget.valueText2 = va.ToString();
 
-            viewtarget.valueText = EditorGUILayout.TextField("Value", viewtarget.valueText);
+            viewtarget.valueText2 = EditorGUILayout.TextField("Value2", viewtarget.valueText);
         }
     }
 

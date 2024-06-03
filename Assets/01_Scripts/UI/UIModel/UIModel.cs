@@ -12,6 +12,7 @@ public class UIModel : MonoBehaviour
     public virtual void ChangeUI()
     {
         upDateUI?.Invoke();
+      
     }
 
 }
