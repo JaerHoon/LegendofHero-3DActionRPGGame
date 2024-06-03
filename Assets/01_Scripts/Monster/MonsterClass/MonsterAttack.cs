@@ -23,5 +23,18 @@ public class MonsterAttack : MonoBehaviour
         IsATK = false;
     }
 
-   
+    public virtual void Attack1()
+    {
+
+    }
+
+    public virtual void Attack2()
+    {
+
+    }
+
+    public virtual void Attack3()
+    {
+
+    }
 }

@@ -87,7 +87,7 @@ public class Monster : MonoBehaviour
             }
         }
     }
-    protected virtual void CheckPlayer()
+    public virtual void CheckPlayer()
     {
         float distance = Vector3.Distance(playerTr.position, transform.position);
         if (distance > AttackDistanc && distance < TraceDistanc)
@@ -107,7 +107,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-    public void ChangeStat(MonsterStat Stat)
+    public virtual void ChangeStat(MonsterStat Stat)
     {
         if (monsterStat == Stat) return;
         monsterStat = Stat;
@@ -140,7 +140,7 @@ public class Monster : MonoBehaviour
         anim.OnMovingAnim();
     }
 
-    protected virtual void AttackStat()
+    public virtual void AttackStat()
     {
         monsterAtk.OnATK();
         monsterMove.OffMove();

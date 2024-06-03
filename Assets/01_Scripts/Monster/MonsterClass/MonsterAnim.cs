@@ -20,7 +20,12 @@ public class MonsterAnim : MonoBehaviour
         monster = GetComponent<Monster>();
         animator = GetComponent<Animator>();
     }
- 
+
+    public virtual void OnRiseAnim()
+    {
+        
+    }
+
     public virtual void OnIdleAnim()
     {
         animator.SetInteger(Stat, Idle);
@@ -67,7 +72,19 @@ public class MonsterAnim : MonoBehaviour
 
     }
 
+    public virtual void OnAtk1Anim()
+    {
 
-   
-    
+    }
+
+    public virtual void OnAtk2Anim()
+    {
+
+    }
+
+    public virtual void OnAtk3Anim()
+    {
+
+    }
+
 }

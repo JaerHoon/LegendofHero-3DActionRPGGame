@@ -10,6 +10,24 @@ public class GolemAttack : MonsterAttack
         Init();
     }
 
+    public override void Attack1()//serch and attack
+    {
+        base.Attack1();
+        monster.anim.OnAtk1Anim();
+    }
+
+    public override void Attack2()
+    {
+        base.Attack2();
+        monster.anim.OnAtk2Anim();
+    }
+
+    public override void Attack3()
+    {
+        base.Attack3();
+        monster.anim.OnAtk3Anim();
+    }
+
     // Update is called once per frame
     void Update()
     {
