@@ -8,4 +8,9 @@ public class MonsterMageAttack : MonsterAttack
     {
         Init();
     }
+
+    public override void Attack()
+    {
+        
+    }
 }

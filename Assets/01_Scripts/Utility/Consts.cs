@@ -5,5 +5,5 @@ using UnityEngine;
 public class Consts 
 {
     public const int DamageText = 0;
-    public const int BossBullet = 1;
+    public const int MagicBullet = 1;
 }
