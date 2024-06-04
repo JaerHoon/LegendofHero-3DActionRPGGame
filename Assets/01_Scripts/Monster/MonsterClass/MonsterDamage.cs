@@ -8,7 +8,7 @@ public class MonsterDamage : MonoBehaviour
     [SerializeField]
     protected ParticleSystem FX;
     [HideInInspector]
-    public float UpDamage;
+    public float UpDamage = 0;
 
     protected void Init()
     {
@@ -16,10 +16,11 @@ public class MonsterDamage : MonoBehaviour
     }
 
     public virtual void OnDamage(float pow)
-    {   
+    {
+       
         monster.DetectedPlayer();
         monster.ChangeStat(Monster.MonsterStat.Damage);
-        monster.CurrenHP -=  Mathf.RoundToInt(pow + (pow*UpDamage/100));
+        monster.CurrenHP -=  pow + (pow*UpDamage/100);
         DamageFx(pow);
     }
 

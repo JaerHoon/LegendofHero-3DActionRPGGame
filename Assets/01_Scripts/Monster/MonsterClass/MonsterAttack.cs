@@ -27,7 +27,7 @@ public class MonsterAttack : MonoBehaviour
     }
     public virtual void Attack()
     {
-
+        hitBox.gameObject.SetActive(true);
     }
     public virtual void Attack1()
     { 
@@ -36,7 +36,7 @@ public class MonsterAttack : MonoBehaviour
 
     public virtual void EndAttack()
     {
-
+        hitBox.gameObject.SetActive(false);
     }
 
     public virtual void Attack2()
@@ -50,7 +50,7 @@ public class MonsterAttack : MonoBehaviour
     }
     public virtual void Hit(CharacterDamage player)
     {
-        
+        player.OnDamage(monster.monsterData.ATKPow);
 
     }
 }

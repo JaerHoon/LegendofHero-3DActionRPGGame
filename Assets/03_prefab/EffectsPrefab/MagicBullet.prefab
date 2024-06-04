@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7168465223907337560}
   - component: {fileID: 4899977361534536214}
   - component: {fileID: 5076971459429252375}
+  - component: {fileID: -9193090002605442360}
   m_Layer: 0
   m_Name: MagicBullet
   m_TagString: MagicBullet
@@ -100,12 +101,29 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.663044
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-9193090002605442360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7613230961688157128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 615072eeba2660746b90d9f50e3ce750, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1.5
+  duration: 4
+  hitFx: {fileID: 0}
+  damage: 0
+  monsterMageAttack: {fileID: 0}
 --- !u!1 &8317505298738326273
 GameObject:
   m_ObjectHideFlags: 0
