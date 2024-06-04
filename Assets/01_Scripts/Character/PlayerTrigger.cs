@@ -14,7 +14,11 @@ public class PlayerTrigger : MonoBehaviour
     {
         if (other.gameObject.tag == "Monster")
         {
+
             other.GetComponent<MonsterDamage>().OnDamage(5);
+
+            //Debug.Log("충돌감지!!");
+
         }
 
     }

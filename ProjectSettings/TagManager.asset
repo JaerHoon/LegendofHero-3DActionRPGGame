@@ -8,7 +8,11 @@ TagManager:
   - Pay
   - FallowCam
   - FxTemporaire
+<<<<<<< HEAD
   - MagicBullet
+=======
+  - wave
+>>>>>>> GuHakGyun
   layers:
   - Default
   - TransparentFX
