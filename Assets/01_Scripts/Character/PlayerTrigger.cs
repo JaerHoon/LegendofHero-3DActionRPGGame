@@ -14,7 +14,7 @@ public class PlayerTrigger : MonoBehaviour
     {
         if (other.gameObject.tag == "Monster")
         {
-            Debug.Log("충돌감지!!");
+            //Debug.Log("충돌감지!!");
         }
 
     }

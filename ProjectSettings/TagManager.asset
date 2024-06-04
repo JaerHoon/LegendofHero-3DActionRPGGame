@@ -7,6 +7,8 @@ TagManager:
   - Monster
   - Pay
   - FallowCam
+  - FxTemporaire
+  - wave
   layers:
   - Default
   - TransparentFX
