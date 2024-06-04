@@ -85,7 +85,7 @@ public class MonsterAnim : MonoBehaviour
 
     public virtual void OffDyingAnim()
     {
-        this.gameObject.SetActive(false);
+        monster.OnDie();
     }
 
     public virtual void OnAtk1Anim()

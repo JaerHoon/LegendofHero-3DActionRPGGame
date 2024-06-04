@@ -30,6 +30,7 @@ public class Monster : MonoBehaviour
     [SerializeField]
     protected float AttackDistanc;
     protected WaitForSeconds waitForSeconds = new WaitForSeconds(0.1f);
+    protected CapsuleCollider myCollider;
     float maxHP;
 
     public float MaxHP { get; set; }
@@ -71,10 +72,16 @@ public class Monster : MonoBehaviour
         monsterUI = GetComponent<MonsterUIModel>();
         monsterStat = MonsterStat.Generate;
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
+        myCollider = GetComponent<CapsuleCollider>();
         GenerateStat();
         MaxHP = monsterData.HP;
         curHP = MaxHP;
         monsterUI.Init();
+    }
+
+    private void OnEnable()
+    {
+        if (myCollider != null) myCollider.enabled = true; 
     }
 
     public void OnDamage()
@@ -208,12 +215,13 @@ public class Monster : MonoBehaviour
     {
         monsterMove.OffMove();
         anim.OnDyingAnim();
-        OnDie();
+        myCollider.enabled = false;
+       
     }
 
-    protected virtual void OnDie()
+    public virtual void OnDie()
     {
-
+        gameObject.SetActive(false);
     }
 
 
