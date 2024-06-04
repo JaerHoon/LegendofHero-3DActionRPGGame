@@ -1432,7 +1432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369dee5dad282794086b1d89bdcebe88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterData: {fileID: 0}
+  monsterData: {fileID: 11400000, guid: 873e0325460eed543a60593d89102604, type: 2}
   anim: {fileID: 0}
   monsterAtk: {fileID: 0}
   monsterdDmg: {fileID: 0}
