@@ -18,7 +18,6 @@ public class ArrowLine : MonoBehaviour
 
     private void OnEnable()
     {
-      
         StartCoroutine(OffObject());
     }
     private void FixedUpdate()

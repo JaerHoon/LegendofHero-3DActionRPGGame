@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 8290437121802654505}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.2, z: 0.29}
+  m_LocalPosition: {x: 0.5, y: 0.9, z: 0.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -390,15 +390,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9214bb58da604334a898b2e760e5160f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.7337923
+      value: 15.675158
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9214bb58da604334a898b2e760e5160f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9188335
+      value: 1.1705818
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9214bb58da604334a898b2e760e5160f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.4169397
+      value: 11.948013
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9214bb58da604334a898b2e760e5160f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -980,8 +980,8 @@ MonoBehaviour:
   monsterUI: {fileID: 0}
   monsterStat: 0
   playerTr: {fileID: 0}
-  TraceDistanc: 15
-  AttackDistanc: 10
+  TraceDistanc: 18
+  AttackDistanc: 13
 --- !u!114 &4581022064345215224
 MonoBehaviour:
   m_ObjectHideFlags: 0

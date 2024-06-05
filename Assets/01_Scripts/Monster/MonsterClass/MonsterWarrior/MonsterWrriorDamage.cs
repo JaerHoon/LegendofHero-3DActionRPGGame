@@ -8,5 +8,11 @@ public class MonsterWrriorDamage : MonsterDamage
     {
         Init();
     }
-    
+    public override void OnDamage(float pow)
+    {
+        monster.DetectedPlayer();
+       
+        monster.CurrenHP -= pow + (pow * UpDamage / 100);
+        DamageFx(pow);
+    }
 }

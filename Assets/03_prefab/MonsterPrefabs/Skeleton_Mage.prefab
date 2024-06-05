@@ -446,8 +446,8 @@ MonoBehaviour:
   monsterUI: {fileID: 0}
   monsterStat: 0
   playerTr: {fileID: 0}
-  TraceDistanc: 10
-  AttackDistanc: 10
+  TraceDistanc: 20
+  AttackDistanc: 15
 --- !u!114 &588021173631747642
 MonoBehaviour:
   m_ObjectHideFlags: 0

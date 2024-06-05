@@ -36,7 +36,7 @@ public class MonsterAttack : MonoBehaviour
 
     public virtual void EndAttack()
     {
-        hitBox.gameObject.SetActive(false);
+        hitBox?.gameObject.SetActive(false);
     }
 
     public virtual void Attack2()

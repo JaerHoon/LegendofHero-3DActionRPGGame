@@ -941,7 +941,7 @@ MonoBehaviour:
   monsterUI: {fileID: 0}
   monsterStat: 0
   playerTr: {fileID: 0}
-  TraceDistanc: 10
+  TraceDistanc: 15
   AttackDistanc: 3
 --- !u!114 &8667390765548064063
 MonoBehaviour:
@@ -969,6 +969,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KnockBackSpeed: 10
+  knockbackForce: 20
+  knockbackDuration: 0.3
 --- !u!114 &2772621809061884573
 MonoBehaviour:
   m_ObjectHideFlags: 0

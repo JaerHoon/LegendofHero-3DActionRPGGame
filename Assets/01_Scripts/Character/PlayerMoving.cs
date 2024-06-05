@@ -8,9 +8,16 @@ public class PlayerMoving : MonoBehaviour
     float moveSpeed; // 플레이어 이동속도 
     [SerializeField]
     float rotSpeed; // 플레이어 회전속도
+    [SerializeField]
+    float moveRange;
 
     Animator anim;
     Camera cam;
+
+    private Vector3 knockbackVelocity;
+    private float knockbackTime;
+    private bool isKnockbackActive;
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -39,13 +46,22 @@ public class PlayerMoving : MonoBehaviour
             //계산된 방향으로 플레이어를 이동시킨다.                             ↓플레이어 이동을 월드좌표계 기준으로 설정한다.
             transform.Translate(moveDir.normalized * moveSpeed * Time.deltaTime, Space.World);
             anim.SetBool("isMove", true); // 이동시에 run 애니메이션 실행
-            //anim.CrossFade("Run", 0.3f);
+                                          //anim.CrossFade("Run", 0.3f);
+
+            Vector3 position = transform.position;
+            position.x = Mathf.Clamp(position.x, -moveRange, moveRange);
+            position.z = Mathf.Clamp(position.z, -moveRange, moveRange);
+
+            transform.position = position;
+
         }
         else
         {
             anim.SetBool("isMove", false); // 멈췄을때 idle 상태로 전환
             //anim.CrossFade("Idle", 0.3f);
         }
+
+       
     }
 
     
@@ -68,10 +84,44 @@ public class PlayerMoving : MonoBehaviour
         }
     }
     // Update is called once per frame
+
+    public void ApplyKnockback(Vector3 direction, float force, float duration)
+    {
+        knockbackVelocity = direction * force;
+        knockbackTime = duration;
+        isKnockbackActive = true;
+    }
+
+    void KnockBack()
+    {
+        // 넉백이 활성화된 경우 트랜스레이트로 이동
+        transform.Translate(knockbackVelocity * Time.deltaTime);
+        Vector3 position = transform.position;
+        position.x = Mathf.Clamp(position.x, -moveRange, moveRange);
+        position.z = Mathf.Clamp(position.z, -moveRange, moveRange);
+
+        transform.position = position;
+
+        // 넉백 지속 시간 감소
+        knockbackTime -= Time.deltaTime;
+        if (knockbackTime <= 0)
+        {
+            isKnockbackActive = false;
+            knockbackVelocity = Vector3.zero;
+        }
+    }
     void Update()
     {
-        Move();
-        Rotate();
+        if (!isKnockbackActive)
+        {
+            Move();
+            Rotate();
+        }
+        else
+        {
+            KnockBack();
+        }
+        
 
 
     }
