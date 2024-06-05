@@ -27,7 +27,7 @@ public class ArcherAttack : MonoBehaviour
 
     Animator anim;
 
-    public bool isButtonPressed = false;
+    public bool isButtonPressed1 = false;
     public bool isButtonPressed2 = false;
     public bool isButtonPressed3 = false;
 
@@ -36,6 +36,8 @@ public class ArcherAttack : MonoBehaviour
     public bool isAttackButton3 = false;
     public bool isShooting = false;
     float lastshotTime;
+    float DestroyDuration = 2.0f;
+    float DestroyLifeTime = 2.0f;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -116,9 +118,37 @@ public class ArcherAttack : MonoBehaviour
             //마우스 클릭시 공격 애니메이션이 발동된다.
             anim.SetTrigger("skillAttack");
             
-
+            if(isButtonPressed1)
+            {
+                skillSetting1();
+            }
+            else if(isButtonPressed2)
+            {
+                skillSetting2();
+            }
         }
     }
+
+    void skillSetting1()
+    {
+        // 10% 확률로 디버프를 거는 함수이다.
+        float Debuff = Random.Range(0f, 100f);
+        if (Debuff < 10.0f)
+        {
+            Debug.Log("빙결적용!\n 몬스터의 이동속도가 감소합니다!");
+        }
+    }
+
+    void skillSetting2()
+    {
+        ArrowRainParticle.instance.ParticleControl();
+    }
+
+    void skillSetting3()
+    {
+        
+    }
+
 
     void usedRay()
     {
@@ -134,7 +164,16 @@ public class ArcherAttack : MonoBehaviour
             ps.Play(); // 파티클 시스템을 재생시킨다.
             //파티클이 생성되고 마지막 파티클이 소멸되면 파티클이 들어가 있는 게임오브젝트를 Destroy한다.
             //예시로 duration =2초, startLifetime= 0.5초로 설정했으므로 2.5초뒤에 Destroy한다.
-            Destroy(ps.gameObject, ps.main.duration + ps.main.startLifetime.constantMax);
+            
+            if(isButtonPressed2)
+            {
+                Destroy(ps.gameObject, DestroyDuration + DestroyLifeTime);
+            }
+            else
+            {
+                Destroy(ps.gameObject, ps.main.duration + ps.main.startLifetime.constantMax);
+            }
+            
         }
     }
 
@@ -175,7 +214,7 @@ public class ArcherAttack : MonoBehaviour
 
     public void OnButtonArcherSkill_First()
     {
-        isButtonPressed = !isButtonPressed;
+        isButtonPressed1 = !isButtonPressed1;
     }
 
     public void OnButtonArcherSkill_Second()
