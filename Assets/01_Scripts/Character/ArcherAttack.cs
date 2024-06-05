@@ -21,9 +21,21 @@ public class ArcherAttack : MonoBehaviour
     [SerializeField]
     Transform arrowPos; // 화살 발사되는 위치
     [SerializeField]
+    Transform arrowPos2; // 듀얼화살용 발사 위치
+    [SerializeField]
     Transform shieldPos; // 보호막 생성 위치
 
     Animator anim;
+
+    public bool isButtonPressed = false;
+    public bool isButtonPressed2 = false;
+    public bool isButtonPressed3 = false;
+
+    public bool isAttackButton1 = false;
+    public bool isAttackButton2 = false;
+    public bool isAttackButton3 = false;
+    public bool isShooting = false;
+    float lastshotTime;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -38,18 +50,64 @@ public class ArcherAttack : MonoBehaviour
 
     public void ArrowAttack()
     {
-        if (Input.GetMouseButtonDown(0)) // 마우스 왼쪽버튼 클릭했을 때 발동하도록 설정한다.
+        if (Input.GetMouseButtonDown(0) && !isAttackButton3) // 마우스 왼쪽버튼 클릭했을 때 발동하도록 설정한다.
         {
-            //usedRay();
             Invoke("shotArrow", 0.3f);
             //마우스 클릭시 공격 애니메이션이 발동된다.
             anim.SetTrigger("Attack");
             //공격 모션에 맞춰서 슬래시 파티클 애니메이션 실행
+
+            if(isAttackButton1)
+            {
+                Invoke("AttackSetting1", 0.3f);
+            }
+            else if(isAttackButton2)
+            {
+                Invoke("AttackSetting2", 0.3f);
+            }
             
         }
-
+        
+        if(Input.GetMouseButton(0) && isAttackButton3)
+        {
+            isShooting = true;
+            anim.SetBool("holdAttack", true);
+            AttackSetting3();
+        }
+        else
+        {
+            isShooting = false;
+            anim.SetBool("holdAttack", false);
+        }
     }
 
+    void AttackSetting1()
+    {
+        GameObject arrowShot2 = Instantiate(arrow, transform.position, transform.rotation);
+        arrowShot2.transform.position = arrowPos2.position;
+    }
+
+    void AttackSetting2()
+    {
+        StartCoroutine(repeatingArrow());
+    }
+    IEnumerator repeatingArrow()
+    {
+        yield return new WaitForSeconds(0.15f);
+        shotArrow();
+    }
+
+
+    void AttackSetting3()
+    {
+       if(Time.time - lastshotTime >= 0.2f)
+        {
+            shotArrow();
+            lastshotTime = Time.time;
+        }
+    }
+
+    
     public void skillAttack()
     {
         if (Input.GetMouseButtonDown(1)) // 마우스 오른쪽버튼 클릭했을 때 발동하도록 설정한다.
@@ -95,6 +153,40 @@ public class ArcherAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         magicShield.Stop();
+    }
+
+    //**********버튼 동작을 위한 함수**********//  
+    public void OnArcherAttackButton_First()
+    {
+        isAttackButton1 = !isAttackButton1;
+    }
+
+    public void OnArcherAttackButton_Second()
+    {
+        isAttackButton2 = !isAttackButton2;
+    }
+
+    public void OnArcherAttackButton_Third()
+    {
+        isAttackButton3 = !isAttackButton3;
+
+        
+    }
+
+    public void OnButtonArcherSkill_First()
+    {
+        isButtonPressed = !isButtonPressed;
+    }
+
+    public void OnButtonArcherSkill_Second()
+    {
+        isButtonPressed2 = !isButtonPressed2;
+
+    }
+
+    public void OnButtonArcherSkill_Third()
+    {
+        isButtonPressed3 = !isButtonPressed3;
     }
 
     // Update is called once per frame

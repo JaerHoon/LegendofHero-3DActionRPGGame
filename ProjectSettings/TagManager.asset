@@ -3,16 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Monster
-  - Pay
-  - FallowCam
-  - FxTemporaire
-<<<<<<< HEAD
-  - MagicBullet
-=======
-  - wave
->>>>>>> GuHakGyun
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -20,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - monster
-  - Player
+  - 
+  - 
   - 
   - 
   - 
