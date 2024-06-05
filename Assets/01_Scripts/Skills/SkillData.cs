@@ -33,6 +33,11 @@ public struct SkillInfo
     public Sprite image { get { return Image; } }
 
     [SerializeField]
+    private Material material;
+
+    public Material Material { get { return material; } }
+
+    [SerializeField]
     private float Damage;//À§·Â
     public float damage { get { return Damage; } }
 
