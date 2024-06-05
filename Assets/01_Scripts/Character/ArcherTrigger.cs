@@ -14,7 +14,7 @@ public class ArcherTrigger : MonoBehaviour
     {
         if(other.gameObject.tag=="Monster")
         {
-            Debug.Log("충돌되었습니다!");
+            //Debug.Log("충돌되었습니다!");
         }
     }
 
@@ -22,6 +22,12 @@ public class ArcherTrigger : MonoBehaviour
     {
         Invoke("archeroffCollider", 0.5f*Time.deltaTime);
         Invoke("archerOnColliders", 0.3f*Time.deltaTime);
+
+        if(ArcherAttack.instance != null && ArcherAttack.instance.isButtonPressed2)
+        {
+            Invoke("archeroffCollider", 0.2f * Time.deltaTime);
+            Invoke("archerOnColliders", 0.1f * Time.deltaTime);
+        }
     }
 
    
