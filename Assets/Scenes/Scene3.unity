@@ -1242,18 +1242,6 @@ PrefabInstance:
       value: training_dummy
       objectReference: {fileID: 0}
     - target: {fileID: 5360683131785772904, guid: 0331b169005eb1d469455efaa6b9024a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 5360683131785772904, guid: 0331b169005eb1d469455efaa6b9024a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5360683131785772904, guid: 0331b169005eb1d469455efaa6b9024a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.5000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 5360683131785772904, guid: 0331b169005eb1d469455efaa6b9024a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.79
       objectReference: {fileID: 0}
