@@ -12,6 +12,9 @@ public class GolemAnim : MonsterAnim
     const int ATTACKP = 5;
     const int ATTACKG = 6;
 
+    [SerializeField]
+    ParticleSystem GroundAttackEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,19 +51,34 @@ public class GolemAnim : MonsterAnim
     public override void OnAtk3Anim()
     {
         animator.SetInteger(Stat, ATTACKG);
+        GroundAttackEffect.Play();
         Invoke("DelayIdle", 0.3f);
 
     }
+
+   
 
     public override void OnMovingAnim()
     {
         animator.SetInteger(Stat, WALK);
     }
 
+    public override void OnDyingAnim()
+    {
+        this.gameObject.GetComponent<BoxCollider>().enabled = false;
+        animator.SetTrigger(Die);
+        Invoke("DestroyGameObject", 3.0f);
+    }
+
+    void DestroyGameObject()
+    {
+        Destroy(gameObject);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+      
     }
 
 
