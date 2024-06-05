@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class CharacterDamage : MonoBehaviour
 {
-   public virtual void OnDamage(float dmg)
+    [SerializeField]
+    GameObject heart;
+ 
+    public virtual void OnDamage(float dmg)
     {
         print("플레이어 피격 데미지 : " + dmg);
+        heart.SetActive(true);
+        Invoke("offSetActive", 1.5f);
+    }
+
+    void offSetActive()
+    {
+        heart.SetActive(false);
     }
 }
