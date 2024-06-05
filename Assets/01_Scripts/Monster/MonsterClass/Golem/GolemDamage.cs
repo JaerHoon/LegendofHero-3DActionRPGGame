@@ -16,7 +16,7 @@ public class GolemDamage : MonsterDamage
 
     private void OnMouseEnter()
     {
-        OnDamage(1000f);
+        //OnDamage(1000f);
     }
 
     public override void OnDamage(float pow)

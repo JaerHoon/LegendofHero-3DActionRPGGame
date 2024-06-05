@@ -5035,7 +5035,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2808727577656107678}
-  - component: {fileID: 1172674719560256628}
+  - component: {fileID: 271251596643104990}
   m_Layer: 0
   m_Name: lowerarm_r
   m_TagString: Untagged
@@ -5060,7 +5060,7 @@ Transform:
   - {fileID: 5263548586125600141}
   m_Father: {fileID: 5026562034810042528}
   m_LocalEulerAnglesHint: {x: 69.793884, y: 0.46204436, z: 83.29043}
---- !u!65 &1172674719560256628
+--- !u!65 &271251596643104990
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

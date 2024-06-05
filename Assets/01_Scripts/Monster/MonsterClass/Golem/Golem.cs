@@ -65,9 +65,9 @@ public class Golem : Monster
         while (true)
         {
             yield return new WaitForSeconds(2f);
-            print(Vector3.Distance(playerTr.position, transform.position));
-            print(monsterstate);
-            print(bossAttackType);
+            //print(Vector3.Distance(playerTr.position, transform.position));
+            //print(monsterstate);
+            //print(bossAttackType);
         }
        
     }
