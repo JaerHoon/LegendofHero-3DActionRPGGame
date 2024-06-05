@@ -26,6 +26,11 @@ public class PlayerMoving : MonoBehaviour
 
     private void Move()
     {
+        if(ArcherAttack.instance !=null && ArcherAttack.instance.isShooting==true)
+        {
+            return;
+        }
+        
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
