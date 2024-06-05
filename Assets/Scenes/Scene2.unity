@@ -875,7 +875,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &978278365
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2204,7 +2204,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832015500}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5371753, y: 0.000000032220694, z: -0.000000020520169, w: 0.8434707}
+  m_LocalRotation: {x: 0.53717524, y: -0.000000015757937, z: 0.000000010035648, w: 0.8434707}
   m_LocalPosition: {x: 4.42, y: 15.06, z: -6.746}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2889,7 +2889,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072499351}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5371753, y: 0.000000032220694, z: -0.000000020520169, w: 0.8434707}
+  m_LocalRotation: {x: 0.53717524, y: -0.000000015757937, z: 0.000000010035648, w: 0.8434707}
   m_LocalPosition: {x: 4.42, y: 15.06, z: -6.746}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2985,7 +2985,7 @@ PrefabInstance:
     - target: {fileID: 5488532047536760925, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
       propertyPath: ArrowRain
       value: 
-      objectReference: {fileID: 3727440342530276884}
+      objectReference: {fileID: 6248288945854557380}
     - target: {fileID: 5488532047536760925, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
       propertyPath: arrowPos2
       value: 
@@ -3001,7 +3001,7 @@ PrefabInstance:
     - target: {fileID: 5488532047536760925, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
       propertyPath: skillAnim
       value: 
-      objectReference: {fileID: 3727440342530276884}
+      objectReference: {fileID: 6248288945854557380}
     - target: {fileID: 5488532047536760925, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
       propertyPath: magicShield
       value: 
@@ -3184,6 +3184,18 @@ PrefabInstance:
       propertyPath: InitialModule.startLifetime.scalar
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6746217251454413073, guid: 206ee81f70aa48d4fb3d2efe3d1288cd, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6746217251454413073, guid: 206ee81f70aa48d4fb3d2efe3d1288cd, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].cycleCount
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6746217251454413073, guid: 206ee81f70aa48d4fb3d2efe3d1288cd, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7405626255029116354, guid: 206ee81f70aa48d4fb3d2efe3d1288cd, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 3
@@ -3207,7 +3219,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8289629407196682053, guid: 206ee81f70aa48d4fb3d2efe3d1288cd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8656955798312931985}
   m_SourcePrefab: {fileID: 100100000, guid: 206ee81f70aa48d4fb3d2efe3d1288cd, type: 3}
 --- !u!1001 &959436773312339168
 PrefabInstance:
@@ -8168,11 +8183,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!198 &3727440342530276884 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6746217251454413073, guid: 206ee81f70aa48d4fb3d2efe3d1288cd, type: 3}
-  m_PrefabInstance: {fileID: 804175555139487189}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4318114855817813766
 Transform:
   m_ObjectHideFlags: 0
@@ -8188,6 +8198,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6254571206706711504}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!198 &4332381753938533853 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3978568704593467400, guid: 206ee81f70aa48d4fb3d2efe3d1288cd, type: 3}
+  m_PrefabInstance: {fileID: 804175555139487189}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4448569268916056609
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8543,6 +8558,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f64d5c2c585ef284bbb1d80284d2fa15, type: 3}
+--- !u!198 &6248288945854557380 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6746217251454413073, guid: 206ee81f70aa48d4fb3d2efe3d1288cd, type: 3}
+  m_PrefabInstance: {fileID: 804175555139487189}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6254571206706711504
 Transform:
   m_ObjectHideFlags: 0
@@ -8561,6 +8581,11 @@ Transform:
   - {fileID: 5922341612725999886}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &6398246416324486607 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6044431442430894106, guid: 206ee81f70aa48d4fb3d2efe3d1288cd, type: 3}
+  m_PrefabInstance: {fileID: 804175555139487189}
+  m_PrefabAsset: {fileID: 0}
 --- !u!198 &6457497172779956822
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -23110,6 +23135,28 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &8656955798312931984 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8289629407196682053, guid: 206ee81f70aa48d4fb3d2efe3d1288cd, type: 3}
+  m_PrefabInstance: {fileID: 804175555139487189}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8656955798312931985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8656955798312931984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37f2958d580375b438debf0dd5e6c745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Aoe: {fileID: 6248288945854557380}
+  circle: {fileID: 6398246416324486607}
+  Light: {fileID: 4332381753938533853}
+  DestroyDuration: 4
+  DestroyLifetime: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
