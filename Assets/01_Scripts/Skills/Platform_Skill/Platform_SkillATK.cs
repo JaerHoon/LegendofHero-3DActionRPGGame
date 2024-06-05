@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Platform_NormalATK : Platform
+public class Platform_SkillATK : Platform
 {
-    private void Start()
+    void Start()
     {
         Init();
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -16,4 +15,5 @@ public class Platform_NormalATK : Platform
             print("¡¯¿‘");
         }
     }
+
 }

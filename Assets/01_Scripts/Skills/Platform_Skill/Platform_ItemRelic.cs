@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Platform_NormalATK : Platform
+public class Platform_ItemRelic : Platform
 {
-    private void Start()
+    void Start()
     {
         Init();
     }
@@ -16,4 +16,5 @@ public class Platform_NormalATK : Platform
             print("¡¯¿‘");
         }
     }
+
 }

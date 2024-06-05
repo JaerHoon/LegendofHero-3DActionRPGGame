@@ -4,23 +4,65 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-    [SerializeField]
-    protected SkillData skillData;
+    [HideInInspector]
+    public SkillChoiceController skillChoiceController;
+
+    [HideInInspector]
+    public int SkillNum;
+
+    [HideInInspector]
+    SkillInfo skill;
+
     protected SphereCollider coll;
     [SerializeField]
     protected MeshRenderer Icon_mesh;
+
+    [SerializeField]
+    protected GameObject Skill_obj;
    
-    private void Start()
+   
+
+    public virtual void Init()
     {
         coll = GetComponent<SphereCollider>();
-        //Icon_mesh.material = 
+        Icon_mesh = FindInChildren(this.transform, "Icon")?.GetComponent<MeshRenderer>();
+        if (Icon_mesh == null) print("Icon이라는 오브젝트가 없습니다");
     }
 
-    private void OnTriggerEnter(Collider other)
+
+    Transform FindInChildren(Transform parent, string name)
     {
-        if (other.CompareTag("Player"))
+        foreach (Transform child in parent)
         {
-            print("진입");
+            if (child.name == name)
+                return child;
+
+            Transform result = FindInChildren(child, name);
+            if (result != null)
+                return result;
         }
+        return null;
+    }
+
+    public virtual void Setting(CharacterManager.ChoicedCharacter choicedCharacter, int skill_Id)
+    {
+        if((int)choicedCharacter == 0)
+        {
+            skill = SkillManager.instance.warriorSkills[skill_Id];
+            Icon_mesh.material = skill.Material;
+            
+        }
+        else
+        {
+            skill = SkillManager.instance.archerSkills[skill_Id];
+            Icon_mesh.material =skill.Material;
+        }
+    }
+
+
+    public virtual void GetSkill()
+    {
+        skillChoiceController.GetSkill(skill);
+
     }
 }

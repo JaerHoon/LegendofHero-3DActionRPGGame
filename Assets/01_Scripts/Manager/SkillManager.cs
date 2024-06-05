@@ -21,6 +21,8 @@ public class SkillManager : MonoBehaviour
     SkillData archerSkillData;
     public List<SkillInfo> warriorSkills = new List<SkillInfo>();
     public List<SkillInfo> archerSkills = new List<SkillInfo>();
+    public SkillInfo[] gainedSkill_Warrior = new SkillInfo[3];
+    public SkillInfo[] gainedSkill_Archer = new SkillInfo[3];
 
     private void CreateSkill()
     {
@@ -32,9 +34,30 @@ public class SkillManager : MonoBehaviour
             archerSkills.Add(archerSkillData.skillInfo[i]);
         }
        
+    }
 
-
-
+    public void GetSkill(CharacterManager.ChoicedCharacter choicedCharacter, int skill_Id)
+    {
+        if((int)choicedCharacter == 0)
+        {
+            for(int i=0; i< warriorSkills.Count; i++)
+            {
+                if(warriorSkills[i].id == skill_Id)
+                {
+                    gainedSkill_Warrior[(int)warriorSkills[i].skillType] = warriorSkills[i];
+                }
+            }
+        }
+        else
+        {
+            for(int i=0; i<archerSkills.Count; i++)
+            {
+                if(archerSkills[i].id == skill_Id)
+                {
+                    gainedSkill_Archer[(int)archerSkills[i].skillType] = archerSkills[i];
+                }
+            }
+        }
     }
 
     // Update is called once per frame

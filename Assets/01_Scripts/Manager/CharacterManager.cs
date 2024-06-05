@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static CharacterManager instance;
 
-    // Update is called once per frame
-    void Update()
+    public enum ChoicedCharacter { Warrior, Archer}
+    public ChoicedCharacter choicedCharacter;
+
+    private void Awake()
     {
-        
+        if (instance == null) instance = this;
     }
 }

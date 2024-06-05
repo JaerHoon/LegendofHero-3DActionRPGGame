@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Platform_NormalATK : Platform
+public class NextStagePortal : MonoBehaviour
 {
-    private void Start()
+    SphereCollider coll;
+
+    void Start()
     {
-        Init();
+        coll = GetComponent<SphereCollider>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            print("진입");
+            print("포탈범위진입");
         }
     }
 }

@@ -20,6 +20,9 @@ public class SkillData : ScriptableObject
 [System.Serializable]
 public struct SkillInfo
 {
+    public enum CharacterType { Warrior, Acher }
+    public CharacterType characterType;
+
     [SerializeField]
     private int ID;//스킬 아이디
     public int id { get { return ID; } }
@@ -27,6 +30,9 @@ public struct SkillInfo
     [SerializeField]
     private string SkillDescription;//스킬 아이디
     public string skillDescription { get { return SkillDescription; } }
+
+    public enum SkillType { NormalATK, SkillATK, SkillDFN}
+    public SkillType skillType;
 
     [SerializeField]
     private Sprite Image;//스킬 이미지
