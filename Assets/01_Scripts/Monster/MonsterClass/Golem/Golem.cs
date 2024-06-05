@@ -232,10 +232,12 @@ public class Golem : Monster
         anim.OnRiseAnim();
     }
 
-    public void asd()
+    protected override void DieStat()
     {
-
+        monsterMove.OffMove();
+        anim.OnDyingAnim();
     }
+
 
     // Update is called once per frame
     void Update()
