@@ -13,6 +13,9 @@ public class GolemMove : MonsterMove
     // Update is called once per frame
     void Update()
     {
-        
+        if (IsMove)
+        {
+            Move();
+        }
     }
 }

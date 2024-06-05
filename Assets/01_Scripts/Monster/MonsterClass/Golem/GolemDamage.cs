@@ -16,12 +16,25 @@ public class GolemDamage : MonsterDamage
 
     private void OnMouseEnter()
     {
-        OnDamage(100f);
+        OnDamage(1000f);
     }
 
     public override void OnDamage(float pow)
     {
         golem.CurrentHP -= pow;
+        DamageFx(pow);
+    }
+
+    public override void DamageFx(float amount)
+    {
+        FX.Play();
+        GameObject dmgText = PoolFactroy.instance.GetPool(0);
+        DamageText damageText = dmgText.GetComponent<DamageText>();
+        damageText.OnTexting(amount);
+        Vector3 pos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 7.5f, gameObject.transform.position.z);
+        dmgText.transform.position = pos;
+        
+
     }
     // Update is called once per frame
     void Update()

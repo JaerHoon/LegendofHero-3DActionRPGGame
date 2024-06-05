@@ -9,7 +9,7 @@ public class ObjectFactory
     int defaultgameObjectNumber;//처음 pool에 만들 몬스터 수
 
     //프리팹 정보 강제 주입
-    public ObjectFactory(GameObject gameObjectPrefab, int defaultgameObjectNumber = 30)
+    public ObjectFactory(GameObject gameObjectPrefab, int defaultgameObjectNumber = 100)
     {
         _gameObjectPrefab = gameObjectPrefab;//외부에서 받은 프리팹 정보 
         this.defaultgameObjectNumber = defaultgameObjectNumber;//외부에서 받은 몬스터 수 설정

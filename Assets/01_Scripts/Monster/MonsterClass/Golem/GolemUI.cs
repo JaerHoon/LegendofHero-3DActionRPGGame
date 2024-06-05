@@ -11,11 +11,12 @@ public class GolemUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        monster = GetComponent<Monster>();
+        
     }
 
     public void UI_Update()
     {
+        monster = GetComponent<Monster>();
         hpBar.fillAmount = monster.CurrenHP / monster.MaxHP;
     }
 

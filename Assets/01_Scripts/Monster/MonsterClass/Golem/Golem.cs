@@ -16,6 +16,7 @@ public class Golem : Monster
     void Start()
     {
         Init();
+        IsPlayerdetected = false;
         golemUI = GetComponent<GolemUI>();
         ChangeState(MONSTERSTATE.Wait);
         //StartCoroutine(CheckStat());
@@ -74,27 +75,35 @@ public class Golem : Monster
     {
         while (monsterstate != MONSTERSTATE.Die)
         {
-            int rand = 1;//Random.Range(0, 3);
+            int rand = Random.Range(0, 2);
             if (rand == 0)
             {
-                ChangeAttackState(BOSSATTACKTYPE.AttackProjectile);
-                yield return new WaitForSeconds(5.0f);
-                ChangeAttackState(BOSSATTACKTYPE.AttackGround);
-                yield return new WaitForSeconds(6.0f);
-                ChangeAttackState(BOSSATTACKTYPE.Attack);
-                yield return new WaitForSeconds(15.0f);
+                BossPattern1();
+                yield return new WaitForSeconds(8.0f);
+                BossPattern2();
+                yield return new WaitForSeconds(1.5f);
+                BossPattern3();
+                yield return new WaitForSeconds(1.5f);
+                BossPattern2();
+                yield return new WaitForSeconds(1.5f);
+                BossPattern3();
+                yield return new WaitForSeconds(1.5f);
+
             }
             else if(rand == 1)
             {
 
                 for (int i = 0; i < 3; i++)
                 {
-                    ChangeAttackState(BOSSATTACKTYPE.AttackProjectile);
-                    yield return new WaitForSeconds(2.0f);
-                    ChangeAttackState(BOSSATTACKTYPE.Attack);
-                    yield return new WaitForSeconds(2.0f);
-                    ChangeAttackState(BOSSATTACKTYPE.AttackGround);
-                    yield return new WaitForSeconds(2.0f);
+                    BossPattern2();
+                    yield return new WaitForSeconds(1.5f);
+                    BossPattern1();
+                    yield return new WaitForSeconds(3.0f);
+                    BossPattern3();
+                    yield return new WaitForSeconds(1.5f);
+                    BossPattern1();
+                    yield return new WaitForSeconds(3.0f);
+                    
                 }
             }
             else
@@ -111,20 +120,49 @@ public class Golem : Monster
         }
     }
 
+    void BossPattern1()//추적 후 평타
+    {
+        IsPlayerdetected = true;
+        ChangeAttackState(BOSSATTACKTYPE.None);
+    }
+    void BossPattern2()//투사체 발사
+    {
+        IsPlayerdetected = false;
+        ChangeState(MONSTERSTATE.Idle);
+        monsterMove.OffMove();
+        ChangeAttackState(BOSSATTACKTYPE.AttackProjectile);
+    }
+    void BossPattern3()//돌 떨구기
+    {
+        IsPlayerdetected = false;
+        ChangeState(MONSTERSTATE.Idle);
+        monsterMove.OffMove();
+        ChangeAttackState(BOSSATTACKTYPE.AttackGround);
+    }
+
     public override void CheckPlayer()//일반 공격 패턴일 때(추격 -> 공격, 반복)
     {
-        float distance = Vector3.Distance(playerTr.position, transform.position);
-        if (distance > AttackDistanc)
+        if (IsPlayerdetected)//몬스터 상태가 idle 추격 후 공격
         {
-
-            ChangeState(MONSTERSTATE.Trace);
-
-
+            float distance = Vector3.Distance(playerTr.position, transform.position);
+            if(distance < AttackDistanc)//공격 거리일때
+            {
+                Vector3 direction = playerTr.position - transform.position;
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 1.5f * Time.deltaTime);
+                //ChangeAttackState(BOSSATTACKTYPE.Attack);//일반 공격
+                ChangeState(MONSTERSTATE.Attack);
+            }
+            else
+            {
+                
+                if(bossAttackType == BOSSATTACKTYPE.None)
+                    ChangeState(MONSTERSTATE.Trace);//그 후 추격
+                //ChangeAttackState(BOSSATTACKTYPE.None);//멀어지면 다시 일반 상태
+                
+            }
         }
-        else
-        {
-            ChangeState(MONSTERSTATE.Attack);
-        }
+       
        
     }
 
@@ -167,7 +205,21 @@ public class Golem : Monster
 
     public override void AttackStat()
     {
-        StartCoroutine(BossAttackPattern());
+        ChangeAttackState(BOSSATTACKTYPE.Attack);
+        Invoke("DelayAttack", 1.5f);
+        monsterMove.OffMove();
+    }
+
+    void DelayAttack()
+    {
+        ChangeAttackState(BOSSATTACKTYPE.None);
+        ChangeState(MONSTERSTATE.Idle);
+    }
+
+    protected override void TraceStat()
+    {
+        monsterMove.OnMove();
+        anim.OnMovingAnim();
     }
 
     void WaitStat()
@@ -190,8 +242,11 @@ public class Golem : Monster
     {
         if (Input.GetKeyDown(KeyCode.Q)) { ChangeState(MONSTERSTATE.Rise); }
         else if (Input.GetKeyDown(KeyCode.W)) { ChangeState(MONSTERSTATE.Idle); }
-        else if(Input.GetKeyDown(KeyCode.E)) { ChangeState(MONSTERSTATE.Trace); }
+        else if(Input.GetKeyDown(KeyCode.E)) { ChangeState(MONSTERSTATE.Trace); StartCoroutine(BossAttackPattern()); }
         else if(Input.GetKeyDown(KeyCode.R)) { ChangeState(MONSTERSTATE.Attack); }
         else if(Input.GetKeyDown(KeyCode.T)) { ChangeState(MONSTERSTATE.Die); }
+
+        
+        CheckPlayer();
     }
 }
