@@ -1123,6 +1123,26 @@ MonoBehaviour:
     prefabs: {fileID: 5152928482149254056, guid: 031ecbf99a8fc8f4c87dd4ceb4f80ad1, type: 3}
     defaultCapacity: 5
     maxSize: 40
+  - Index: 5
+    poolName: "\uCD08\uB85D \uB300\uB9C8\uC9C0 \uD14D\uC2A4\uD2B8"
+    prefabs: {fileID: 5152928482149254056, guid: 031ecbf99a8fc8f4c87dd4ceb4f80ad1, type: 3}
+    defaultCapacity: 5
+    maxSize: 40
+  - Index: 5
+    poolName: "\uCD08\uB85D \uB300\uB9C8\uC9C0 \uD14D\uC2A4\uD2B8"
+    prefabs: {fileID: 5152928482149254056, guid: 031ecbf99a8fc8f4c87dd4ceb4f80ad1, type: 3}
+    defaultCapacity: 5
+    maxSize: 40
+  - Index: 5
+    poolName: "\uCD08\uB85D \uB300\uB9C8\uC9C0 \uD14D\uC2A4\uD2B8"
+    prefabs: {fileID: 5152928482149254056, guid: 031ecbf99a8fc8f4c87dd4ceb4f80ad1, type: 3}
+    defaultCapacity: 5
+    maxSize: 40
+  - Index: 5
+    poolName: "\uCD08\uB85D \uB300\uB9C8\uC9C0 \uD14D\uC2A4\uD2B8"
+    prefabs: {fileID: 5152928482149254056, guid: 031ecbf99a8fc8f4c87dd4ceb4f80ad1, type: 3}
+    defaultCapacity: 5
+    maxSize: 40
 --- !u!4 &832044015
 Transform:
   m_ObjectHideFlags: 0
@@ -1275,6 +1295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d37a9f9f28c694eae04a5532f3a273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heart: {fileID: 0}
 --- !u!1 &877138492
 GameObject:
   m_ObjectHideFlags: 0
@@ -2175,6 +2196,98 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   warriorSkills: []
   archerSkills: []
+  gainedSkill_Warrior:
+  - characterType: 0
+    ID: 0
+    SkillDescription: 
+    skillType: 0
+    Image: {fileID: 0}
+    material: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
+  - characterType: 0
+    ID: 0
+    SkillDescription: 
+    skillType: 0
+    Image: {fileID: 0}
+    material: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
+  - characterType: 0
+    ID: 0
+    SkillDescription: 
+    skillType: 0
+    Image: {fileID: 0}
+    material: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
+  gainedSkill_Archer:
+  - characterType: 0
+    ID: 0
+    SkillDescription: 
+    skillType: 0
+    Image: {fileID: 0}
+    material: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
+  - characterType: 0
+    ID: 0
+    SkillDescription: 
+    skillType: 0
+    Image: {fileID: 0}
+    material: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
+  - characterType: 0
+    ID: 0
+    SkillDescription: 
+    skillType: 0
+    Image: {fileID: 0}
+    material: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
 --- !u!114 &1658507169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2207,6 +2320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f19ec622318c334aadb016f1aa2a6fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  choicedCharacter: 0
 --- !u!4 &1658507171
 Transform:
   m_ObjectHideFlags: 0
