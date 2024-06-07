@@ -36,16 +36,23 @@ public class ArcherAttack : MonoBehaviour
     public bool isAttackButton3 = false; // 기본공격3번용 플래그
     public bool isShooting = false; // 기본공격3번 함수에 쓰이는 플래그로 연사중일때 움직임 제어를 이용하기 위함
     public bool isCoolTime = false; // 스킬 쿨타임 플래그
+    public bool isFreeze = false;
     float lastshotTime; // 기본공격3번 연사할때 제어를 위한 플래그
     float DestroyDuration = 1.5f; // 스킬셋팅 2번에 쓰이는 Destroy 관련 플래그
     float DestroyLifeTime = 2.0f; // 스킬셋팅 2번에 쓰이는 Destroy 관련 플래그
 
     int skillCount = 0; // 스킬셋팅 3번에 쓰이는 2개 스킬을 보여주기 위한 카운트 변수
     float skillcoolTime = 7.0f; // 임의로 만들어둔 스킬 쿨타임
+    ArcherTrigger archerTrigger;
+    Arrow arrowTrigger;
+    
     void Start()
     {
         anim = GetComponent<Animator>();
-        
+        archerTrigger = GetComponent<ArcherTrigger>();
+        arrowTrigger = GetComponent<Arrow>();
+
+
     }
 
     void shotArrow() // 기본공격 할 때 화살 생성 및 위치를 구현한 함수
@@ -127,7 +134,10 @@ public class ArcherAttack : MonoBehaviour
             
             if(isButtonPressed1) // 스킬셋팅 1번을 사용하기 위한 조건
             {
-                skillSetting1();
+                //skillSetting1();
+                isFreeze = true;
+                Debug.Log("빙결적용!\n 몬스터의 이동속도가 감소합니다!");
+                StartCoroutine(offFreeze());
             }
             else if(isButtonPressed2) // 스킬셋팅 2번을 사용하기 위한 조건
             {
@@ -148,8 +158,16 @@ public class ArcherAttack : MonoBehaviour
         float Debuff = Random.Range(0f, 100f);
         if (Debuff < 10.0f)
         {
+            isFreeze = true;
             Debug.Log("빙결적용!\n 몬스터의 이동속도가 감소합니다!");
+            StartCoroutine(offFreeze());
         }
+    }
+
+    IEnumerator offFreeze()
+    {
+        yield return new WaitForSeconds(10.0f);
+        isFreeze = false;
     }
 
     void skillSetting2() // 스킬셋팅 2번 함수

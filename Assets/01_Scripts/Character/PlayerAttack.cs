@@ -35,9 +35,9 @@ public class PlayerAttack : MonoBehaviour
 
     bool isAttackButton1 = false;
     bool isAttackButton2 = false;
-    bool isAttackButton3 = false;
+    public bool isAttackButton3 = false;
 
-    
+    CharacterDamage die;
     private void Awake()
     {
         if (instance == null)
@@ -49,8 +49,9 @@ public class PlayerAttack : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         playerTrigger = GetComponentInChildren<PlayerTrigger>();
-        
-        
+        die = GetComponent<CharacterDamage>();
+
+
     }
     /*void usedRay()
     {
@@ -125,6 +126,7 @@ public class PlayerAttack : MonoBehaviour
     void AttackSetting3()
     {
         //평타강화3 버전으로 횡베기후에 내려찍는 모션으로 연속공격을 한다.
+        playerTrigger.OnCollider();
         anim.SetBool("isAttack",true);
         slash.Play(); // 횡베기 했을 때 슬래쉬 나오게 파티클 재생
         StartCoroutine(chopslashPlay());
@@ -136,6 +138,7 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         // 코루틴 통해서 0.4초뒤에 내려찍을 때 슬래쉬 파티클을 재생한다.
         // 내려찍을 때 슬래쉬 나오는 타이밍을 맞추기 위해서 코루틴을 이용한다.
+        playerTrigger.OnCollider();
         chopSlash.Play();
         //내려찍는 슬래쉬의 적절한 위치값을 넣어줘서 엉뚱한 위치에서 재생되지 않게 고정시켜 준다.
         chopSlash.transform.localPosition = new Vector3(0.9f, 2.4f, 1.5f);
@@ -148,7 +151,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void skillAttack() // 스킬 함수
     {
-        if (Input.GetMouseButtonDown(1)) // 마우스 오른쪽버튼 클릭했을 때 발동하도록 설정한다.
+        if (Input.GetMouseButtonDown(1) && !isButtonPressed3) // 마우스 오른쪽버튼 클릭했을 때 발동하도록 설정한다.
         {
             anim.SetTrigger("Attack");
             //검기 스킬 발사하도록 Instantiate 이용한다.
@@ -159,8 +162,6 @@ public class PlayerAttack : MonoBehaviour
             // 캐릭터 앞 쪽에 위치시켜서 이상한 곳에서 안나오도록 고정시키기 위함이다.
             swordWave.transform.position = skillPos.position;
             
-            
-
             if (isButtonPressed)
             {
                 skillsetting1(); // 스킬1 버튼 누르면 스킬강화1 함수 발동한다.
@@ -169,12 +170,12 @@ public class PlayerAttack : MonoBehaviour
             {
                 skillsetting2(swordWave); // 스킬2 버튼 누르면 스킬강화2 함수 발동한다.
             }
-            else if(isButtonPressed3)
-            {
-                skillsetting3(); // 스킬3 버튼 누르면 스킬강화3 함수 발동한다.
-            }
-                
+            
+        }
 
+        if(Input.GetMouseButtonDown(1) && isButtonPressed3)
+        {
+            skillsetting3();
         }
     }
     
@@ -233,6 +234,7 @@ public class PlayerAttack : MonoBehaviour
         //스킬강화3 버전으로 검기에 닿을 시 폭발하여 데미지를 주도록 설계했다.
         //red 버전의 검기 프리팹을 따로 만들어서 스킬강화3를 선택하면 red색상의 검기가 발사된다.
         GameObject swordWave_red = Instantiate(skill_red, transform.position, transform.rotation);
+        swordWave_red.GetComponent<SwordWave>().Ex = waveEX;
         swordWave_red.transform.position = skillPos.position;
     }
     
@@ -259,6 +261,11 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(die.isPlayerDie==true)
+        {
+            return;
+        }
+        
         KnightAttack();
         skillAttack();
         block();

@@ -4,34 +4,43 @@ using UnityEngine;
 
 public class ArcherTrigger : MonoBehaviour
 {
-    
+    BoxCollider box;
+    MonsterBuff Freeze;
     void Start()
     {
+        box = GetComponent<BoxCollider>();
         
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag=="Monster")
+        if (other.gameObject.tag == "Monster")
         {
-            //Debug.Log("충돌되었습니다!");
-        }
+            other.GetComponent<MonsterDamage>().OnDamage(1);
+            //Freeze.GetComponent<MonsterBuff>().Onfreeze(10.0f, 1.0f, 1.0f);
+            /*if(ArcherAttack.instance.isFreeze==true)
+            {
+                Freeze.GetComponent<Freeze>().OnBuff(10.0f, 1f, 1f);
+            }*/
+        }        
     }
 
     public void archerOnCollider()
     {
-        Invoke("archeroffCollider", 0.5f*Time.deltaTime);
-        Invoke("archerOnColliders", 0.3f*Time.deltaTime);
+        Invoke("archeroffCollider", 0.2f);
+        Invoke("archerOnColliders" ,0.1f);
 
         if(ArcherAttack.instance != null && ArcherAttack.instance.isButtonPressed2)
         {
-            Invoke("archeroffCollider", 0.2f * Time.deltaTime);
-            Invoke("archerOnColliders", 0.1f * Time.deltaTime);
+            Invoke("archeroffCollider", 0.4f * Time.deltaTime);
+            Invoke("archerOnColliders", 0.2f * Time.deltaTime);
         }
+
+       
+        
     }
 
-   
-
+    
     void archerOnColliders()
     {
         gameObject.GetComponent<BoxCollider>().enabled = true;

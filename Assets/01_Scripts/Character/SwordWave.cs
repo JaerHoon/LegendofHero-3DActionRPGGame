@@ -24,21 +24,26 @@ public class SwordWave : MonoBehaviour
     {
         if(other.gameObject.tag=="Monster")
         {
-            Debug.Log("검기 충돌!!");
+            other.GetComponent<MonsterDamage>().OnDamage(10);
+
             if(PlayerAttack.instance.isButtonPressed3)
             {
                 exPos(transform.position);
             }
-            
         }
 
+        /*if(other.gameObject.tag=="Monster" && PlayerAttack.instance.isButtonPressed3)
+        {
+            exPos(transform.position);
+        }*/
+     
     }
 
     void exPos(Vector3 pos)
     {
-        Destroy(this.gameObject);
-        Ex.transform.position = pos;
         Ex.Play();
+        Ex.transform.position = pos;
+        Destroy(this.gameObject);
     }
 
     // Update is called once per frame
