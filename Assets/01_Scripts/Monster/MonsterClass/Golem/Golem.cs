@@ -222,6 +222,7 @@ public class Golem : Monster
         anim.OnMovingAnim();
     }
 
+
     void WaitStat()
     {
 
@@ -234,6 +235,7 @@ public class Golem : Monster
 
     protected override void DieStat()
     {
+        IsPlayerdetected = false;
         monsterMove.OffMove();
         anim.OnDyingAnim();
     }
