@@ -15,4 +15,12 @@ public class DropRock : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<CharacterDamage>().OnDamage(5);
+        }
+    }
 }

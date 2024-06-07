@@ -33,7 +33,7 @@ public class Warrior : CharacterAttackController
 
     void OnChangeSkills(int SKillNum)
     {
-        if(SKillNum >= 0 && SKillNum <= 4)
+        if(SKillNum >= 0 && SKillNum <= 3)
         {
             playerSkillsSlot[0] = SkillManager.instance.warriorSkills[SKillNum];
         }

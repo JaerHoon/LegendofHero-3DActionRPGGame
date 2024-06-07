@@ -64,4 +64,12 @@ public class Projectile : MonoBehaviour
         else
             spiralGrowthRate += Time.deltaTime * 3f;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            other.GetComponent<CharacterDamage>().OnDamage(1);
+        }
+    }
 }

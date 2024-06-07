@@ -9,5 +9,5 @@ public class Consts
     public const int MagicBulletHit = 2;
     public const int ArrowLine = 3;
     public const int MonsterArrow = 4;
-    
+    public const int GreenDamageText = 5;
 }
