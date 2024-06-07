@@ -16,26 +16,43 @@ public class GolemDamage : MonsterDamage
 
     private void OnMouseEnter()
     {
-        //OnDamage(1000f);
+        OnDamage(10f);
     }
 
     public override void OnDamage(float pow)
     {
-        golem.CurrentHP -= pow;
+        golem.CurrentHP -= pow + (pow * UpDamage / 100);
         DamageFx(pow);
+    }
+
+    public override void OnPoisonDamage(float pow)
+    {
+        golem.CurrentHP -= pow;
+        GreenDamageFx(pow);
     }
 
     public override void DamageFx(float amount)
     {
         FX.Play();
-        GameObject dmgText = PoolFactroy.instance.GetPool(0);
-        DamageText damageText = dmgText.GetComponent<DamageText>();
-        damageText.OnTexting(amount);
+        GameObject redDmgText = PoolFactroy.instance.GetPool(Consts.DamageText);
+        DamageText redDamageText = redDmgText.GetComponent<DamageText>();
+        redDamageText.OnTexting(amount);
         Vector3 pos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 7.5f, gameObject.transform.position.z);
-        dmgText.transform.position = pos;
+        redDmgText.transform.position = pos;
         
 
     }
+
+    public override void GreenDamageFx(float amount)
+    {
+        GameObject greenDmgText = PoolFactroy.instance.GetPool(Consts.GreenDamageText);
+        GreenDamageText greenDamageText = greenDmgText.GetComponent<GreenDamageText>();
+        greenDamageText.OnTexting(amount);
+        Vector3 pos = new Vector3(gameObject.transform.position.x + 0.3f, gameObject.transform.position.y + 7.5f, gameObject.transform.position.z);
+        greenDmgText.transform.position = pos;
+    }
+
+
     // Update is called once per frame
     void Update()
     {

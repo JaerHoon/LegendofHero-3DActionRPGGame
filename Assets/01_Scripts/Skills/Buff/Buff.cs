@@ -29,7 +29,7 @@ public class Buff : MonoBehaviour
         }
         else
         {
-            this.duration = duration+buffRuntime;
+            buffRuntime = duration;
             this.dotTime = dotTime;
             this.buffPow = buffpow;
             StopAllCoroutines();
