@@ -8,19 +8,25 @@ public class Arrow : MonoBehaviour
     float arrowSpeed;
     void Start()
     {
-        
+        StartCoroutine(missArrowDestroy());
     }
 
-   
+    IEnumerator missArrowDestroy()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Destroy(this.gameObject);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Monster")
         {
-            Debug.Log("화살 충돌!!");
+            other.GetComponent<MonsterDamage>().OnDamage(5);
             Destroy(this.gameObject);
         }
+        
     }
+   
 
     // Update is called once per frame
     void Update()

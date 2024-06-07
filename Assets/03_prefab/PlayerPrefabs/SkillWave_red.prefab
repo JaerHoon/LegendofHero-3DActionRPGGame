@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillPower: 10
-  Ex: {fileID: 2990880439029132636, guid: 5be08e8751f7ffb498187d17fb0f78e5, type: 3}
+  Ex: {fileID: 6562550013878065172, guid: e5b4fd9874493b6479f730189f43bfd9, type: 3}
 --- !u!54 &1652553479581236645
 Rigidbody:
   m_ObjectHideFlags: 0
