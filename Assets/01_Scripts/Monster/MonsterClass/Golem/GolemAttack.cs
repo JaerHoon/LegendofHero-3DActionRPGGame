@@ -154,7 +154,7 @@ public class GolemAttack : MonsterAttack
     {
         yield return new WaitForSeconds(delayTime);
         GameObject dropRock = rockFactory.GetObject(parentDropRock);
-        dropRock.transform.position = gameObject.transform.position + new Vector3(randx, dropRock.transform.position.y, randz);
+        dropRock.transform.position = new Vector3(randx, dropRock.transform.position.y, randz);
         StartCoroutine(SetCollider(dropRock));
         StartCoroutine(DestroyDropRock(dropRock));
     }
