@@ -23,12 +23,14 @@ public struct SkillInfo
     public enum CharacterType { Warrior, Acher }
     public CharacterType characterType;
 
+    public string skillName;
+
     [SerializeField]
     private int ID;//스킬 아이디
     public int id { get { return ID; } }
 
     [SerializeField]
-    private string SkillDescription;//스킬 아이디
+    private string SkillDescription;
     public string skillDescription { get { return SkillDescription; } }
 
     public enum SkillType { NormalATK, SkillATK, SkillDFN}
@@ -79,5 +81,5 @@ public struct SkillInfo
     private float DamageRate;//데미지 배수
     public float damageRate { get { return DamageRate; } }
 
-
+    public int skillValue;
 }

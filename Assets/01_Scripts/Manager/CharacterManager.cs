@@ -8,6 +8,8 @@ public class CharacterManager : MonoBehaviour
 
     public enum ChoicedCharacter { Warrior, Archer}
     public ChoicedCharacter choicedCharacter;
+    public Sprite WarriorIcon;
+    public Sprite ArcherIcon;
 
     private void Awake()
     {

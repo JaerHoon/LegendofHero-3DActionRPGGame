@@ -6,7 +6,9 @@ using TMPro;
 
 public class UI : MonoBehaviour
 {
-    public enum ViewType { Image, ImageSlot, Text, TextSlot, Button, ButtonSlot, DragNDrop, DragNDropSlot, Slider }
+    public enum ViewType 
+       { Image, ImageSlot, Text, 
+        TextSlot, Button, ButtonSlot, DragNDrop, DragNDropSlot, Slider, CoolTime, CoolTimeSlot,  GameObjectm, GameObjectSlot }
     [HideInInspector]
     public ViewType viewType;
     [HideInInspector]
@@ -50,12 +52,14 @@ public class UI : MonoBehaviour
     public UIController.Eventchain Dragging;
     public UIController.Eventchain OffDrag;
     public UIController.Eventchain Drop;
+    public UIController.Eventchain CoolTime;
 
     public UIController.SlotEventchain SlotButtonPressed;
     public UIController.SlotEventchain SlotOndrag;
     public UIController.SlotEventchain SlotDragging;
     public UIController.SlotEventchain SlotOffDarg;
     public UIController.SlotEventchain SlotDrop;
+    public UIController.SlotEventchain SlotCoolTime;
 
 
     protected void Init()

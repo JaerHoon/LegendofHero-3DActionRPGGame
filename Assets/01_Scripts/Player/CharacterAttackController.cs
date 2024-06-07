@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CharacterAttackController : MonoBehaviour
 {
-    protected int playerHp;
+
+
     protected float playerSpeed;
     protected float playerCritDamage;
     protected float playerAttackChargeRate;

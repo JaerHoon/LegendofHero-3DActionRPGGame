@@ -20,7 +20,7 @@ public class Warrior : CharacterAttackController
 
     void WarriorInit()
     {
-        playerHp = 10;
+      
         playerSpeed = 1;
         playerCritDamage = 1.5f;
         playerAttackChargeRate = 1;

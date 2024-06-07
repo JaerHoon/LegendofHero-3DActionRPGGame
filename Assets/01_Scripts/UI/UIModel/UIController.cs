@@ -89,4 +89,32 @@ public class UIController : MonoBehaviour
     {
 
     }
+
+    public virtual void GameObjectSet(int viewModelNum, string fieldName, GameObject gameObject)
+    {
+        UIModel viewModel = viewModels[viewModelNum];
+        Type type = viewModel.GetType();
+        FieldInfo field = type.GetFields(BindingFlags.Public | BindingFlags.Instance)
+                                  .FirstOrDefault(f => f.Name == fieldName);
+        field.SetValue(viewModel, gameObject);
+    }
+
+    public virtual void SlotGameObjectSet(int viewModelNum, string listName, string fieldName, GameObject gameObject, int slotnum)
+    {
+        UIModel viewModel = viewModels[viewModelNum];
+        Type type = viewModel.GetType();
+        FieldInfo field = type.GetFields(BindingFlags.Public | BindingFlags.Instance)
+                                 .FirstOrDefault(f => f.Name == listName);
+
+        if (field != null && field.FieldType.IsGenericType && field.FieldType.GetGenericTypeDefinition() == typeof(List<>))
+        {
+            object list = field.GetValue(viewModel);
+
+            IList ilist = list as IList;
+            if (ilist != null && ilist.Count > slotnum)
+            {
+                ilist[slotnum] = gameObject;
+            }
+        }
+    }
 }

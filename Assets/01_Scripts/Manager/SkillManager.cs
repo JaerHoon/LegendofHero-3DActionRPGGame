@@ -24,6 +24,9 @@ public class SkillManager : MonoBehaviour
     public SkillInfo[] gainedSkill_Warrior = new SkillInfo[3];
     public SkillInfo[] gainedSkill_Archer = new SkillInfo[3];
 
+    public delegate void ChangeSkill();
+    public ChangeSkill changeSkill;
+
     private void CreateSkill()
     {
         warriorSkillData = Resources.Load("ScriptableObject/WarriorSkills") as SkillData;
@@ -58,6 +61,8 @@ public class SkillManager : MonoBehaviour
                 }
             }
         }
+
+        
     }
 
     // Update is called once per frame

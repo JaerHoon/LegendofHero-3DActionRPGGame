@@ -29,6 +29,10 @@ public class Platform : MonoBehaviour
         if (Icon_mesh == null) print("Icon이라는 오브젝트가 없습니다");
     }
 
+    private void OnEnable()
+    {
+        Skill_obj.SetActive(true);
+    }
 
     Transform FindInChildren(Transform parent, string name)
     {
@@ -63,6 +67,7 @@ public class Platform : MonoBehaviour
     public virtual void GetSkill()
     {
         skillChoiceController.GetSkill(skill);
+        Skill_obj.SetActive(false);
 
     }
 }
