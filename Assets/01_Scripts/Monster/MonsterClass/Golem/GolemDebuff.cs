@@ -14,6 +14,6 @@ public class GolemDebuff : MonsterDebuff
     void Update()
     {
 
-        UpdateDeBuff();
+       
     }
 }

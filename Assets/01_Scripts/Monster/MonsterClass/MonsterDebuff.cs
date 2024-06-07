@@ -14,6 +14,8 @@ public class MonsterDebuff : MonoBehaviour
     [SerializeField]
     protected GameObject freezeImage;
 
+    protected Coroutine[] debuffCorouts;
+
     Image curseCD;
     Image poisonCD;
     Image freezeCD;
@@ -41,6 +43,12 @@ public class MonsterDebuff : MonoBehaviour
         poisonCD = posionImage.GetComponentsInChildren<Image>()[1];
         freezeCD = freezeImage.GetComponentsInChildren<Image>()[1];
 
+        debuffCorouts = new Coroutine[3];
+        debuffCorouts[0] = StartCoroutine(OnCurseCorout());
+        debuffCorouts[1] = StartCoroutine(OnPoisonCorout());
+        debuffCorouts[2] = StartCoroutine(OnFreezeCorout());
+        StopAllCoroutines();
+
         curseImage.SetActive(false);
         posionImage.SetActive(false);
         freezeImage.SetActive(false);
@@ -52,6 +60,17 @@ public class MonsterDebuff : MonoBehaviour
         enumList[0] = CURSESTATE.Curse;
         curseImage.SetActive(true);
         curseCD.fillAmount = 0;
+        RestartCoroutine(0);
+    }
+
+    IEnumerator OnCurseCorout()
+    {
+        while ((CURSESTATE)enumList[0] == CURSESTATE.Curse)
+        {
+            yield return new WaitForFixedUpdate();
+            curseCD.fillAmount += (1f / curseDuration) * Time.deltaTime;
+            if (curseCD.fillAmount >= 1) OffCurseState();
+        }
     }
 
     protected virtual void OffCurseState()
@@ -66,6 +85,18 @@ public class MonsterDebuff : MonoBehaviour
         enumList[1] = POISONSTATE.Poison;
         posionImage.SetActive(true);
         poisonCD.fillAmount = 0;
+        RestartCoroutine(1);
+    }
+
+
+    IEnumerator OnPoisonCorout()
+    {
+        while ((POISONSTATE)enumList[1] == POISONSTATE.Poison)
+        {
+            yield return new WaitForFixedUpdate();
+            poisonCD.fillAmount += (1f / poisonDuration) * Time.deltaTime;
+            if (poisonCD.fillAmount >= 1) OffPoisonState();
+        }
     }
 
     protected virtual void OffPoisonState()
@@ -80,6 +111,17 @@ public class MonsterDebuff : MonoBehaviour
         enumList[2] = FREEZESTATE.Freeze;
         freezeImage.SetActive(true);
         freezeCD.fillAmount = 0;
+        RestartCoroutine(2);
+    }
+
+    IEnumerator OnFreezeCorout()
+    {
+        while ((FREEZESTATE)enumList[2] == FREEZESTATE.Freeze)
+        {
+            yield return new WaitForFixedUpdate();
+            freezeCD.fillAmount += (1f / freezeDuration) * Time.deltaTime;
+            if (freezeCD.fillAmount >= 1) OffFreezeState();
+        }
     }
 
     protected virtual void OffFreezeState()
@@ -88,23 +130,39 @@ public class MonsterDebuff : MonoBehaviour
         freezeImage.SetActive(false);
     }
 
-    protected virtual void UpdateDeBuff()
+    public void RestartCoroutine(int index)
     {
-        if((CURSESTATE)enumList[0] == CURSESTATE.Curse)
+        if (index >= 0 && index < debuffCorouts.Length)
         {
-            curseCD.fillAmount += (1f/curseDuration) * Time.deltaTime;
-            if (curseCD.fillAmount >= 1) OffCurseState();
-            
-        }
-        if ((POISONSTATE)enumList[1] == POISONSTATE.Poison)
-        {
-            poisonCD.fillAmount += (1f / poisonDuration) * Time.deltaTime;
-            if (poisonCD.fillAmount >= 1) OffPoisonState();
-        }
-        if ((FREEZESTATE)enumList[2] == FREEZESTATE.Freeze)
-        {
-            freezeCD.fillAmount += (1f / freezeDuration) * Time.deltaTime;
-            if (freezeCD.fillAmount >= 1) OffFreezeState();
+            if (debuffCorouts[index] == null)
+            {
+                switch (index)
+                {
+                    case 0:
+                        StopDebuffCoroutine(0);
+                        debuffCorouts[0] = StartCoroutine(OnCurseCorout());
+                        break;
+                    case 1:
+                        StopDebuffCoroutine(1);
+                        debuffCorouts[1] = StartCoroutine(OnPoisonCorout());
+                        break;
+                    case 2:
+                        StopDebuffCoroutine(2);
+                        debuffCorouts[2] = StartCoroutine(OnFreezeCorout());
+                        break;
+                }
+            }
         }
     }
+
+    public void StopDebuffCoroutine(int index)
+    {
+        if (index >= 0 && index < debuffCorouts.Length && debuffCorouts[index] != null)
+        {
+            StopCoroutine(debuffCorouts[index]);
+            debuffCorouts[index] = null; // 정지된 코루틴을 null로 설정
+        }
+    }
+
+    
 }
