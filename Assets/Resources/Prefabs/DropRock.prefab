@@ -53994,11 +53994,11 @@ GameObject:
   - component: {fileID: 3931348156681364168}
   m_Layer: 0
   m_Name: DropRock
-  m_TagString: Untagged
+  m_TagString: MagicBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3927302651514134136
 Transform:
   m_ObjectHideFlags: 0

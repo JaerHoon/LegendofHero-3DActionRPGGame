@@ -65,9 +65,9 @@ public class Golem : Monster
         while (true)
         {
             yield return new WaitForSeconds(2f);
-            print(Vector3.Distance(playerTr.position, transform.position));
-            print(monsterstate);
-            print(bossAttackType);
+            //print(Vector3.Distance(playerTr.position, transform.position));
+            //print(monsterstate);
+            //print(bossAttackType);
         }
        
     }
@@ -222,6 +222,7 @@ public class Golem : Monster
         anim.OnMovingAnim();
     }
 
+
     void WaitStat()
     {
 
@@ -234,6 +235,7 @@ public class Golem : Monster
 
     protected override void DieStat()
     {
+        IsPlayerdetected = false;
         monsterMove.OffMove();
         anim.OnDyingAnim();
     }

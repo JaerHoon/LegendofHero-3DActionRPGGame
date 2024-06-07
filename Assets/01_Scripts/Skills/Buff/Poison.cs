@@ -24,12 +24,9 @@ public class Poison : Buff
         
         while (buffRuntime > 0)
         {
-            yield return witForSeconds;
-            buffRuntime -= 0.2f;
-            if(buffRuntime % dotTime == 0)
-            {
-                DotDamage();
-            }
+            DotDamage();
+            yield return new WaitForSeconds(dotTime);
+            buffRuntime -= dotTime;
 
         }
 
@@ -38,7 +35,7 @@ public class Poison : Buff
 
     void DotDamage()
     {
-        monsterDamage.OnDamage(buffPow);
+        monsterDamage.OnPoisonDamage(buffPow);
     }
 
     public override void OffBuff()
