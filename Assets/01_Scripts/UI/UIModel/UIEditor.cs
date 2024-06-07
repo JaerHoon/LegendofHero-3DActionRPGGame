@@ -26,8 +26,11 @@ public class ViewEditor : Editor
             string[] viewModelName = new string[viewtarget.viewController.viewModels.Count];
             for (int i = 0; i < viewtarget.viewController.viewModels.Count; i++)
             {
-                viewModelName[i] = viewtarget.viewController.viewModels[i].name;
+                viewModelName[i] = viewtarget.viewController.viewModels[i].GetType().Name;
+              
             }
+
+            
 
             viewtarget.uITypeNumber = EditorGUILayout.Popup("UIModelName", viewtarget.uITypeNumber, viewModelName);
 
@@ -546,29 +549,7 @@ public class ViewEditor : Editor
             viewtarget.valueText = EditorGUILayout.TextField("Value", viewtarget.valueText);
         }
 
-        MethodInfo[] methods = selectedType.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
-        if (methods.Length > 0)
-        {
-            string[] MethodNames = new string[methods.Length];
-            for (int i = 0; i < methods.Length; i++)
-            {
-                MethodNames[i] = methods[i].Name;
-            }
-
-            int selectedIndex1 = Array.IndexOf(MethodNames, viewtarget.SetectedValue1);
-            if (selectedIndex1 == -1) selectedIndex1 = 0; //만약 선택된 값이 없다면 인덱스 번호 초기화
-
-            //선택된 이넘 값을 가지고 "ValueName"값을 가지고 인스팩터 창에  나타낸다.
-            selectedIndex1 = EditorGUILayout.Popup("CoolTimeMethod", selectedIndex1, MethodNames);
-
-            viewtarget.SetectedValue1 = MethodNames[selectedIndex1];
-
-            viewtarget.CoolTime = null;
-
-            viewtarget.viewController.GetMethod(viewtarget.uITypeNumber, ref viewtarget.CoolTime, viewtarget.SetectedValue1);
-
-        }
-
+      
     }
 
     void SlotCoolTime(Type selectedType)
@@ -629,29 +610,7 @@ public class ViewEditor : Editor
                 viewtarget.valueText = EditorGUILayout.TextField("CoolTime", viewtarget.valueText);
             }
 
-            MethodInfo[] listMethod = elementType.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
-            if (listMethod.Length > 0)
-            {
-                string[] MethodNames = new string[listMethod.Length];
-                for (int i = 0; i < listMethod.Length; i++)
-                {
-                    MethodNames[i] = listMethod[i].Name;
-                }
-
-                int selectedIndex1 = Array.IndexOf(MethodNames, viewtarget.SetectedValue1);
-                if (selectedIndex1 == -1) selectedIndex1 = 0; //만약 선택된 값이 없다면 인덱스 번호 초기화
-
-                //선택된 이넘 값을 가지고 "ValueName"값을 가지고 인스팩터 창에  나타낸다.
-                selectedIndex1 = EditorGUILayout.Popup("CoolTimeMethod", selectedIndex1, MethodNames);
-
-                viewtarget.SetectedValue1 = MethodNames[selectedIndex1];
-
-                viewtarget.SlotCoolTime = null;
-
-                viewtarget.viewController.GetSlotMethod(viewtarget.uITypeNumber, ref viewtarget.SlotCoolTime, viewtarget.SetectedValue1, viewtarget.slotNumber);
-
-            }
-
+           
         }
     }
 
@@ -708,8 +667,6 @@ public class ViewEditor : Editor
                 selectedIndex = EditorGUILayout.Popup("SLotList", selectedIndex, listFieldNames);
 
                 viewtarget.SetectedValue = listFieldNames[selectedIndex];
-
-               
 
                 FieldInfo selectField = selectedType.GetFields(BindingFlags.Public | BindingFlags.Instance).FirstOrDefault(f => f.Name == viewtarget.SetectedValue);
 

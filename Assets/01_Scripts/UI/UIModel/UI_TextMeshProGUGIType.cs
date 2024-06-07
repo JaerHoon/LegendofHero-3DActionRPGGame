@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI_TextMeshProGUGIType : MonoBehaviour
+public class UI_TextMeshProGUGIType : UI
 {
-    // Start is called before the first frame update
+   
     void Start()
     {
-        
+        Init();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void UIUpdate()
     {
-        
+        value = GetValue(SetectedValue);
+
+        textMesh.text = value.ToString();
     }
 }

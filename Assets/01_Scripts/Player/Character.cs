@@ -13,10 +13,12 @@ public class Character : MonoBehaviour
             if (value <= 0)
             {
                 playerHp = 0;
+                ChangeUI?.Invoke();
             }
             else
             {
                 playerHp = value;
+               
                 ChangeUI?.Invoke();
             }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI_SlotCoolTimeType : UI
+public class UI_CoolTimeType : UI
 {
     private void Start()
     {
@@ -11,7 +11,7 @@ public class UI_SlotCoolTimeType : UI
 
     public override void UIUpdate()
     {
-        value = GetSlotValue();
+        value = GetValue(SetectedValue);
         OnCoolTime();
     }
 

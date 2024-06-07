@@ -8,14 +8,18 @@ public class PlayerInfo : UIModel
 {
     public Sprite characterIcon;
     public List<GameObject> hearts = new List<GameObject>(new GameObject[5]);
-    public int playerHP;
-    public int gold_Value;
+    public int playerHP=0;
+    public int gold_Value=0;
 
     Character player;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
         player.ChangeUI += UpDateUI;
+        for (int i = 0; i < playerHP; i++)
+        {
+            hearts[i].SetActive(true);
+        }
 
         Setting();
     }
@@ -35,16 +39,17 @@ public class PlayerInfo : UIModel
 
     void UpDateUI()
     {
+       
         playerHP = player.PlayerHp;
-
-        for(int i = 0; i < playerHP; i++)
+        
+        for (int i = 0; i < playerHP; i++)
         {
             hearts[i].SetActive(true);
         }
 
-        for (int i=4; i < 5 - playerHP; i--)
+        for (int i = 4; i >= playerHP; i--)
         {
-            hearts[i].SetActive(false);
+            hearts[i].SetActive(false); // 해당 하트를 비활성화합니다.
         }
 
         gold_Value = player.GoldValue;

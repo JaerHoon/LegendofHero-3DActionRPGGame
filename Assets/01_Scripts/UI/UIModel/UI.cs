@@ -8,7 +8,8 @@ public class UI : MonoBehaviour
 {
     public enum ViewType 
        { Image, ImageSlot, Text, 
-        TextSlot, Button, ButtonSlot, DragNDrop, DragNDropSlot, Slider, CoolTime, CoolTimeSlot,  GameObjectm, GameObjectSlot }
+        TextSlot, Button, ButtonSlot, DragNDrop, DragNDropSlot, Slider,
+        CoolTime, CoolTimeSlot,  GameObjectm, GameObjectSlot }
     [HideInInspector]
     public ViewType viewType;
     [HideInInspector]
@@ -77,6 +78,8 @@ public class UI : MonoBehaviour
             case 1:
             case 6:
             case 7:
+            case 9:
+            case 10:
                 TryGetComponent<Image>(out image);
                 break;
             case 2:
@@ -102,6 +105,12 @@ public class UI : MonoBehaviour
     {
         object va = viewController.GetValue(uITypeNumber, ValueName);
 
+        return va;
+    }
+
+    protected virtual object GetSlotValue()
+    {
+        object va = viewController.GetSlotValue(uITypeNumber, SetectedValue, SetectedValue1, slotNumber);
         return va;
     }
 
