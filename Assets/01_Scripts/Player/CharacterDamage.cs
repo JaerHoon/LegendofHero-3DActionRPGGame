@@ -13,18 +13,27 @@ public class CharacterDamage : MonoBehaviour
 
     Animator anim;
     CapsuleCollider cap;
+    BoxCollider box;
     public bool isPlayerDie = false;
+    Coroutine onOffRendererCoroutine;
     private void Start()
     {
         anim = GetComponent<Animator>();
         cap = GetComponent<CapsuleCollider>();
+        box = GetComponent<BoxCollider>();
     }
     public virtual void OnDamage(float dmg)
     {
+        if(PlayerAttack.instance != null && PlayerAttack.instance.isBlock==true ||
+           ArcherAttack.instance !=null && ArcherAttack.instance.isBlock == true)
+        {
+            return;
+        }
         //print("플레이어 피격 데미지 : " + dmg);
         cap.enabled = false;
+        box.enabled = false;
         heart.SetActive(true);
-        StartCoroutine(onOffRenderer());
+        onOffRendererCoroutine = StartCoroutine(onOffRenderer());
         Invoke("offSetActive", 2.0f);
 
         
@@ -34,11 +43,16 @@ public class CharacterDamage : MonoBehaviour
         //예를 들면 0.60001이 되었을때 100만큼 곱해줘서 60.001를 만들고 Round를 이용하여 반올림해줘서 60으로 만든다.
         //이를 다시 100으로 나눠서 0.6으로 만들어준다.
         playerHp.fillAmount = Mathf.Round(playerHp.fillAmount * 100f) / 100f;
+        
         if(playerHp.fillAmount ==0)
         {
             isPlayerDie = true;
+            heart.SetActive(false);
             offNavMesh();
             anim.SetTrigger("Death");
+            CoroutineStop();
+            cap.enabled = false;
+            box.enabled = false;
         }
     }
 
@@ -46,7 +60,7 @@ public class CharacterDamage : MonoBehaviour
     {
         float count = 0;
         int childCount = Mathf.Min(transform.childCount, 7);
-        
+
         while(count <2.2f)
         {
             for (int i = 0; i < childCount; i++)
@@ -65,6 +79,22 @@ public class CharacterDamage : MonoBehaviour
             count++;
         }
         
+        
+    }
+
+    void CoroutineStop()
+    {
+        if (onOffRendererCoroutine != null)
+        {
+            StopCoroutine(onOffRendererCoroutine);
+            onOffRendererCoroutine = null;
+
+            int childCount = Mathf.Min(transform.childCount, 7);
+            for (int i = 0; i < childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
+        }
     }
 
     void offNavMesh()
@@ -83,7 +113,7 @@ public class CharacterDamage : MonoBehaviour
     {
         heart.SetActive(false);
         cap.enabled = true;
+        box.enabled = true;
     }
 
-    
 }

@@ -35,9 +35,11 @@ public class PlayerAttack : MonoBehaviour
 
     bool isAttackButton1 = false;
     bool isAttackButton2 = false;
+    public bool isBlock = false;
     public bool isAttackButton3 = false;
 
     CharacterDamage die;
+    CapsuleCollider cap;
     private void Awake()
     {
         if (instance == null)
@@ -50,8 +52,7 @@ public class PlayerAttack : MonoBehaviour
         anim = GetComponent<Animator>();
         playerTrigger = GetComponentInChildren<PlayerTrigger>();
         die = GetComponent<CharacterDamage>();
-
-
+        cap = GetComponent<CapsuleCollider>();
     }
     /*void usedRay()
     {
@@ -244,8 +245,11 @@ public class PlayerAttack : MonoBehaviour
         //스페이스바를 누르면 보호막 스킬을 사용하여 캐릭터가 방패들 들어 공격을 막을 수 있도록 함수를 구현했다.
         if(Input.GetKeyDown(KeyCode.Space))
         {
+            isBlock = true;
+            print(isBlock);
             anim.SetBool("block", true);
             shield.Play();
+            cap.enabled = false;
             StartCoroutine(Endblock());
         }
     }
@@ -254,8 +258,18 @@ public class PlayerAttack : MonoBehaviour
     {
         //지속시간 1.5초와 같으며 1.5초가 지나면 다시 idle상태로 되돌아 가고 파티클을 멈추도록 설계했다.
         yield return new WaitForSeconds(1.5f);
+        isBlock = false;
         anim.SetBool("block", false);
         shield.Stop();
+        cap.enabled = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "MagicBullet" && isBlock == true)
+        {
+            Destroy(other.gameObject);
+        }
     }
 
     // Update is called once per frame

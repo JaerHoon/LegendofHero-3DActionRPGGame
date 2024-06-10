@@ -37,6 +37,7 @@ public class ArcherAttack : MonoBehaviour
     public bool isShooting = false; // 기본공격3번 함수에 쓰이는 플래그로 연사중일때 움직임 제어를 이용하기 위함
     public bool isCoolTime = false; // 스킬 쿨타임 플래그
     public bool isFreeze = false;
+    public bool isBlock = false;
     float lastshotTime; // 기본공격3번 연사할때 제어를 위한 플래그
     float DestroyDuration = 1.5f; // 스킬셋팅 2번에 쓰이는 Destroy 관련 플래그
     float DestroyLifeTime = 2.0f; // 스킬셋팅 2번에 쓰이는 Destroy 관련 플래그
@@ -45,13 +46,15 @@ public class ArcherAttack : MonoBehaviour
     float skillcoolTime = 7.0f; // 임의로 만들어둔 스킬 쿨타임
     ArcherTrigger archerTrigger;
     Arrow arrowTrigger;
-    
+    CapsuleCollider cap;
+    CharacterDamage die;
     void Start()
     {
         anim = GetComponent<Animator>();
         archerTrigger = GetComponent<ArcherTrigger>();
         arrowTrigger = GetComponent<Arrow>();
-
+        cap = GetComponent<CapsuleCollider>();
+        die = GetComponent<CharacterDamage>();
 
     }
 
@@ -243,8 +246,10 @@ public class ArcherAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            isBlock = true;
             magicShield.Play();
             magicShield.transform.position = shieldPos.position;
+            cap.enabled = false;
             StartCoroutine(Endblock());
         }
     }
@@ -252,7 +257,17 @@ public class ArcherAttack : MonoBehaviour
     IEnumerator Endblock()
     {
         yield return new WaitForSeconds(1.5f);
+        isBlock = false;
         magicShield.Stop();
+        cap.enabled = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag== "MagicBullet" && isBlock == true)
+        {
+            Destroy(other.gameObject);
+        }
     }
 
     //**********버튼 동작을 위한 함수**********//  
@@ -292,6 +307,11 @@ public class ArcherAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(die.isPlayerDie == true)
+        {
+            return;
+        }
+        
         ArrowAttack();
         skillAttack();
         block();
