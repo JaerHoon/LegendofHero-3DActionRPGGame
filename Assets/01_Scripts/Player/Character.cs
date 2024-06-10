@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class Character : MonoBehaviour
 {
     protected int playerHp = 5;
+    public Action playerDie;
     public int PlayerHp
     {
         get { return playerHp; }
@@ -14,6 +15,7 @@ public class Character : MonoBehaviour
             {
                 playerHp = 0;
                 ChangeUI?.Invoke();
+                playerDie?.Invoke();
             }
             else
             {
