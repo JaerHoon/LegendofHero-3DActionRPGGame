@@ -11,7 +11,7 @@ public class UI_SlotCoolTimeType : UI
 
     public override void UIUpdate()
     {
-        value = GetSlotValue();
+        value = GetSlotValue(1);
         OnCoolTime();
     }
 

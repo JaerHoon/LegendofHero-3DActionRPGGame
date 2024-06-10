@@ -11,7 +11,7 @@ public class UI_CoolTimeType : UI
 
     public override void UIUpdate()
     {
-        value = GetValue(SetectedValue);
+        value = GetValue(SetectedValue,1);
         OnCoolTime();
     }
 

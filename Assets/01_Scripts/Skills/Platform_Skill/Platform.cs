@@ -11,7 +11,7 @@ public class Platform : MonoBehaviour
     public int SkillNum;
 
     [HideInInspector]
-    SkillInfo skill;
+    public  SkillInfo skill;
 
     protected SphereCollider coll;
     [SerializeField]

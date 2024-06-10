@@ -3,12 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InGameCanvasController : UIController
-{
-    private void Update()
+{ 
+    //¸®½ºÆ® 1:skillinfo 2:skillSlot 3:Interaction 4:Market 5: PlayerInfo
+    public void OnPlayerInfo()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<Character>().PlayerHp--;
-        }
+
     }
+
+    public void OnskillInfo(SkillInfo skill)
+    {
+
+    }
+
+    public void OnMarketSkillInfo()
+    {
+
+    }
+
+   
 }

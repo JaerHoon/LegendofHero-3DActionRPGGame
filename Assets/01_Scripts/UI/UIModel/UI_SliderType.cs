@@ -12,8 +12,8 @@ public class UI_SliderType : UI
     }
     public override void UIUpdate()
     {
-        value = GetValue(SetectedValue);
-        value2 = GetValue(SetectedValue1);
+        value = GetValue(SetectedValue,1);
+        value2 = GetValue(SetectedValue1,2);
        
         slider.maxValue = value != null ? (float)value : 0;
         slider.value = value2 != null ? (float)value2 : 0;

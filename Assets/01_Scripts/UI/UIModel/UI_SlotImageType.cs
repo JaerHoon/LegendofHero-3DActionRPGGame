@@ -12,7 +12,7 @@ public class UI_SlotImageType : UI
 
     public override void UIUpdate()
     {
-        value = GetSlotValue();
+        value = GetSlotValue(1);
         image.sprite = (Sprite)value;
     }
 

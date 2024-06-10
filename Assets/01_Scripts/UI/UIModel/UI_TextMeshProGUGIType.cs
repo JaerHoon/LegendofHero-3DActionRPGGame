@@ -12,8 +12,8 @@ public class UI_TextMeshProGUGIType : UI
 
     public override void UIUpdate()
     {
-        value = GetValue(SetectedValue);
+        value = GetValue(SetectedValue,1);
 
-        textMesh.text = value.ToString();
+        textMesh.text = value?.ToString() ?? null;
     }
 }

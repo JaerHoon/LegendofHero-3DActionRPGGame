@@ -12,7 +12,7 @@ public class UI_SlotTextMeshProGUGItype : UI
 
     public override void UIUpdate()
     {
-        value = GetSlotValue();
+        value = GetSlotValue(1);
         textMesh.text = value.ToString();
     }
 }

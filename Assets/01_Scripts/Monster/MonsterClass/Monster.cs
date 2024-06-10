@@ -79,6 +79,11 @@ public class Monster : MonoBehaviour
         monsterUI.Init();
     }
 
+    void PlayerDie()
+    {
+
+    }
+
     private void OnEnable()
     {
         if (myCollider != null) myCollider.enabled = true; 
