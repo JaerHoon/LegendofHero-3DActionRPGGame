@@ -30,8 +30,6 @@ public class ViewEditor : Editor
               
             }
 
-            
-
             viewtarget.uITypeNumber = EditorGUILayout.Popup("UIModelName", viewtarget.uITypeNumber, viewModelName);
 
 
@@ -58,6 +56,7 @@ public class ViewEditor : Editor
                     case 10: SlotCoolTime(selectedtype); break;
                     case 11: GameObjectType(selectedtype); break;
                     case 12: SlotGameObject(selectedtype); break;
+                    case 13: SlotSliderType(selectedtype); break;
 
 
                 }
@@ -83,17 +82,24 @@ public class ViewEditor : Editor
 
     }
 
+
     void ImageType(Type selectedType)
     {
         FieldInfo[] field = selectedType.GetFields(BindingFlags.Public | BindingFlags.Instance);
-        FieldInfo[] spriteFields = field.Where(field => field.FieldType == typeof(Sprite)).ToArray();
+        string[] spriteFields = field.Where(field => field.FieldType == typeof(Sprite)).Select(field => field.Name).ToArray();
+        PropertyInfo[] property = selectedType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
-        if (spriteFields.Length > 0)
+        string[] propertyName = property.Where(pro => pro.PropertyType == typeof(Sprite)).Select(pro => pro.Name).ToArray();
+
+        string[] combinedArray = spriteFields.Concat(propertyName).ToArray();
+
+
+        if (combinedArray.Length > 0)
         {
-            string[] fieldNames = new string[spriteFields.Length];
-            for (int i = 0; i < spriteFields.Length; i++)
+            string[] fieldNames = new string[combinedArray.Length];
+            for (int i = 0; i < combinedArray.Length; i++)
             {
-                fieldNames[i] = spriteFields[i].Name;
+                fieldNames[i] = combinedArray[i];
             }
 
             int selectedIndex = Array.IndexOf(fieldNames, viewtarget.SetectedValue);
@@ -104,12 +110,35 @@ public class ViewEditor : Editor
 
             viewtarget.SetectedValue = fieldNames[selectedIndex];
 
-            object va = viewtarget.viewController.GetValue(viewtarget.uITypeNumber, viewtarget.SetectedValue);
-            viewtarget.value = va;
-            Sprite sp = (Sprite)va;
-            viewtarget.valueText = sp.name;
+            object va = default;
+            if (spriteFields.Contains(viewtarget.SetectedValue))
+            {
+                viewtarget.value1_type = UI.valueType.Field;
+                 va = viewtarget.viewController.GetValue(viewtarget.uITypeNumber, viewtarget.SetectedValue);
 
-            viewtarget.valueText = EditorGUILayout.TextField("SpriteName", viewtarget.valueText);
+            }
+            else if (propertyName.Contains(viewtarget.SetectedValue))
+            {
+                viewtarget.value1_type = UI.valueType.Property;
+                 va = viewtarget.viewController.GetPropertyValue(viewtarget.uITypeNumber, viewtarget.SetectedValue);
+            }
+            
+            Sprite sp = va as Sprite;
+
+            if (sp != null)
+            {
+                viewtarget.value = va;
+                viewtarget.valueText = sp.name;
+                viewtarget.valueText = EditorGUILayout.TextField("SpriteName", viewtarget.valueText);
+            }
+            else
+            {
+                viewtarget.valueText = "null";
+                viewtarget.valueText = EditorGUILayout.TextField("SpriteName", viewtarget.valueText);
+            }
+
+
+
         }
 
 
@@ -143,29 +172,64 @@ public class ViewEditor : Editor
             Type elementType = fieldtype.GetGenericArguments()[0];
 
             FieldInfo[] listField = elementType.GetFields(BindingFlags.Public | BindingFlags.Instance);
-            string[] spriteFields = listField
+            PropertyInfo[] listproperty = elementType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            List<string> spriteFields = listField
                                       .Where(listField => listField.FieldType == typeof(Sprite))
                                       .Select(listField => listField.Name)
-                                      .ToArray();
+                                      .ToList();
 
-            if (spriteFields.Length > 0)
+            List<string> spritePropertyNames = listproperty
+                .Where(property => property.PropertyType == typeof(Sprite))
+                .Select(property => property.Name)
+                .ToList();
+
+            List<string> combinedList = new List<string>();
+            combinedList.AddRange(spriteFields);
+            combinedList.AddRange(spritePropertyNames);
+
+
+
+            if (combinedList.Count > 0)
             {
-                int selectedIndex1 = Array.IndexOf(spriteFields, viewtarget.SelectedValue1);
+                int selectedIndex1 = combinedList.IndexOf(viewtarget.SelectedValue1);
                 if (selectedIndex1 == -1) selectedIndex1 = 0; //만약 선택된 값이 없다면 인덱스 번호 초기화
 
                 //선택된 이넘 값을 가지고 "ValueName"값을 가지고 인스팩터 창에  나타낸다.
-                selectedIndex1 = EditorGUILayout.Popup("SpritName", selectedIndex1, spriteFields);
+                selectedIndex1 = EditorGUILayout.Popup("SpritName", selectedIndex1, combinedList.ToArray());
 
-                viewtarget.SelectedValue1 = spriteFields[selectedIndex1];
+                viewtarget.SelectedValue1 = combinedList[selectedIndex1];
 
-                object obj = viewtarget.viewController.GetSlotValue(viewtarget.uITypeNumber, viewtarget.SetectedValue, viewtarget.SelectedValue1, viewtarget.slotNumber);
+                object va = default;
 
-                viewtarget.value = obj;
+                if (spriteFields.Contains(viewtarget.SelectedValue1))
+                {
+                    viewtarget.value1_type = UI.valueType.Field;
+                    va = viewtarget.viewController.GetSlotValue(viewtarget.uITypeNumber, viewtarget.SetectedValue, viewtarget.SelectedValue1, viewtarget.slotNumber);
 
-                Sprite sp = (Sprite)obj;
-                viewtarget.valueText = sp.name;
+                   
+                }
+                else if (spritePropertyNames.Contains(viewtarget.SelectedValue1))
+                {
+                    viewtarget.value1_type = UI.valueType.Property;
+                    va = viewtarget.viewController.GetSlotPropertyValue(viewtarget.uITypeNumber, viewtarget.SetectedValue, viewtarget.SelectedValue1,viewtarget.slotNumber);
+                }
 
-                viewtarget.valueText = EditorGUILayout.TextField("SpriteName", viewtarget.valueText);
+                Sprite sp = va as Sprite;
+
+                if (sp != null)
+                {
+                    viewtarget.value = va;
+                    viewtarget.valueText = sp.name;
+                    viewtarget.valueText = EditorGUILayout.TextField("SpriteName", viewtarget.valueText);
+                }
+                else
+                {
+                    viewtarget.valueText = "null";
+                    viewtarget.valueText = EditorGUILayout.TextField("SpriteName", viewtarget.valueText);
+                }
+
+
+
 
             }
 
@@ -177,17 +241,27 @@ public class ViewEditor : Editor
     void TextType(Type selectedType)
     {
         FieldInfo[] field = selectedType.GetFields(BindingFlags.Public | BindingFlags.Instance);
-        FieldInfo[] nonSpriteFields = field.Where(field => field.FieldType != typeof(Sprite) &&
-            !(field.FieldType.IsGenericType && field.FieldType.GetGenericTypeDefinition() == typeof(List<>)) &&
-            !typeof(Delegate).IsAssignableFrom(field.FieldType))
+        string[] nonSpriteFields = field.Where(field =>
+            field.FieldType == typeof(int) ||
+            field.FieldType == typeof(float) ||
+            field.FieldType == typeof(string)).Select(field => field.Name)
            .ToArray();
 
-        if (nonSpriteFields.Length > 0)
+        PropertyInfo[] property = selectedType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+        string[] propertyName = property.Where(property =>
+            property.PropertyType == typeof(int) ||
+            property.PropertyType == typeof(float) ||
+            property.PropertyType == typeof(string)).Select(pro => pro.Name)
+        .ToArray();
+
+        string[] combinedArray = nonSpriteFields.Concat(propertyName).ToArray();
+
+        if (combinedArray.Length > 0)
         {
-            string[] fieldNames = new string[nonSpriteFields.Length];
-            for (int i = 0; i < nonSpriteFields.Length; i++)
+            string[] fieldNames = new string[combinedArray.Length];
+            for (int i = 0; i < combinedArray.Length; i++)
             {
-                fieldNames[i] = nonSpriteFields[i].Name;
+                fieldNames[i] = combinedArray[i];
             }
 
             int selectedIndex = Array.IndexOf(fieldNames, viewtarget.SetectedValue);
@@ -198,11 +272,24 @@ public class ViewEditor : Editor
 
             viewtarget.SetectedValue = fieldNames[selectedIndex];
 
-            object va = viewtarget.viewController.GetValue(viewtarget.uITypeNumber, viewtarget.SetectedValue);
+            object va = default;
+
+            if (nonSpriteFields.Contains(viewtarget.SetectedValue))
+            {
+                viewtarget.value1_type = UI.valueType.Field;
+                va = viewtarget.viewController.GetValue(viewtarget.uITypeNumber, viewtarget.SetectedValue);
+            }
+            else if (propertyName.Contains(viewtarget.SetectedValue))
+            {
+                viewtarget.value1_type = UI.valueType.Property;
+                va = viewtarget.viewController.GetPropertyValue(viewtarget.uITypeNumber, viewtarget.SetectedValue);
+            }
+            
+           
             viewtarget.value = va;
             viewtarget.valueText = va.ToString();
-
-            viewtarget.valueText = EditorGUILayout.TextField("Value", viewtarget.valueText);
+            viewtarget.valueText = EditorGUILayout.TextField("SpriteName", viewtarget.valueText);
+         
         }
 
     }
@@ -210,12 +297,8 @@ public class ViewEditor : Editor
     void TextSlotType(Type selectedType)
     {
         FieldInfo[] field = selectedType.GetFields(BindingFlags.Public | BindingFlags.Instance);
-        FieldInfo[] filteredFields = field.Where(field => field.FieldType != typeof(Sprite) &&
-            !typeof(Delegate).IsAssignableFrom(field.FieldType))
-            .ToArray();
-
-        // 두 번째 필터링: 제네릭 List<> 타입의 필드 이름을 선택합니다.
-        string[] listFieldNames = filteredFields
+         
+        string[] listFieldNames = field
             .Where(fiel => fiel.FieldType.IsGenericType && fiel.FieldType.GetGenericTypeDefinition() == typeof(List<>))
             .Select(fiel => fiel.Name)
             .ToArray();
@@ -239,32 +322,52 @@ public class ViewEditor : Editor
             Type elementType = fieldtype.GetGenericArguments()[0];
 
 
-            FieldInfo[] listField = elementType.GetFields(BindingFlags.Public | BindingFlags.Instance);
-            FieldInfo[] nonSpriteFields = field.Where(field => field.FieldType != typeof(Sprite)
-                                       && !(field.FieldType.IsGenericType && field.FieldType.GetGenericTypeDefinition() == typeof(List<>)))
-                                       .ToArray();
+            FieldInfo[] listField = elementType.GetFields(BindingFlags.Public | BindingFlags.Instance).Where(elementType =>
+            elementType.FieldType == typeof(int) ||
+            elementType.FieldType == typeof(float) ||
+            elementType.FieldType == typeof(string))
+                                       .ToArray(); ;
+           
+            string[] FieldName = listField.Select(listField => listField.Name).ToArray();
 
-            string[] spriteFields = nonSpriteFields.Select(listField => listField.Name).ToArray();
+            PropertyInfo[] property = elementType.GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .Where(elementType =>
+            elementType.PropertyType == typeof(int) ||
+            elementType.PropertyType == typeof(float) ||
+            elementType.PropertyType == typeof(string))
+                .ToArray();
 
-            if (spriteFields.Length > 0)
+            string[] propertyName = property.Select(pro => pro.Name).ToArray();
+
+            string[] combinedName = FieldName.Concat(propertyName).ToArray();
+
+            if (combinedName.Length > 0)
             {
-                int selectedIndex1 = Array.IndexOf(spriteFields, viewtarget.SelectedValue1);
+                int selectedIndex1 = Array.IndexOf(combinedName, viewtarget.SelectedValue1);
                 if (selectedIndex1 == -1) selectedIndex1 = 0; //만약 선택된 값이 없다면 인덱스 번호 초기화
 
                 //선택된 이넘 값을 가지고 "ValueName"값을 가지고 인스팩터 창에  나타낸다.
-                selectedIndex1 = EditorGUILayout.Popup("ValueName", selectedIndex1, spriteFields);
+                selectedIndex1 = EditorGUILayout.Popup("ValueName", selectedIndex1, combinedName);
 
-                viewtarget.SelectedValue1 = spriteFields[selectedIndex1];
+                viewtarget.SelectedValue1 = combinedName[selectedIndex1];
 
+                object obj = default;
 
-
-                object obj = viewtarget.viewController.GetSlotValue(viewtarget.uITypeNumber, viewtarget.SetectedValue, viewtarget.SelectedValue1, viewtarget.slotNumber);
+                if (FieldName.Contains(viewtarget.SelectedValue1))
+                {
+                    viewtarget.value1_type = UI.valueType.Field;
+                    obj = viewtarget.viewController.GetSlotValue(viewtarget.uITypeNumber, viewtarget.SetectedValue, viewtarget.SelectedValue1, viewtarget.slotNumber);
+                }
+                else if(propertyName.Contains(viewtarget.SelectedValue1))
+                {
+                    viewtarget.value1_type = UI.valueType.Property;
+                    obj = viewtarget.viewController.GetSlotPropertyValue(viewtarget.uITypeNumber, viewtarget.SetectedValue, viewtarget.SelectedValue1, viewtarget.slotNumber);
+                }
 
                 viewtarget.value = obj;
-
                 viewtarget.valueText = obj.ToString();
-
                 viewtarget.valueText = EditorGUILayout.TextField("Value", viewtarget.valueText);
+               
             }
 
         }
@@ -471,18 +574,27 @@ public class ViewEditor : Editor
     void SliderType(Type selectedType)
     {
         FieldInfo[] field = selectedType.GetFields(BindingFlags.Public | BindingFlags.Instance);
-        FieldInfo[] nonSpriteFields = field.Where(field => field.FieldType != typeof(Sprite) &&
-            !(field.FieldType.IsGenericType && field.FieldType.GetGenericTypeDefinition() == typeof(List<>)) &&
-            !typeof(Delegate).IsAssignableFrom(field.FieldType))
+        string[] fieldName = field.Where(field =>
+            field.FieldType == typeof(int) ||
+            field.FieldType == typeof(float))
+            .Select(field => field.Name)
            .ToArray();
 
-        if (nonSpriteFields.Length > 0)
-        {
-            string[] fieldNames = new string[nonSpriteFields.Length];
-            for (int i = 0; i < nonSpriteFields.Length; i++)
-            {
-                fieldNames[i] = nonSpriteFields[i].Name;
+        PropertyInfo[] property = selectedType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+        string[] propertyName = property.Where(property =>
+            property.PropertyType == typeof(int) ||
+            property.PropertyType == typeof(float)).Select(pro => pro.Name)
+        .ToArray();
 
+        string[] conbinedArray = fieldName.Concat(propertyName).ToArray();
+
+
+        if (conbinedArray.Length > 0)
+        {
+            string[] fieldNames = new string[conbinedArray.Length];
+            for (int i = 0; i < conbinedArray.Length; i++)
+            {
+                fieldNames[i] = conbinedArray[i];
 
             }
 
@@ -494,11 +606,24 @@ public class ViewEditor : Editor
 
             viewtarget.SetectedValue = fieldNames[selectedIndex];
 
-            object va = viewtarget.viewController.GetValue(viewtarget.uITypeNumber, viewtarget.SetectedValue);
-            viewtarget.value = va;
-            viewtarget.valueText = va.ToString();
+            object va = default;
 
-            viewtarget.valueText = EditorGUILayout.TextField("Value", viewtarget.valueText);
+            if (fieldName.Contains(viewtarget.SetectedValue))
+            {
+                viewtarget.value1_type = UI.valueType.Field;
+                va = viewtarget.viewController.GetValue(viewtarget.uITypeNumber, viewtarget.SetectedValue);
+            }
+            else if (propertyName.Contains(viewtarget.SetectedValue))
+            {
+                viewtarget.value1_type = UI.valueType.Property;
+                va = viewtarget.viewController.GetPropertyValue(viewtarget.uITypeNumber, viewtarget.SetectedValue);
+            }
+
+                viewtarget.value = va;
+                viewtarget.valueText = va.ToString();
+                viewtarget.valueText = EditorGUILayout.TextField("Value", viewtarget.valueText);
+         
+          
 
             int selectedIndex1 = Array.IndexOf(fieldNames, viewtarget.SetectedValue1);
             if (selectedIndex1 == -1) selectedIndex1 = 0; //만약 선택된 값이 없다면 인덱스 번호 초기화
@@ -508,28 +633,51 @@ public class ViewEditor : Editor
 
             viewtarget.SetectedValue1 = fieldNames[selectedIndex1];
 
-            object va2 = viewtarget.viewController.GetValue(viewtarget.uITypeNumber, viewtarget.SetectedValue1);
-            viewtarget.value2 = va2;
-            viewtarget.valueText2 = va.ToString();
+            object va2 = default;
 
-            viewtarget.valueText2 = EditorGUILayout.TextField("Value2", viewtarget.valueText);
+            if (fieldName.Contains(viewtarget.SetectedValue1))
+            {
+                viewtarget.value2_type = UI.valueType.Field;
+                va2 = viewtarget.viewController.GetValue(viewtarget.uITypeNumber, viewtarget.SetectedValue1);
+            }
+            else if (propertyName.Contains(viewtarget.SetectedValue1))
+            {
+                viewtarget.value2_type = UI.valueType.Property;
+                va2 = viewtarget.viewController.GetPropertyValue(viewtarget.uITypeNumber, viewtarget.SetectedValue1);
+            }
+
+                viewtarget.value2 = va2;
+                viewtarget.valueText2 = va.ToString();
+
+                viewtarget.valueText2 = EditorGUILayout.TextField("Value2", viewtarget.valueText);
+      
+           
         }
     }
 
     void CoolTimeType(Type selectedType)
     {
         FieldInfo[] field = selectedType.GetFields(BindingFlags.Public | BindingFlags.Instance);
-        FieldInfo[] nonSpriteFields = field.Where(field => field.FieldType != typeof(Sprite) &&
-            !(field.FieldType.IsGenericType && field.FieldType.GetGenericTypeDefinition() == typeof(List<>)) &&
-            !typeof(Delegate).IsAssignableFrom(field.FieldType))
+        string[] fieldName = field.Where(field =>
+            field.FieldType == typeof(int) ||
+            field.FieldType == typeof(float))
+            .Select(field => field.Name)
            .ToArray();
 
-        if (nonSpriteFields.Length > 0)
+        PropertyInfo[] property = selectedType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+        string[] propertyName = property.Where(property =>
+            property.PropertyType == typeof(int) ||
+            property.PropertyType == typeof(float)).Select(pro => pro.Name)
+        .ToArray();
+
+        string[] conbinedArray = fieldName.Concat(propertyName).ToArray();
+
+        if (conbinedArray.Length > 0)
         {
-            string[] fieldNames = new string[nonSpriteFields.Length];
-            for (int i = 0; i < nonSpriteFields.Length; i++)
+            string[] fieldNames = new string[conbinedArray.Length];
+            for (int i = 0; i < conbinedArray.Length; i++)
             {
-                fieldNames[i] = nonSpriteFields[i].Name;
+                fieldNames[i] = conbinedArray[i];
 
 
             }
@@ -542,11 +690,26 @@ public class ViewEditor : Editor
 
             viewtarget.SetectedValue = fieldNames[selectedIndex];
 
-            object va = viewtarget.viewController.GetValue(viewtarget.uITypeNumber, viewtarget.SetectedValue);
-            viewtarget.value = va;
-            viewtarget.valueText = va.ToString();
+            object va = default;
 
-            viewtarget.valueText = EditorGUILayout.TextField("Value", viewtarget.valueText);
+            if (fieldName.Contains(viewtarget.SetectedValue))
+            {
+                viewtarget.value1_type = UI.valueType.Field;
+                va = viewtarget.viewController.GetValue(viewtarget.uITypeNumber, viewtarget.SetectedValue);
+            }
+            else if (propertyName.Contains(viewtarget.SetectedValue))
+            {
+                viewtarget.value1_type = UI.valueType.Property;
+                va = viewtarget.viewController.GetPropertyValue(viewtarget.uITypeNumber, viewtarget.SetectedValue);
+            }
+
+          
+                viewtarget.value = va;
+                viewtarget.valueText = va.ToString();
+
+                viewtarget.valueText = EditorGUILayout.TextField("Value", viewtarget.valueText);
+            
+           
         }
 
       
@@ -584,24 +747,43 @@ public class ViewEditor : Editor
             Type elementType = fieldtype.GetGenericArguments()[0];
 
 
-            FieldInfo[] listField = elementType.GetFields(BindingFlags.Public | BindingFlags.Instance);
-            FieldInfo[] nonSpriteFields = field.Where(field => field.FieldType != typeof(Sprite)
-                                       && !(field.FieldType.IsGenericType && field.FieldType.GetGenericTypeDefinition() == typeof(List<>)))
-                                       .ToArray();
+            FieldInfo[] listfield = elementType.GetFields(BindingFlags.Public | BindingFlags.Instance);
+            string[] fieldName = listfield.Where(field =>
+                field.FieldType == typeof(int) ||
+                field.FieldType == typeof(float))
+                .Select(field => field.Name)
+               .ToArray();
 
-            string[] spriteFields = nonSpriteFields.Select(listField => listField.Name).ToArray();
+            PropertyInfo[] property = elementType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            string[] propertyName = property.Where(property =>
+                property.PropertyType == typeof(int) ||
+                property.PropertyType == typeof(float)).Select(pro => pro.Name)
+            .ToArray();
+            string[] combinedName = fieldName.Concat(propertyName).ToArray();
 
-            if (spriteFields.Length > 0)
+
+            if (combinedName.Length > 0)
             {
-                int selectedIndex1 = Array.IndexOf(spriteFields, viewtarget.SelectedValue1);
+                int selectedIndex1 = Array.IndexOf(combinedName, viewtarget.SelectedValue1);
                 if (selectedIndex1 == -1) selectedIndex1 = 0; //만약 선택된 값이 없다면 인덱스 번호 초기화
 
                 //선택된 이넘 값을 가지고 "ValueName"값을 가지고 인스팩터 창에  나타낸다.
-                selectedIndex1 = EditorGUILayout.Popup("ValueName", selectedIndex1, spriteFields);
+                selectedIndex1 = EditorGUILayout.Popup("ValueName", selectedIndex1, combinedName);
 
-                viewtarget.SelectedValue1 = spriteFields[selectedIndex1];
+                viewtarget.SelectedValue1 = combinedName[selectedIndex1];
 
-                object obj = viewtarget.viewController.GetSlotValue(viewtarget.uITypeNumber, viewtarget.SetectedValue, viewtarget.SelectedValue1, viewtarget.slotNumber);
+                object obj = default;
+
+                if (fieldName.Contains(viewtarget.SelectedValue1))
+                {
+                    viewtarget.value1_type = UI.valueType.Field;
+                    obj = viewtarget.viewController.GetSlotValue(viewtarget.uITypeNumber, viewtarget.SetectedValue, viewtarget.SelectedValue1, viewtarget.slotNumber);
+                }
+                else if (propertyName.Contains(viewtarget.SelectedValue1))
+                {
+                    viewtarget.value1_type = UI.valueType.Property;
+                    obj = viewtarget.viewController.GetSlotPropertyValue(viewtarget.uITypeNumber, viewtarget.SetectedValue, viewtarget.SelectedValue1, viewtarget.slotNumber);
+                }
 
                 viewtarget.value = obj;
 
@@ -693,6 +875,121 @@ public class ViewEditor : Editor
 
                     viewtarget.viewController.SlotGameObjectSet(viewtarget.uITypeNumber, viewtarget.SetectedValue, viewtarget.SetectedValue1, viewtarget.gameObject, viewtarget.slotNumber);
                 }
+
+            }
+        }
+    }
+    
+    void SlotSliderType(Type selectedType)
+    {
+        viewtarget.slotNumber = EditorGUILayout.IntField("SlotNumber", viewtarget.slotNumber);
+
+        FieldInfo[] field = selectedType.GetFields(BindingFlags.Public | BindingFlags.Instance);
+        FieldInfo[] filteredFields = field.Where(field => field.FieldType != typeof(Sprite) &&
+            !typeof(Delegate).IsAssignableFrom(field.FieldType))
+            .ToArray();
+
+        string[] listFieldNames = filteredFields
+            .Where(fiel => fiel.FieldType.IsGenericType && fiel.FieldType.GetGenericTypeDefinition() == typeof(List<>))
+            .Select(fiel => fiel.Name)
+            .ToArray();
+
+        if (listFieldNames.Length > 0)
+        {
+
+            int selectedIndex = Array.IndexOf(listFieldNames, viewtarget.SetectedValue);
+            if (selectedIndex == -1) selectedIndex = 0; //만약 선택된 값이 없다면 인덱스 번호 초기화
+
+            //선택된 이넘 값을 가지고 "ValueName"값을 가지고 인스팩터 창에  나타낸다.
+            selectedIndex = EditorGUILayout.Popup("SLotList", selectedIndex, listFieldNames);
+
+            viewtarget.SetectedValue = listFieldNames[selectedIndex];
+
+            FieldInfo selectField = selectedType.GetFields(BindingFlags.Public | BindingFlags.Instance).FirstOrDefault(f => f.Name == viewtarget.SetectedValue);
+
+            Type fieldtype = selectField.FieldType;
+
+            Type elementType = fieldtype.GetGenericArguments()[0];
+
+            FieldInfo[] listfield = elementType.GetFields(BindingFlags.Public | BindingFlags.Instance);
+            string[] fieldName = listfield.Where(field =>
+                field.FieldType == typeof(int) ||
+                field.FieldType == typeof(float))
+                .Select(field => field.Name)
+               .ToArray();
+
+            PropertyInfo[] property = elementType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            string[] propertyName = property.Where(property =>
+                property.PropertyType == typeof(int) ||
+                property.PropertyType == typeof(float)).Select(pro => pro.Name)
+            .ToArray();
+            string[] combinedName = fieldName.Concat(propertyName).ToArray();
+
+            string[] conbinedArray = fieldName.Concat(propertyName).ToArray();
+
+
+            if (conbinedArray.Length > 0)
+            {
+                string[] fieldNames = new string[conbinedArray.Length];
+                for (int i = 0; i < conbinedArray.Length; i++)
+                {
+                    fieldNames[i] = conbinedArray[i];
+
+                }
+
+                int selectedIndex1 = Array.IndexOf(fieldNames, viewtarget.SetectedValue);
+                if (selectedIndex1 == -1) selectedIndex1 = 0; //만약 선택된 값이 없다면 인덱스 번호 초기화
+
+                //선택된 이넘 값을 가지고 "ValueName"값을 가지고 인스팩터 창에  나타낸다.
+                selectedIndex1 = EditorGUILayout.Popup("MaxValue", selectedIndex1, fieldNames);
+
+                viewtarget.SetectedValue1 = fieldNames[selectedIndex1];
+
+                object va = default;
+
+                if (fieldName.Contains(viewtarget.SetectedValue1))
+                {
+                    viewtarget.value1_type = UI.valueType.Field;
+                    va = viewtarget.viewController.GetValue(viewtarget.uITypeNumber, viewtarget.SetectedValue1);
+                }
+                else if (propertyName.Contains(viewtarget.SetectedValue1))
+                {
+                    viewtarget.value1_type = UI.valueType.Property;
+                    va = viewtarget.viewController.GetPropertyValue(viewtarget.uITypeNumber, viewtarget.SetectedValue1);
+                }
+
+                viewtarget.value = va;
+                viewtarget.valueText = va.ToString();
+                viewtarget.valueText = EditorGUILayout.TextField("Value", viewtarget.valueText);
+
+
+
+                int selectedIndex2 = Array.IndexOf(fieldNames, viewtarget.SetectedValue2);
+                if (selectedIndex2 == -1) selectedIndex2 = 0; //만약 선택된 값이 없다면 인덱스 번호 초기화
+
+                //선택된 이넘 값을 가지고 "ValueName"값을 가지고 인스팩터 창에  나타낸다.
+                selectedIndex2 = EditorGUILayout.Popup("CurrentValue", selectedIndex2, fieldNames);
+
+                viewtarget.SetectedValue2 = fieldNames[selectedIndex2];
+
+                object va2 = default;
+
+                if (fieldName.Contains(viewtarget.SetectedValue2))
+                {
+                    viewtarget.value2_type = UI.valueType.Field;
+                    va2 = viewtarget.viewController.GetValue(viewtarget.uITypeNumber, viewtarget.SetectedValue2);
+                }
+                else if (propertyName.Contains(viewtarget.SetectedValue2))
+                {
+                    viewtarget.value2_type = UI.valueType.Property;
+                    va2 = viewtarget.viewController.GetPropertyValue(viewtarget.uITypeNumber, viewtarget.SetectedValue2);
+                }
+
+                viewtarget.value2 = va2;
+                viewtarget.valueText2 = va.ToString();
+
+                viewtarget.valueText2 = EditorGUILayout.TextField("Value2", viewtarget.valueText);
+
 
             }
         }
