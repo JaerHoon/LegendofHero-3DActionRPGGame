@@ -37,4 +37,19 @@ public class InGameSkillSlot : UIModel
 
         ChangeUI();
     }
+
+    public void startCooltime(int Slotnum)
+    {
+       for(int i=0; i < skills.Count; i++)
+        {
+            if(Slotnum == i)
+            {
+                SlotCoolTimeStart?.Invoke(skills[i].cd, Slotnum);
+            }
+            else
+            {
+                SlotCoolTimeStart?.Invoke(skills[i].gcd, Slotnum);
+            }
+        }
+    }
 }

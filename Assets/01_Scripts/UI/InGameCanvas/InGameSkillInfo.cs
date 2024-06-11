@@ -21,6 +21,7 @@ public class InGameSkillInfo : UIModel
         {
             noticeText = "Skill Attack";
         }
+      
 
         skillIcon = skill.image;
         skillName = skill.skillName;

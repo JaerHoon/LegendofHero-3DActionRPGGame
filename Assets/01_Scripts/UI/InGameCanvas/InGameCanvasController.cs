@@ -12,6 +12,8 @@ public class InGameCanvasController : UIController
 
     GameObject[] Panels = new GameObject[5];
 
+    
+
     private void Start()
     {
         for(int i=0; i < transform.childCount; i++)
@@ -57,5 +59,8 @@ public class InGameCanvasController : UIController
         Panels[3].SetActive(false);
     }
 
-   
+    public void StartSkillCoolTime(int Slotnum)
+    {
+        skillSlot.startCooltime(Slotnum);
+    }
 }

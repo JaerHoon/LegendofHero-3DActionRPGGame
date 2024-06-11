@@ -657,143 +657,15 @@ public class ViewEditor : Editor
 
     void CoolTimeType(Type selectedType)
     {
-        FieldInfo[] field = selectedType.GetFields(BindingFlags.Public | BindingFlags.Instance);
-        string[] fieldName = field.Where(field =>
-            field.FieldType == typeof(int) ||
-            field.FieldType == typeof(float))
-            .Select(field => field.Name)
-           .ToArray();
+       
 
-        PropertyInfo[] property = selectedType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-        string[] propertyName = property.Where(property =>
-            property.PropertyType == typeof(int) ||
-            property.PropertyType == typeof(float)).Select(pro => pro.Name)
-        .ToArray();
-
-        string[] conbinedArray = fieldName.Concat(propertyName).ToArray();
-
-        if (conbinedArray.Length > 0)
-        {
-            string[] fieldNames = new string[conbinedArray.Length];
-            for (int i = 0; i < conbinedArray.Length; i++)
-            {
-                fieldNames[i] = conbinedArray[i];
-
-
-            }
-
-            int selectedIndex = Array.IndexOf(fieldNames, viewtarget.SetectedValue);
-            if (selectedIndex == -1) selectedIndex = 0; //만약 선택된 값이 없다면 인덱스 번호 초기화
-
-            //선택된 이넘 값을 가지고 "ValueName"값을 가지고 인스팩터 창에  나타낸다.
-            selectedIndex = EditorGUILayout.Popup("CoolTime", selectedIndex, fieldNames);
-
-            viewtarget.SetectedValue = fieldNames[selectedIndex];
-
-            object va = default;
-
-            if (fieldName.Contains(viewtarget.SetectedValue))
-            {
-                viewtarget.value1_type = UI.valueType.Field;
-                va = viewtarget.viewController.GetValue(viewtarget.uITypeNumber, viewtarget.SetectedValue);
-            }
-            else if (propertyName.Contains(viewtarget.SetectedValue))
-            {
-                viewtarget.value1_type = UI.valueType.Property;
-                va = viewtarget.viewController.GetPropertyValue(viewtarget.uITypeNumber, viewtarget.SetectedValue);
-            }
-
-          
-                viewtarget.value = va;
-                viewtarget.valueText = va.ToString();
-
-                viewtarget.valueText = EditorGUILayout.TextField("Value", viewtarget.valueText);
-            
-           
-        }
-
-      
     }
 
     void SlotCoolTime(Type selectedType)
     {
         viewtarget.slotNumber = EditorGUILayout.IntField("SlotNumber", viewtarget.slotNumber);
 
-        FieldInfo[] field = selectedType.GetFields(BindingFlags.Public | BindingFlags.Instance);
-        FieldInfo[] filteredFields = field.Where(field => field.FieldType != typeof(Sprite) &&
-            !typeof(Delegate).IsAssignableFrom(field.FieldType))
-            .ToArray();
-
-        // 두 번째 필터링: 제네릭 List<> 타입의 필드 이름을 선택합니다.
-        string[] listFieldNames = filteredFields
-            .Where(fiel => fiel.FieldType.IsGenericType && fiel.FieldType.GetGenericTypeDefinition() == typeof(List<>))
-            .Select(fiel => fiel.Name)
-            .ToArray();
-
-        if (listFieldNames.Length > 0)
-        {
-            int selectedIndex = Array.IndexOf(listFieldNames, viewtarget.SetectedValue);
-            if (selectedIndex == -1) selectedIndex = 0; //만약 선택된 값이 없다면 인덱스 번호 초기화
-
-            //선택된 이넘 값을 가지고 "ValueName"값을 가지고 인스팩터 창에  나타낸다.
-            selectedIndex = EditorGUILayout.Popup("SLotList", selectedIndex, listFieldNames);
-
-            viewtarget.SetectedValue = listFieldNames[selectedIndex];
-
-            FieldInfo selectField = selectedType.GetFields(BindingFlags.Public | BindingFlags.Instance).FirstOrDefault(f => f.Name == viewtarget.SetectedValue);
-
-            Type fieldtype = selectField.FieldType;
-
-            Type elementType = fieldtype.GetGenericArguments()[0];
-
-
-            FieldInfo[] listfield = elementType.GetFields(BindingFlags.Public | BindingFlags.Instance);
-            string[] fieldName = listfield.Where(field =>
-                field.FieldType == typeof(int) ||
-                field.FieldType == typeof(float))
-                .Select(field => field.Name)
-               .ToArray();
-
-            PropertyInfo[] property = elementType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            string[] propertyName = property.Where(property =>
-                property.PropertyType == typeof(int) ||
-                property.PropertyType == typeof(float)).Select(pro => pro.Name)
-            .ToArray();
-            string[] combinedName = fieldName.Concat(propertyName).ToArray();
-
-
-            if (combinedName.Length > 0)
-            {
-                int selectedIndex1 = Array.IndexOf(combinedName, viewtarget.SelectedValue1);
-                if (selectedIndex1 == -1) selectedIndex1 = 0; //만약 선택된 값이 없다면 인덱스 번호 초기화
-
-                //선택된 이넘 값을 가지고 "ValueName"값을 가지고 인스팩터 창에  나타낸다.
-                selectedIndex1 = EditorGUILayout.Popup("ValueName", selectedIndex1, combinedName);
-
-                viewtarget.SelectedValue1 = combinedName[selectedIndex1];
-
-                object obj = default;
-
-                if (fieldName.Contains(viewtarget.SelectedValue1))
-                {
-                    viewtarget.value1_type = UI.valueType.Field;
-                    obj = viewtarget.viewController.GetSlotValue(viewtarget.uITypeNumber, viewtarget.SetectedValue, viewtarget.SelectedValue1, viewtarget.slotNumber);
-                }
-                else if (propertyName.Contains(viewtarget.SelectedValue1))
-                {
-                    viewtarget.value1_type = UI.valueType.Property;
-                    obj = viewtarget.viewController.GetSlotPropertyValue(viewtarget.uITypeNumber, viewtarget.SetectedValue, viewtarget.SelectedValue1, viewtarget.slotNumber);
-                }
-
-                viewtarget.value = obj;
-
-                viewtarget.valueText = obj.ToString();
-
-                viewtarget.valueText = EditorGUILayout.TextField("CoolTime", viewtarget.valueText);
-            }
-
-           
-        }
+       
     }
 
     void GameObjectType(Type selectedType)

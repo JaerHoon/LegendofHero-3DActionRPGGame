@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class UI_AllType : UI
 {
+
+    Coroutine CurrentCorutine;
     private void Start()
     {
         Init();
@@ -45,7 +47,9 @@ public class UI_AllType : UI
                 SliderUpdate(); break;
             case 9:
             case 10:
-                OnCoolTime(); break;
+                image.type = Image.Type.Filled;
+                image.fillAmount = 0;
+                break;
           
          }
     }
@@ -96,39 +100,51 @@ public class UI_AllType : UI
         textMesh.text = value?.ToString() ?? null;
     }
 
-    void OnCoolTime()
-    {
-        if(viewType == ViewType.CoolTime)
-        {
-            value = GetValue(SetectedValue, 1);
-        }
-        else if(viewType == ViewType.CoolTimeSlot)
-        {
-            value = GetSlotValue(1);
-        }
 
-        if(value != null)
+    protected override void OneStartCoolTiem(float time)
+    {
+        if (CurrentCorutine != null)
         {
-            StopAllCoroutines();
-            StartCoroutine(CoolTiem());
+            return;
         }
-       
-      
+        else
+        {
+            CurrentCorutine = StartCoroutine(Cooltime(time));
+        }
     }
 
-    IEnumerator CoolTiem()
+    protected override void SlotstartCoolTime(float time, int slotnum)
     {
-        image.fillAmount = 0;
+        if(slotnum == slotNumber)
+        {
+            if (CurrentCorutine != null)
+            {
+                return;
+            }
+            else
+            {
+                CurrentCorutine = StartCoroutine(Cooltime(time));
+            }
+        }
+       
+    }
+
+    IEnumerator Cooltime(float cooltime)
+    {
+        image.fillAmount = 1;
 
         float time = 0;
-        float cooltime = (float)value;
+        float Cooltime = cooltime;
 
         while (time < cooltime)
         {
-            image.fillAmount += (1 / cooltime * Time.deltaTime);
             time += Time.deltaTime;
+            image.fillAmount = Mathf.Lerp(1, 0, time / cooltime); // 쿨타임 진행도에 따라 fillAmount를 변경
             yield return null;
         }
+
+        image.fillAmount = 0;
+        CurrentCorutine = null;
     }
 
     void OnClick()

@@ -17,8 +17,8 @@ public class Platform : MonoBehaviour
     [SerializeField]
     protected MeshRenderer Icon_mesh;
 
-    [SerializeField]
-    protected GameObject Skill_obj;
+   
+    public GameObject Skill_obj;
 
     public SkillChoiceController.StageType stageType;
 
@@ -71,14 +71,21 @@ public class Platform : MonoBehaviour
 
     public virtual void GetSkill()
     {
-        skillChoiceController.GetSkill(skill);
+        coll.enabled = false;
+        skillChoiceController.GetSkill(skill, this);
         Skill_obj.SetActive(false);
 
     }
 
+    public virtual void Restore()
+    {
+        coll.enabled = true;
+        Skill_obj.SetActive(true);
+    }
+
    protected virtual void OnSkillInfo()
     {
-        if (stageType == SkillChoiceController.StageType.stage)
+        if (stageType == SkillChoiceController.StageType.stage || stageType == SkillChoiceController.StageType.start)
         {
             InGameCanvas.OnskillInfo(skill);
         }
@@ -91,7 +98,7 @@ public class Platform : MonoBehaviour
 
     protected virtual void OffSkillInfo()
     {
-        if (stageType == SkillChoiceController.StageType.stage)
+        if (stageType == SkillChoiceController.StageType.stage || stageType == SkillChoiceController.StageType.start)
         {
             InGameCanvas.OffSkillinfo();
         }

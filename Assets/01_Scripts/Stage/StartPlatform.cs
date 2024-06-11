@@ -28,13 +28,13 @@ public class StartPlatform : MonoBehaviour
         normalController = skill_NormalATK.GetComponent<SkillChoiceController>();
         skillController = skill_SkillATK.GetComponent<SkillChoiceController>();
         itemRelicController = itemRelicATK.GetComponent<SkillChoiceController>();
-        stageType = SkillChoiceController.StageType.stage;
+        stageType = SkillChoiceController.StageType.start;
         Setting();
     }
 
     public void Setting()
     {
-        if(stageType == SkillChoiceController.StageType.stage)
+        if(stageType == SkillChoiceController.StageType.stage || stageType == SkillChoiceController.StageType.start)
         {
             StartStageSetting();
         }

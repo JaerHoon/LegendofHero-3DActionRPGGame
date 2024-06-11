@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Platform_SkillATK : Platform
 {
+    bool IsSkillInfo;
     void Start()
     {
         Init();
@@ -13,6 +14,7 @@ public class Platform_SkillATK : Platform
         if (other.CompareTag("Player"))
         {
             OnSkillInfo();
+            IsSkillInfo = true;
         }
     }
 
@@ -21,7 +23,17 @@ public class Platform_SkillATK : Platform
         if (other.CompareTag("Player"))
         {
             OffSkillInfo();
+            IsSkillInfo = false;
         }
     }
 
+    private void Update()
+    {
+        if (IsSkillInfo && Input.GetKeyDown(KeyCode.E))
+        {
+            GetSkill();
+            IsSkillInfo = false;
+            OffSkillInfo();
+        }
+    }
 }

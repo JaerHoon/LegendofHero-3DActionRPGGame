@@ -5,7 +5,7 @@ using System.Linq;
 
 public class SkillChoiceController : MonoBehaviour
 {
-    public enum StageType { stage, Maerket }
+    public enum StageType { start,stage, Maerket }
     public StageType stageType;
     public enum SkillType { NormalATK, SkillATK, ItemRelic }
     public SkillType skillType;
@@ -133,16 +133,26 @@ public class SkillChoiceController : MonoBehaviour
     }
 
 
-    public void GetSkill(SkillInfo skill)
+    public void GetSkill(SkillInfo skill,Platform platform)
     {
-        if(skill.characterType == SkillInfo.CharacterType.Warrior)
+       
+        if(stageType == StageType.start)
         {
-            SkillManager.instance.warriorSkills[(int)skill.skillType] = skill; 
+            for(int i=0; i< platforms.Length; i++)
+            {
+                if(platforms[i].gameObject != platform.gameObject)
+                {
+                  
+                    platforms[i].Restore();
+                }
+            }
         }
-        else
-        {
-            SkillManager.instance.archerSkills[(int)skill.skillType] = skill;
-        }
+            
+       
+        
+        SkillManager.instance.GetSkill(CharacterManager.instance.choicedCharacter, skill);
+        
+       
     }
 
     public void GetItemRelic()

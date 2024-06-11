@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Platform_ItemRelic : Platform
 {
+    bool IsSkillInfo;
     void Start()
     {
         Init();
@@ -12,6 +13,7 @@ public class Platform_ItemRelic : Platform
     {
         if (other.CompareTag("Player"))
         {
+            IsSkillInfo=true;
             OnSkillInfo();
         }
     }
@@ -20,6 +22,17 @@ public class Platform_ItemRelic : Platform
     {
         if (other.CompareTag("Player"))
         {
+            IsSkillInfo=false;
+            OffSkillInfo();
+        }
+    }
+
+    private void Update()
+    {
+        if (IsSkillInfo && Input.GetKeyDown(KeyCode.E))
+        {
+            GetSkill();
+            IsSkillInfo = false;
             OffSkillInfo();
         }
     }

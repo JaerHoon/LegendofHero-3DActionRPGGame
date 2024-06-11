@@ -73,6 +73,8 @@ public class UI : MonoBehaviour
     {
         SetComopnent(viewType);
         uIModel.upDateUI += UIUpdate;
+        uIModel.SlotCoolTimeStart += SlotstartCoolTime;
+        uIModel.OneCoolTimeStart += OneStartCoolTiem;
     }
 
     protected void SetComopnent(ViewType view)
@@ -168,5 +170,15 @@ public class UI : MonoBehaviour
         return va;
     }
 
-  
+    protected virtual void SlotstartCoolTime(float time, int slotnum)
+    {
+
+    }
+    
+    protected virtual void OneStartCoolTiem(float time)
+    {
+
+    }
+
+
 }

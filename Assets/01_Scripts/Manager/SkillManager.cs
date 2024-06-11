@@ -39,30 +39,18 @@ public class SkillManager : MonoBehaviour
        
     }
 
-    public void GetSkill(CharacterManager.ChoicedCharacter choicedCharacter, int skill_Id)
+    public void GetSkill(CharacterManager.ChoicedCharacter choicedCharacter, SkillInfo skill_Id)
     {
         if((int)choicedCharacter == 0)
         {
-            for(int i=0; i< warriorSkills.Count; i++)
-            {
-                if(warriorSkills[i].id == skill_Id)
-                {
-                    gainedSkill_Warrior[(int)warriorSkills[i].skillType] = warriorSkills[i];
-                }
-            }
+            gainedSkill_Warrior[(int)skill_Id.skillType] = skill_Id;
         }
         else
         {
-            for(int i=0; i<archerSkills.Count; i++)
-            {
-                if(archerSkills[i].id == skill_Id)
-                {
-                    gainedSkill_Archer[(int)archerSkills[i].skillType] = archerSkills[i];
-                }
-            }
+            gainedSkill_Archer[(int)skill_Id.skillType] = skill_Id;
         }
 
-        
+        changeSkill?.Invoke();
     }
 
     // Update is called once per frame

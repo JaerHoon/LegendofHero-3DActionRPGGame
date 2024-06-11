@@ -18,6 +18,8 @@ public class UIController : MonoBehaviour
     public delegate void SlotDragEventchain(PointerEventData eventData, int parameter);
     public delegate void SlotEventchain(int parameter);
     public delegate void UpDateUI();
+    public delegate void SlotCoolTime(float time, int slotnum);
+    public delegate void OneCoolTime(float time);
 
     public virtual object GetValue(int viewModelNum, string valueName)
     {
