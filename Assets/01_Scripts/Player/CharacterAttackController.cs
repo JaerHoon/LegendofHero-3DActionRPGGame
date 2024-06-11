@@ -13,10 +13,12 @@ public class CharacterAttackController : MonoBehaviour
 
     protected bool isNonHit;
     protected bool[] isReadySkills = new bool[4];// 0 평타, 1 스킬, 2 방어, 3 글로벌
-    protected SkillInfo[] playerSkillsSlot = new SkillInfo[3];// 0 평타, 1 스킬, 2 방어
+    public SkillInfo[] playerSkillsSlot = new SkillInfo[3];// 0 평타, 1 스킬, 2 방어
 
     protected SkillParent skillSc;//스킬 내부 스크립트
 
+    protected int maxSkillNum;//최대 스킬 사용 가능 횟수
+    protected int curSkillNum;
 
     IEnumerator SkillCoolDown(string skillType, int isSkillReady, float skillCD)
     {
@@ -91,8 +93,9 @@ public class CharacterAttackController : MonoBehaviour
                 StartCoroutine(SkillCoolDown("평타", 0, playerSkillsSlot[0].cd));
                 StartCoroutine(SkillGlobalCoolDown(playerSkillsSlot[0].gcd + ItemManager.instance.itemToSkillGCD));
             }
-            if (Input.GetMouseButtonDown(1) && isReadySkills[1] == true)
+            if (Input.GetMouseButtonDown(1) && isReadySkills[1] == true /*&& curSkillNum >= 1*/)
             {
+                curSkillNum--;
                 skillSc.UsedSkill(playerSkillsSlot[1], playerCritDamage, playerAttackChargeRate);
                 StartCoroutine(SkillCoolDown("스킬", 1, playerSkillsSlot[1].cd));
                 StartCoroutine(SkillGlobalCoolDown(playerSkillsSlot[1].gcd + ItemManager.instance.itemToSkillGCD));
