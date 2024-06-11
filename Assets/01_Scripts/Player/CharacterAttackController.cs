@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class CharacterAttackController : MonoBehaviour
 {
-
-
+    protected InGameCanvasController inGameCanvasController;
     protected float playerSpeed;
     protected float playerCritDamage;
     protected float playerAttackChargeRate;
@@ -21,6 +20,11 @@ public class CharacterAttackController : MonoBehaviour
     protected int maxSkillNum;//최대 스킬 사용 가능 횟수
     [SerializeField]
     protected int curSkillNum;
+
+    protected virtual void InIt()
+    {
+        inGameCanvasController = GameObject.FindFirstObjectByType<InGameCanvasController>();
+    }
 
     IEnumerator SkillCoolDown(string skillType, int isSkillReady, float skillCD)
     {
@@ -105,6 +109,7 @@ public class CharacterAttackController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && isReadySkills[2] == true)
             {
                 PlayerAttack.instance.block();
+                inGameCanvasController.StartSkillCoolTime(2);
                 print("1.5초간 무적!");
                 StartCoroutine(ImmunityTiem(playerSkillsSlot[2].gcd + ItemManager.instance.itemToNonHitTime));
                 StartCoroutine(SkillCoolDown("방어", 2, playerSkillsSlot[2].cd));
@@ -115,6 +120,7 @@ public class CharacterAttackController : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && isReadySkills[0] == true)
             {
                 PlayerAttack.instance.KnightAttack();
+                inGameCanvasController.StartSkillCoolTime(0);
                 skillSc.UsedSkill(playerSkillsSlot[0], playerCritDamage, playerAttackChargeRate);
                 StartCoroutine(SkillCoolDown("평타", 0, playerSkillsSlot[0].cd));
                 StartCoroutine(SkillGlobalCoolDown(playerSkillsSlot[0].gcd + ItemManager.instance.itemToSkillGCD));
@@ -123,6 +129,7 @@ public class CharacterAttackController : MonoBehaviour
             if (Input.GetMouseButtonDown(1) &&  isReadySkills[1] == true &&  curSkillNum >= 1)
             {
                 PlayerAttack.instance.skillAttack();
+                inGameCanvasController.StartSkillCoolTime(1);
                 skillSc.UsedSkill(playerSkillsSlot[1], playerCritDamage, playerAttackChargeRate);
                 //StartCoroutine(SkillCoolDown("스킬", 1, playerSkillsSlot[1].cd));
 

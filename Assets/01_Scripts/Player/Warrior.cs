@@ -16,6 +16,7 @@ public class Warrior : CharacterAttackController
         //skills[1] = this.gameObject.GetComponent<WarriorSkill>();
         skillSc = this.gameObject.GetComponent<WarriorSkill>();
         WarriorInit();
+        InIt();
     }
 
     void WarriorInit()

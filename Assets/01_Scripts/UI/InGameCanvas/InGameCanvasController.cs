@@ -12,7 +12,7 @@ public class InGameCanvasController : UIController
 
     GameObject[] Panels = new GameObject[5];
 
-    
+   
 
     private void Start()
     {
