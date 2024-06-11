@@ -64,7 +64,10 @@ public class UI_AllType : UI
         {
             value = GetSlotValue(1);
         }
+       
+
         image.sprite = (Sprite)value;
+       
     }
 
     void SliderUpdate()

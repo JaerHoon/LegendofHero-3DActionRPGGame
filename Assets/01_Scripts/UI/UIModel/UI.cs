@@ -148,22 +148,22 @@ public class UI : MonoBehaviour
         {
             if (value1_type == valueType.Field)
             {
-                va = viewController.GetSlotValue(uITypeNumber, SetectedValue, SetectedValue1, slotNumber);
+                va = viewController.GetSlotValue(uITypeNumber, SetectedValue, SelectedValue1, slotNumber);
             }
             else
             {
-                va = viewController.GetSlotPropertyValue(uITypeNumber, SetectedValue, SetectedValue1, slotNumber);
+                va = viewController.GetSlotPropertyValue(uITypeNumber, SetectedValue, SelectedValue1, slotNumber);
             }
         }
         else if (ValueNum == 2)
         {
             if (value2_type == valueType.Field)
             {
-                va = viewController.GetSlotValue(uITypeNumber, SetectedValue, SetectedValue1, slotNumber);
+                va = viewController.GetSlotValue(uITypeNumber, SetectedValue, SelectedValue1, slotNumber);
             }
             else
             {
-                va = viewController.GetSlotPropertyValue(uITypeNumber, SetectedValue, SetectedValue1, slotNumber);
+                va = viewController.GetSlotPropertyValue(uITypeNumber, SetectedValue, SelectedValue1, slotNumber);
             }
         }
         

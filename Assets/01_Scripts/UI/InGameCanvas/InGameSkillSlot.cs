@@ -7,6 +7,7 @@ public class InGameSkillSlot : UIModel
 
     SkillManager skillManager;
     public List<SkillInfo> skills = new List<SkillInfo>(new SkillInfo[3]);
+    public int? SkillCount = null;
 
 
     private void Start()
@@ -36,6 +37,15 @@ public class InGameSkillSlot : UIModel
 
         }
 
+        if (skills[1].skillCount > 1)
+        {
+            SkillCount = skills[1].skillCount;
+        }
+        else
+        {
+            SkillCount = null;
+        }
+
         ChangeUI();
     }
 
@@ -49,15 +59,35 @@ public class InGameSkillSlot : UIModel
         }
         else if (Slotnum == 1)
         {
-            SlotCoolTimeStart?.Invoke(skills[1].cd, 1);
-            SlotCoolTimeStart?.Invoke(skills[1].gcd, 0);
+            if (skills[1].skillCount > 1 && SkillCount > 0 && SkillCount !=null)
+            {
+                SkillCount--;
+                SlotCoolTimeStart?.Invoke(skills[1].gcd, 1);
+                SlotCoolTimeStart?.Invoke(skills[1].gcd, 0);
+                ChangeUI();
+            }
             
+            if(skills[1].skillCount > 1 && SkillCount == 0 && SkillCount != null)
+            {
+                SlotCoolTimeStart?.Invoke(skills[1].cd, 1);
+                SlotCoolTimeStart?.Invoke(skills[1].gcd, 0);
+                StartCoroutine(CountCoilTime());
+            }
+
         }
         else if(Slotnum == 0)
         {
             SlotCoolTimeStart?.Invoke(skills[0].cd, 0);
             SlotCoolTimeStart?.Invoke(skills[0].gcd, 1);
         }
+    }
+
+    IEnumerator CountCoilTime()
+    {
+        yield return new WaitForSeconds(skills[1].cd);
+
+        SkillCount = skills[1].skillCount;
+        ChangeUI();
     }
  
 }
