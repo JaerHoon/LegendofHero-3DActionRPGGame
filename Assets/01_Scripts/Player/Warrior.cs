@@ -25,7 +25,8 @@ public class Warrior : CharacterAttackController
         playerCritDamage = 1.5f;
         playerAttackChargeRate = 1;
         playerSkillChargeRate = 1;
-
+        maxSkillNum = playerSkillsSlot[1].skillCount;
+        curSkillNum = maxSkillNum;
         for (int i = 0; i < 4; i++) isReadySkills[i] = true;
 
         isNonHit = false;
@@ -40,6 +41,8 @@ public class Warrior : CharacterAttackController
         else
         {
             playerSkillsSlot[1] = SkillManager.instance.warriorSkills[SKillNum];
+            maxSkillNum = playerSkillsSlot[1].skillCount;
+            curSkillNum = maxSkillNum;
         }
     }
 
