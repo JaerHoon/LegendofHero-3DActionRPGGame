@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 9003807106685001857}
   - component: {fileID: 467087450262955891}
   - component: {fileID: 7646336622070700117}
+  - component: {fileID: 3001398797920071911}
   m_Layer: 0
   m_Name: Stone Golem
   m_TagString: Monster
@@ -235,6 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GenFX: {fileID: 0}
   GroundAttackEffect: {fileID: 4754544882002930698}
+  shakeCameraSC: {fileID: 3001398797920071911}
 --- !u!114 &7071001537193590620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +252,7 @@ MonoBehaviour:
   time: 1
   maxXrange: 0
   maxZrange: 0
+  rockNum: 0
 --- !u!114 &2611590170161303324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,6 +365,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.62, z: 1}
   m_Center: {x: 0, y: 0.83, z: 0}
+--- !u!114 &3001398797920071911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188464615969464675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d709656cd2b83c4bbb21b1e61a4bc34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  virtualCamera: {fileID: 0}
 --- !u!1 &357558441240204871
 GameObject:
   m_ObjectHideFlags: 0
