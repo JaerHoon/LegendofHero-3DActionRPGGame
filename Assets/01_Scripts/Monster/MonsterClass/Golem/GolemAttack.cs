@@ -21,7 +21,7 @@ public class GolemAttack : MonsterAttack
 
     public float maxXrange;
     public float maxZrange;
-    int rockNum;
+    public int rockNum;
 
     BoxCollider handBoxColl;
 

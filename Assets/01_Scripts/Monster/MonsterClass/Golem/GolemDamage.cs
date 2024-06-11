@@ -1,34 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GolemDamage : MonsterDamage
 {
     Golem golem;
-
+    NavMeshAgent nav;
+    Material golemMaterial;
     // Start is called before the first frame update
     void Start()
     {
         Init();
         golem = GetComponent<Golem>();
+        nav = GetComponent<NavMeshAgent>();
+        golemMaterial = Resources.Load("Assets/Enemy Golem/Materials/Stone_Golem_Material") as Material;
+        golemMaterial.color = new Color(1, 1, 1, 1);
     }
 
 
-    private void OnMouseEnter()
-    {
-        OnDamage(10f);
-    }
-
+   
     public override void OnDamage(float pow)
     {
         golem.CurrentHP -= pow + (pow * UpDamage / 100);
         DamageFx(pow);
+        IsRageMonde();
     }
 
     public override void OnPoisonDamage(float pow)
     {
         golem.CurrentHP -= pow;
         GreenDamageFx(pow);
+        IsRageMonde();
+    }
+
+    void IsRageMonde()
+    {
+        if (golem.isRageMode2) return;
+        if (golem.CurrentHP / monster.MaxHP < 0.25f)
+        {
+            golem.isRageMode2 = true;
+            golemMaterial.color = new Color(1, 50f / 255f, 50f / 255f);
+            GetComponent<GolemAttack>().rockNum += 5;
+        }
+        if (golem.isRageMode1) return;
+        if (golem.CurrentHP / monster.MaxHP < 0.5f)
+        {
+            golem.isRageMode1 = true;
+            golemMaterial.color = new Color(1, 155f / 255f, 155f / 255f);
+            GetComponent<GolemAttack>().rockNum += 5;
+        }
     }
 
     public override void DamageFx(float amount)

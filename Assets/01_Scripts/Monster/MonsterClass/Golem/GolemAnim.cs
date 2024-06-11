@@ -14,6 +14,8 @@ public class GolemAnim : MonsterAnim
 
     [SerializeField]
     ParticleSystem GroundAttackEffect;
+    [SerializeField]
+    ShakeCamera shakeCameraSC;
 
     // Start is called before the first frame update
     void Start()
@@ -52,11 +54,16 @@ public class GolemAnim : MonsterAnim
     {
         animator.SetInteger(Stat, ATTACKG);
         GroundAttackEffect.Play();
+        Invoke("DelayShakeCamera", 0.8f);
         Invoke("DelayIdle", 0.3f);
 
     }
 
-   
+    void DelayShakeCamera()
+    {
+        shakeCameraSC.StartShake(1f, 2, 2);
+    }
+
 
     public override void OnMovingAnim()
     {
