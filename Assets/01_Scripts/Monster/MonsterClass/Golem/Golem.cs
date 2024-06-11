@@ -11,6 +11,8 @@ public class Golem : Monster
     public BOSSATTACKTYPE bossAttackType;
 
     public GolemUI golemUI;
+    public bool isRageMode1 = false;
+    public bool isRageMode2 = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +21,9 @@ public class Golem : Monster
         IsPlayerdetected = false;
         golemUI = GetComponent<GolemUI>();
         ChangeState(MONSTERSTATE.Wait);
-        //StartCoroutine(CheckStat());
-        StartCoroutine(CalDis());
+        //StartCoroutine(CalDis());
         golemUI.UI_Update();
+        StartCoroutine(StartAnim());
     }
 
 
@@ -59,6 +61,18 @@ public class Golem : Monster
         }
     }
 
+    IEnumerator StartAnim()
+    {
+        yield return new WaitForSeconds(0.5f);
+        ChangeState(MONSTERSTATE.Rise);
+        yield return new WaitForSeconds(1.5f);
+        ChangeState(MONSTERSTATE.Idle);
+        yield return new WaitForSeconds(1.5f);
+        ChangeState(MONSTERSTATE.Trace); 
+        StartCoroutine(BossAttackPattern());
+
+    }
+
 
     IEnumerator CalDis()
     {
@@ -75,47 +89,85 @@ public class Golem : Monster
     {
         while (monsterstate != MONSTERSTATE.Die)
         {
-            int rand = Random.Range(0, 2);
-            if (rand == 0)
+            if (!isRageMode1 && !isRageMode2)
             {
-                BossPattern1();
-                yield return new WaitForSeconds(8.0f);
-                BossPattern2();
-                yield return new WaitForSeconds(1.5f);
-                BossPattern3();
-                yield return new WaitForSeconds(1.5f);
-                BossPattern2();
-                yield return new WaitForSeconds(1.5f);
-                BossPattern3();
-                yield return new WaitForSeconds(1.5f);
-
-            }
-            else if(rand == 1)
-            {
-
-                for (int i = 0; i < 3; i++)
+                int rand = Random.Range(0, 3);
+                if (rand == 0)
                 {
+                    BossPattern1();
+                    yield return new WaitForSeconds(8.0f);
                     BossPattern2();
                     yield return new WaitForSeconds(1.5f);
-                    BossPattern1();
-                    yield return new WaitForSeconds(3.0f);
                     BossPattern3();
                     yield return new WaitForSeconds(1.5f);
+                    BossPattern2();
+                    yield return new WaitForSeconds(1.5f);
+                    BossPattern3();
+                    yield return new WaitForSeconds(1.5f);
+
+                }
+                else if (rand == 1)
+                {
                     BossPattern1();
-                    yield return new WaitForSeconds(3.0f);
-                    
+                    yield return new WaitForSeconds(4.0f);
+                    for (int i = 0; i < 2; i++)
+                    {
+                        BossPattern2();
+                        yield return new WaitForSeconds(1.5f);
+                        BossPattern1();
+                        yield return new WaitForSeconds(3.0f);
+                        BossPattern3();
+                        yield return new WaitForSeconds(1.5f);
+                        BossPattern1();
+                        yield return new WaitForSeconds(3.0f);
+
+                    }
+                }
+                else
+                {
+                    BossPattern1();
+                    yield return new WaitForSeconds(4.0f);
+                    for (int i = 0; i < 3; i++)
+                    {
+                        BossPattern2();
+                        yield return new WaitForSeconds(2.0f);
+                        BossPattern3();
+                        yield return new WaitForSeconds(2.0f);
+                    }
+
+                }
+            }
+            else if(isRageMode1 && !isRageMode2)
+            {
+                int rand = Random.Range(0, 1);
+                if(rand == 0)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        BossPattern2();
+                        yield return new WaitForSeconds(1.5f);
+                        BossPattern3();
+                        yield return new WaitForSeconds(1.5f);
+                    }
+                    BossPattern1();
+                    yield return new WaitForSeconds(5.0f);
                 }
             }
             else
             {
-                for (int i = 0; i < 5; i++)
+                int rand = Random.Range(0, 1);
+                if (rand == 0)
                 {
-                    ChangeAttackState(BOSSATTACKTYPE.AttackProjectile);
-                    yield return new WaitForSeconds(2.0f);
-                    ChangeAttackState(BOSSATTACKTYPE.AttackGround);
-                    yield return new WaitForSeconds(2.0f);
+                    for (int i = 0; i < 4; i++)
+                    {
+                        BossPattern2();
+                        yield return new WaitForSeconds(1.5f);
+                        BossPattern3();
+                        yield return new WaitForSeconds(1.5f);
+                    }
+                    BossPattern1();
+                    yield return new WaitForSeconds(5.0f);
                 }
-               
             }
         }
     }
@@ -244,13 +296,7 @@ public class Golem : Monster
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q)) { ChangeState(MONSTERSTATE.Rise); }
-        else if (Input.GetKeyDown(KeyCode.W)) { ChangeState(MONSTERSTATE.Idle); }
-        else if(Input.GetKeyDown(KeyCode.E)) { ChangeState(MONSTERSTATE.Trace); StartCoroutine(BossAttackPattern()); }
-        else if(Input.GetKeyDown(KeyCode.R)) { ChangeState(MONSTERSTATE.Attack); }
-        else if(Input.GetKeyDown(KeyCode.T)) { ChangeState(MONSTERSTATE.Die); }
 
-        
         CheckPlayer();
     }
 }
