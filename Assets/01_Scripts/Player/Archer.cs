@@ -7,11 +7,11 @@ public class Archer : CharacterAttackController
     // Start is called before the first frame update
     void Start()
     {
-        ArcherInit();
         playerSkillsSlot[0] = SkillManager.instance.archerSkills[0];
         playerSkillsSlot[1] = SkillManager.instance.archerSkills[4];
         playerSkillsSlot[1] = SkillManager.instance.archerSkills[8];
         skillSc = this.gameObject.GetComponent<ArcherSkill>();
+        ArcherInit();
     }
 
     void ArcherInit()
@@ -33,9 +33,13 @@ public class Archer : CharacterAttackController
         {
             playerSkillsSlot[0] = SkillManager.instance.archerSkills[SKillNum];
         }
-        else
+        else if (SKillNum >= 4 && SKillNum <= 7)
         {
             playerSkillsSlot[1] = SkillManager.instance.archerSkills[SKillNum];
+        }
+        else
+        {
+            print("잘못된 값이 OnChangeSkills에 입력됨");
         }
     }
 

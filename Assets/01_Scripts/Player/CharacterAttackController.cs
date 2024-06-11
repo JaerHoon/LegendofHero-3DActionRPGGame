@@ -17,7 +17,9 @@ public class CharacterAttackController : MonoBehaviour
 
     protected SkillParent skillSc;//스킬 내부 스크립트
 
+    [SerializeField]
     protected int maxSkillNum;//최대 스킬 사용 가능 횟수
+    [SerializeField]
     protected int curSkillNum;
 
     IEnumerator SkillCoolDown(string skillType, int isSkillReady, float skillCD)
@@ -33,6 +35,28 @@ public class CharacterAttackController : MonoBehaviour
                 isReadySkills[isSkillReady] = true;
                 print($"{skillType} 준비 완료!");
                 yield break;
+            }
+
+        }
+    }
+
+    IEnumerator SKillCoolDown_CountType(string skillType, int MaxSkillCount, float skillCD)
+    {
+        print("SKillCoolDown_CountType 코루틴 동작");
+        float CD = skillCD;
+        yield return new WaitForFixedUpdate();
+        while (MaxSkillCount > curSkillNum)
+        {
+            yield return new WaitForSeconds(0.1f);
+            CD -= 0.1f;
+            if (CD < 0)
+            {
+                curSkillNum ++;
+                CD = skillCD;
+                print($"{skillType} 사용 횟수 1 증가!");
+                print($"현재 사용 가능 횟수 : {curSkillNum}");
+                if(MaxSkillCount == curSkillNum)
+                    yield break;
             }
 
         }
@@ -96,12 +120,16 @@ public class CharacterAttackController : MonoBehaviour
                 StartCoroutine(SkillGlobalCoolDown(playerSkillsSlot[0].gcd + ItemManager.instance.itemToSkillGCD));
             }
 
-            if (Input.GetMouseButtonDown(1) && isReadySkills[1] == true /*&& curSkillNum >= 1*/)
+            if (Input.GetMouseButtonDown(1) &&  isReadySkills[1] == true &&  curSkillNum >= 1)
             {
                 PlayerAttack.instance.skillAttack();
-                curSkillNum--;
                 skillSc.UsedSkill(playerSkillsSlot[1], playerCritDamage, playerAttackChargeRate);
-                StartCoroutine(SkillCoolDown("스킬", 1, playerSkillsSlot[1].cd));
+                //StartCoroutine(SkillCoolDown("스킬", 1, playerSkillsSlot[1].cd));
+
+                if(maxSkillNum == curSkillNum)
+                    StartCoroutine(SKillCoolDown_CountType("스킬", playerSkillsSlot[1].skillCount, playerSkillsSlot[1].cd));
+
+                curSkillNum--;
                 StartCoroutine(SkillGlobalCoolDown(playerSkillsSlot[1].gcd + ItemManager.instance.itemToSkillGCD));
             }
         }
