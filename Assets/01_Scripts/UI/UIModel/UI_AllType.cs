@@ -64,7 +64,7 @@ public class UI_AllType : UI
         {
             value = GetSlotValue(1);
         }
-       
+        print(value.ToString());
 
         image.sprite = (Sprite)value;
        
