@@ -35,9 +35,6 @@ public class Monster : MonoBehaviour
 
     public float MaxHP { get; set; }
     
-
-    
-
     protected float curHP;
     public float CurrenHP
     {

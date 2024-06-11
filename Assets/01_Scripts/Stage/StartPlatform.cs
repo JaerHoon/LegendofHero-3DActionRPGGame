@@ -4,15 +4,57 @@ using UnityEngine;
 
 public class StartPlatform : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+  
+    public SkillChoiceController.StageType stageType;
+    [SerializeField]
+    GameObject skill_NormalATK;
+    SkillChoiceController normalController;
+    [SerializeField]
+    GameObject skill_SkillATK;
+    SkillChoiceController skillController;
+    [SerializeField]
+    GameObject itemRelicATK;
+    SkillChoiceController itemRelicController;
+
+    private void OnEnable()
     {
-        
+        skill_NormalATK.SetActive(false);
+        skill_SkillATK.SetActive(false);
+        itemRelicATK.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        normalController = skill_NormalATK.GetComponent<SkillChoiceController>();
+        skillController = skill_SkillATK.GetComponent<SkillChoiceController>();
+        itemRelicController = itemRelicATK.GetComponent<SkillChoiceController>();
+        stageType = SkillChoiceController.StageType.stage;
+        Setting();
+    }
+
+    public void Setting()
+    {
+        if(stageType == SkillChoiceController.StageType.stage)
+        {
+            StartStageSetting();
+        }
+        else
+        {
+            MarketSetting();
+        }
+    }
+
+    void StartStageSetting()
+    {
+        skill_NormalATK.SetActive(true);
+        normalController.stageType = stageType;
+        normalController.Setting();
+    }
+
+    void MarketSetting()
+    {
+        itemRelicATK.SetActive(true);
+        itemRelicController.stageType = stageType;
+        itemRelicController.Setting();
     }
 }

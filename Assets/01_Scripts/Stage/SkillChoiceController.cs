@@ -5,13 +5,25 @@ using System.Linq;
 
 public class SkillChoiceController : MonoBehaviour
 {
+    public enum StageType { stage, Maerket }
+    public StageType stageType;
     public enum SkillType { NormalATK, SkillATK, ItemRelic }
     public SkillType skillType;
 
     public Platform[] platforms = new Platform[3];
 
+    private void Start()
+    {
+        platforms = GetComponentsInChildren<Platform>();
+    }
+
     public void Setting()
     {
+        if(platforms[0] == null)
+        {
+            platforms = GetComponentsInChildren<Platform>();
+        }
+        
         switch (skillType)
         {
             case SkillType.NormalATK: NormalATKSetting(); break;
@@ -38,6 +50,7 @@ public class SkillChoiceController : MonoBehaviour
 
             for (int i = 0; i < platforms.Length; i++)
             {
+                platforms[i].stageType = stageType;
                 platforms[i].Setting(CharacterManager.ChoicedCharacter.Warrior, skills[i].id);
                 platforms[i].skillChoiceController = this;
             }
@@ -59,6 +72,7 @@ public class SkillChoiceController : MonoBehaviour
 
             for (int i = 0; i < platforms.Length; i++)
             {
+                platforms[i].stageType = stageType;
                 platforms[i].Setting(CharacterManager.ChoicedCharacter.Archer, skills[i].id);
                 platforms[i].skillChoiceController = this;
             }
@@ -84,6 +98,7 @@ public class SkillChoiceController : MonoBehaviour
 
             for (int i = 0; i < platforms.Length; i++)
             {
+                platforms[i].stageType = stageType;
                 platforms[i].Setting(CharacterManager.ChoicedCharacter.Warrior, skills[i].id);
                 platforms[i].skillChoiceController = this;
             }
@@ -104,6 +119,7 @@ public class SkillChoiceController : MonoBehaviour
 
             for (int i = 0; i < platforms.Length; i++)
             {
+                platforms[i].stageType = stageType;
                 platforms[i].Setting(CharacterManager.ChoicedCharacter.Archer, skills[i].id);
                 platforms[i].skillChoiceController = this;
             }

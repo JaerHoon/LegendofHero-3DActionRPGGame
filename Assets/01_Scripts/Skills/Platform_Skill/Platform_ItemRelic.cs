@@ -8,12 +8,19 @@ public class Platform_ItemRelic : Platform
     {
         Init();
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            print("¡¯¿‘");
+            OnSkillInfo();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            OffSkillInfo();
         }
     }
 

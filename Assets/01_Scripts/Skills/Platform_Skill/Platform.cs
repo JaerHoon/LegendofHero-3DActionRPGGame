@@ -19,11 +19,16 @@ public class Platform : MonoBehaviour
 
     [SerializeField]
     protected GameObject Skill_obj;
-   
-   
+
+    public SkillChoiceController.StageType stageType;
+
+
+    protected InGameCanvasController InGameCanvas;
+
 
     public virtual void Init()
     {
+        InGameCanvas = GameObject.FindAnyObjectByType<InGameCanvasController>();
         coll = GetComponent<SphereCollider>();
         Icon_mesh = FindInChildren(this.transform, "Icon")?.GetComponent<MeshRenderer>();
         if (Icon_mesh == null) print("Icon이라는 오브젝트가 없습니다");
@@ -69,5 +74,30 @@ public class Platform : MonoBehaviour
         skillChoiceController.GetSkill(skill);
         Skill_obj.SetActive(false);
 
+    }
+
+   protected virtual void OnSkillInfo()
+    {
+        if (stageType == SkillChoiceController.StageType.stage)
+        {
+            InGameCanvas.OnskillInfo(skill);
+        }
+        else
+        {
+            InGameCanvas.OnMarketSkillInfo(skill);
+        }
+
+    }
+
+    protected virtual void OffSkillInfo()
+    {
+        if (stageType == SkillChoiceController.StageType.stage)
+        {
+            InGameCanvas.OffSkillinfo();
+        }
+        else
+        {
+            InGameCanvas.OffMarketSKillinfo();
+        }
     }
 }

@@ -12,7 +12,15 @@ public class Platform_SkillATK : Platform
     {
         if (other.CompareTag("Player"))
         {
-            print("¡¯¿‘");
+            OnSkillInfo();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            OffSkillInfo();
         }
     }
 

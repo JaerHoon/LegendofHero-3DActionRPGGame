@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class Platform_NormalATK : Platform
 {
-    InGameCanvasController InGameCanvas;
-    
-
+   
     private void Start()
     {
-        InGameCanvas = GameObject.FindAnyObjectByType<InGameCanvasController>();
         Init();
     }
 
@@ -17,7 +14,16 @@ public class Platform_NormalATK : Platform
     {
         if (other.CompareTag("Player"))
         {
-            InGameCanvas.OnskillInfo(skill);
+            OnSkillInfo();   
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            OffSkillInfo();
+        }
+    }
+
 }
