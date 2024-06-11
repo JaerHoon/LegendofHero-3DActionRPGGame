@@ -27,7 +27,7 @@ public class Archer : CharacterAttackController
         isNonHit = false;
     }
 
-    void OnChangeSkills(int SKillNum)
+    public void OnChangeSkills(int SKillNum)
     {
         if (SKillNum >= 0 && SKillNum <= 3)
         {
