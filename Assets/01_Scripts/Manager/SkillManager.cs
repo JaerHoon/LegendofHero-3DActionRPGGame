@@ -27,6 +27,18 @@ public class SkillManager : MonoBehaviour
     public delegate void ChangeSkill();
     public ChangeSkill changeSkill;
 
+    private void Start()
+    {
+        gainedSkill_Warrior[0] = warriorSkills[0];
+        gainedSkill_Warrior[1] = warriorSkills[4];
+        gainedSkill_Warrior[2] = warriorSkills[8];
+
+        gainedSkill_Archer[0] = archerSkills[0];
+        gainedSkill_Archer[1] = warriorSkills[4];
+        gainedSkill_Archer[2] = warriorSkills[8];
+        changeSkill?.Invoke();
+    }
+
     private void CreateSkill()
     {
         warriorSkillData = Resources.Load("ScriptableObject/WarriorSkills") as SkillData;

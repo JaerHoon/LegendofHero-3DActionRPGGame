@@ -13,17 +13,18 @@ public class InGameSkillSlot : UIModel
     {
         skillManager = SkillManager.instance != null ? SkillManager.instance : GameObject.FindFirstObjectByType<SkillManager>();
         skillManager.changeSkill += Setting;
+        Setting();
     }
 
     public void Setting()
     {
-        if(CharacterManager.instance.choicedCharacter == CharacterManager.ChoicedCharacter.Warrior)
+        if (CharacterManager.instance.choicedCharacter == CharacterManager.ChoicedCharacter.Warrior)
         {
-            for(int i=0; i< SkillManager.instance.gainedSkill_Warrior.Length; i++)
+            for (int i = 0; i < SkillManager.instance.gainedSkill_Warrior.Length; i++)
             {
                 skills[i] = SkillManager.instance.gainedSkill_Warrior[i];
             }
-            
+
 
         }
         else
@@ -32,7 +33,7 @@ public class InGameSkillSlot : UIModel
             {
                 skills[i] = SkillManager.instance.gainedSkill_Archer[i];
             }
-               
+
         }
 
         ChangeUI();
@@ -40,16 +41,23 @@ public class InGameSkillSlot : UIModel
 
     public void startCooltime(int Slotnum)
     {
-       for(int i=0; i < skills.Count; i++)
+        if (Slotnum == 2)
         {
-            if(Slotnum == i)
-            {
-                SlotCoolTimeStart?.Invoke(skills[i].cd, Slotnum);
-            }
-            else
-            {
-                SlotCoolTimeStart?.Invoke(skills[i].gcd, Slotnum);
-            }
+            SlotCoolTimeStart?.Invoke(skills[2].cd, 2);
+            SlotCoolTimeStart?.Invoke(skills[2].gcd, 1);
+            SlotCoolTimeStart?.Invoke(skills[2].gcd, 0);
+        }
+        else if (Slotnum == 1)
+        {
+            SlotCoolTimeStart?.Invoke(skills[1].cd, 1);
+            SlotCoolTimeStart?.Invoke(skills[1].gcd, 0);
+            
+        }
+        else if(Slotnum == 0)
+        {
+            SlotCoolTimeStart?.Invoke(skills[0].cd, 0);
+            SlotCoolTimeStart?.Invoke(skills[0].gcd, 1);
         }
     }
+ 
 }
