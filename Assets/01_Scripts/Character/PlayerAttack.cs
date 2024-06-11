@@ -73,6 +73,11 @@ public class PlayerAttack : MonoBehaviour
 
     public void KnightAttack() // 기본공격 함수
     {
+        if (isBlock == true)
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0) && !isAttackButton3) // 마우스 왼쪽버튼 클릭했을 때 발동하도록 설정한다.
         {
             playerTrigger.OnCollider();
@@ -152,6 +157,11 @@ public class PlayerAttack : MonoBehaviour
 
     public void skillAttack() // 스킬 함수
     {
+        if(isBlock==true)
+        {
+            return;
+        }
+        
         if (Input.GetMouseButtonDown(1) && !isButtonPressed3) // 마우스 오른쪽버튼 클릭했을 때 발동하도록 설정한다.
         {
             anim.SetTrigger("Attack");
@@ -176,6 +186,7 @@ public class PlayerAttack : MonoBehaviour
 
         if(Input.GetMouseButtonDown(1) && isButtonPressed3)
         {
+            anim.SetTrigger("Attack");
             skillsetting3();
         }
     }
@@ -246,10 +257,9 @@ public class PlayerAttack : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             isBlock = true;
-            print(isBlock);
             anim.SetBool("block", true);
             shield.Play();
-            cap.enabled = false;
+            cap.enabled = false; // 콜라이더를 비활성화하여 데미지를 입지 않게 함.
             StartCoroutine(Endblock());
         }
     }
@@ -261,13 +271,14 @@ public class PlayerAttack : MonoBehaviour
         isBlock = false;
         anim.SetBool("block", false);
         shield.Stop();
-        cap.enabled = true;
+        cap.enabled = true;// 보호막 시간이 끝나면 콜라이더가 활성화 되어서 데미지를 입음.
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "MagicBullet" && isBlock == true)
         {
+            //보호막 스킬을 사용하는 동안 캐릭터에 닿는 탄환들을 삭제함.(데미지X)
             Destroy(other.gameObject);
         }
     }
@@ -275,13 +286,13 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(die.isPlayerDie==true)
+        if(die.isPlayerDie==true) // 플레이어 사망 상태일 때 동작에 제한을 두기 위함.
         {
             return;
         }
         
-        KnightAttack();
-        skillAttack();
+        //KnightAttack();
+        //skillAttack();
         block();
 
     }
