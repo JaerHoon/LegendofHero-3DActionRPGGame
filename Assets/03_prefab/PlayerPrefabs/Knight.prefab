@@ -35126,6 +35126,10 @@ GameObject:
   - component: {fileID: 1689165092615045634}
   - component: {fileID: 5047136013759580749}
   - component: {fileID: 3324675083284682443}
+  - component: {fileID: 3395107232040699216}
+  - component: {fileID: 6331099716379559935}
+  - component: {fileID: 4718948265243230411}
+  - component: {fileID: 4901616380456137696}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Player
@@ -35141,7 +35145,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4172812277894937045}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.42, y: 0.060000002, z: -10.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -35223,6 +35227,7 @@ MonoBehaviour:
   isButtonPressed: 0
   isButtonPressed2: 0
   isButtonPressed3: 0
+  isBlock: 0
   isAttackButton3: 0
 --- !u!136 &1689165092615045634
 CapsuleCollider:
@@ -35289,6 +35294,115 @@ MonoBehaviour:
   heart: {fileID: 6781776742949914260}
   playerHp: {fileID: 0}
   isPlayerDie: 0
+--- !u!65 &3395107232040699216
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4172812277894937045}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 2.22, z: 1.34}
+  m_Center: {x: 0, y: 1.32, z: 0}
+--- !u!114 &6331099716379559935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4172812277894937045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15715f1f6865b964199fc8f4436570f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSkillsSlot:
+  - characterType: 0
+    skillName: 
+    ID: 0
+    SkillDescription: 
+    skillType: 0
+    Image: {fileID: 0}
+    material: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
+    skillValue: 0
+  - characterType: 0
+    skillName: 
+    ID: 0
+    SkillDescription: 
+    skillType: 0
+    Image: {fileID: 0}
+    material: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
+    skillValue: 0
+  - characterType: 0
+    skillName: 
+    ID: 0
+    SkillDescription: 
+    skillType: 0
+    Image: {fileID: 0}
+    material: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
+    skillValue: 0
+--- !u!114 &4718948265243230411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4172812277894937045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172444ba7cca6ab46af2b93c11fd733d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4901616380456137696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4172812277894937045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a707f710382e4346b06d06ec2b3492b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4268432369352039291
 GameObject:
   m_ObjectHideFlags: 0

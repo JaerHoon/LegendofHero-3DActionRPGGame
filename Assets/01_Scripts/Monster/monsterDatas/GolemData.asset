@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MonsterName: Golem
   MonsterID: 
-  HP: 1000000
+  HP: 200
   ATKPow: 1
   Lv: 10
   MoveSpeed: 5

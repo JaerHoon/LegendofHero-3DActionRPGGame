@@ -33,6 +33,7 @@ public class PlayerAttack : MonoBehaviour
     public bool isButtonPressed2 = false;
     public bool isButtonPressed3 = false;
 
+    bool isCoolTimeBlock = false;
     bool isAttackButton1 = false;
     bool isAttackButton2 = false;
     public bool isBlock = false;
@@ -40,6 +41,7 @@ public class PlayerAttack : MonoBehaviour
 
     CharacterDamage die;
     CapsuleCollider cap;
+    Warrior controller;
     private void Awake()
     {
         if (instance == null)
@@ -53,6 +55,7 @@ public class PlayerAttack : MonoBehaviour
         playerTrigger = GetComponentInChildren<PlayerTrigger>();
         die = GetComponent<CharacterDamage>();
         cap = GetComponent<CapsuleCollider>();
+        controller = GameObject.FindWithTag("Player").GetComponent<Warrior>();
     }
     /*void usedRay()
     {
@@ -73,6 +76,11 @@ public class PlayerAttack : MonoBehaviour
 
     public void KnightAttack() // 기본공격 함수
     {
+        if (isBlock == true)
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0) && !isAttackButton3) // 마우스 왼쪽버튼 클릭했을 때 발동하도록 설정한다.
         {
             playerTrigger.OnCollider();
@@ -152,6 +160,11 @@ public class PlayerAttack : MonoBehaviour
 
     public void skillAttack() // 스킬 함수
     {
+        if(isBlock==true)
+        {
+            return;
+        }
+        
         if (Input.GetMouseButtonDown(1) && !isButtonPressed3) // 마우스 오른쪽버튼 클릭했을 때 발동하도록 설정한다.
         {
             anim.SetTrigger("Attack");
@@ -176,6 +189,7 @@ public class PlayerAttack : MonoBehaviour
 
         if(Input.GetMouseButtonDown(1) && isButtonPressed3)
         {
+            anim.SetTrigger("Attack");
             skillsetting3();
         }
     }
@@ -242,15 +256,22 @@ public class PlayerAttack : MonoBehaviour
 
     public void block() // 보호막 함수
     {
+        if(isCoolTimeBlock == true)
+        {
+            return;
+        }
+        
+        
         //스페이스바를 누르면 보호막 스킬을 사용하여 캐릭터가 방패들 들어 공격을 막을 수 있도록 함수를 구현했다.
         if(Input.GetKeyDown(KeyCode.Space))
         {
+            isCoolTimeBlock = true;
             isBlock = true;
-            print(isBlock);
             anim.SetBool("block", true);
             shield.Play();
-            cap.enabled = false;
-            StartCoroutine(Endblock());
+            cap.enabled = false; // 콜라이더를 비활성화하여 데미지를 입지 않게 함.
+            StartCoroutine(Endblock()); // 보호막 관련 애니메이션 및 파티클 재생을 위한 코루틴 함수
+            StartCoroutine(CoolTimeBlock()); // 보호막 쿨타임 관련 코루틴 함수
         }
     }
 
@@ -261,13 +282,20 @@ public class PlayerAttack : MonoBehaviour
         isBlock = false;
         anim.SetBool("block", false);
         shield.Stop();
-        cap.enabled = true;
+        cap.enabled = true;// 보호막 시간이 끝나면 콜라이더가 활성화 되어서 데미지를 입음.
+    }
+
+    IEnumerator CoolTimeBlock()
+    {
+        yield return new WaitForSeconds(controller.playerSkillsSlot[2].cd);
+        isCoolTimeBlock = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "MagicBullet" && isBlock == true)
         {
+            //보호막 스킬을 사용하는 동안 캐릭터에 닿는 탄환들을 삭제함.(데미지X)
             Destroy(other.gameObject);
         }
     }
@@ -275,13 +303,13 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(die.isPlayerDie==true)
+        if(die.isPlayerDie==true) // 플레이어 사망 상태일 때 동작에 제한을 두기 위함.
         {
             return;
         }
         
-        KnightAttack();
-        skillAttack();
+        //KnightAttack();
+        //skillAttack();
         block();
 
     }

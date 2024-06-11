@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class PlayerTrigger : MonoBehaviour
 {
+    //[SerializeField]
+    //ScriptableObject playerDamage;
+    Warrior controller;
+    
     void Start()
     {
         gameObject.GetComponent<BoxCollider>().enabled = false;
+        controller = GameObject.FindWithTag("Player").GetComponent<Warrior>();
+        
 
     }
 
@@ -15,7 +21,8 @@ public class PlayerTrigger : MonoBehaviour
         if (other.gameObject.tag == "Monster")
         {
 
-            other.GetComponent<MonsterDamage>().OnDamage(5);
+
+            other.GetComponent<MonsterDamage>().OnDamage(controller.playerSkillsSlot[0].damage);
 
             //Debug.Log("충돌감지!!");
 
