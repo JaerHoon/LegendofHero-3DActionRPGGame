@@ -35327,6 +35327,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15715f1f6865b964199fc8f4436570f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSkillsSlot:
+  - characterType: 0
+    skillName: 
+    ID: 0
+    SkillDescription: 
+    skillType: 0
+    Image: {fileID: 0}
+    material: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
+    skillValue: 0
+  - characterType: 0
+    skillName: 
+    ID: 0
+    SkillDescription: 
+    skillType: 0
+    Image: {fileID: 0}
+    material: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
+    skillValue: 0
+  - characterType: 0
+    skillName: 
+    ID: 0
+    SkillDescription: 
+    skillType: 0
+    Image: {fileID: 0}
+    material: {fileID: 0}
+    Damage: 0
+    CD: 0
+    GCD: 0
+    Scale: 0
+    SpeedRate: 0
+    EventRate: 0
+    DamageCount: 0
+    SkillCount: 0
+    DamageRate: 0
+    skillValue: 0
 --- !u!114 &4718948265243230411
 MonoBehaviour:
   m_ObjectHideFlags: 0

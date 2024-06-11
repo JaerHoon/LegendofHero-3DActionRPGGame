@@ -8,10 +8,11 @@ public class SwordWave : MonoBehaviour
     float skillPower;
     
     public ParticleSystem Ex;
+    Warrior controller;
     void Start()
     {
         StartCoroutine(DestroyWave());
- 
+        controller = GameObject.FindWithTag("Player").GetComponent<Warrior>();
     }
 
     IEnumerator DestroyWave()
@@ -24,7 +25,7 @@ public class SwordWave : MonoBehaviour
     {
         if(other.gameObject.tag=="Monster")
         {
-            other.GetComponent<MonsterDamage>().OnDamage(10);
+            other.GetComponent<MonsterDamage>().OnDamage(controller.playerSkillsSlot[1].damage);
 
             if(PlayerAttack.instance.isButtonPressed3)
             {

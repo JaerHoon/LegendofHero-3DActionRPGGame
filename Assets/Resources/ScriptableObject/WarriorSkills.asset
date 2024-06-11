@@ -22,7 +22,7 @@ MonoBehaviour:
     skillType: 0
     Image: {fileID: 0}
     material: {fileID: 0}
-    Damage: 220
+    Damage: 20
     CD: 0
     GCD: 1.5
     Scale: 1
