@@ -585,6 +585,8 @@ MonoBehaviour:
     SkillCount: 0
     DamageRate: 0
     skillValue: 0
+  maxSkillNum: 0
+  curSkillNum: 0
 --- !u!4 &395259480
 Transform:
   m_ObjectHideFlags: 0
@@ -929,7 +931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7201280066921114926, guid: b4c028c2a90e6bd4b8e07f3c66622bb7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.42
+      value: 2.03
       objectReference: {fileID: 0}
     - target: {fileID: 7201280066921114926, guid: b4c028c2a90e6bd4b8e07f3c66622bb7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -937,7 +939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7201280066921114926, guid: b4c028c2a90e6bd4b8e07f3c66622bb7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.98
+      value: -15.18
       objectReference: {fileID: 0}
     - target: {fileID: 7201280066921114926, guid: b4c028c2a90e6bd4b8e07f3c66622bb7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2966,6 +2968,10 @@ PrefabInstance:
     - target: {fileID: 188464615969464675, guid: 5674a410924c7a8418e3e8b78448588d, type: 3}
       propertyPath: m_Name
       value: Stone Golem
+      objectReference: {fileID: 0}
+    - target: {fileID: 188464615969464675, guid: 5674a410924c7a8418e3e8b78448588d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2370388165983782919, guid: 5674a410924c7a8418e3e8b78448588d, type: 3}
       propertyPath: shakeCameraSC
