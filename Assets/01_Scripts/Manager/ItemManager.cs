@@ -24,6 +24,7 @@ public class ItemManager : MonoBehaviour
 
     public List<BaseItem> items = new List<BaseItem>();
 
+    public Material[] item_Materials;
 
 
     public Dictionary<int, int> itemDic = new Dictionary<int, int>();
@@ -47,6 +48,7 @@ public class ItemManager : MonoBehaviour
 
     private void Start()
     {
+        item_Materials = Resources.LoadAll<Material>("Material/items");
         inventory = gameObject.GetComponent<Inventory>();
         for (int i = 0; i < 10; i++)
         {
