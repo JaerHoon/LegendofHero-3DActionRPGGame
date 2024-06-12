@@ -136,23 +136,9 @@ public class SkillChoiceController : MonoBehaviour
     public void GetSkill(SkillInfo skill,Platform platform)
     {
        
-        if(stageType == StageType.start)
-        {
-            for(int i=0; i< platforms.Length; i++)
-            {
-                if(platforms[i].gameObject != platform.gameObject)
-                {
-                  
-                    platforms[i].Restore();
-                }
-            }
-        }
-            
-       
-        
         SkillManager.instance.GetSkill(CharacterManager.instance.choicedCharacter, skill);
-        
-       
+        this.gameObject.SetActive(false);
+      
     }
 
     public void GetItemRelic()

@@ -120,6 +120,16 @@ public class StageManager : MonoBehaviour
             normalController.Setting();
             skill_NormalATK.SetActive(true);
         }
+        else if(stageDatas[currentStageNum].stageType == StageData.StageType.NormalATK)
+        {
+            skillController.Setting();
+            skill_SkillATK.SetActive(true);
+        }
+        else if(stageDatas[currentStageNum].stageType == StageData.StageType.ItemRelic)
+        {
+            itemRelicController.Setting();
+            itemRelicATK.SetActive(true);
+        }
     }
 
     public void PlayerDie()
