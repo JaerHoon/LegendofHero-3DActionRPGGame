@@ -9,7 +9,7 @@ public class Archer : CharacterAttackController
     {
         playerSkillsSlot[0] = SkillManager.instance.archerSkills[0];
         playerSkillsSlot[1] = SkillManager.instance.archerSkills[4];
-        playerSkillsSlot[1] = SkillManager.instance.archerSkills[8];
+        playerSkillsSlot[2] = SkillManager.instance.archerSkills[8];
         skillSc = this.gameObject.GetComponent<ArcherSkill>();
         ArcherInit();
     }
@@ -21,7 +21,8 @@ public class Archer : CharacterAttackController
         playerCritDamage = 1.5f;
         playerAttackChargeRate = 1;
         playerSkillChargeRate = 1;
-
+        maxSkillNum = playerSkillsSlot[1].skillCount;
+        curSkillNum = maxSkillNum;
         for (int i = 0; i < 4; i++) isReadySkills[i] = true;
 
         isNonHit = false;
@@ -36,6 +37,8 @@ public class Archer : CharacterAttackController
         else if (SKillNum >= 4 && SKillNum <= 7)
         {
             playerSkillsSlot[1] = SkillManager.instance.archerSkills[SKillNum];
+            maxSkillNum = playerSkillsSlot[1].skillCount;
+            curSkillNum = maxSkillNum;
         }
         else
         {

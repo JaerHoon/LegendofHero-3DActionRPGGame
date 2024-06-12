@@ -49,7 +49,7 @@ public class CharacterDamage : MonoBehaviour
         {
             isPlayerDie = true;
             heart.SetActive(false); // 파티클 비활성화 해서 죽었을 때 더이상 나오지 않게 하기 위함.
-            offNavMesh();
+            //offNavMesh();
             anim.SetTrigger("Death");
             CoroutineStop(); // 코루틴 멈추는 함수
             cap.enabled = false; // 죽었을 때 콜라이더 비활성화
@@ -101,7 +101,7 @@ public class CharacterDamage : MonoBehaviour
         }
     }
 
-    void offNavMesh()
+    /*void offNavMesh()
     {
         NavMeshAgent[] monsterNav = FindObjectsOfType<NavMeshAgent>();
         foreach(NavMeshAgent agent in monsterNav)
@@ -111,7 +111,7 @@ public class CharacterDamage : MonoBehaviour
                 agent.enabled = false;
             }
         }
-    }
+    }*/
 
     void offSetActive()
     {

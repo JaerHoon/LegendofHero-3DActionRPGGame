@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerTrigger : MonoBehaviour
+public class ChopAttackTrigger : MonoBehaviour
 {
     //[SerializeField]
     //ScriptableObject playerDamage;
     Warrior controller;
-    
+
     void Start()
     {
         gameObject.GetComponent<BoxCollider>().enabled = false;
         controller = GameObject.FindWithTag("Player").GetComponent<Warrior>();
-        
+
 
     }
 
@@ -49,6 +49,6 @@ public class PlayerTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
