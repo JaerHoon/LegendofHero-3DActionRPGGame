@@ -10,7 +10,7 @@ public class Relic : BaseItem
     public float scale;
     public float cd;
 
-    public Relic(int itemID, string _name, Sprite icon, string description, float power, float scale, float cd) : base(itemID, _name,icon,description)
+    public Relic(int itemID, string _name, Sprite icon,Material material, string description,int value, float power, float scale, float cd) : base(itemID, _name,icon, material, description, value)
     {
         this.power = power;
         this.scale = scale;

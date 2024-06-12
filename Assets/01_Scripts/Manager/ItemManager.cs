@@ -25,6 +25,7 @@ public class ItemManager : MonoBehaviour
     public List<BaseItem> items = new List<BaseItem>();
 
     public Material[] item_Materials;
+    public Sprite[] item_Sprite;
 
 
     public Dictionary<int, int> itemDic = new Dictionary<int, int>();
@@ -49,6 +50,7 @@ public class ItemManager : MonoBehaviour
     private void Start()
     {
         item_Materials = Resources.LoadAll<Material>("Material/items");
+        item_Sprite = Resources.LoadAll<Sprite>("Material/items/Sprite");
         inventory = gameObject.GetComponent<Inventory>();
         for (int i = 0; i < 10; i++)
         {
@@ -59,6 +61,12 @@ public class ItemManager : MonoBehaviour
 
     void Init()
     {
+        for (int i = 0; i < 10; i++)
+        {
+            items[i].itemIcon = item_Sprite[i];
+            items[i].itemMaterial = item_Materials[i];
+        }
+
         for (int i = 0; i < 10; i++)
         {
             itemDic[i] = 0;
@@ -83,29 +91,29 @@ public class ItemManager : MonoBehaviour
     // Start is called before the first frame update
     void CreateItem()
     {
-        Relic relic = new Relic(0, "비둘기의 활", null, "3초마다 타겟을 향해 투사체를 발사하여 70 데미지를 준다.", 70f, 0, 3f);
+        Relic relic = new Relic(0, "비둘기의 활", null,null, "3초마다 타겟을 향해 투사체를 발사하여 70 데미지를 준다.",0, 70f, 0, 3f);
         items.Add(relic); RelicItems.Add(relic);
-        relic = new Relic(1, "저주의 발톱", null, "가까운 범위에 적에게 저주를 부여한다.( 저주 : 5)", 0, 5f, 0);
+        relic = new Relic(1, "저주의 발톱", null, null, "가까운 범위에 적에게 저주를 부여한다.( 저주 : 5)", 0, 0, 5f, 0);
         items.Add(relic); RelicItems.Add(relic);
-        relic = new Relic(2, "화강암 대검", null, "16초마다 자기 주위를 원형으로 크게 베어 700 데미지를 준다.", 700f, 7f, 16f);
+        relic = new Relic(2, "화강암 대검", null, null, "16초마다 자기 주위를 원형으로 크게 베어 700 데미지를 준다.", 0, 700f, 7f, 16f);
         items.Add(relic); RelicItems.Add(relic);
-        relic = new Relic(3, "왕비의 왕관", null, "크리티컬이 50%가 아닌 150%의 추가 피해를 주게 된다,", 0, 0, 0);
+        relic = new Relic(3, "왕비의 왕관", null, null, "크리티컬이 50%가 아닌 150%의 추가 피해를 주게 된다,", 0, 0, 0, 0);
         items.Add(relic); RelicItems.Add(relic);
-        relic = new Relic(4, "담쟁이덩쿨 스태프", null, "10초마다 타겟을 향해 투사체를 발사하여 50의 데미지를 주고 5초의 독을 부여한다. (독 : 30(5))", 50f, 0, 10);
+        relic = new Relic(4, "담쟁이덩쿨 스태프", null, null, "10초마다 타겟을 향해 투사체를 발사하여 50의 데미지를 주고 5초의 독을 부여한다. (독 : 30(5))", 0, 50f, 0, 10);
         items.Add(relic); RelicItems.Add(relic);
 
-        Skill_Item skill_Item1 = new Skill_Item(5, "뱀송곳니 단검", null, "스킬 적중 시 5초의 독을 부여한다. (독 : 30(5))", 0, 0, 0, 0, 0);
+        Skill_Item skill_Item1 = new Skill_Item(5, "뱀송곳니 단검", null, null, "스킬 적중 시 5초의 독을 부여한다. (독 : 30(5))", 0, 0, 0, 0, 0, 0);
         items.Add(skill_Item1); SkillItems.Add(skill_Item1);
-        skill_Item1 = new Skill_Item(6, "독수리 부적", null, "모든 스킬의 데미지가 20 증가한다.", 20, 0, 0, 0, 0);
+        skill_Item1 = new Skill_Item(6, "독수리 부적", null, null, "모든 스킬의 데미지가 20 증가한다.", 0, 20, 0, 0, 0, 0);
         items.Add(skill_Item1); SkillItems.Add(skill_Item1);
-        skill_Item1 = new Skill_Item(7, "강철 방패", null, "무적 상태의 지속 시간이 1초 길어진다.", 0, 1, 0, 0, 0);
+        skill_Item1 = new Skill_Item(7, "강철 방패", null, null, "무적 상태의 지속 시간이 1초 길어진다.", 0, 0, 1, 0, 0, 0);
         items.Add(skill_Item1); SkillItems.Add(skill_Item1);
-        skill_Item1 = new Skill_Item(8, "작은 날개", null, "이동속도가 크게 증가한다.", 0, 0, 1.5f, 0, 0);
+        skill_Item1 = new Skill_Item(8, "작은 날개", null, null, "이동속도가 크게 증가한다.", 0, 0, 0, 1.5f, 0, 0);
         items.Add(skill_Item1); SkillItems.Add(skill_Item1);
-        skill_Item1 = new Skill_Item(9, "거대한 곤봉", null, "평타의 데미지가 70% 증가하지만 GCD가 0.6초 길어지고 이동속도가 조금 감소한다.", 0, 0, 0.85f, 1.7f, 0.6f);
+        skill_Item1 = new Skill_Item(9, "거대한 곤봉", null, null, "평타의 데미지가 70% 증가하지만 GCD가 0.6초 길어지고 이동속도가 조금 감소한다.", 0, 0, 0, 0.85f, 1.7f, 0.6f);
         items.Add(skill_Item1); SkillItems.Add(skill_Item1);
 
-
+        
     }
 
     public void OnGetItem(int ItemNum)//아이템을 먹을 때 호출
