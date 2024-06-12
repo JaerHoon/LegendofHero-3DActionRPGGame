@@ -10,7 +10,7 @@ public class InGameCanvasController : UIController
     MarketSkillInfo marketSkillInfo;
     InGameSkillInfo skillInfo;
 
-    GameObject[] Panels = new GameObject[7];
+    GameObject[] Panels = new GameObject[8];
 
     Vector2 skillinfoPos1 = new Vector2(-395, 0);
     Vector2 skillinfoPos2 = new Vector2(210,0);
@@ -32,6 +32,8 @@ public class InGameCanvasController : UIController
         Panels[2].SetActive(false);
         Panels[3].SetActive(false);
         Panels[4].SetActive(false);
+        Panels[6].SetActive(false);
+       
     }
 
     public void OnInteraction(string text)
@@ -98,5 +100,9 @@ public class InGameCanvasController : UIController
     public void StartSkillCoolTime(int Slotnum)
     {
         skillSlot.startCooltime(Slotnum);
+    }
+    public void OnFadeIn_Out()
+    {
+        Panels[6].SetActive(true);
     }
 }
