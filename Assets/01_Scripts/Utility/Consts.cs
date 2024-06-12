@@ -15,4 +15,7 @@ public class Consts
     public const int MonsterMage = 8;
     public const int MonsterRogue = 9;
     public const int StoneGolem = 10;
+    public const int Arrow_ItemSkill = 11;
+    public const int PoisonPJ = 12;
+
 }
