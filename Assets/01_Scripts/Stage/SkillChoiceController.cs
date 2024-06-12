@@ -155,7 +155,7 @@ public class SkillChoiceController : MonoBehaviour
 
     public void GetItemRelic(BaseItem item)
     {
-        inventory.AddItem(item);
+        ItemManager.instance.OnGetItem(item.itemID);
         this.gameObject.SetActive(false);
     }
 

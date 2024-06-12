@@ -37,7 +37,7 @@ public class MarketSkillInfo : UIModel
         skillIcon = item.itemIcon;
         skillName = item.itemName;
         skillDescription = item.itemDescription;
-        SkillValue = 100;// 가격바꿔야함.
+        SkillValue = item.value;
 
         ChangeUI();
     }

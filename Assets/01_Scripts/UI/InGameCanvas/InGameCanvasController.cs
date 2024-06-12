@@ -34,6 +34,18 @@ public class InGameCanvasController : UIController
         Panels[4].SetActive(false);
     }
 
+    public void OnInteraction(string text)
+    {
+        interaction.Setting(text);
+        Panels[3].SetActive(true);
+    }
+
+    public void OffInteraction()
+    {
+        Panels[3].SetActive(false);
+    }
+       
+
     public void OnPlayerInfo()
     {
         

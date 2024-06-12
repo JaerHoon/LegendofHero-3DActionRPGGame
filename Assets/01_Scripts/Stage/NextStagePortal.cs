@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class NextStagePortal : MonoBehaviour
 {
+    StageManager stageManager;
+    InGameCanvasController inGameCanvasController;
     SphereCollider coll;
+    bool IsInteraction;
 
     void Start()
     {
+        stageManager = GameObject.FindFirstObjectByType<StageManager>();
+        inGameCanvasController = GameObject.FindFirstObjectByType<InGameCanvasController>();
         coll = GetComponent<SphereCollider>();
     }
 
@@ -15,7 +20,22 @@ public class NextStagePortal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            print("포탈범위진입");
+            IsInteraction= true;
+            inGameCanvasController.OnInteraction("NextStage");
+        }
+    }
+
+    private void Update()
+    {
+        if(IsInteraction == true)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                print("대화시작");
+                inGameCanvasController.OffInteraction();
+                IsInteraction = false;
+                stageManager.SetStage(stageManager.currentStageNum + 1);
+            }
         }
     }
 }

@@ -9,8 +9,6 @@ public class Platform : MonoBehaviour
     [HideInInspector]
     public SkillChoiceController skillChoiceController;
 
-    Inventory inventory;
-
     [HideInInspector]
     public int SkillNum;
 
@@ -23,20 +21,14 @@ public class Platform : MonoBehaviour
     protected BoxCollider coll;
     [SerializeField]
     protected MeshRenderer Icon_mesh;
-
-   
     public GameObject Skill_obj;
-
     public SkillChoiceController.StageType stageType;
-
-
     protected InGameCanvasController InGameCanvas;
 
 
     public virtual void Init()
     {
         InGameCanvas = GameObject.FindAnyObjectByType<InGameCanvasController>();
-        inventory = GameObject.FindAnyObjectByType<Inventory>();
         coll = GetComponent<BoxCollider>();
         Icon_mesh = FindInChildren(this.transform, "Icon")?.GetComponent<MeshRenderer>();
         if (Icon_mesh == null) print("Icon이라는 오브젝트가 없습니다");
@@ -45,7 +37,7 @@ public class Platform : MonoBehaviour
     private void OnEnable()
     {
         Skill_obj.SetActive(true);
-        if (coll.enabled == false) coll.enabled = true;
+        if (coll != null &&  coll.enabled == false) coll.enabled = true;
     }
 
     Transform FindInChildren(Transform parent, string name)
@@ -80,7 +72,7 @@ public class Platform : MonoBehaviour
     public virtual void Setting(BaseItem item)
     {
         this.item = item;
-        //머티리얼 추가
+        Icon_mesh.material = item.itemMaterial;
     }
 
 
@@ -96,7 +88,6 @@ public class Platform : MonoBehaviour
         coll.enabled = false;
         skillChoiceController.GetItemRelic(item);
         Skill_obj.SetActive(false);
-
     }
      
    protected virtual void OnSkillInfo()

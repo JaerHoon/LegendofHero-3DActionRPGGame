@@ -10,6 +10,10 @@ public class StageManager : MonoBehaviour
 
     List<GameObject> Monsters = new List<GameObject>();
 
+    GameObject NPCPlatform;
+    NPCMage npcMage;
+    NextStagePortal nextStagePortal;
+
     [SerializeField]
     GameObject ChoicePlatforms;
 
@@ -22,10 +26,13 @@ public class StageManager : MonoBehaviour
     GameObject itemRelicATK;
     SkillChoiceController itemRelicController;
 
-    int currentStageNum;
+    public int currentStageNum;
 
     private void Start()
     {
+        NPCPlatform = GameObject.Find("NPCPlatform");
+        npcMage = GameObject.FindFirstObjectByType<NPCMage>();
+        nextStagePortal = GameObject.FindFirstObjectByType<NextStagePortal>();
         skill_NormalATK = ChoicePlatforms.transform.GetChild(0).gameObject;
         skill_SkillATK = ChoicePlatforms.transform.GetChild(1).gameObject;
         itemRelicATK = ChoicePlatforms.transform.GetChild(2).gameObject;
@@ -34,21 +41,28 @@ public class StageManager : MonoBehaviour
         itemRelicController = itemRelicATK.GetComponent<SkillChoiceController>();
     }
 
-    void SetStage(int stageNum)
+    public void SetStage(int stageNum)
     {
+        //페이드인 페이드 아웃
+
         currentStageNum = stageNum;
 
         if (stageDatas[stageNum].stageType == StageData.StageType.Start)
         {
+            NPCPlatform.SetActive(true);
+            npcMage.gameObject.SetActive(true);
+            npcMage.stageType = NPCMage.StageType.Start;
+            nextStagePortal.gameObject.SetActive(true);
 
         }
         else if (stageDatas[stageNum].stageType == StageData.StageType.Market)
         {
-
-        }
-        else if (stageDatas[stageNum].stageType == StageData.StageType.Boss)
-        {
-
+            NPCPlatform.SetActive(true);
+            npcMage.gameObject.SetActive(true);
+            npcMage.stageType = NPCMage.StageType.Market;
+            itemRelicATK.SetActive(true);
+            itemRelicController.stageType = SkillChoiceController.StageType.Maerket;
+            nextStagePortal.gameObject.SetActive(true);
         }
         else
         {
@@ -130,6 +144,8 @@ public class StageManager : MonoBehaviour
             itemRelicController.Setting();
             itemRelicATK.SetActive(true);
         }
+
+        nextStagePortal.gameObject.SetActive(true);
     }
 
     public void PlayerDie()
