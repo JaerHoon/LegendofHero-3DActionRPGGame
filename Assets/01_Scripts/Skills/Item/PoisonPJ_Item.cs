@@ -8,7 +8,13 @@ public class PoisonPJ_Item : MonoBehaviour
     float pJSpeed;
     void Start()
     {
-        StartCoroutine(missPoisonDestroy());
+        StartCoroutine(missArrowDestroy());
+    }
+
+    IEnumerator missArrowDestroy()
+    {
+        yield return new WaitForSeconds(3.0f);
+        PoolFactroy.instance.OutPool(this.gameObject, 12);
     }
 
     IEnumerator missPoisonDestroy()
@@ -23,7 +29,7 @@ public class PoisonPJ_Item : MonoBehaviour
         {
             other.GetComponent<MonsterDamage>().OnDamage(ItemManager.instance.RelicItems[4].power);
             other.GetComponent<MonsterBuff>().OnPoison(5,1,30);
-            Destroy(this.gameObject);
+            PoolFactroy.instance.OutPool(this.gameObject, 12);
         }
 
     }
