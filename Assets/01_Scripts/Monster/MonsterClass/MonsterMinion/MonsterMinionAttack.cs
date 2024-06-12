@@ -11,6 +11,7 @@ public class MonsterMinionAttack : MonsterAttack
 
     public override void Attack()
     {
+      
         hitBox.gameObject.SetActive(true);
     }
 
@@ -22,5 +23,6 @@ public class MonsterMinionAttack : MonsterAttack
     public override void Hit(CharacterDamage player)
     {
         player.OnDamage(monster.monsterData.ATKPow);
+        print("몬스터 어택");
     }
 }

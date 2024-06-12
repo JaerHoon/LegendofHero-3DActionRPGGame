@@ -6,6 +6,7 @@ public class StageManager : MonoBehaviour
     [SerializeField]
     List<StageData> stageDatas = new List<StageData>();
     [SerializeField]
+    GameObject spawnPosParent;
     List<Vector3> SpawnPos = new List<Vector3>();
 
     List<GameObject> Monsters = new List<GameObject>();
@@ -26,13 +27,16 @@ public class StageManager : MonoBehaviour
 
     GameObject itemRelicATK;
     SkillChoiceController itemRelicController;
-
+    [HideInInspector]
     public int currentStageNum;
+
+    Character Player;
 
     private void Start()
     {
+        Player = GameObject.FindFirstObjectByType<Character>();
         inGameCanvasController = GameObject.FindFirstObjectByType<InGameCanvasController>();
-        NPCPlatform = GameObject.Find("NPCPlatform");
+        NPCPlatform = GameObject.FindGameObjectWithTag("NPCPlatform");
         npcMage = GameObject.FindFirstObjectByType<NPCMage>();
         nextStagePortal = GameObject.FindFirstObjectByType<NextStagePortal>();
         skill_NormalATK = ChoicePlatforms.transform.GetChild(0).gameObject;
@@ -41,15 +45,38 @@ public class StageManager : MonoBehaviour
         normalController = skill_NormalATK.GetComponent<SkillChoiceController>();
         skillController = skill_SkillATK.GetComponent<SkillChoiceController>();
         itemRelicController = itemRelicATK.GetComponent<SkillChoiceController>();
+        for(int i = 0; i < spawnPosParent.transform.childCount; i++)
+        {
+            Vector3 pos = spawnPosParent.transform.GetChild(i).transform.position;
+            SpawnPos.Add(pos);
+        }
+
+        Invoke("GameStart", 1);
     }
 
-    public void SetStage(int stageNum)
+    void GameStart()
+    {
+        EnterStage(0);
+    }
+
+    public void EnterStage(int stageNum)
     {
         inGameCanvasController.OnFadeIn_Out();
-
         currentStageNum = stageNum;
+        Invoke("SetStage", 0.5f);
+    }
 
-        if (stageDatas[stageNum].stageType == StageData.StageType.Start)
+    public void SetStage()
+    {
+        NPCPlatform.SetActive(false);
+        npcMage.gameObject.SetActive(false);
+        nextStagePortal.gameObject.SetActive(false);
+        itemRelicATK.SetActive(false);
+        skill_NormalATK.SetActive(false);
+        skill_SkillATK.SetActive(false);
+        nextStagePortal.gameObject.SetActive(false);
+
+        if (stageDatas[currentStageNum].stageType == StageData.StageType.Start)
         {
             NPCPlatform.SetActive(true);
             npcMage.gameObject.SetActive(true);
@@ -57,7 +84,7 @@ public class StageManager : MonoBehaviour
             nextStagePortal.gameObject.SetActive(true);
 
         }
-        else if (stageDatas[stageNum].stageType == StageData.StageType.Market)
+        else if (stageDatas[currentStageNum].stageType == StageData.StageType.Market)
         {
             NPCPlatform.SetActive(true);
             npcMage.gameObject.SetActive(true);
@@ -68,6 +95,8 @@ public class StageManager : MonoBehaviour
         }
         else
         {
+           
+
             SpawnMonsters(currentStageNum);
         }
     }
@@ -117,7 +146,7 @@ public class StageManager : MonoBehaviour
 
     void PlayerReady()
     {
-
+        Player.transform.position = Vector3.zero;
     }
 
     public void MonsterDie(GameObject Monster)

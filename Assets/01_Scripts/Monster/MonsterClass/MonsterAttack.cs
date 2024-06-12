@@ -6,13 +6,18 @@ public class MonsterAttack : MonoBehaviour
 {
     protected Monster monster;
     protected bool IsATK;
+    [SerializeField]
     protected BoxCollider hitBox;
-    
+
+    private void OnEnable()
+    {
+        if (hitBox != null) hitBox.gameObject.SetActive(false);
+    }
 
     protected void Init()
     {
         monster = GetComponent<Monster>();
-        hitBox = GetComponentInChildren<BoxCollider>();
+        
     }
 
 

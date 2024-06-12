@@ -25,6 +25,15 @@ public class NextStagePortal : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            IsInteraction = false;
+            inGameCanvasController.OffInteraction();
+        }
+    }
+
     private void Update()
     {
         if(IsInteraction == true)
@@ -34,7 +43,7 @@ public class NextStagePortal : MonoBehaviour
                 print("대화시작");
                 inGameCanvasController.OffInteraction();
                 IsInteraction = false;
-                stageManager.SetStage(stageManager.currentStageNum + 1);
+                stageManager.EnterStage(stageManager.currentStageNum + 1);
             }
         }
     }

@@ -10,7 +10,7 @@ public class InGameCanvasController : UIController
     MarketSkillInfo marketSkillInfo;
     InGameSkillInfo skillInfo;
 
-    GameObject[] Panels = new GameObject[8];
+    List<GameObject> Panels = new List<GameObject>();
 
     Vector2 skillinfoPos1 = new Vector2(-395, 0);
     Vector2 skillinfoPos2 = new Vector2(210,0);
@@ -18,9 +18,11 @@ public class InGameCanvasController : UIController
 
     private void Start()
     {
+        print(transform.childCount);
         for(int i=0; i < transform.childCount; i++)
         {
-            Panels[i] = transform.GetChild(i).gameObject;
+            GameObject panel = transform.GetChild(i).gameObject;
+            Panels.Add(panel);
         }
 
         skillInfo = viewModels[4] as InGameSkillInfo;
@@ -39,12 +41,12 @@ public class InGameCanvasController : UIController
     public void OnInteraction(string text)
     {
         interaction.Setting(text);
-        Panels[3].SetActive(true);
+        Panels[2].SetActive(true);
     }
 
     public void OffInteraction()
     {
-        Panels[3].SetActive(false);
+        Panels[2].SetActive(false);
     }
        
 

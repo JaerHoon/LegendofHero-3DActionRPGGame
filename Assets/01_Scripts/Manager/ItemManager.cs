@@ -197,8 +197,8 @@ public class ItemManager : MonoBehaviour
                 item_Arrow.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 1, Player.transform.position.z);
 
                 item_Arrow.transform.rotation = Quaternion.LookRotation(closestMonster.position - item_Arrow.transform.position);
-                //print(closestMonster.position);
-                //print(item_Arrow.transform.position);
+                print(closestMonster.position);
+                print(item_Arrow.transform.position);
 
                 CD = RelicItems[0].cd;
             }
