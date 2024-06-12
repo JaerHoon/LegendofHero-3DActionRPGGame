@@ -37,6 +37,8 @@ public class ItemManager : MonoBehaviour
     [HideInInspector]
     public bool[] isReadyItemSkill;
 
+    GameObject Player;
+
     private void Awake()
     {
         if (instance == null)
@@ -52,6 +54,7 @@ public class ItemManager : MonoBehaviour
         item_Materials = Resources.LoadAll<Material>("Material/items");
         item_Sprite = Resources.LoadAll<Sprite>("Material/items/Sprite");
         inventory = gameObject.GetComponent<Inventory>();
+        Player = null;
         for (int i = 0; i < 10; i++)
         {
             itemDic.Add(i, 0);
@@ -86,6 +89,14 @@ public class ItemManager : MonoBehaviour
             isMonsterExist[i] = false;
             isReadyItemSkill[i] = false;
         }
+    }
+
+    void CheckPlayer()
+    {
+        if (GameObject.FindWithTag("Player") != null)
+            Player = GameObject.FindWithTag("Player");
+        else
+            print("플레이어가 존재하지 않습니다.");
     }
 
     // Start is called before the first frame update
@@ -171,7 +182,7 @@ public class ItemManager : MonoBehaviour
         {
             yield return new WaitForSeconds(0.1f);
             CD -= 0.1f;
-            if(CD <= 0)
+            if (CD <= 0)
             {
                 isReadyItemSkill[0] = true;
             }
@@ -179,7 +190,15 @@ public class ItemManager : MonoBehaviour
                 isReadyItemSkill[0] = false;
             if (isMonsterExist[0] && isReadyItemSkill[0])
             {
-                print($"바둘기의 활 발사!, 데미지 : {RelicItems[0].power}, {RelicItems[0].cd}초에 한발 발사");
+                //print($"바둘기의 활 발사!, 데미지 : {RelicItems[0].power}, {RelicItems[0].cd}초에 한발 발사");
+                CheckPlayer();
+                GameObject item_Arrow = PoolFactroy.instance.GetPool(11) as GameObject;
+
+                item_Arrow.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 1, Player.transform.position.z);
+
+                item_Arrow.transform.rotation = Quaternion.LookRotation(closestMonster.position - item_Arrow.transform.position);
+                //print(closestMonster.position);
+                //print(item_Arrow.transform.position);
 
                 CD = RelicItems[0].cd;
             }
