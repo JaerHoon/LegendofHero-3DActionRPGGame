@@ -52,7 +52,7 @@ public class ArcherAttack : MonoBehaviour
     Arrow arrowTrigger;
     CapsuleCollider cap;
     CharacterDamage die;
-
+    Coroutine holdAttack;
     Archer archerController;
     bool isCoolTimeBlock = false;
     void Start()
@@ -89,18 +89,28 @@ public class ArcherAttack : MonoBehaviour
             {
                 Invoke("AttackSetting2", 0.3f);
             }
-            
+
         }
         
         //기본공격 3번 셋팅을 위한 if문
         if(Input.GetMouseButton(0) && isAttackButton3)
         {
+            
             isShooting = true;
             anim.SetBool("holdAttack", true);
+            archerController.OnChangeSkills(3);
             AttackSetting3();
         }
-        else
+        
+      
+    }
+
+    public void AttackStop()
+    {
+        if (Input.GetMouseButtonUp(0) && isAttackButton3)
         {
+
+            StopCoroutine(holdAttack);
             isShooting = false;
             anim.SetBool("holdAttack", false);
         }
@@ -108,12 +118,14 @@ public class ArcherAttack : MonoBehaviour
 
     void AttackSetting1() // 기본공격 1번 셋팅으로 ↑↑ 모양으로 화살이 발사됨.
     {
+        archerController.OnChangeSkills(1);
         GameObject arrowShot2 = Instantiate(arrow, transform.position, transform.rotation);
         arrowShot2.transform.position = arrowPos2.position;
     }
 
     void AttackSetting2() // 기본공격 2번 셋팅으로 누르면 화살 한발이 연이어서 나간다.
     {
+        archerController.OnChangeSkills(2);
         StartCoroutine(repeatingArrow());
     }
     IEnumerator repeatingArrow()
@@ -125,14 +137,23 @@ public class ArcherAttack : MonoBehaviour
 
     void AttackSetting3() // 기본공격3번으로 마우스 왼쪽을 누르고 있는 동안 일정 간격으로 화살이 계속 발사됨.
     {
-       if(Time.time - lastshotTime >= 0.2f)
-        {
-            shotArrow();
-            lastshotTime = Time.time;
-        }
+        holdAttack = StartCoroutine(holdArrowAttack());
     }
 
+    IEnumerator holdArrowAttack()
+    {
+        while (isShooting)
+        {
+            if (Time.time - lastshotTime >= 0.2f)
+            {
+                shotArrow();
+                lastshotTime = Time.time;
+            }
+            yield return null;
+        }
     
+    }
+
     public void skillAttack() // 스킬을 발동하기 위한 함수 => 마우스 오른쪽 버튼을 누르면 스킬이 발동된다.
     {
         if (Input.GetMouseButtonDown(1) && !isCoolTime) // 마우스 오른쪽버튼 클릭했을 때 발동하도록 설정한다.
@@ -164,6 +185,7 @@ public class ArcherAttack : MonoBehaviour
 
     void skillSetting1() // 스킬셋팅 1번 함수
     {
+        archerController.OnChangeSkills(5);
         // 10% 확률로 디버프를 거는 함수이다.
         float Debuff = Random.Range(0f, 100f);
         if (Debuff < 10.0f)
@@ -182,6 +204,7 @@ public class ArcherAttack : MonoBehaviour
 
     void skillSetting2() // 스킬셋팅 2번 함수
     {
+        archerController.OnChangeSkills(6);
         ArrowRainParticle.instance.ParticleControl();
 
         var emi = ArrowRain.emission;
@@ -201,8 +224,8 @@ public class ArcherAttack : MonoBehaviour
         {
             return;
         }
-    
-        
+
+        archerController.OnChangeSkills(7);
         skillCount++;
         if(skillCount >=2)
         {
