@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class FindClosestMonster : MonoBehaviour
 {
-    public float detectionRadius = 10f;  // 탐지 반경
+    public float detectionRadius_Arrow = 14f;  // 탐지 반경
+    public float detectionRadius_Poison = 10f;  // 탐지 반경
+    public float detectionRadius_Curse = 5f;  // 탐지 반경
     public LayerMask monsterLayer;       // 몬스터 레이어 설정
-    private Transform closestMonster;    // 가장 가까운 몬스터의 위치
+    public Transform closestMonster;    // 가장 가까운 몬스터의 위치
 
     void Start()
     {
@@ -15,14 +17,17 @@ public class FindClosestMonster : MonoBehaviour
 
     IEnumerator FindClosestMonsterRoutine()
     {
+        yield return new WaitForFixedUpdate();
         while (true)
         {
-            FindClosestMonsterWithinRadius();
+            FindClosestMonsterWithinRadius(detectionRadius_Arrow,0);
+            FindClosestMonsterWithinRadius(detectionRadius_Poison,1);
+            FindClosestMonsterWithinRadius(detectionRadius_Curse,2);
             yield return new WaitForSeconds(0.2f); // 0.2초마다 실행
         }
     }
 
-    void FindClosestMonsterWithinRadius()
+    void FindClosestMonsterWithinRadius(float detectionRadius, int typeNum)
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRadius, monsterLayer);
         closestMonster = null;
@@ -44,20 +49,30 @@ public class FindClosestMonster : MonoBehaviour
 
         if (closestMonster != null)
         {
-            Debug.Log("Closest monster position: " + closestMonster.position);
-            Debug.Log(closestMonster.name);
-            // 가장 가까운 몬스터 위치 정보를 사용할 수 있습니다.
+
+            ItemManager.instance.SetIsMonsterExist(true,typeNum);
+            ItemManager.instance.SetClosestMonster(closestMonster);
         }
         else
         {
-            //Debug.Log("No monsters found within radius.");
+            ItemManager.instance.SetIsMonsterExist(false, typeNum);
         }
     }
 
+
+    public Color[] colors = { Color.red, Color.green, Color.magenta }; // 색상 배열
+
     void OnDrawGizmosSelected()
     {
-        // 플레이어 주변 탐지 반경을 시각적으로 표시
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+        float[] sizes = { detectionRadius_Arrow, detectionRadius_Poison, detectionRadius_Curse }; // 크기 배열
+        // 선택된 게임 오브젝트를 가져옵니다.
+
+        // 기지모를 그립니다.
+        for (int i = 0; i < sizes.Length; i++)
+        {
+            // 예를 들어, 구체를 그립니다.
+            Gizmos.color = colors[i];
+            Gizmos.DrawWireSphere(transform.position, sizes[i]);
+        }
     }
 }

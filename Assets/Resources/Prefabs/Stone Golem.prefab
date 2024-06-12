@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 467087450262955891}
   - component: {fileID: 7646336622070700117}
   - component: {fileID: 3001398797920071911}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stone Golem
   m_TagString: Monster
   m_Icon: {fileID: 0}
