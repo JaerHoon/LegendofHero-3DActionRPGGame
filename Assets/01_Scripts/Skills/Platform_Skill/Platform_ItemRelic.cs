@@ -31,7 +31,7 @@ public class Platform_ItemRelic : Platform
     {
         if (IsSkillInfo && Input.GetKeyDown(KeyCode.E))
         {
-            GetSkill();
+            GetItem();
             IsSkillInfo = false;
             OffSkillInfo();
         }

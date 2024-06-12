@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
+
+   
     [HideInInspector]
     public SkillChoiceController skillChoiceController;
+
+    Inventory inventory;
 
     [HideInInspector]
     public int SkillNum;
 
     [HideInInspector]
     public  SkillInfo skill;
+
+    [HideInInspector]
+    public BaseItem item;
 
     protected BoxCollider coll;
     [SerializeField]
@@ -29,6 +36,7 @@ public class Platform : MonoBehaviour
     public virtual void Init()
     {
         InGameCanvas = GameObject.FindAnyObjectByType<InGameCanvasController>();
+        inventory = GameObject.FindAnyObjectByType<Inventory>();
         coll = GetComponent<BoxCollider>();
         Icon_mesh = FindInChildren(this.transform, "Icon")?.GetComponent<MeshRenderer>();
         if (Icon_mesh == null) print("Icon이라는 오브젝트가 없습니다");
@@ -37,6 +45,7 @@ public class Platform : MonoBehaviour
     private void OnEnable()
     {
         Skill_obj.SetActive(true);
+        if (coll.enabled == false) coll.enabled = true;
     }
 
     Transform FindInChildren(Transform parent, string name)
@@ -68,37 +77,59 @@ public class Platform : MonoBehaviour
         }
     }
 
+    public virtual void Setting(BaseItem item)
+    {
+        this.item = item;
+        //머티리얼 추가
+    }
+
 
     public virtual void GetSkill()
     {
-        coll.enabled = false;
-        skillChoiceController.GetSkill(skill, this);
+        skillChoiceController.GetSkill(skill);
         Skill_obj.SetActive(false);
 
     }
 
-    public virtual void Restore()
+    public virtual void GetItem()
     {
-        coll.enabled = true;
-        Skill_obj.SetActive(true);
-    }
+        coll.enabled = false;
+        skillChoiceController.GetItemRelic(item);
+        Skill_obj.SetActive(false);
 
+    }
+     
    protected virtual void OnSkillInfo()
     {
-        if (stageType == SkillChoiceController.StageType.stage || stageType == SkillChoiceController.StageType.start)
+        if (skillChoiceController.skillType == SkillChoiceController.SkillType.ItemRelic)
         {
-            InGameCanvas.OnskillInfo(skill,2);
+            if (stageType == SkillChoiceController.StageType.stage)
+            {
+                InGameCanvas.OnskillInfo(item);
+            }
+            else
+            {
+                InGameCanvas.OnMarketSkillInfo(item);
+            }
         }
         else
         {
-            InGameCanvas.OnMarketSkillInfo(skill);
+            if (stageType == SkillChoiceController.StageType.stage)
+            {
+                InGameCanvas.OnskillInfo(skill, 2);
+            }
+            else
+            {
+                InGameCanvas.OnMarketSkillInfo(skill);
+            }
         }
+     
 
     }
 
     protected virtual void OffSkillInfo()
     {
-        if (stageType == SkillChoiceController.StageType.stage || stageType == SkillChoiceController.StageType.start)
+        if (stageType == SkillChoiceController.StageType.stage)
         {
             InGameCanvas.OffSkillinfo();
         }

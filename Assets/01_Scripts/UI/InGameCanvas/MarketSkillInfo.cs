@@ -29,4 +29,16 @@ public class MarketSkillInfo : UIModel
 
         ChangeUI();
     }
+
+    public void Setting(BaseItem item)
+    {
+        noticeText = "Item Infomation";
+
+        skillIcon = item.itemIcon;
+        skillName = item.itemName;
+        skillDescription = item.itemDescription;
+        SkillValue = 100;// 가격바꿔야함.
+
+        ChangeUI();
+    }
 }

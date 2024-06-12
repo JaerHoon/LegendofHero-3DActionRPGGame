@@ -5,15 +5,19 @@ using System.Linq;
 
 public class SkillChoiceController : MonoBehaviour
 {
-    public enum StageType { start,stage, Maerket }
+    public enum StageType { stage, Maerket }
     public StageType stageType;
     public enum SkillType { NormalATK, SkillATK, ItemRelic }
     public SkillType skillType;
 
     public Platform[] platforms = new Platform[3];
 
+    Inventory inventory;
+   
+
     private void Start()
     {
+        inventory = GameObject.FindAnyObjectByType<Inventory>();
         platforms = GetComponentsInChildren<Platform>();
     }
 
@@ -68,7 +72,7 @@ public class SkillChoiceController : MonoBehaviour
                 }
             }
 
-            int num = Random.Range(0, skills.Count);
+           
 
             for (int i = 0; i < platforms.Length; i++)
             {
@@ -94,7 +98,7 @@ public class SkillChoiceController : MonoBehaviour
                 }
             }
 
-            int num = Random.Range(0, skills.Count);
+          
 
             for (int i = 0; i < platforms.Length; i++)
             {
@@ -129,21 +133,30 @@ public class SkillChoiceController : MonoBehaviour
 
     void ItemRelicSetting()
     {
+        List<BaseItem> NoGaineditem = ItemManager.instance.items.Except(inventory.invenItems).ToList();
 
-    }
+        int[] num = RandomNumber.RandomCreate(platforms.Length, 0, NoGaineditem.Count);
 
-
-    public void GetSkill(SkillInfo skill,Platform platform)
-    {
-       
-        SkillManager.instance.GetSkill(CharacterManager.instance.choicedCharacter, skill);
-        this.gameObject.SetActive(false);
+        for(int i=0; i < platforms.Length; i++)
+        {
+            platforms[i].stageType = stageType;
+            platforms[i].Setting(NoGaineditem[i]);
+            platforms[i].skillChoiceController = this;
+        }
       
     }
 
-    public void GetItemRelic()
-    {
 
+    public void GetSkill(SkillInfo skill)
+    {
+        SkillManager.instance.GetSkill(CharacterManager.instance.choicedCharacter, skill);
+       
+    }
+
+    public void GetItemRelic(BaseItem item)
+    {
+        inventory.AddItem(item);
+        this.gameObject.SetActive(false);
     }
 
  }

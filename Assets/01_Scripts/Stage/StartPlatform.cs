@@ -37,20 +37,17 @@ public class StartPlatform : MonoBehaviour
 
     private void Start()
     {
-        stageType = SkillChoiceController.StageType.start;
+       
         Setting();
     }
 
     public void Setting()
     {
-        if(stageType == SkillChoiceController.StageType.start)
-        {
-            StartStageSetting();
-        }
-        else
+        if(stageType == SkillChoiceController.StageType.Maerket)
         {
             MarketSetting();
         }
+        
     }
 
     void StartStageSetting()

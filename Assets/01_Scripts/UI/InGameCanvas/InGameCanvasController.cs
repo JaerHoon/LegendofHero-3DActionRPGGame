@@ -72,6 +72,12 @@ public class InGameCanvasController : UIController
         Panels[3].SetActive(true);
     }
 
+    public void OnMarketSkillInfo(BaseItem item)
+    {
+        marketSkillInfo.Setting(item);
+        Panels[3].SetActive(true);
+    }
+
     public void OffMarketSKillinfo()
     {
         Panels[3].SetActive(false);
