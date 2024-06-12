@@ -47,7 +47,7 @@ public class PoolFactroy : MonoBehaviour
     public GameObject GetPool(int index)
     {
         GameObject pool = pooledObjects[index].Get();
-        print(pool.name);
+        
         return pool;
     }
 

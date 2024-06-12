@@ -26,13 +26,14 @@ public class PlayerAttack : MonoBehaviour
     float skillPower;
     [SerializeField]
     ParticleSystem waveEX;
+    
 
     Animator anim;
     PlayerTrigger playerTrigger;
     public bool isButtonPressed = false;
     public bool isButtonPressed2 = false;
     public bool isButtonPressed3 = false;
-
+ 
     bool isCoolTimeBlock = false;
     bool isAttackButton1 = false;
     bool isAttackButton2 = false;
@@ -297,6 +298,8 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    
+
     // Update is called once per frame
     void Update()
     {
@@ -304,10 +307,10 @@ public class PlayerAttack : MonoBehaviour
         {
             return;
         }
-        
+
         //KnightAttack();
         //skillAttack();
         //block();
-
+        
     }
 }

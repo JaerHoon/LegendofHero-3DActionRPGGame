@@ -79,7 +79,7 @@ public class GolemAnim : MonsterAnim
 
     void DestroyGameObject()
     {
-        Destroy(gameObject);
+        PoolFactroy.instance.OutPool(this.gameObject, 10);
     }
 
     // Update is called once per frame
