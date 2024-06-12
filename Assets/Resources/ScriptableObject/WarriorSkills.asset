@@ -15,9 +15,9 @@ MonoBehaviour:
   ClassType: Warrior
   SkillInfo:
   - characterType: 0
-    skillName: 
+    skillName: "\uBCA0\uAE30"
     ID: 0
-    SkillDescription: "\uC8FC\uBCC0 \uD070 \uBC94\uC704\uC5D0 220 \uB370\uBBF8\uC9C0\uB97C
+    SkillDescription: "\uC804\uBC29 \uBC94\uC704\uC5D0 20 \uB370\uBBF8\uC9C0\uB97C
       \uC900\uB2E4. (GCD : 1.5\uCD08)"
     skillType: 0
     Image: {fileID: 0}
@@ -33,16 +33,15 @@ MonoBehaviour:
     DamageRate: 1
     skillValue: 0
   - characterType: 0
-    skillName: 
+    skillName: "\uD798\uAECF\uBCA0\uAE30"
     ID: 1
-    SkillDescription: "\uC8FC\uBCC0 \uD070 \uBC94\uC704\uC5D0 400 \uB370\uBBF8\uC9C0\uB97C
+    SkillDescription: "\uC804\uBC29 \uBC94\uC704\uC5D0 20 \uB370\uBBF8\uC9C0\uB97C
       \uC900\uB2E4. \uB370\uBBF8\uC9C0\uC640 \uBC94\uC704\uAC00 \uCEE4\uC9C0\uC9C0\uB9CC
-      GCD\uAC00 \uC99D\uAC00\uD55C\uB2E4 \uC0AC\uC6A9 \uC2DC \uC6C0\uC9C1\uC784\uC774
-      \uB290\uB824\uC9C4\uB2E4 (GCD : 2\uCD08) "
+      GCD\uAC00 \uC99D\uAC00\uD55C\uB2E4 (\uB370\uBBF8\uC9C0 : 40, GCD : 2\uCD08) "
     skillType: 0
     Image: {fileID: 0}
     material: {fileID: 0}
-    Damage: 400
+    Damage: 40
     CD: 0
     GCD: 2
     Scale: 1.5
@@ -53,32 +52,33 @@ MonoBehaviour:
     DamageRate: 1
     skillValue: 0
   - characterType: 0
-    skillName: 
+    skillName: "\uC911\uB3C5\uBCA0\uAE30"
     ID: 2
-    SkillDescription: "\uC8FC\uBCC0 \uD070 \uBC94\uC704\uC5D0 220 \uB370\uBBF8\uC9C0\uB97C
-      \uC900\uB2E4. GCD\uAC00 \uAC10\uC18C\uD55C\uB2E4. (GCD : 1.1\uCD08)"
+    SkillDescription: "\uC804\uBC29 \uBC94\uC704\uC5D0 20 \uB370\uBBF8\uC9C0\uB97C
+      \uC900\uB2E4. (10%\uC758 \uD655\uB960\uB85C \uC911\uB3C5\uC0C1\uD0DC\uB97C
+      \uAC74\uB2E4.)"
     skillType: 0
     Image: {fileID: 0}
     material: {fileID: 0}
-    Damage: 220
+    Damage: 20
     CD: 0
-    GCD: 1.1
+    GCD: 1.5
     Scale: 1
     SpeedRate: 1
-    EventRate: 1
+    EventRate: 0.1
     DamageCount: 1
     SkillCount: 1
     DamageRate: 1
     skillValue: 0
   - characterType: 0
-    skillName: 
+    skillName: "\uC5F0\uC18D\uBCA0\uAE30"
     ID: 3
-    SkillDescription: "\uC804\uBC29 \uC881\uC740 \uBC94\uC704\uC5D0 110\uB370\uBBF8\uC9C0\uB97C
-      3\uD68C \uC900\uB2E4 (GCD : 1.5\uCD08)"
+    SkillDescription: "\uC804\uBC29 \uBC94\uC704\uC5D0 \uB370\uBBF8\uC9C0\uB97C 2\uD68C
+      \uC900\uB2E4 (GCD : 1.5\uCD08)"
     skillType: 0
     Image: {fileID: 0}
     material: {fileID: 0}
-    Damage: 110
+    Damage: 15
     CD: 0
     GCD: 1.5
     Scale: 1
@@ -89,12 +89,11 @@ MonoBehaviour:
     DamageRate: 1
     skillValue: 0
   - characterType: 0
-    skillName: 
+    skillName: "\uC2AC\uB798\uC26C"
     ID: 4
     SkillDescription: "\uC804\uBC29 \uC9C1\uC120 \uBC94\uC704\uC5D0 60 \uB370\uBBF8\uC9C0\uB97C
-      \uC900\uB2E4 \uB2E4\uC74C \uC77C\uBC18 \uD3C9\uD0C0\uAC00 1.5\uBC30 \uB370\uBBF8\uC9C0\uB97C
       \uC900\uB2E4 (GCD : 1.5\uCD08)"
-    skillType: 0
+    skillType: 1
     Image: {fileID: 0}
     material: {fileID: 0}
     Damage: 60
@@ -108,13 +107,13 @@ MonoBehaviour:
     DamageRate: 1
     skillValue: 0
   - characterType: 0
-    skillName: 
+    skillName: "\uD2B8\uB9AC\uD50C \uC2AC\uB798\uC26C"
     ID: 5
     SkillDescription: "\uC8FC\uBCC0 \uD070 \uBC94\uC704\uC5D0 400 \uB370\uBBF8\uC9C0\uB97C
       \uC900\uB2E4. \uB370\uBBF8\uC9C0\uC640 \uBC94\uC704\uAC00 \uCEE4\uC9C0\uC9C0\uB9CC
       GCD\uAC00 \uC99D\uAC00\uD55C\uB2E4 \uC0AC\uC6A9 \uC2DC \uC6C0\uC9C1\uC784\uC774
       \uB290\uB824\uC9C4\uB2E4 (GCD : 2\uCD08) "
-    skillType: 0
+    skillType: 1
     Image: {fileID: 0}
     material: {fileID: 0}
     Damage: 0
@@ -128,13 +127,13 @@ MonoBehaviour:
     DamageRate: 1
     skillValue: 0
   - characterType: 0
-    skillName: 
+    skillName: "\uBE45 \uC2AC\uB798\uC26C"
     ID: 6
     SkillDescription: "\uC804\uBC29 \uC9C1\uC120 \uBC94\uC704\uC5D0 220 \uB370\uBBF8\uC9C0\uB97C
       \uC900\uB2E4 \uB2E4\uC74C \uC77C\uBC18 \uD3C9\uD0C0\uAC00 1.5\uBC30 \uB370\uBBF8\uC9C0\uB97C
       \uC900\uB2E4. \uBC94\uC704\uC640 \uB370\uBBF8\uC9C0\uAC00 \uC99D\uAC00\uD55C\uB2E4
       (GCD : 1.5\uCD08)"
-    skillType: 0
+    skillType: 1
     Image: {fileID: 0}
     material: {fileID: 0}
     Damage: 220
@@ -148,13 +147,13 @@ MonoBehaviour:
     DamageRate: 1
     skillValue: 0
   - characterType: 0
-    skillName: 
+    skillName: "\uC2AC\uB798\uC26C \uC775\uC2A4\uD50C\uB85C\uC83C"
     ID: 7
     SkillDescription: "\uB2E4\uC74C \uC77C\uBC18 \uD3C9\uD0C0\uAC00 3\uBC30 \uB370\uBBF8\uC9C0\uB97C
       \uC900\uB2E4. \uB370\uBBF8\uC9C0\uB97C \uC8FC\uC9C0 \uC54A\uC73C\uBA70 \uC0AC\uC6A9
       \uC2DC \uC6C0\uC9C1\uC77C \uC218 \uC5C6\uB2E4.(GCD : 1.5\uCD08) (\uCFE8\uB2E4\uC6B4
       : 5\uCD08)"
-    skillType: 0
+    skillType: 1
     Image: {fileID: 0}
     material: {fileID: 0}
     Damage: 0
@@ -168,10 +167,10 @@ MonoBehaviour:
     DamageRate: 1
     skillValue: 0
   - characterType: 0
-    skillName: 
+    skillName: "\uC808\uB300\uBC29\uC5B4"
     ID: 8
     SkillDescription: 
-    skillType: 0
+    skillType: 2
     Image: {fileID: 0}
     material: {fileID: 0}
     Damage: 0

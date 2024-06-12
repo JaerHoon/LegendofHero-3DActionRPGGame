@@ -6,9 +6,12 @@ public class Arrow : MonoBehaviour
 {
     [SerializeField]
     float arrowSpeed;
+
+    Archer archerController;
     void Start()
     {
         StartCoroutine(missArrowDestroy());
+        archerController = GameObject.FindWithTag("Player").GetComponent<Archer>();
     }
 
     IEnumerator missArrowDestroy()
@@ -21,7 +24,7 @@ public class Arrow : MonoBehaviour
     {
         if(other.gameObject.tag == "Monster")
         {
-            other.GetComponent<MonsterDamage>().OnDamage(5);
+            other.GetComponent<MonsterDamage>().OnDamage(archerController.playerSkillsSlot[0].damage);
             Destroy(this.gameObject);
         }
         

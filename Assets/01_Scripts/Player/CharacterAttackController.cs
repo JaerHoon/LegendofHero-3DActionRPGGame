@@ -104,7 +104,8 @@ public class CharacterAttackController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space) && isReadySkills[2] == true)
             {
-                PlayerAttack.instance.block();
+                if (PlayerAttack.instance != null) PlayerAttack.instance.block();
+                if (ArcherAttack.instance != null) ArcherAttack.instance.block();
                 print("1.5초간 무적!");
                 StartCoroutine(ImmunityTiem(playerSkillsSlot[2].gcd + ItemManager.instance.itemToNonHitTime));
                 StartCoroutine(SkillCoolDown("방어", 2, playerSkillsSlot[2].cd));
@@ -114,15 +115,17 @@ public class CharacterAttackController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && isReadySkills[0] == true)
             {
-                PlayerAttack.instance.KnightAttack();
+                if(PlayerAttack.instance != null) PlayerAttack.instance.KnightAttack();
+                if (ArcherAttack.instance != null) ArcherAttack.instance.ArrowAttack();
                 skillSc.UsedSkill(playerSkillsSlot[0], playerCritDamage, playerAttackChargeRate);
                 StartCoroutine(SkillCoolDown("평타", 0, playerSkillsSlot[0].cd));
                 StartCoroutine(SkillGlobalCoolDown(playerSkillsSlot[0].gcd + ItemManager.instance.itemToSkillGCD));
             }
 
-            if (Input.GetMouseButtonDown(1) &&  isReadySkills[1] == true &&  curSkillNum >= 1)
+            if (Input.GetMouseButtonDown(1) &&  isReadySkills[1] == true &&  curSkillNum >= 1 )
             {
-                PlayerAttack.instance.skillAttack();
+                if (PlayerAttack.instance != null) PlayerAttack.instance.skillAttack();
+                if (ArcherAttack.instance != null) ArcherAttack.instance.skillAttack();
                 skillSc.UsedSkill(playerSkillsSlot[1], playerCritDamage, playerAttackChargeRate);
                 //StartCoroutine(SkillCoolDown("스킬", 1, playerSkillsSlot[1].cd));
 
