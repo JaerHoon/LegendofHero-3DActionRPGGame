@@ -32,12 +32,16 @@ public class SwordWave : MonoBehaviour
                 exPos(transform.position);
             }
         }
+        else if (other.gameObject.tag == "Dummy")
+        {
+            other.GetComponent<Dummy>().OnHit(controller.playerSkillsSlot[1].damage);
+        }
 
         /*if(other.gameObject.tag=="Monster" && PlayerAttack.instance.isButtonPressed3)
         {
             exPos(transform.position);
         }*/
-     
+
     }
 
     void exPos(Vector3 pos)

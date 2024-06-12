@@ -296,12 +296,12 @@ public class ViewEditor : Editor
             if(intva != null)
             {
                 viewtarget.valueText = va.ToString();
-                viewtarget.valueText = EditorGUILayout.TextField("SpriteName", viewtarget.valueText);
+                viewtarget.valueText = EditorGUILayout.TextField("Value", viewtarget.valueText);
             }
             else
             {
                 viewtarget.valueText = "Null";
-                viewtarget.valueText = EditorGUILayout.TextField("SpriteName", viewtarget.valueText);
+                viewtarget.valueText = EditorGUILayout.TextField("Value", viewtarget.valueText);
             }
             
            

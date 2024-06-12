@@ -10,9 +10,11 @@ public class InGameCanvasController : UIController
     MarketSkillInfo marketSkillInfo;
     InGameSkillInfo skillInfo;
 
-    GameObject[] Panels = new GameObject[5];
+    GameObject[] Panels = new GameObject[7];
 
-   
+    Vector2 skillinfoPos1 = new Vector2(-395, 0);
+    Vector2 skillinfoPos2 = new Vector2(210,0);
+    Vector2 skillinfoPos3 = new Vector2(390, 0);
 
     private void Start()
     {
@@ -37,9 +39,25 @@ public class InGameCanvasController : UIController
         
     }
 
-    public void OnskillInfo(SkillInfo skill)
+    public void OnskillInfo(SkillInfo skill, int posnum)
     {
+        if(posnum == 1)
+        {
+            Panels[4].GetComponent<RectTransform>().anchoredPosition = skillinfoPos1;
+        }
+        else
+        {
+            Panels[4].GetComponent<RectTransform>().anchoredPosition = skillinfoPos2;
+        }
         skillInfo.Setting(skill);
+        
+        Panels[4].SetActive(true);
+    }
+
+    public void OnskillInfo(BaseItem item)
+    {
+        skillInfo.Setting(item);
+        Panels[4].GetComponent<RectTransform>().anchoredPosition = skillinfoPos3;
         Panels[4].SetActive(true);
     }
 

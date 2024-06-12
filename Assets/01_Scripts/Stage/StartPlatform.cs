@@ -7,14 +7,26 @@ public class StartPlatform : MonoBehaviour
   
     public SkillChoiceController.StageType stageType;
     [SerializeField]
+    GameObject ChoicePlatforms;
+   
     GameObject skill_NormalATK;
     SkillChoiceController normalController;
-    [SerializeField]
+    
     GameObject skill_SkillATK;
     SkillChoiceController skillController;
-    [SerializeField]
+    
     GameObject itemRelicATK;
     SkillChoiceController itemRelicController;
+
+    private void Awake()
+    {
+        skill_NormalATK = ChoicePlatforms.transform.GetChild(0).gameObject;
+        skill_SkillATK = ChoicePlatforms.transform.GetChild(1).gameObject;
+        itemRelicATK = ChoicePlatforms.transform.GetChild(2).gameObject;
+        normalController = skill_NormalATK.GetComponent<SkillChoiceController>();
+        skillController = skill_SkillATK.GetComponent<SkillChoiceController>();
+        itemRelicController = itemRelicATK.GetComponent<SkillChoiceController>();
+    }
 
     private void OnEnable()
     {
@@ -25,16 +37,13 @@ public class StartPlatform : MonoBehaviour
 
     private void Start()
     {
-        normalController = skill_NormalATK.GetComponent<SkillChoiceController>();
-        skillController = skill_SkillATK.GetComponent<SkillChoiceController>();
-        itemRelicController = itemRelicATK.GetComponent<SkillChoiceController>();
         stageType = SkillChoiceController.StageType.start;
         Setting();
     }
 
     public void Setting()
     {
-        if(stageType == SkillChoiceController.StageType.stage || stageType == SkillChoiceController.StageType.start)
+        if(stageType == SkillChoiceController.StageType.start)
         {
             StartStageSetting();
         }
@@ -46,9 +55,7 @@ public class StartPlatform : MonoBehaviour
 
     void StartStageSetting()
     {
-        skill_NormalATK.SetActive(true);
-        normalController.stageType = stageType;
-        normalController.Setting();
+      
     }
 
     void MarketSetting()

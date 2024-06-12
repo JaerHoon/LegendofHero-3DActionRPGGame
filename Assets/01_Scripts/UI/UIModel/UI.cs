@@ -10,7 +10,7 @@ public class UI : MonoBehaviour
     public enum ViewType 
        { Image, ImageSlot, Text, 
         TextSlot, Button, ButtonSlot, DragNDrop, DragNDropSlot, Slider,
-        CoolTime, CoolTimeSlot,  GameObjectm, GameObjectSlot, SlidetSlot }
+        CoolTime, CoolTimeSlot,  GameObject, GameObjectSlot, SlidetSlot }
     [HideInInspector]
     public ViewType viewType;
     [HideInInspector]

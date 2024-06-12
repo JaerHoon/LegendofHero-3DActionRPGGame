@@ -50,6 +50,10 @@ public class UI_AllType : UI
                 image.type = Image.Type.Filled;
                 image.fillAmount = 0;
                 break;
+            case 11:
+            case 12:
+                SetGameObject();
+                break;
           
          }
     }
@@ -64,9 +68,16 @@ public class UI_AllType : UI
         {
             value = GetSlotValue(1);
         }
-        print(value.ToString());
-
-        image.sprite = (Sprite)value;
+        
+        if(value != null)
+        {
+            image.sprite = (Sprite)value;
+        }
+        else
+        {
+            image.sprite = default;
+        }
+       
        
     }
 
@@ -106,6 +117,7 @@ public class UI_AllType : UI
 
     protected override void OneStartCoolTiem(float time)
     {
+        if (viewType != ViewType.CoolTime) return;
         if (CurrentCorutine != null)
         {
             return;
@@ -118,6 +130,7 @@ public class UI_AllType : UI
 
     protected override void SlotstartCoolTime(float time, int slotnum)
     {
+        if (viewType != ViewType.CoolTimeSlot) return;
         if(slotnum == slotNumber)
         {
             if (CurrentCorutine != null)
@@ -134,6 +147,10 @@ public class UI_AllType : UI
 
     IEnumerator Cooltime(float cooltime)
     {
+        if(image == null)
+        {
+            print(this.gameObject.name + ": 이미지 널");
+        }
         image.fillAmount = 1;
 
         float time = 0;
@@ -161,6 +178,18 @@ public class UI_AllType : UI
             SlotButtonPressed?.Invoke(slotNumber);
         }
         
+    }
+
+    void SetGameObject()
+    {
+        if (viewType == ViewType.GameObject)
+        {
+            viewController.GameObjectSet(uITypeNumber, SetectedValue, this.gameObject);
+        }
+        else if(viewType == ViewType.GameObjectSlot)
+        {
+            viewController.SlotGameObjectSet(uITypeNumber, SetectedValue, SetectedValue1, this.gameObject, slotNumber);
+        }   
     }
 
 }

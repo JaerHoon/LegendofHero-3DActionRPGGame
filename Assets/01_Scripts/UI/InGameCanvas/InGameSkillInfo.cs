@@ -21,11 +21,26 @@ public class InGameSkillInfo : UIModel
         {
             noticeText = "Skill Attack";
         }
+        else
+        {
+            noticeText = "Defence";
+        }
       
 
         skillIcon = skill.image;
         skillName = skill.skillName;
         skillDescription = skill.skillDescription;
+
+        ChangeUI();
+    }
+
+    public void Setting(BaseItem item)
+    {
+        noticeText = "Item Infomation";
+
+        skillIcon = item.itemIcon;
+        skillName = item.itemName;
+        skillDescription = item.itemDescription;
 
         ChangeUI();
     }

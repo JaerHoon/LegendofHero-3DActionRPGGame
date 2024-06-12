@@ -7,6 +7,8 @@ public class Inventory : MonoBehaviour
 {
 
     public List<BaseItem> invenItems = new List<BaseItem>();
+    public delegate void ItemSetting();
+    public ItemSetting itemSetting;
 
     public void AddItem(BaseItem item)
     {
@@ -14,13 +16,13 @@ public class Inventory : MonoBehaviour
         print($"{item.itemName} æ∆¿Ã≈€ »πµÊ!.");
         itemOdrer(invenItems);
 
-
     }
 
     public void itemOdrer(List<BaseItem> baseItems)
     {
         invenItems = invenItems.OrderBy(data => data.itemID)
                      .ToList();
+        itemSetting?.Invoke();
     }
 
     public BaseItem GetItemName(string itemName)

@@ -6,6 +6,7 @@ public class InGameSkillSlot : UIModel
 {
 
     SkillManager skillManager;
+    InGameCanvasController inGameCanvasController;
     public List<SkillInfo> skills = new List<SkillInfo>(new SkillInfo[3]);
     public int? SkillCount = null;
 
@@ -13,6 +14,7 @@ public class InGameSkillSlot : UIModel
     private void Start()
     {
         skillManager = SkillManager.instance != null ? SkillManager.instance : GameObject.FindFirstObjectByType<SkillManager>();
+        inGameCanvasController = GetComponent<InGameCanvasController>();
         skillManager.changeSkill += Setting;
         Setting();
     }
@@ -59,6 +61,12 @@ public class InGameSkillSlot : UIModel
         }
         else if (Slotnum == 1)
         {
+            if(skills[1].skillCount == 1)
+            {
+                SlotCoolTimeStart?.Invoke(skills[1].cd, 1);
+                SlotCoolTimeStart?.Invoke(skills[1].gcd, 0);
+            }
+
             if (skills[1].skillCount > 1 && SkillCount > 0 && SkillCount !=null)
             {
                 SkillCount--;
@@ -90,4 +98,14 @@ public class InGameSkillSlot : UIModel
         ChangeUI();
     }
  
+
+    public void OnCursor(int SlotNum)
+    {
+        inGameCanvasController.OnskillInfo(skills[SlotNum],1);
+    }
+
+    public void OffCusor()
+    {
+        inGameCanvasController.OffSkillinfo();
+    }
 }
