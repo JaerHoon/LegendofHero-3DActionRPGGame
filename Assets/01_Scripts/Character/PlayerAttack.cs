@@ -117,6 +117,7 @@ public class PlayerAttack : MonoBehaviour
     {
         //평타강화1 버전 => 범위를 늘려준다.
         slash.transform.localScale = new Vector3(1.7f, 1.0f, 1.7f);
+        
     }
 
     void AttackSetting2()
@@ -256,11 +257,6 @@ public class PlayerAttack : MonoBehaviour
 
     public void block() // 보호막 함수
     {
-        if(isCoolTimeBlock == true)
-        {
-            return;
-        }
-        
         
         //스페이스바를 누르면 보호막 스킬을 사용하여 캐릭터가 방패들 들어 공격을 막을 수 있도록 함수를 구현했다.
         if(Input.GetKeyDown(KeyCode.Space))
@@ -271,7 +267,7 @@ public class PlayerAttack : MonoBehaviour
             shield.Play();
             cap.enabled = false; // 콜라이더를 비활성화하여 데미지를 입지 않게 함.
             StartCoroutine(Endblock()); // 보호막 관련 애니메이션 및 파티클 재생을 위한 코루틴 함수
-            StartCoroutine(CoolTimeBlock()); // 보호막 쿨타임 관련 코루틴 함수
+            
         }
     }
 
@@ -283,12 +279,6 @@ public class PlayerAttack : MonoBehaviour
         anim.SetBool("block", false);
         shield.Stop();
         cap.enabled = true;// 보호막 시간이 끝나면 콜라이더가 활성화 되어서 데미지를 입음.
-    }
-
-    IEnumerator CoolTimeBlock()
-    {
-        yield return new WaitForSeconds(controller.playerSkillsSlot[2].cd);
-        isCoolTimeBlock = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -310,7 +300,7 @@ public class PlayerAttack : MonoBehaviour
         
         //KnightAttack();
         //skillAttack();
-        block();
+        //block();
 
     }
 }

@@ -15,24 +15,24 @@ MonoBehaviour:
   ClassType: Warrior
   SkillInfo:
   - characterType: 1
-    skillName: 
+    skillName: "\uC5D0\uB85C\uC6B0 \uC5B4\uD0DD"
     ID: 0
     SkillDescription: 
     skillType: 0
     Image: {fileID: 0}
     material: {fileID: 0}
-    Damage: 0
+    Damage: 10
     CD: 0
     GCD: 1.5
-    Scale: 0
-    SpeedRate: 0
-    EventRate: 0
-    DamageCount: 0
-    SkillCount: 0
-    DamageRate: 0
+    Scale: 1
+    SpeedRate: 1
+    EventRate: 1
+    DamageCount: 1
+    SkillCount: 1
+    DamageRate: 1
     skillValue: 0
   - characterType: 1
-    skillName: 
+    skillName: "\uB4C0\uC5BC \uC5D0\uB85C\uC6B0\uC5B4\uD0DD"
     ID: 1
     SkillDescription: 
     skillType: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
     DamageRate: 0
     skillValue: 0
   - characterType: 1
-    skillName: 
+    skillName: "\uB354\uBE14 \uC5D0\uB85C\uC6B0\uC5B4\uD0DD"
     ID: 2
     SkillDescription: 
     skillType: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
     DamageRate: 0
     skillValue: 0
   - characterType: 1
-    skillName: 
+    skillName: "\uD53D\uC2A4 \uC5D0\uB85C\uC6B0\uC5B4\uD0DD"
     ID: 3
     SkillDescription: 
     skillType: 0
@@ -83,24 +83,24 @@ MonoBehaviour:
     DamageRate: 0
     skillValue: 0
   - characterType: 1
-    skillName: 
+    skillName: "\uC5D0\uB85C\uC6B0 \uB808\uC778"
     ID: 4
     SkillDescription: 
-    skillType: 0
+    skillType: 1
     Image: {fileID: 0}
     material: {fileID: 0}
-    Damage: 0
+    Damage: 1
     CD: 0
-    GCD: 1.5
-    Scale: 0
-    SpeedRate: 0
-    EventRate: 0
-    DamageCount: 0
-    SkillCount: 0
-    DamageRate: 0
+    GCD: 2.5
+    Scale: 1
+    SpeedRate: 1
+    EventRate: 1
+    DamageCount: 1
+    SkillCount: 1
+    DamageRate: 1
     skillValue: 0
   - characterType: 1
-    skillName: 
+    skillName: "\uC544\uC774\uC2A4 \uC5D0\uB85C\uC6B0\uC5B4\uD0DD"
     ID: 5
     SkillDescription: 
     skillType: 0
@@ -117,7 +117,7 @@ MonoBehaviour:
     DamageRate: 0
     skillValue: 0
   - characterType: 1
-    skillName: 
+    skillName: "\uC5D0\uB4DC \uC5D0\uB85C\uC6B0 \uC5B4\uD0DD"
     ID: 6
     SkillDescription: 
     skillType: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
     DamageRate: 0
     skillValue: 0
   - characterType: 1
-    skillName: 
+    skillName: "\uC5D0\uB85C\uC6B0 \uB808\uC778_\uC2A4\uD0DD"
     ID: 7
     SkillDescription: 
     skillType: 0
@@ -147,18 +147,18 @@ MonoBehaviour:
     SpeedRate: 0
     EventRate: 0
     DamageCount: 0
-    SkillCount: 0
+    SkillCount: 2
     DamageRate: 0
     skillValue: 0
   - characterType: 1
-    skillName: 
+    skillName: "\uC544\uCC98 \uC2E4\uB4DC"
     ID: 8
     SkillDescription: 
     skillType: 0
     Image: {fileID: 0}
     material: {fileID: 0}
     Damage: 0
-    CD: 0
+    CD: 10
     GCD: 1.5
     Scale: 0
     SpeedRate: 0

@@ -10,6 +10,10 @@ public class ArcherAttack : MonoBehaviour
     {
         if (instance == null)
             instance = this;
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     [SerializeField]
@@ -48,6 +52,9 @@ public class ArcherAttack : MonoBehaviour
     Arrow arrowTrigger;
     CapsuleCollider cap;
     CharacterDamage die;
+
+    Archer archerController;
+    bool isCoolTimeBlock = false;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -55,7 +62,7 @@ public class ArcherAttack : MonoBehaviour
         arrowTrigger = GetComponent<Arrow>();
         cap = GetComponent<CapsuleCollider>();
         die = GetComponent<CharacterDamage>();
-
+        archerController = GameObject.FindWithTag("Player").GetComponent<Archer>();
     }
 
     void shotArrow() // 기본공격 할 때 화살 생성 및 위치를 구현한 함수
@@ -244,13 +251,16 @@ public class ArcherAttack : MonoBehaviour
 
     public void block() // 궁수 보호막 스킬을 사용하기 위한 함수
     {
+     
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            isCoolTimeBlock = true;
             isBlock = true;
             magicShield.Play();
             magicShield.transform.position = shieldPos.position;
             cap.enabled = false;
             StartCoroutine(Endblock());
+            
         }
     }
 
@@ -261,6 +271,8 @@ public class ArcherAttack : MonoBehaviour
         magicShield.Stop();
         cap.enabled = true;
     }
+
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -312,8 +324,8 @@ public class ArcherAttack : MonoBehaviour
             return;
         }
         
-        ArrowAttack();
-        skillAttack();
-        block();
+        //ArrowAttack();
+        //skillAttack();
+        //block();
     }
 }

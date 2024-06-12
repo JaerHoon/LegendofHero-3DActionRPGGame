@@ -15,12 +15,19 @@ MonoBehaviour:
   ClassType: Warrior
   SkillInfo:
   - characterType: 0
+<<<<<<< HEAD
     skillName: 
     ID: 1
     SkillDescription: "\uC8FC\uBCC0 \uD070 \uBC94\uC704\uC5D0 400 \uB370\uBBF8\uC9C0\uB97C
       \uC900\uB2E4. \uB370\uBBF8\uC9C0\uC640 \uBC94\uC704\uAC00 \uCEE4\uC9C0\uC9C0\uB9CC
       GCD\uAC00 \uC99D\uAC00\uD55C\uB2E4 \uC0AC\uC6A9 \uC2DC \uC6C0\uC9C1\uC784\uC774
       \uB290\uB824\uC9C4\uB2E4 (GCD : 2\uCD08) "
+=======
+    skillName: "\uBCA0\uAE30"
+    ID: 0
+    SkillDescription: "\uC804\uBC29 \uBC94\uC704\uC5D0 20 \uB370\uBBF8\uC9C0\uB97C
+      \uC900\uB2E4. (GCD : 1.5\uCD08)"
+>>>>>>> GuHakGyun
     skillType: 0
     Image: {fileID: 21300000, guid: 972b48edfafcbbc4da9877dfbb65d446, type: 3}
     material: {fileID: 2100000, guid: 68ab90b4fd8c65d489338e4a8e436aa9, type: 2}
@@ -35,6 +42,7 @@ MonoBehaviour:
     DamageRate: 1
     skillValue: 0
   - characterType: 0
+<<<<<<< HEAD
     skillName: 
     ID: 0
     SkillDescription: "\uC8FC\uBCC0 \uD070 \uBC94\uC704\uC5D0 220 \uB370\uBBF8\uC9C0\uB97C
@@ -47,39 +55,70 @@ MonoBehaviour:
     GCD: 1.5
     Scale: 1
     SpeedRate: 1
+=======
+    skillName: "\uD798\uAECF\uBCA0\uAE30"
+    ID: 1
+    SkillDescription: "\uC804\uBC29 \uBC94\uC704\uC5D0 20 \uB370\uBBF8\uC9C0\uB97C
+      \uC900\uB2E4. \uB370\uBBF8\uC9C0\uC640 \uBC94\uC704\uAC00 \uCEE4\uC9C0\uC9C0\uB9CC
+      GCD\uAC00 \uC99D\uAC00\uD55C\uB2E4 (\uB370\uBBF8\uC9C0 : 40, GCD : 2\uCD08) "
+    skillType: 0
+    Image: {fileID: 0}
+    material: {fileID: 0}
+    Damage: 40
+    CD: 0
+    GCD: 2
+    Scale: 1.5
+    SpeedRate: 0.75
+>>>>>>> GuHakGyun
     EventRate: 1
     DamageCount: 1
     SkillCount: 1
     DamageRate: 1
     skillValue: 0
   - characterType: 0
-    skillName: 
+    skillName: "\uC911\uB3C5\uBCA0\uAE30"
     ID: 2
-    SkillDescription: "\uC8FC\uBCC0 \uD070 \uBC94\uC704\uC5D0 220 \uB370\uBBF8\uC9C0\uB97C
-      \uC900\uB2E4. GCD\uAC00 \uAC10\uC18C\uD55C\uB2E4. (GCD : 1.1\uCD08)"
+    SkillDescription: "\uC804\uBC29 \uBC94\uC704\uC5D0 20 \uB370\uBBF8\uC9C0\uB97C
+      \uC900\uB2E4. (10%\uC758 \uD655\uB960\uB85C \uC911\uB3C5\uC0C1\uD0DC\uB97C
+      \uAC74\uB2E4.)"
     skillType: 0
+<<<<<<< HEAD
     Image: {fileID: 21300000, guid: d450323b6a82cfe4398ab9bf09deed40, type: 3}
     material: {fileID: 2100000, guid: 0e17c5d8129b9b8498a394222dab7f74, type: 2}
     Damage: 220
     CD: 1.1
     GCD: 1.1
+=======
+    Image: {fileID: 0}
+    material: {fileID: 0}
+    Damage: 20
+    CD: 0
+    GCD: 1.5
+>>>>>>> GuHakGyun
     Scale: 1
     SpeedRate: 1
-    EventRate: 1
+    EventRate: 0.1
     DamageCount: 1
     SkillCount: 1
     DamageRate: 1
     skillValue: 0
   - characterType: 0
-    skillName: 
+    skillName: "\uC5F0\uC18D\uBCA0\uAE30"
     ID: 3
-    SkillDescription: "\uC804\uBC29 \uC881\uC740 \uBC94\uC704\uC5D0 110\uB370\uBBF8\uC9C0\uB97C
-      3\uD68C \uC900\uB2E4 (GCD : 1.5\uCD08)"
+    SkillDescription: "\uC804\uBC29 \uBC94\uC704\uC5D0 \uB370\uBBF8\uC9C0\uB97C 2\uD68C
+      \uC900\uB2E4 (GCD : 1.5\uCD08)"
     skillType: 0
+<<<<<<< HEAD
     Image: {fileID: 21300000, guid: 29bc1fd3868e9d84b81a3d3ddde1ceb3, type: 3}
     material: {fileID: 2100000, guid: 0d843350f69a5f84db0c93b7deb65176, type: 2}
     Damage: 110
     CD: 1.5
+=======
+    Image: {fileID: 0}
+    material: {fileID: 0}
+    Damage: 15
+    CD: 0
+>>>>>>> GuHakGyun
     GCD: 1.5
     Scale: 1
     SpeedRate: 1
@@ -89,14 +128,18 @@ MonoBehaviour:
     DamageRate: 1
     skillValue: 0
   - characterType: 0
-    skillName: 
+    skillName: "\uC2AC\uB798\uC26C"
     ID: 4
     SkillDescription: "\uC804\uBC29 \uC9C1\uC120 \uBC94\uC704\uC5D0 60 \uB370\uBBF8\uC9C0\uB97C
-      \uC900\uB2E4 \uB2E4\uC74C \uC77C\uBC18 \uD3C9\uD0C0\uAC00 1.5\uBC30 \uB370\uBBF8\uC9C0\uB97C
       \uC900\uB2E4 (GCD : 1.5\uCD08)"
     skillType: 1
+<<<<<<< HEAD
     Image: {fileID: 21300000, guid: 59a79e1f34f4c21408b9c620c3c10ca0, type: 3}
     material: {fileID: 2100000, guid: 6d2dd85ce8adb7a4183c5099d347a63b, type: 2}
+=======
+    Image: {fileID: 0}
+    material: {fileID: 0}
+>>>>>>> GuHakGyun
     Damage: 60
     CD: 1.5
     GCD: 1.5
@@ -108,15 +151,20 @@ MonoBehaviour:
     DamageRate: 1
     skillValue: 0
   - characterType: 0
-    skillName: 
+    skillName: "\uD2B8\uB9AC\uD50C \uC2AC\uB798\uC26C"
     ID: 5
     SkillDescription: "\uC8FC\uBCC0 \uD070 \uBC94\uC704\uC5D0 400 \uB370\uBBF8\uC9C0\uB97C
       \uC900\uB2E4. \uB370\uBBF8\uC9C0\uC640 \uBC94\uC704\uAC00 \uCEE4\uC9C0\uC9C0\uB9CC
       GCD\uAC00 \uC99D\uAC00\uD55C\uB2E4 \uC0AC\uC6A9 \uC2DC \uC6C0\uC9C1\uC784\uC774
       \uB290\uB824\uC9C4\uB2E4 (GCD : 2\uCD08) "
     skillType: 1
+<<<<<<< HEAD
     Image: {fileID: 21300000, guid: 795fac438c222c0468d3a85f40336496, type: 3}
     material: {fileID: 2100000, guid: f4179cdbd95e8c347a834d90efd5b1c9, type: 2}
+=======
+    Image: {fileID: 0}
+    material: {fileID: 0}
+>>>>>>> GuHakGyun
     Damage: 0
     CD: 0.5
     GCD: 0.5
@@ -128,15 +176,20 @@ MonoBehaviour:
     DamageRate: 1
     skillValue: 0
   - characterType: 0
-    skillName: 
+    skillName: "\uBE45 \uC2AC\uB798\uC26C"
     ID: 6
     SkillDescription: "\uC804\uBC29 \uC9C1\uC120 \uBC94\uC704\uC5D0 220 \uB370\uBBF8\uC9C0\uB97C
       \uC900\uB2E4 \uB2E4\uC74C \uC77C\uBC18 \uD3C9\uD0C0\uAC00 1.5\uBC30 \uB370\uBBF8\uC9C0\uB97C
       \uC900\uB2E4. \uBC94\uC704\uC640 \uB370\uBBF8\uC9C0\uAC00 \uC99D\uAC00\uD55C\uB2E4
       (GCD : 1.5\uCD08)"
     skillType: 1
+<<<<<<< HEAD
     Image: {fileID: 21300000, guid: a224128d7b2dcf04a84da51c2b78437f, type: 3}
     material: {fileID: 2100000, guid: e81af28a3ea8fc241aeaf0856bcb417e, type: 2}
+=======
+    Image: {fileID: 0}
+    material: {fileID: 0}
+>>>>>>> GuHakGyun
     Damage: 220
     CD: 1.5
     GCD: 1.5
@@ -148,15 +201,20 @@ MonoBehaviour:
     DamageRate: 1
     skillValue: 0
   - characterType: 0
-    skillName: 
+    skillName: "\uC2AC\uB798\uC26C \uC775\uC2A4\uD50C\uB85C\uC83C"
     ID: 7
     SkillDescription: "\uB2E4\uC74C \uC77C\uBC18 \uD3C9\uD0C0\uAC00 3\uBC30 \uB370\uBBF8\uC9C0\uB97C
       \uC900\uB2E4. \uB370\uBBF8\uC9C0\uB97C \uC8FC\uC9C0 \uC54A\uC73C\uBA70 \uC0AC\uC6A9
       \uC2DC \uC6C0\uC9C1\uC77C \uC218 \uC5C6\uB2E4.(GCD : 1.5\uCD08) (\uCFE8\uB2E4\uC6B4
       : 5\uCD08)"
     skillType: 1
+<<<<<<< HEAD
     Image: {fileID: 21300000, guid: e248020e74ca1bf4397259060aac6d73, type: 3}
     material: {fileID: 2100000, guid: 7b8f1c9834c381341bc5f74795dce361, type: 2}
+=======
+    Image: {fileID: 0}
+    material: {fileID: 0}
+>>>>>>> GuHakGyun
     Damage: 0
     CD: 5
     GCD: 1.5
@@ -168,12 +226,17 @@ MonoBehaviour:
     DamageRate: 1
     skillValue: 0
   - characterType: 0
-    skillName: 
+    skillName: "\uC808\uB300\uBC29\uC5B4"
     ID: 8
     SkillDescription: 
     skillType: 2
+<<<<<<< HEAD
     Image: {fileID: 21300000, guid: b5f134c3ddd914a4992d5491182eb17f, type: 3}
     material: {fileID: 2100000, guid: 7f53c20afb7370a469e64ff95c18f217, type: 2}
+=======
+    Image: {fileID: 0}
+    material: {fileID: 0}
+>>>>>>> GuHakGyun
     Damage: 0
     CD: 15
     GCD: 1.5
