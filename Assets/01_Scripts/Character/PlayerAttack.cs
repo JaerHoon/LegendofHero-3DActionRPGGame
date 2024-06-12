@@ -77,10 +77,10 @@ public class PlayerAttack : MonoBehaviour
 
     public void KnightAttack() // 기본공격 함수
     {
-        if (isBlock == true)
+        /*if (isBlock == true)
         {
             return;
-        }
+        }*/
 
         if (Input.GetMouseButtonDown(0) && !isAttackButton3) // 마우스 왼쪽버튼 클릭했을 때 발동하도록 설정한다.
         {

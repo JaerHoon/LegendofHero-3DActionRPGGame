@@ -114,7 +114,7 @@ public class CharacterAttackController : MonoBehaviour
 
                 if (PlayerAttack.instance != null) PlayerAttack.instance.block();
                 if (ArcherAttack.instance != null) ArcherAttack.instance.block();
-                inGameCanvasController.StartSkillCoolTime(2);
+                //inGameCanvasController.StartSkillCoolTime(2);
                 print("1.5초간 무적!");
                 StartCoroutine(ImmunityTiem(playerSkillsSlot[2].gcd + ItemManager.instance.itemToNonHitTime));
                 StartCoroutine(SkillCoolDown("방어", 2, playerSkillsSlot[2].cd));
@@ -131,7 +131,7 @@ public class CharacterAttackController : MonoBehaviour
                 if(PlayerAttack.instance != null) PlayerAttack.instance.KnightAttack();
                 if(ArcherAttack.instance != null) ArcherAttack.instance.ArrowAttack();
 
-                inGameCanvasController.StartSkillCoolTime(0);
+                //inGameCanvasController.StartSkillCoolTime(0);
                 skillSc.UsedSkill(playerSkillsSlot[0], playerCritDamage, playerAttackChargeRate);
                 StartCoroutine(SkillCoolDown("평타", 0, playerSkillsSlot[0].cd));
                 StartCoroutine(SkillGlobalCoolDown(playerSkillsSlot[0].gcd + ItemManager.instance.itemToSkillGCD));
@@ -149,7 +149,7 @@ public class CharacterAttackController : MonoBehaviour
 
                 if (PlayerAttack.instance != null) PlayerAttack.instance.skillAttack();
                 if (ArcherAttack.instance != null) ArcherAttack.instance.skillAttack();
-                inGameCanvasController.StartSkillCoolTime(1);
+                //inGameCanvasController.StartSkillCoolTime(1);
                 
                 skillSc.UsedSkill(playerSkillsSlot[1], playerCritDamage, playerAttackChargeRate);
                 //StartCoroutine(SkillCoolDown("스킬", 1, playerSkillsSlot[1].cd));

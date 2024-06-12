@@ -124,7 +124,7 @@ MonoBehaviour:
     SpeedRate: 0
     EventRate: 0.1
     DamageCount: 0
-    SkillCount: 0
+    SkillCount: 1
     DamageRate: 0
     skillValue: 0
   - characterType: 1
@@ -143,7 +143,7 @@ MonoBehaviour:
     SpeedRate: 0
     EventRate: 0
     DamageCount: 0
-    SkillCount: 0
+    SkillCount: 1
     DamageRate: 0
     skillValue: 0
   - characterType: 1
