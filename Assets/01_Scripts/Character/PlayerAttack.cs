@@ -115,6 +115,7 @@ public class PlayerAttack : MonoBehaviour
 
     void AttackSetting1()
     {
+        controller.OnChangeSkills(1);
         //평타강화1 버전 => 범위를 늘려준다.
         slash.transform.localScale = new Vector3(1.7f, 1.0f, 1.7f);
         
@@ -122,6 +123,7 @@ public class PlayerAttack : MonoBehaviour
 
     void AttackSetting2()
     {
+        controller.OnChangeSkills(2);
         var mainColor = slash.main;
         mainColor.startColor = Color.magenta; // 저주or독 이미지를 생각해서 평타강화2를 누르면 슬래쉬가 보라색으로 변한다.
         
@@ -135,6 +137,7 @@ public class PlayerAttack : MonoBehaviour
 
     void AttackSetting3()
     {
+        controller.OnChangeSkills(3);
         //평타강화3 버전으로 횡베기후에 내려찍는 모션으로 연속공격을 한다.
         playerTrigger.OnCollider();
         anim.SetBool("isAttack",true);
@@ -229,6 +232,8 @@ public class PlayerAttack : MonoBehaviour
 
     void skillsetting1()
     {
+
+        controller.OnChangeSkills(5);
         //스킬강화1 버전으로 ↖↑↗ 방향으로 나아가기 위해 ↖↗ 방향으로 나가는 검기들만 따로 설정해 주었다.
         Quaternion WaveRot2 = transform.rotation * Quaternion.Euler(0, 50.0f, 0);
         Quaternion WaveRot3 = transform.rotation * Quaternion.Euler(0, -50.0f, 0);
@@ -241,12 +246,14 @@ public class PlayerAttack : MonoBehaviour
 
     void skillsetting2(GameObject wave)
     {
+        controller.OnChangeSkills(6);
         //스킬강화2 버전으로 검기스킬의 범위를 늘린다.
         wave.transform.localScale = new Vector3(2.0f, 1.0f, 2.0f);
     }
 
     void skillsetting3()
     {
+        controller.OnChangeSkills(7);
         //스킬강화3 버전으로 검기에 닿을 시 폭발하여 데미지를 주도록 설계했다.
         //red 버전의 검기 프리팹을 따로 만들어서 스킬강화3를 선택하면 red색상의 검기가 발사된다.
         GameObject swordWave_red = Instantiate(skill_red, transform.position, transform.rotation);
