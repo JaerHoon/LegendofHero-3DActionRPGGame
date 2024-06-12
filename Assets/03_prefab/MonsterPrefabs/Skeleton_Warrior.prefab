@@ -1637,6 +1637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd52a783a506ca24ba49b6ec236286a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitBox: {fileID: 4454721082333502764}
   KnockBackSpeed: 10
   knockbackForce: 20
   knockbackDuration: 0.3
@@ -1889,6 +1890,8 @@ MonoBehaviour:
   slotNumber: 0
   uIModel: {fileID: 4663306013724364813}
   viewController: {fileID: 3619368737905618945}
+  value1_type: 0
+  value2_type: 0
   uITypeNumber: 0
   SetectedValue: maxhp
   SetectedValue1: curhp

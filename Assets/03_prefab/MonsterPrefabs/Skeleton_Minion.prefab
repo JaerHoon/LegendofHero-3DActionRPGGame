@@ -263,6 +263,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4278559617494600889, guid: ddc10a95c8e370e44ba8231799f58eaa, type: 3}
   m_PrefabInstance: {fileID: 3235775643570006062}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &4044136697175073575 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1511063416908024585, guid: ddc10a95c8e370e44ba8231799f58eaa, type: 3}
+  m_PrefabInstance: {fileID: 3235775643570006062}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6846522718543668800
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1091,6 +1096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c05f8adcba0160148852aae6d62ddc35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitBox: {fileID: 4044136697175073575}
 --- !u!114 &8882432592741675608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1499,6 +1505,8 @@ MonoBehaviour:
   slotNumber: 0
   uIModel: {fileID: 3004921592407237149}
   viewController: {fileID: 9164002081645646388}
+  value1_type: 0
+  value2_type: 0
   uITypeNumber: 0
   SetectedValue: maxhp
   SetectedValue1: curhp

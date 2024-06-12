@@ -9,6 +9,7 @@ TagManager:
   - wave
   - Monster
   - Dummy
+  - NPCPlatform
   layers:
   - Default
   - TransparentFX

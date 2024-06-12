@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class MonsterWarrior : Monster
 {
-    private void Start()
+    private void Awake()
     {
         Init();
+    }
+    private void OnEnable()
+    {
+        ReSet();
+    }
+    public override void OnDie()
+    {
+        base.OnDie();
+        PoolFactroy.instance.OutPool(this.gameObject, Consts.MonsterWarrior);
     }
 }

@@ -19,8 +19,20 @@ public class NPCMage : MonoBehaviour
         if (other.CompareTag("Player"))
         {
           
-            inGame.OnInteraction("¥Î»≠");
+            inGame.OnInteraction("conversation");
+           
             IsInteraction = true;
+
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+
+            inGame.OffInteraction();
+            IsInteraction = false;
 
         }
     }

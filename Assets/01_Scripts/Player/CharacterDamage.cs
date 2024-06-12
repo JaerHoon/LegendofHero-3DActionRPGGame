@@ -6,16 +6,16 @@ using UnityEngine.AI;
 public class CharacterDamage : MonoBehaviour
 {
     [SerializeField]
-    GameObject heart;
+    protected GameObject heart;
     [SerializeField]
     Image playerHp;
   
 
-    Animator anim;
-    CapsuleCollider cap;
-    BoxCollider box;
+    protected Animator anim;
+    protected CapsuleCollider cap;
+    protected BoxCollider box;
     public bool isPlayerDie = false;
-    Coroutine onOffRendererCoroutine;
+    protected Coroutine onOffRendererCoroutine;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -57,7 +57,7 @@ public class CharacterDamage : MonoBehaviour
         }
     }
 
-    IEnumerator onOffRenderer()
+    protected IEnumerator onOffRenderer()
     {
         float count = 0;
         int childCount = Mathf.Min(transform.childCount, 7); // 워리어의 자식들 중 7번째까지 포함한다.
@@ -84,7 +84,7 @@ public class CharacterDamage : MonoBehaviour
         
     }
 
-    void CoroutineStop()
+    protected void CoroutineStop()
     {
         if (onOffRendererCoroutine != null)
         {
@@ -113,7 +113,7 @@ public class CharacterDamage : MonoBehaviour
         }
     }*/
 
-    void offSetActive()
+    protected void offSetActive()
     {
         heart.SetActive(false);
         cap.enabled = true;

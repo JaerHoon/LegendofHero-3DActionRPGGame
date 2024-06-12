@@ -25,6 +25,8 @@ public class Monster : MonoBehaviour
 
     [HideInInspector]
     public Transform playerTr;
+    StageManager stageManager;
+
     [SerializeField]
     protected float TraceDistanc;
     [SerializeField]
@@ -58,10 +60,12 @@ public class Monster : MonoBehaviour
         }
     }
 
+   
     
 
     protected virtual void Init()
     {
+        stageManager = GameObject.FindFirstObjectByType<StageManager>();
         anim = GetComponent<MonsterAnim>();
         monsterAtk = GetComponent<MonsterAttack>();
         monsterdDmg = GetComponent<MonsterDamage>();
@@ -70,6 +74,14 @@ public class Monster : MonoBehaviour
         monsterStat = MonsterStat.Generate;
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
         myCollider = GetComponent<CapsuleCollider>();
+        GenerateStat();
+        MaxHP = monsterData.HP;
+        curHP = MaxHP;
+        monsterUI.Init();
+    }
+
+    protected virtual void ReSet()
+    {
         GenerateStat();
         MaxHP = monsterData.HP;
         curHP = MaxHP;
@@ -223,9 +235,8 @@ public class Monster : MonoBehaviour
 
     public virtual void OnDie()
     {
-        gameObject.SetActive(false);
+        stageManager.MonsterDie(this.gameObject);
     }
-
 
     public virtual void OnFreeze()
     {

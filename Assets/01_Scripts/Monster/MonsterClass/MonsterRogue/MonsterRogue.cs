@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class MonsterRogue : Monster
 {
-    private void Start()
+    private void Awake()
     {
         Init();
     }
+    private void OnEnable()
+    {
+        ReSet();
+    }
+   
 
     protected override void TraceStat()
     {
@@ -41,5 +46,11 @@ public class MonsterRogue : Monster
     {
         base.DamageStat();
         monsterAtk.EndAttack();
+    }
+
+    public override void OnDie()
+    {
+        base.OnDie();
+        PoolFactroy.instance.OutPool(this.gameObject, Consts.MonsterRogue);
     }
 }
