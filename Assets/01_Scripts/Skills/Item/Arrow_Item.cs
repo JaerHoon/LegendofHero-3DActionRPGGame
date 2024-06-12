@@ -14,7 +14,7 @@ public class Arrow_Item : MonoBehaviour
     IEnumerator missArrowDestroy()
     {
         yield return new WaitForSeconds(0.5f);
-        Destroy(this.gameObject);
+        PoolFactroy.instance.OutPool(this.gameObject, 11);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,7 +22,7 @@ public class Arrow_Item : MonoBehaviour
         if (other.gameObject.tag == "Monster")
         {
             other.GetComponent<MonsterDamage>().OnDamage(ItemManager.instance.RelicItems[0].power);
-            Destroy(this.gameObject);
+            PoolFactroy.instance.OutPool(this.gameObject, 11);
         }
 
     }
