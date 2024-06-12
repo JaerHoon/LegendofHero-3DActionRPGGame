@@ -10,6 +10,7 @@ public class StageManager : MonoBehaviour
 
     List<GameObject> Monsters = new List<GameObject>();
 
+    InGameCanvasController inGameCanvasController;
     GameObject NPCPlatform;
     NPCMage npcMage;
     NextStagePortal nextStagePortal;
@@ -30,6 +31,7 @@ public class StageManager : MonoBehaviour
 
     private void Start()
     {
+        inGameCanvasController = GameObject.FindFirstObjectByType<InGameCanvasController>();
         NPCPlatform = GameObject.Find("NPCPlatform");
         npcMage = GameObject.FindFirstObjectByType<NPCMage>();
         nextStagePortal = GameObject.FindFirstObjectByType<NextStagePortal>();
@@ -43,7 +45,7 @@ public class StageManager : MonoBehaviour
 
     public void SetStage(int stageNum)
     {
-        //페이드인 페이드 아웃
+        inGameCanvasController.OnFadeIn_Out();
 
         currentStageNum = stageNum;
 
