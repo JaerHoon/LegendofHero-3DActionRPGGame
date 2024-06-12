@@ -244,14 +244,19 @@ public class ViewEditor : Editor
         string[] nonSpriteFields = field.Where(field =>
             field.FieldType == typeof(int) ||
             field.FieldType == typeof(float) ||
-            field.FieldType == typeof(string)).Select(field => field.Name)
+            field.FieldType == typeof(string)|| (field.FieldType.IsGenericType && field.FieldType.GetGenericTypeDefinition() == typeof(Nullable<>) && (
+                    field.FieldType.GetGenericArguments()[0] == typeof(int) ||
+                    field.FieldType.GetGenericArguments()[0] == typeof(float)
+                ))).Select(field => field.Name)
            .ToArray();
 
         PropertyInfo[] property = selectedType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
         string[] propertyName = property.Where(property =>
             property.PropertyType == typeof(int) ||
             property.PropertyType == typeof(float) ||
-            property.PropertyType == typeof(string)).Select(pro => pro.Name)
+            property.PropertyType == typeof(string) ||
+                (property.PropertyType.IsGenericType && property.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>) &&
+                 (property.PropertyType.GetGenericArguments()[0] == typeof(int) || property.PropertyType.GetGenericArguments()[0] == typeof(float)))).Select(pro => pro.Name)
         .ToArray();
 
         string[] combinedArray = nonSpriteFields.Concat(propertyName).ToArray();
@@ -287,8 +292,19 @@ public class ViewEditor : Editor
             
            
             viewtarget.value = va;
-            viewtarget.valueText = va.ToString();
-            viewtarget.valueText = EditorGUILayout.TextField("SpriteName", viewtarget.valueText);
+            int? intva = va as int?;
+            if(intva != null)
+            {
+                viewtarget.valueText = va.ToString();
+                viewtarget.valueText = EditorGUILayout.TextField("Value", viewtarget.valueText);
+            }
+            else
+            {
+                viewtarget.valueText = "Null";
+                viewtarget.valueText = EditorGUILayout.TextField("Value", viewtarget.valueText);
+            }
+            
+           
          
         }
 
@@ -325,17 +341,23 @@ public class ViewEditor : Editor
             FieldInfo[] listField = elementType.GetFields(BindingFlags.Public | BindingFlags.Instance).Where(elementType =>
             elementType.FieldType == typeof(int) ||
             elementType.FieldType == typeof(float) ||
-            elementType.FieldType == typeof(string))
-                                       .ToArray(); ;
-           
+            elementType.FieldType == typeof(string) ||
+            (elementType.FieldType.IsGenericType && elementType.FieldType.GetGenericTypeDefinition() == typeof(Nullable<>) && 
+            (elementType.FieldType.GetGenericArguments()[0] == typeof(int) ||
+                    elementType.FieldType.GetGenericArguments()[0] == typeof(float))))
+           .ToArray();
+
             string[] FieldName = listField.Select(listField => listField.Name).ToArray();
 
             PropertyInfo[] property = elementType.GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                .Where(elementType =>
-            elementType.PropertyType == typeof(int) ||
-            elementType.PropertyType == typeof(float) ||
-            elementType.PropertyType == typeof(string))
-                .ToArray();
+                .Where(property =>
+            property.PropertyType == typeof(int) ||
+            property.PropertyType == typeof(float) ||
+            property.PropertyType == typeof(string) ||
+                (property.PropertyType.IsGenericType && property.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>) &&
+                 (property.PropertyType.GetGenericArguments()[0] == typeof(int) || 
+                 property.PropertyType.GetGenericArguments()[0] == typeof(float))))
+                   .ToArray();
 
             string[] propertyName = property.Select(pro => pro.Name).ToArray();
 

@@ -12,6 +12,7 @@ public class Dummy : MonoBehaviour
 
     public void OnHit(float damage)
     {
+        animator.SetTrigger("Hit");
         GameObject pool = PoolFactroy.instance.GetPool(Consts.DamageText);
         DamageText damageText = pool.GetComponent<DamageText>();
         damageText.OnTexting(damage);

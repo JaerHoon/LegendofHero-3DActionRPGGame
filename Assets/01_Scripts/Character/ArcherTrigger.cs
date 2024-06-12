@@ -6,17 +6,18 @@ public class ArcherTrigger : MonoBehaviour
 {
     BoxCollider box;
     MonsterBuff Freeze;
+    Archer archerController;
     void Start()
     {
         box = GetComponent<BoxCollider>();
-        
+        archerController = GameObject.FindWithTag("Player").GetComponent<Archer>();
     }
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Monster")
         {
-            other.GetComponent<MonsterDamage>().OnDamage(1);
+            other.GetComponent<MonsterDamage>().OnDamage(archerController.playerSkillsSlot[1].damage);
             //Freeze.GetComponent<MonsterBuff>().Onfreeze(10.0f, 1.0f, 1.0f);
             /*if(ArcherAttack.instance.isFreeze==true)
             {

@@ -20,12 +20,13 @@ public class PlayerTrigger : MonoBehaviour
     {
         if (other.gameObject.tag == "Monster")
         {
-
-
             other.GetComponent<MonsterDamage>().OnDamage(controller.playerSkillsSlot[0].damage);
 
             //Debug.Log("충돌감지!!");
-
+        }
+        else if (other.gameObject.tag == "Dummy" )
+        {
+            other.GetComponent<Dummy>().OnHit(controller.playerSkillsSlot[0].damage);
         }
 
     }

@@ -13,7 +13,7 @@ public class Platform : MonoBehaviour
     [HideInInspector]
     public  SkillInfo skill;
 
-    protected SphereCollider coll;
+    protected BoxCollider coll;
     [SerializeField]
     protected MeshRenderer Icon_mesh;
 
@@ -29,7 +29,7 @@ public class Platform : MonoBehaviour
     public virtual void Init()
     {
         InGameCanvas = GameObject.FindAnyObjectByType<InGameCanvasController>();
-        coll = GetComponent<SphereCollider>();
+        coll = GetComponent<BoxCollider>();
         Icon_mesh = FindInChildren(this.transform, "Icon")?.GetComponent<MeshRenderer>();
         if (Icon_mesh == null) print("Icon이라는 오브젝트가 없습니다");
     }
@@ -87,7 +87,7 @@ public class Platform : MonoBehaviour
     {
         if (stageType == SkillChoiceController.StageType.stage || stageType == SkillChoiceController.StageType.start)
         {
-            InGameCanvas.OnskillInfo(skill);
+            InGameCanvas.OnskillInfo(skill,2);
         }
         else
         {

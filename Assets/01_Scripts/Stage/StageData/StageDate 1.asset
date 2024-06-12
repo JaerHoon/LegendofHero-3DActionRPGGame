@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f13a337a98bd91f4f9a17a4eb8656e4b, type: 3}
+  m_Name: StageDate 1
+  m_EditorClassIdentifier: 
+  stageNumber: 1
+  stageType: 1
+  MinionCount: 5
+  WarriorCount: 0
+  MageCount: 0
+  RogueCount: 3
+  GolemCount: 0
