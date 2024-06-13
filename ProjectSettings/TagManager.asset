@@ -10,6 +10,9 @@ TagManager:
   - Monster
   - Dummy
   - NPCPlatform
+  - Canvas
+  - GolemBullet
+  - GolemHPBar
   layers:
   - Default
   - TransparentFX

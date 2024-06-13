@@ -14,15 +14,18 @@ public class Golem : Monster
     public bool isRageMode1 = false;
     public bool isRageMode2 = false;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
         Init();
+        
         IsPlayerdetected = false;
         golemUI = GetComponent<GolemUI>();
         ChangeState(MONSTERSTATE.Wait);
         //StartCoroutine(CalDis());
-        golemUI.UI_Update();
+      
     }
 
     void ActiveGolem()
