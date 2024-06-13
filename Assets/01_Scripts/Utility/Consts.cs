@@ -17,5 +17,8 @@ public class Consts
     public const int StoneGolem = 10;
     public const int Arrow_ItemSkill = 11;
     public const int PoisonPJ = 12;
+    public const int CircleSlash = 13;
+    public const int GolemPJ = 14;
+    public const int GolemRock = 15;
 
 }
