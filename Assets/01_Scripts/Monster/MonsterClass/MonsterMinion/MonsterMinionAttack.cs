@@ -17,12 +17,13 @@ public class MonsterMinionAttack : MonsterAttack
 
     public override void EndAttack()
     {
+      
         hitBox.gameObject.SetActive(false);
     }
 
     public override void Hit(CharacterDamage player)
     {
         player.OnDamage(monster.monsterData.ATKPow);
-        print("몬스터 어택");
+     
     }
 }

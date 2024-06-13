@@ -19,4 +19,9 @@ public class MonsterMageAttack : MonsterAttack
         bullet.GetComponent<MagicBullet>().damage = monster.monsterData.ATKPow;
         bullet.transform.position = firePos.position;
     }
+
+    public override void EndAttack()
+    {
+        
+    }
 }

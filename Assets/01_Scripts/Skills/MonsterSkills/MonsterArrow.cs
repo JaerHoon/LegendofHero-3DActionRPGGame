@@ -44,8 +44,11 @@ public class MonsterArrow : MonoBehaviour
     IEnumerator OffObject()
     {
         yield return waitForSeconds;
-       
-        PoolFactroy.instance.OutPool(this.gameObject, Consts.MonsterArrow);
+        if(this.gameObject.activeSelf == true)
+        {
+            PoolFactroy.instance.OutPool(this.gameObject, Consts.MonsterArrow);
+        }
+        
     }
 
     private void OnDisable()

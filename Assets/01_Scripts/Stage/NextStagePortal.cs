@@ -40,10 +40,11 @@ public class NextStagePortal : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                print("대화시작");
+                print("다음스테이지");
                 inGameCanvasController.OffInteraction();
                 IsInteraction = false;
                 stageManager.EnterStage(stageManager.currentStageNum + 1);
+               
             }
         }
     }

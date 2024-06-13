@@ -7,9 +7,11 @@ public class MonsterMove : MonoBehaviour
 {
     protected Monster monster;
     protected NavMeshAgent agent;
-
+    
     protected bool IsMove;
 
+   
+   
 
     protected virtual void Init()
     {
@@ -17,6 +19,11 @@ public class MonsterMove : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.speed = monster.monsterData.MoveSpeed;
        
+    }
+
+    protected virtual void ReSet()
+    {
+        agent.speed = monster.monsterData.MoveSpeed;
     }
 
     public virtual void Setting()
@@ -32,11 +39,17 @@ public class MonsterMove : MonoBehaviour
 
     public virtual void OffMove()
     {
-        agent.destination = this.transform.position;
         IsMove = false;
+         
+        agent.destination = this.transform.position;
     }
 
-
+    public virtual void DieMove()
+    {
+        IsMove = false;
+        agent.speed = 0;
+        agent.destination = this.transform.position;
+    }
 
     protected virtual void Move()
     {

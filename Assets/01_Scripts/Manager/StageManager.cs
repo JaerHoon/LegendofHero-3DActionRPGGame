@@ -90,6 +90,7 @@ public class StageManager : MonoBehaviour
             npcMage.gameObject.SetActive(true);
             npcMage.stageType = NPCMage.StageType.Market;
             itemRelicATK.SetActive(true);
+            itemRelicController.Setting();
             itemRelicController.stageType = SkillChoiceController.StageType.Maerket;
             nextStagePortal.gameObject.SetActive(true);
         }
@@ -162,18 +163,21 @@ public class StageManager : MonoBehaviour
     {
         if(stageDatas[currentStageNum].stageType == StageData.StageType.NormalATK)
         {
-            normalController.Setting();
+           
             skill_NormalATK.SetActive(true);
+            normalController.Setting();
         }
-        else if(stageDatas[currentStageNum].stageType == StageData.StageType.NormalATK)
+        else if(stageDatas[currentStageNum].stageType == StageData.StageType.SkillATK)
         {
-            skillController.Setting();
+          
             skill_SkillATK.SetActive(true);
+            skillController.Setting();
         }
         else if(stageDatas[currentStageNum].stageType == StageData.StageType.ItemRelic)
         {
-            itemRelicController.Setting();
+            
             itemRelicATK.SetActive(true);
+            itemRelicController.Setting();
         }
 
         nextStagePortal.gameObject.SetActive(true);

@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterMinionMove : MonsterMageMove
-{ 
-    void Start()
+public class MonsterMinionMove : MonsterMove
+{
+    private void Awake()
     {
         Init();
+    }
+    private void OnEnable()
+    {
+        ReSet();
     }
 }

@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class MonsterRogueMove : MonsterMove
 {
-    private void Start()
+    private void Awake()
     {
         Init();
+    }
+    private void OnEnable()
+    {
+        ReSet();
     }
 }
