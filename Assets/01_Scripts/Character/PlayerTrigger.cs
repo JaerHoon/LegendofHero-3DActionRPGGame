@@ -20,16 +20,17 @@ public class PlayerTrigger : MonoBehaviour
     {
         if (other.gameObject.tag == "Monster")
         {
+            //몬스터 공격했을 때 데미지를 주는 코드
             other.GetComponent<MonsterDamage>().OnDamage(controller.playerSkillsSlot[0].damage);
 
+            // 2번째 스킬 골랐을 때 10% 확률로 중독 상태이상 거는 코드
             if(PlayerAttack.instance.isAttackButton2 == true)
             {
                 float Debuff = Random.Range(0f, 100f);
-                if (Debuff < 50.0f)
+                if (Debuff < 10.0f) // 10% 확률
                 {
-                    Debug.Log("저주를 걸었습니다!");
-                    other.GetComponent<MonsterBuff>().OnPoison(5, 1, 50);
-                    
+                    Debug.Log("중독상태이상 적용되었습니다!");
+                    other.GetComponent<MonsterBuff>().OnPoison(5, 1, 50); // 1초당 50의 중독 데미지를 5초동안 준다.
                 }
                 
             }

@@ -40,14 +40,13 @@ public class ArcherAttack : MonoBehaviour
     public bool isAttackButton3 = false; // 기본공격3번용 플래그
     public bool isShooting = false; // 기본공격3번 함수에 쓰이는 플래그로 연사중일때 움직임 제어를 이용하기 위함
     public bool isCoolTime = false; // 스킬 쿨타임 플래그
-    public bool isFreeze = false;
     public bool isBlock = false;
     float lastshotTime; // 기본공격3번 연사할때 제어를 위한 플래그
     float DestroyDuration = 1.5f; // 스킬셋팅 2번에 쓰이는 Destroy 관련 플래그
     float DestroyLifeTime = 2.0f; // 스킬셋팅 2번에 쓰이는 Destroy 관련 플래그
 
     int skillCount = 0; // 스킬셋팅 3번에 쓰이는 2개 스킬을 보여주기 위한 카운트 변수
-    float skillcoolTime = 7.0f; // 임의로 만들어둔 스킬 쿨타임
+    float skillcoolTime = 5.0f; // 임의로 만들어둔 스킬 쿨타임
     ArcherTrigger archerTrigger;
     Arrow arrowTrigger;
     CapsuleCollider cap;
@@ -156,7 +155,7 @@ public class ArcherAttack : MonoBehaviour
 
     public void skillAttack() // 스킬을 발동하기 위한 함수 => 마우스 오른쪽 버튼을 누르면 스킬이 발동된다.
     {
-        if (Input.GetMouseButtonDown(1) && !isCoolTime) // 마우스 오른쪽버튼 클릭했을 때 발동하도록 설정한다.
+        if (Input.GetMouseButtonDown(1) && !isButtonPressed3) // 마우스 오른쪽버튼 클릭했을 때 발동하도록 설정한다.
         {
             //공격 애니메이션과 싱크를 어느정도 맞추기 위해서 0.4초간의 딜레이를 줌
             Invoke("usedRay", 0.4f);
@@ -173,7 +172,7 @@ public class ArcherAttack : MonoBehaviour
             }
         }
         //스킬셋팅 3번을 사용하기 위한 조건
-        if(Input.GetMouseButtonDown(1) && isButtonPressed3 && !isCoolTime)
+        if(Input.GetMouseButtonDown(1) && isButtonPressed3)
         {
             skillSetting3();
         }
@@ -192,6 +191,8 @@ public class ArcherAttack : MonoBehaviour
         archerController.OnChangeSkills(6);
         ArrowRainParticle.instance.ParticleControl();
 
+        //에로우레인 파티클에서 Emission의 Count값을 조정하는 코드로 2번째 스킬컨셉인 더 많은 타수를
+        //표현하기 위해서 떨어지는 화살의 갯수를 더 많아보이게 하기 위해 Count값을 조정하는 코드이다.
         var emi = ArrowRain.emission;
         var bur = new ParticleSystem.Burst[emi.burstCount];
         emi.GetBursts(bur);
@@ -205,20 +206,18 @@ public class ArcherAttack : MonoBehaviour
     }
     void skillSetting3() // 스킬셋팅 3번 함수
     {
-        if(isCoolTime == true)
-        {
-            return;
-        }
-
-        archerController.OnChangeSkills(7);
-        skillCount++;
+        
+        //archerController.OnChangeSkills(7);
+        
+        /*skillCount++;
         if(skillCount >=2)
         {
+            
             StartCoroutine(coolTimeStart());
-        }
+        }*/
     }
 
-    IEnumerator coolTimeStart()
+    /*IEnumerator coolTimeStart()
     {
         isCoolTime = true;
         Debug.Log("쿨타임 7초 시작");
@@ -227,13 +226,38 @@ public class ArcherAttack : MonoBehaviour
         isCoolTime = false;
         skillCount = 0;
         Debug.Log("스킬을 사용할 수 있습니다");
-    }
+    }*/
 
     void usedRay()
     {
+        //Plane를 원점 기준으로 정의
+        Plane plane = new Plane(Vector3.up, Vector3.zero);
         //ScreenPointToRay 함수를 이용해서 마우스 클릭한 위치를 3D 월드 좌표값으로 반환한다.
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit; // 레이캐스트 충돌 정보 저장
+        float disToPlane;
+
+        if(plane.Raycast(ray, out disToPlane)) // Ray가 plane과 교차하는지를 검사함.
+        {
+            Vector3 hitPoint = ray.GetPoint(disToPlane); // 위치 계산
+            // hitPoint 위치에 에로우 레인 파티클 생성
+            ParticleSystem ps = Instantiate(ArrowRain, hitPoint, transform.rotation);
+            ps.Play();
+
+            if (isButtonPressed2)
+            {
+                //파티클이 생성되고 설정한 시간값 이후에 파티클이 들어가 있는 게임오브젝트를 Destroy한다.
+                //예시로 duration =2초, startLifetime= 0.5초로 설정했다면 2.5초뒤에 Destroy한다는 뜻이다.
+                Destroy(ps.gameObject, DestroyDuration + DestroyLifeTime);
+            }
+            else
+            {
+                //파티클이 생성된 후 완전히 종료될 때까지 기다렸다가 파괴한다. 
+                Destroy(ps.gameObject, ps.main.duration + ps.main.startLifetime.constantMax);
+            }
+        }
+
+        
+        /*RaycastHit hit; // 레이캐스트 충돌 정보 저장
 
         // 레이캐스트 이용 => 반환된 ray값을 이용해서 충돌이 발생하면 hit에 충돌 정보 저장
         if (Physics.Raycast(ray, out hit))
@@ -253,7 +277,7 @@ public class ArcherAttack : MonoBehaviour
                 Destroy(ps.gameObject, ps.main.duration + ps.main.startLifetime.constantMax);
             }
             
-        }
+        }*/
     }
 
 
@@ -284,9 +308,16 @@ public class ArcherAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag== "MagicBullet" && isBlock == true)
+        if (other.gameObject.tag == "MagicBullet" && isBlock == true)
         {
-            Destroy(other.gameObject);
+            //보호막 스킬을 사용하는 동안 캐릭터에 닿는 탄환들을 삭제함.(데미지X)
+            PoolFactroy.instance.OutPool(other.gameObject, Consts.MagicBullet);
+        }
+        if (other.gameObject.tag == "GolemBullet" && isBlock == true)
+        {
+            //보호막 스킬을 사용하는 동안 캐릭터에 닿는 탄환들을 삭제함.(데미지X)
+            PoolFactroy.instance.OutPool(other.gameObject, Consts.GolemPJ);
+            print("오브젝트 사라짐!");
         }
     }
 

@@ -44,6 +44,7 @@ public class Warrior : CharacterAttackController
             playerSkillsSlot[1] = SkillManager.instance.warriorSkills[SKillNum];
             maxSkillNum = playerSkillsSlot[1].skillCount;
             curSkillNum = maxSkillNum;
+            
         }
         else
         {
@@ -57,7 +58,6 @@ public class Warrior : CharacterAttackController
     void Update()
     {
         OnUseSkill();
-       
-       
+      
     }
 }

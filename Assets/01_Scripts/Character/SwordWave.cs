@@ -9,6 +9,7 @@ public class SwordWave : MonoBehaviour
     
     public ParticleSystem Ex;
     Warrior controller;
+    int monsterHit = 2;
     void Start()
     {
         StartCoroutine(DestroyWave());
@@ -26,11 +27,20 @@ public class SwordWave : MonoBehaviour
         if(other.gameObject.tag=="Monster")
         {
             other.GetComponent<MonsterDamage>().OnDamage(controller.playerSkillsSlot[1].damage);
+            
 
-            if(PlayerAttack.instance.isButtonPressed3)
+            if (PlayerAttack.instance.isButtonPressed3)
             {
                 exPos(transform.position);
             }
+
+            monsterHit--;
+            if(monsterHit <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+
+
         }
         else if (other.gameObject.tag == "Dummy")
         {

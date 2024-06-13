@@ -9,6 +9,7 @@ public class MonsterBuff : MonoBehaviour
     Curse curse;
 
     MonsterDebuff monsterDebuff;
+    Monster monster;
 
     [SerializeField]
     GameObject poisonFX;
@@ -31,7 +32,7 @@ public class MonsterBuff : MonoBehaviour
         poisonFX.SetActive(false);
         freezeFX.SetActive(false);
         curseFx.SetActive(false);
-
+        monster = GetComponent<Monster>();
 
         monsterDebuff = GetComponent<MonsterDebuff>();
     }
@@ -53,12 +54,14 @@ public class MonsterBuff : MonoBehaviour
         freeze.OnBuff(duration, dotTime, buffpow);
         freezeFX.SetActive(true);
         monsterDebuff.OnFreezeState(duration);
+        monster.OnFreeze();
 
     }
 
     public virtual void OffFreeze()
     {
         freezeFX.SetActive(false);
+        monster.OffFreeze();
     }
 
     public virtual void OnCurse(float duration, float dotTime, float buffpow)

@@ -8,6 +8,7 @@ public class ArcherTrigger : MonoBehaviour
     MonsterBuff Freeze;
     Archer archerController;
     bool isFreeze = false;
+    float FreezeCoolTime = 10.0f;
     void Start()
     {
         box = GetComponent<BoxCollider>();
@@ -20,15 +21,21 @@ public class ArcherTrigger : MonoBehaviour
         {
             other.GetComponent<MonsterDamage>().OnDamage(archerController.playerSkillsSlot[1].damage);
             //Freeze.GetComponent<MonsterBuff>().Onfreeze(10.0f, 1.0f, 1.0f);
-            if(ArcherAttack.instance.isButtonPressed1==true && !isFreeze)
+            
+            if(ArcherAttack.instance.isButtonPressed1==true) 
             {
+                
                 // 10% 확률로 디버프를 거는 함수이다.
                 float Debuff = Random.Range(0f, 100f);
                 if (Debuff < 10.0f)
                 {
-                    other.GetComponent<Freeze>().OnBuff(10.0f, 1f, 20f);
-                    Debug.Log("빙결적용");
+                    
+                    isFreeze = true;
+                    print("빙결! " + isFreeze);
                     StartCoroutine(FrezzeOnOff());
+                    other.GetComponent<MonsterBuff>().Onfreeze(10.0f, 1f, 20.0f);
+                    Debug.Log("빙결적용");
+                    
 
                 }
                 
@@ -38,8 +45,7 @@ public class ArcherTrigger : MonoBehaviour
 
     IEnumerator FrezzeOnOff()
     {
-        isFreeze = true;
-        yield return new WaitForSeconds(10.0f);
+        yield return new WaitForSeconds(FreezeCoolTime);
         isFreeze = false;
     }
 
@@ -74,5 +80,6 @@ public class ArcherTrigger : MonoBehaviour
     void Update()
     {
         archerOnCollider();
+        
     }
 }

@@ -27,12 +27,19 @@ public class CircleSlashTrigger : MonoBehaviour
     {
         if (other.gameObject.tag == "Monster")
         {
-            other.GetComponent<MonsterDamage>().OnDamage(50);
+            other.GetComponent<MonsterDamage>().OnDamage(300);
         }
         else if (other.gameObject.tag == "Dummy")
         {
-            other.GetComponent<Dummy>().OnHit(50);
+            other.GetComponent<Dummy>().OnHit(300);
         }
+    }
+
+    public void OnItemAttack()
+    {
+        isItemAttack = !isItemAttack;
+        StartCoroutine(circleAttack());
+
     }
 
     IEnumerator circleAttack()
@@ -40,8 +47,10 @@ public class CircleSlashTrigger : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         slash.Play();
         slash.transform.position = slashTr.position;
-
+        yield return new WaitForSeconds(0.2f);
         OnColliders();
+        yield return new WaitForSeconds(0.5f);
+        OffColliders();
         StartCoroutine(circleAttack());
     }
 
@@ -51,13 +60,13 @@ public class CircleSlashTrigger : MonoBehaviour
 
     }
 
-    public void OnItemAttack()
+    void OffColliders()
     {
-        isItemAttack = !isItemAttack;
-
-        StartCoroutine(circleAttack());
+        gameObject.GetComponent<SphereCollider>().enabled = false;
 
     }
+
+    
 
     // Update is called once per frame
     void Update()

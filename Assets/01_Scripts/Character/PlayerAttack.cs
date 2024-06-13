@@ -69,6 +69,11 @@ public class PlayerAttack : MonoBehaviour
     }*/
     public void KnightAttack() // 기본공격 함수
     {
+        if (die.isPlayerDie == true) // 플레이어 사망 상태일 때 동작에 제한을 두기 위함.
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0) && !isAttackButton3) // 마우스 왼쪽버튼 클릭했을 때 발동하도록 설정한다.
         {
             playerTrigger.OnCollider();
@@ -133,7 +138,12 @@ public class PlayerAttack : MonoBehaviour
     }
     public void skillAttack() // 스킬 함수
     {
-        
+        if (die.isPlayerDie == true) // 플레이어 사망 상태일 때 동작에 제한을 두기 위함.
+        {
+            return;
+        }
+
+
         if (Input.GetMouseButtonDown(1) && !isButtonPressed3) // 마우스 오른쪽버튼 클릭했을 때 발동하도록 설정한다.
         {
             anim.SetTrigger("Attack");
@@ -186,7 +196,7 @@ public class PlayerAttack : MonoBehaviour
     }
     void skillsetting1()
     {
-        controller.OnChangeSkills(5);
+        
         //스킬강화1 버전으로 ↖↑↗ 방향으로 나아가기 위해 ↖↗ 방향으로 나가는 검기들만 따로 설정해 주었다.
         Quaternion WaveRot2 = transform.rotation * Quaternion.Euler(0, 50.0f, 0);
         Quaternion WaveRot3 = transform.rotation * Quaternion.Euler(0, -50.0f, 0);
@@ -212,8 +222,13 @@ public class PlayerAttack : MonoBehaviour
     }
     public void block() // 보호막 함수
     {
+        if (die.isPlayerDie == true) // 플레이어 사망 상태일 때 동작에 제한을 두기 위함.
+        {
+            return;
+        }
+
         //스페이스바를 누르면 보호막 스킬을 사용하여 캐릭터가 방패들 들어 공격을 막을 수 있도록 함수를 구현했다.
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             isCoolTimeBlock = true;
             isBlock = true;
@@ -236,27 +251,20 @@ public class PlayerAttack : MonoBehaviour
     {
         if (other.gameObject.tag == "MagicBullet" && isBlock == true)
         {
-            //보호막 스킬을 사용하는 동안 캐릭터에 닿는 탄환들을 삭제함.(데미지X)
-            //PoolFactroy.instance.OutPool(other.gameObject, Consts.ArrowLine);
+            //보호막 스킬을 사용하는 동안 캐릭터에 닿는 일반 몬스터들의 탄환들을 삭제함.(데미지X)
+            PoolFactroy.instance.OutPool(other.gameObject, Consts.MagicBullet);
         }
         if (other.gameObject.tag == "GolemBullet" && isBlock == true)
         {
-            //보호막 스킬을 사용하는 동안 캐릭터에 닿는 탄환들을 삭제함.(데미지X)
-            //PoolFactroy.instance.OutPool(other.gameObject, Consts.ArrowLine);
-            print("오브젝트 사라짐!");
+            //보호막 스킬을 사용하는 동안 캐릭터에 닿는 보스 몬스터의 탄환들을 삭제함.(데미지X)
+            PoolFactroy.instance.OutPool(other.gameObject, Consts.GolemPJ);
+            
         }
     }
     // Update is called once per frame
     void Update()
     {
-        if(die.isPlayerDie==true) // 플레이어 사망 상태일 때 동작에 제한을 두기 위함.
-        {
-            return;
-        }
-        //KnightAttack();
-        //skillAttack();
-        //block();
         
-        
+   
     }
 }

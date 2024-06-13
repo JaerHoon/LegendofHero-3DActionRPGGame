@@ -23,6 +23,7 @@ public class PlayerMoving : MonoBehaviour
         anim = GetComponent<Animator>();
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         die = GetComponent<CharacterDamage>();
+        
     }
 
     private void Move()
