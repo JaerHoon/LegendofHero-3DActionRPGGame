@@ -33,6 +33,7 @@ public class ItemManager : MonoBehaviour
     public List<Skill_Item> SkillItems = new List<Skill_Item>();
 
     public Transform closestMonster;
+    public List<GameObject> allClosestMonster = new List<GameObject>();
     public bool[] isMonsterExist;
     [HideInInspector]
     public bool[] isReadyItemSkill;
@@ -106,7 +107,7 @@ public class ItemManager : MonoBehaviour
         items.Add(relic); RelicItems.Add(relic);
         relic = new Relic(1, "저주의 발톱", null, null, "가까운 범위에 적에게 저주를 부여한다.( 저주 : 5)", 0, 0, 5f, 0);
         items.Add(relic); RelicItems.Add(relic);
-        relic = new Relic(2, "화강암 대검", null, null, "16초마다 자기 주위를 원형으로 크게 베어 700 데미지를 준다.", 0, 700f, 7f, 16f);
+        relic = new Relic(2, "화강암 대검", null, null, "16초마다 자기 주위를 원형으로 크게 베어 700 데미지를 준다.", 0, 300f, 7f, 16f);
         items.Add(relic); RelicItems.Add(relic);
         relic = new Relic(3, "왕비의 왕관", null, null, "크리티컬이 50%가 아닌 150%의 추가 피해를 주게 된다,", 0, 0, 0, 0);
         items.Add(relic); RelicItems.Add(relic);
@@ -131,6 +132,7 @@ public class ItemManager : MonoBehaviour
     {
         inventory.AddItem(items[ItemNum]);
         AddDicItem();
+        
     }
 
     void AddDicItem()//아이템 딕셔너리에 넣기
@@ -223,7 +225,11 @@ public class ItemManager : MonoBehaviour
 
             if (isMonsterExist[2] && isReadyItemSkill[2])
             {
-                print($"화강암 대검 슬래쉬!, 데미지 : {RelicItems[2].power}, {RelicItems[2].cd}초에 한번 휘두르기");
+                CheckPlayer();
+                GameObject circleSlash = PoolFactroy.instance.GetPool(13) as GameObject;
+
+                circleSlash.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 1, Player.transform.position.z);
+
                 CD = RelicItems[2].cd;
             }
            
@@ -263,9 +269,31 @@ public class ItemManager : MonoBehaviour
         }
     
     }
+    Coroutine curseCorout;
 
+    public void PassiveItem1() 
+    {
+        if (curseCorout != null)
+            StopCoroutine(curseCorout);
+        curseCorout = StartCoroutine("CurseMonster");
 
-    public void PassiveItem1() { print("저주의 발톱 활성화 : 주변 적 5초간 저주"); }
+        //StartCoroutine("CurseMonster");
+        CheckPlayer();
+        print("저주의 발톱 활성화 : 주변 적 5초간 저주"); 
+    }
+
+    IEnumerator CurseMonster()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.1f);
+            print("저주!");
+            for (int i = 0; i < allClosestMonster.Count; i++)
+            {
+                allClosestMonster[i].GetComponent<MonsterBuff>().OnCurse(5, 0, 0);
+            }
+        }
+    }
     public void PassiveItem3() { print("왕비의 왕관 활성화 : 크리뎀지 250%"); itemToAddCritDamage = 1.0f; }
     public void PassiveItem5() { print("뱀송곳니 단검 활성화 : 스킬적중 시 독 부여"); }
     public void PassiveItem6() { print($"독수리 부적 활성화 : 모든 스킬 위력 {SkillItems[1].power} 증가"); itemToAllSkillDamage = SkillItems[1].power; }
@@ -287,6 +315,12 @@ public class ItemManager : MonoBehaviour
     public void SetClosestMonster(Transform tr)
     {
         closestMonster = tr;
+    }
+
+    public void SetAllClosestMonster(List<GameObject> monster)
+    {
+        allClosestMonster.Clear();
+        allClosestMonster = monster;
     }
 
     public void SetIsMonsterExist(bool TF,int typeNum)

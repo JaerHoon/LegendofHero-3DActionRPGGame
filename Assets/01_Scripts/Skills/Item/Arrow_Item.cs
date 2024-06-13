@@ -25,7 +25,7 @@ public class Arrow_Item : MonoBehaviour
     {
         if (other.gameObject.tag == "Monster")
         {
-            //other.GetComponent<MonsterDamage>().OnDamage(ItemManager.instance.RelicItems[0].power);
+            other.GetComponent<MonsterDamage>().OnDamage(ItemManager.instance.RelicItems[0].power);
             PoolFactroy.instance.OutPool(this.gameObject, 11);
         }
 

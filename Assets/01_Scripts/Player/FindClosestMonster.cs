@@ -10,6 +10,7 @@ public class FindClosestMonster : MonoBehaviour
     public LayerMask monsterLayer;       // 몬스터 레이어 설정
     public Transform closestMonster;    // 가장 가까운 몬스터의 위치
 
+
     void Start()
     {
         StartCoroutine(FindClosestMonsterRoutine());
@@ -23,6 +24,7 @@ public class FindClosestMonster : MonoBehaviour
             FindClosestMonsterWithinRadius(detectionRadius_Arrow,0);
             FindClosestMonsterWithinRadius(detectionRadius_Poison,1);
             FindClosestMonsterWithinRadius(detectionRadius_Curse,2);
+            FindAllClosestMonsterWithinRadius(detectionRadius_Curse);
             yield return new WaitForSeconds(0.2f); // 0.2초마다 실행
         }
     }
@@ -57,6 +59,24 @@ public class FindClosestMonster : MonoBehaviour
         {
             ItemManager.instance.SetIsMonsterExist(false, typeNum);
         }
+    }
+
+    void FindAllClosestMonsterWithinRadius(float detectionRadius)
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius);
+
+        List<GameObject> objectsInLayer = new List<GameObject>();
+
+        foreach (Collider collider in colliders)
+        {
+            if (((1 << collider.gameObject.layer) & monsterLayer) != 0)
+            {
+                objectsInLayer.Add(collider.gameObject);
+            }
+        }
+
+        ItemManager.instance.SetAllClosestMonster(objectsInLayer);
+
     }
 
 
