@@ -165,10 +165,7 @@ public class ArcherAttack : MonoBehaviour
             
             if(isButtonPressed1) // 스킬셋팅 1번을 사용하기 위한 조건
             {
-                //skillSetting1();
-                isFreeze = true;
-                Debug.Log("빙결적용!\n 몬스터의 이동속도가 감소합니다!");
-                StartCoroutine(offFreeze());
+                skillSetting1();
             }
             else if(isButtonPressed2) // 스킬셋팅 2번을 사용하기 위한 조건
             {
@@ -186,22 +183,10 @@ public class ArcherAttack : MonoBehaviour
     void skillSetting1() // 스킬셋팅 1번 함수
     {
         archerController.OnChangeSkills(5);
-        // 10% 확률로 디버프를 거는 함수이다.
-        float Debuff = Random.Range(0f, 100f);
-        if (Debuff < 10.0f)
-        {
-            isFreeze = true;
-            Debug.Log("빙결적용!\n 몬스터의 이동속도가 감소합니다!");
-            StartCoroutine(offFreeze());
-        }
+        
     }
 
-    IEnumerator offFreeze()
-    {
-        yield return new WaitForSeconds(10.0f);
-        isFreeze = false;
-    }
-
+    
     void skillSetting2() // 스킬셋팅 2번 함수
     {
         archerController.OnChangeSkills(6);
