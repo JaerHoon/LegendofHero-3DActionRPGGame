@@ -18,6 +18,7 @@ public class ArrowLine : MonoBehaviour
 
     private void OnEnable()
     {
+        tr.enabled = true;
         StartCoroutine(OffObject());
     }
     private void FixedUpdate()
@@ -28,7 +29,11 @@ public class ArrowLine : MonoBehaviour
     IEnumerator OffObject()
     {
         yield return new WaitForSeconds(1f);
-        PoolFactroy.instance.OutPool(this.gameObject, Consts.ArrowLine);
+        if(this.gameObject.activeSelf == true)
+        {
+            PoolFactroy.instance.OutPool(this.gameObject, Consts.ArrowLine);
+        }
+       
     }
     private void OnDisable()
     {

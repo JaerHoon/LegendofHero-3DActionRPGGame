@@ -58,4 +58,9 @@ public class MonsterAttack : MonoBehaviour
         player.OnDamage(monster.monsterData.ATKPow);
 
     }
+
+    public virtual void OnDie()
+    {
+
+    }
 }

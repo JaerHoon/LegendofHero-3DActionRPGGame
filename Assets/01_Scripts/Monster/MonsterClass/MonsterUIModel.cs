@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 
@@ -11,7 +12,8 @@ public class MonsterUIModel : UIModel
     public float maxhp;
     [HideInInspector]
     public float curhp;
-   
+    [SerializeField]
+    Slider HPBar;
     public virtual void Init()
     {
         monster = GetComponent<Monster>();
@@ -25,8 +27,9 @@ public class MonsterUIModel : UIModel
         
         maxhp = monster.MaxHP;
         curhp = monster.CurrenHP;
+        HPBar.maxValue = maxhp;
+        HPBar.value = curhp;
        
-        ChangeUI();
     }
 
 

@@ -17,7 +17,7 @@ public class Monster : MonoBehaviour
     public MonsterUIModel monsterUI;
 
     public enum MonsterStat { Generate, Idle, Trace, Damage ,Attack ,Die}
-    [HideInInspector]
+
     public MonsterStat monsterStat;
     protected bool IsDamage;
     protected bool IsPlayerdetected;
@@ -74,7 +74,6 @@ public class Monster : MonoBehaviour
         monsterStat = MonsterStat.Generate;
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
         myCollider = GetComponent<CapsuleCollider>();
-        GenerateStat();
         MaxHP = monsterData.HP;
         curHP = MaxHP;
         monsterUI.Init();
@@ -82,7 +81,11 @@ public class Monster : MonoBehaviour
 
     protected virtual void ReSet()
     {
+        monsterStat = MonsterStat.Generate;
         GenerateStat();
+
+
+        myCollider.enabled = true;
         MaxHP = monsterData.HP;
         curHP = MaxHP;
         monsterUI.Init();
@@ -122,6 +125,8 @@ public class Monster : MonoBehaviour
         while (monsterStat != MonsterStat.Die)
         {
             yield return waitForSeconds;
+
+           
             if (IsDamage == false && IsFreeze == false)
             {
                 if (IsPlayerdetected)
@@ -138,7 +143,8 @@ public class Monster : MonoBehaviour
     }
     public virtual void CheckPlayer()
     {
-       
+
+        
         float distance = Vector3.Distance(playerTr.position, transform.position);
         if (distance > AttackDistanc && distance < TraceDistanc)
         {
@@ -227,10 +233,15 @@ public class Monster : MonoBehaviour
 
     protected virtual void DieStat()
     {
-        monsterMove.OffMove();
+        StopAllCoroutines();
         anim.OnDyingAnim();
+        monsterAtk.OffATK();
+        IsPlayerdetected = false;
+        IsDamage = false;
+        IsFreeze = false;
         myCollider.enabled = false;
-       
+        monsterMove.DieMove();
+
     }
 
     public virtual void OnDie()

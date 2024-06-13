@@ -23,9 +23,9 @@ public class MonsterRogue : Monster
 
     protected override void DieStat()
     {
+        print("DieState");
         base.DieStat();
-        monsterAtk.OffATK();
-        monsterAtk.EndAttack();
+        
     }
 
     public override void OnFreeze()

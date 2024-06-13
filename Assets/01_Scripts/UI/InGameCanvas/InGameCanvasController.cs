@@ -18,7 +18,7 @@ public class InGameCanvasController : UIController
 
     private void Start()
     {
-        print(transform.childCount);
+       
         for(int i=0; i < transform.childCount; i++)
         {
             GameObject panel = transform.GetChild(i).gameObject;

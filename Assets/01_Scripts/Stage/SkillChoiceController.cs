@@ -13,13 +13,15 @@ public class SkillChoiceController : MonoBehaviour
     public Platform[] platforms = new Platform[3];
 
     Inventory inventory;
-   
 
-    private void Start()
+    private void Awake()
     {
-        inventory = GameObject.FindAnyObjectByType<Inventory>();
+        inventory = FindFirstObjectByType<Inventory>();
+      
         platforms = GetComponentsInChildren<Platform>();
+
     }
+   
 
     public void Setting()
     {
@@ -133,14 +135,15 @@ public class SkillChoiceController : MonoBehaviour
 
     void ItemRelicSetting()
     {
-        List<BaseItem> NoGaineditem = ItemManager.instance.items.Except(inventory.invenItems).ToList();
-
+        List<int> itemIds = inventory.invenItems.Select(item => item.itemID).ToList();
+        List<BaseItem> NoGaineditem = ItemManager.instance.items.Where(item => !itemIds.Contains(item.itemID)).ToList();
+    
         int[] num = RandomNumber.RandomCreate(platforms.Length, 0, NoGaineditem.Count);
 
         for(int i=0; i < platforms.Length; i++)
         {
             platforms[i].stageType = stageType;
-            platforms[i].Setting(NoGaineditem[i]);
+            platforms[i].Setting(NoGaineditem[num[i]]);
             platforms[i].skillChoiceController = this;
         }
       
@@ -150,6 +153,7 @@ public class SkillChoiceController : MonoBehaviour
     public void GetSkill(SkillInfo skill)
     {
         SkillManager.instance.GetSkill(CharacterManager.instance.choicedCharacter, skill);
+        this.gameObject.SetActive(false);
        
     }
 

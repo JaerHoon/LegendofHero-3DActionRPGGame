@@ -15,25 +15,49 @@ public class MonsterRogueAttack : MonsterAttack
     [SerializeField]
     float ATKSpeed;
 
-    GameObject pool;
+    List<GameObject> pools = new List<GameObject>();
     private void Start()
     {
         Init();
        
     }
 
+    public override void OffATK()
+    {
+        IsATK = false;
+        EndAttack();
+    }
+
     public override void EndAttack()
     {
         StopAllCoroutines();
-        ArrowLine poolLine = pool?.GetComponent<ArrowLine>() ?? null;
-        poolLine?.tr.Clear();
-        if (poolLine != null) poolLine.tr.enabled = false;
-        pool = null;
+        if(pools.Count > 0)
+        {
+            foreach (GameObject pool in pools)
+            {
+                ArrowLine poolLine = pool.GetComponent<ArrowLine>();
+                poolLine.tr.Clear();
+                poolLine.tr.enabled = false;
+                if(pool.activeSelf == true)
+                {
+                    PoolFactroy.instance.OutPool(pool, Consts.ArrowLine);
+                }
+            }
+        }
+
+        pools.Clear();
 
     }
+    public override void OnDie()
+    {
+        
+    }
+
+
 
     public override void OnATK()
     {
+        
         base.OnATK();
         Attack();
     }
@@ -52,10 +76,12 @@ public class MonsterRogueAttack : MonsterAttack
     IEnumerator Aming()
     {
         Vector3 dir = (monster.playerTr.position - transform.position).normalized;
-       
+        
         while (true)
         {
-            
+          
+                
+           
             dir.y = 0;
             Quaternion targetRotation = Quaternion.LookRotation(dir);
 
@@ -74,12 +100,13 @@ public class MonsterRogueAttack : MonsterAttack
         }
         
 
-        pool = PoolFactroy.instance.GetPool(Consts.ArrowLine);
+        GameObject pool = PoolFactroy.instance.GetPool(Consts.ArrowLine);
+        pools.Add(pool);
         ArrowLine poolLine = pool.GetComponent<ArrowLine>();
         poolLine.Dir = dir;
         pool.transform.position = lineStartPos.position;
         poolLine.tr.enabled = true;
-       
+        
         yield return new WaitForSeconds(1f);
         FireArrow();
     }
@@ -98,6 +125,7 @@ public class MonsterRogueAttack : MonsterAttack
         {
             StopAllCoroutines();
             StartCoroutine(Aming());
+            
         }
         else
         {

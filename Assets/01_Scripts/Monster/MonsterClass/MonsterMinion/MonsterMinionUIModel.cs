@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterMinionUIModel : MonsterMageUIModel
+public class MonsterMinionUIModel : MonsterUIModel
 {
     void Start()
     {

@@ -37,7 +37,7 @@ public class CharacterAttackController : MonoBehaviour
             if (CD < 0)
             {
                 isReadySkills[isSkillReady] = true;
-                print($"{skillType} 준비 완료!");
+              
                 yield break;
             }
 
@@ -46,7 +46,7 @@ public class CharacterAttackController : MonoBehaviour
 
     IEnumerator SKillCoolDown_CountType(string skillType, int MaxSkillCount, float skillCD)
     {
-        print("SKillCoolDown_CountType 코루틴 동작");
+        
         float CD = skillCD;
         yield return new WaitForFixedUpdate();
         while (MaxSkillCount > curSkillNum)
@@ -57,8 +57,7 @@ public class CharacterAttackController : MonoBehaviour
             {
                 curSkillNum ++;
                 CD = skillCD;
-                print($"{skillType} 사용 횟수 1 증가!");
-                print($"현재 사용 가능 횟수 : {curSkillNum}");
+                
                 if(MaxSkillCount == curSkillNum)
                     yield break;
             }
@@ -77,7 +76,7 @@ public class CharacterAttackController : MonoBehaviour
             if (GCD < 0)
             {
                 isReadySkills[3] = true;
-                print($"글로벌 쿨다운 완료!");
+               
                 yield break;
             }
 
