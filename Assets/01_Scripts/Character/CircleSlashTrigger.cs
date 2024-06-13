@@ -3,61 +3,43 @@ using UnityEngine;
 
 public class CircleSlashTrigger : MonoBehaviour
 {
-    public static CircleSlashTrigger instance;
-    public bool isItemAttack = false;
 
     [SerializeField]
     ParticleSystem slash;
-    [SerializeField]
-    Transform slashTr;
-    private void Awake()
+    SphereCollider sphereCollider;
+
+    private void OnEnable()
     {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(gameObject);
+        sphereCollider = gameObject.GetComponent<SphereCollider>();
+        sphereCollider.enabled = false;
+        slash.Play();
+        StartCoroutine(SlashDestroy());
+    }
+
+    IEnumerator SlashDestroy()
+    {
+        yield return new WaitForSeconds(0.2f);
+        sphereCollider.enabled = true;
+        yield return new WaitForSeconds(0.3f);
+        sphereCollider.enabled = false;
+        PoolFactroy.instance.OutPool(this.gameObject, 13);
     }
 
     void Start()
     {
-        gameObject.GetComponent<SphereCollider>().enabled = false;
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Monster")
+        if (other.gameObject.CompareTag("Monster"))
         {
-            other.GetComponent<MonsterDamage>().OnDamage(50);
+            other.GetComponent<MonsterDamage>().OnDamage(ItemManager.instance.RelicItems[2].power);
         }
-        else if (other.gameObject.tag == "Dummy")
-        {
-            other.GetComponent<Dummy>().OnHit(50);
-        }
-    }
-
-    IEnumerator circleAttack()
-    {
-        yield return new WaitForSeconds(2.0f);
-        slash.Play();
-        slash.transform.position = slashTr.position;
-
-        OnColliders();
-        StartCoroutine(circleAttack());
-    }
-
-    void OnColliders()
-    {
-        gameObject.GetComponent<SphereCollider>().enabled = true;
 
     }
 
-    public void OnItemAttack()
-    {
-        isItemAttack = !isItemAttack;
 
-        StartCoroutine(circleAttack());
-
-    }
 
     // Update is called once per frame
     void Update()

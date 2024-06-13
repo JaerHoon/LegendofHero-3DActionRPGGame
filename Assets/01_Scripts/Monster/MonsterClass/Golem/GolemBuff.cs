@@ -17,5 +17,13 @@ public class GolemBuff : MonsterBuff
         {
             OnPoison(10, 1, 5);
         }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            OnCurse(5,0,0);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            Onfreeze(7,0,0);
+        }
     }
 }
