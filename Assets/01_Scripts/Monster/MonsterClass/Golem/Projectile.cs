@@ -17,6 +17,18 @@ public class Projectile : MonoBehaviour
     // 시간 값을 저장할 변수
     private float time = 0.0f;
 
+
+    private void OnEnable()
+    {
+        StartCoroutine(missProjectileDestroy());
+    }
+
+    IEnumerator missProjectileDestroy()
+    {
+        yield return new WaitForSeconds(12.0f);
+        PoolFactroy.instance.OutPool(this.gameObject, 14);
+    }
+
     public void Init()
     {
         spiralGrowthRate = 0.1f;
