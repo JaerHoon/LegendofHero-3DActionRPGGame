@@ -23,6 +23,10 @@ public class Golem : Monster
         ChangeState(MONSTERSTATE.Wait);
         //StartCoroutine(CalDis());
         golemUI.UI_Update();
+    }
+
+    void ActiveGolem()
+    {
         StartCoroutine(StartAnim());
     }
 
@@ -298,5 +302,10 @@ public class Golem : Monster
     {
 
         CheckPlayer();
+
+        if(Input.GetKeyDown(KeyCode.G))
+        {
+            ActiveGolem();
+        }
     }
 }

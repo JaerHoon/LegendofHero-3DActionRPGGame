@@ -190,15 +190,12 @@ public class ItemManager : MonoBehaviour
                 isReadyItemSkill[0] = false;
             if (isMonsterExist[0] && isReadyItemSkill[0])
             {
-                //print($"바둘기의 활 발사!, 데미지 : {RelicItems[0].power}, {RelicItems[0].cd}초에 한발 발사");
                 CheckPlayer();
                 GameObject item_Arrow = PoolFactroy.instance.GetPool(11) as GameObject;
 
                 item_Arrow.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 1, Player.transform.position.z);
 
                 item_Arrow.transform.rotation = Quaternion.LookRotation(closestMonster.position - item_Arrow.transform.position);
-                print(closestMonster.position);
-                print(item_Arrow.transform.position);
 
                 CD = RelicItems[0].cd;
             }
@@ -255,7 +252,12 @@ public class ItemManager : MonoBehaviour
         
             if (isMonsterExist[1] && isReadyItemSkill[1])
             {
-                print($"담쟁이덩쿨 스태프 발사!, 데미지 : {RelicItems[4].power}, {RelicItems[4].cd}초에 한번 발사");
+                CheckPlayer();
+                GameObject poisonPJ = PoolFactroy.instance.GetPool(12) as GameObject;
+
+                poisonPJ.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 1, Player.transform.position.z);
+
+                poisonPJ.transform.rotation = Quaternion.LookRotation(closestMonster.position - poisonPJ.transform.position);
                 CD = RelicItems[4].cd;
             }
         }

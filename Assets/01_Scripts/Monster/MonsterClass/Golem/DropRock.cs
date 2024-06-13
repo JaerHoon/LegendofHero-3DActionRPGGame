@@ -10,6 +10,17 @@ public class DropRock : MonoBehaviour
         
     }
 
+    private void OnEnable()
+    {
+        StartCoroutine(missRockDestroy());
+    }
+
+    IEnumerator missRockDestroy()
+    {
+        yield return new WaitForSeconds(3.45f);
+        PoolFactroy.instance.OutPool(this.gameObject, 15);
+    }
+
     // Update is called once per frame
     void Update()
     {

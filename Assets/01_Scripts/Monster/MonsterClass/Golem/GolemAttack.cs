@@ -107,21 +107,23 @@ public class GolemAttack : MonsterAttack
     {
         for (int i = 0; i < projectileNum; i++)
         {
-            GameObject projectile = projectileFactory.GetObject(parentProjectile);
-            ObjectStore.Add(projectile);
+            //GameObject projectile = projectileFactory.GetObject(parentProjectile);
+            GameObject projectile = PoolFactroy.instance.GetPool(14);
+            //ObjectStore.Add(projectile);
             projectile.transform.position = gameObject.transform.position;
             projectile.transform.rotation = Quaternion.Euler(0, (angle * i) + addAngle, 0);
             projectile.GetComponent<Projectile>().Init();
             projectile.GetComponent<Projectile>().Settype(skillType);
-            StartCoroutine(DestroyProjectile(projectile));
+            //StartCoroutine(DestroyProjectile(projectile));
         }
     }
 
-    IEnumerator DestroyProjectile(GameObject projectile)
-    {
-        yield return new WaitForSeconds(12.0f);
-        OnProjectileRestore(projectile);
-    }
+    //IEnumerator DestroyProjectile(GameObject projectile)
+    //{
+    //    yield return new WaitForSeconds(12.0f);
+    //    if(projectile != null)
+    //        OnProjectileRestore(projectile);
+    //}
 
     public override void Attack3()//rock
     {
@@ -153,10 +155,11 @@ public class GolemAttack : MonsterAttack
     IEnumerator DelaySpawnRock(float delayTime, float randx, float randz)
     {
         yield return new WaitForSeconds(delayTime);
-        GameObject dropRock = rockFactory.GetObject(parentDropRock);
+        //GameObject dropRock = rockFactory.GetObject(parentDropRock);
+        GameObject dropRock = PoolFactroy.instance.GetPool(15);
         dropRock.transform.position = new Vector3(randx, dropRock.transform.position.y, randz);
         StartCoroutine(SetCollider(dropRock));
-        StartCoroutine(DestroyDropRock(dropRock));
+        //StartCoroutine(DestroyDropRock(dropRock));
     }
     IEnumerator SetCollider(GameObject dr)
     {
@@ -167,11 +170,11 @@ public class GolemAttack : MonsterAttack
         dr.GetComponent<SphereCollider>().enabled = false;
     }
 
-    IEnumerator DestroyDropRock(GameObject rock)
-    {
-        yield return new WaitForSeconds(3.45f);
-        rockFactory.ObjectRestore(rock);
-    }
+    //IEnumerator DestroyDropRock(GameObject rock)
+    //{
+    //    yield return new WaitForSeconds(3.45f);
+    //    rockFactory.ObjectRestore(rock);
+    //}
 
     public void OnProjectileRestore(GameObject usedProjectile)
     {

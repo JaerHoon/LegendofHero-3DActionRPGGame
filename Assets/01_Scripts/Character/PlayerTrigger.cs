@@ -22,6 +22,17 @@ public class PlayerTrigger : MonoBehaviour
         {
             other.GetComponent<MonsterDamage>().OnDamage(controller.playerSkillsSlot[0].damage);
 
+            if(PlayerAttack.instance.isAttackButton2 == true)
+            {
+                float Debuff = Random.Range(0f, 100f);
+                if (Debuff < 50.0f)
+                {
+                    Debug.Log("저주를 걸었습니다!");
+                    other.GetComponent<MonsterBuff>().OnPoison(5, 1, 50);
+                    
+                }
+                
+            }
             //Debug.Log("충돌감지!!");
         }
         else if (other.gameObject.tag == "Dummy" )
