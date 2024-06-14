@@ -9,14 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d7f747543173d948bd799e12ea2db92, type: 3}
-  m_Name: MageData
+  m_Script: {fileID: 11500000, guid: f13a337a98bd91f4f9a17a4eb8656e4b, type: 3}
+  m_Name: StageDate 6
   m_EditorClassIdentifier: 
-  MonsterName: 
-  MonsterID: 
-  HP: 100
-  ATKPow: 10
-  Lv: 1
-  MoveSpeed: 2.5
-  ATKSpeed: 0
-  RewordCoinCount: 10
+  stageNumber: 5
+  stageType: 3
+  MinionCount: 3
+  WarriorCount: 3
+  MageCount: 3
+  RogueCount: 3
+  GolemCount: 1

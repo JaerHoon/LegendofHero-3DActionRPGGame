@@ -9,6 +9,7 @@ public class SwordWave : MonoBehaviour
     
     public ParticleSystem Ex;
     Warrior controller;
+    Inventory inventroy;
     int monsterHit = 2;
     void Start()
     {
@@ -27,12 +28,25 @@ public class SwordWave : MonoBehaviour
         if(other.gameObject.tag=="Monster")
         {
             other.GetComponent<MonsterDamage>().OnDamage(controller.playerSkillsSlot[1].damage);
+            inventroy = GameObject.FindFirstObjectByType<Inventory>();
             
+            foreach (var item in inventroy.invenItems)
+            {
+                if(item.itemID==5)
+                {
+                    other.GetComponent<MonsterBuff>().OnPoison(5.0f, 1.0f, 5.0f);
+                }
+            }
 
-            if (PlayerAttack.instance.isButtonPressed3)
+            if(SkillManager.instance.gainedSkill_Warrior[1].id==7)
             {
                 exPos(transform.position);
             }
+
+            /*if (PlayerAttack.instance.isSkillSetting3)
+            {
+                exPos(transform.position);
+            }*/
 
             monsterHit--;
             if(monsterHit <= 0)

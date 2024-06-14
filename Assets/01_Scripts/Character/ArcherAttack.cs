@@ -298,7 +298,7 @@ public class ArcherAttack : MonoBehaviour
 
     IEnumerator Endblock()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.5f + ItemManager.instance.itemToNonHitTime);
         isBlock = false;
         magicShield.Stop();
         cap.enabled = true;

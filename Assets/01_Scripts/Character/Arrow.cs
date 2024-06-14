@@ -24,7 +24,7 @@ public class Arrow : MonoBehaviour
     {
         if(other.gameObject.tag == "Monster")
         {
-            other.GetComponent<MonsterDamage>().OnDamage(archerController.playerSkillsSlot[0].damage);
+            other.GetComponent<MonsterDamage>().OnDamage(archerController.playerSkillsSlot[0].damage * ItemManager.instance.itemToAttackDamageRate);
             Destroy(this.gameObject);
         }
         

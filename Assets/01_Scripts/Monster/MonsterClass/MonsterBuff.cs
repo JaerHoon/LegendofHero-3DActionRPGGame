@@ -51,10 +51,15 @@ public class MonsterBuff : MonoBehaviour
 
     public virtual void Onfreeze(float duration, float dotTime, float buffpow)
     {
+        if(monster.IsFreeze ==true)
+        {
+            return;
+        }
+        monster.OnFreeze();
         freeze.OnBuff(duration, dotTime, buffpow);
         freezeFX.SetActive(true);
         monsterDebuff.OnFreezeState(duration);
-        monster.OnFreeze();
+        
 
     }
 

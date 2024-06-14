@@ -63,6 +63,8 @@ public class SkillManager : MonoBehaviour
         }
 
         changeSkill?.Invoke();
+
+        
     }
 
     // Update is called once per frame

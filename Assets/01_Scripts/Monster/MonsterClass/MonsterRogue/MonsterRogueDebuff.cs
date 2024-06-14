@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class MonsterRogueDebuff : MonsterDebuff
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        Init();   
+        Init();
     }
 
-   
 }
