@@ -13,6 +13,7 @@ TagManager:
   - Canvas
   - GolemBullet
   - GolemHPBar
+  - CoinImage
   layers:
   - Default
   - TransparentFX

@@ -12,6 +12,7 @@ public class MonsterData : ScriptableObject
     public int Lv;
     public float MoveSpeed;
     public float ATKSpeed;
+    public int RewordCoinCount;
 
 }
   
