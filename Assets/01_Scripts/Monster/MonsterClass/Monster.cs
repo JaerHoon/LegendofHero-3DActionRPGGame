@@ -23,7 +23,7 @@ public class Monster : MonoBehaviour
     public MonsterStat monsterStat;
     protected bool IsDamage;
     protected bool IsPlayerdetected;
-    protected bool IsFreeze;
+    public bool IsFreeze;
 
     [HideInInspector]
     public Transform playerTr;

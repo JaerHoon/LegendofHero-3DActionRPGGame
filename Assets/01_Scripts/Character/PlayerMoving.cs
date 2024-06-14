@@ -51,7 +51,7 @@ public class PlayerMoving : MonoBehaviour
             //목표 회전 각도를 기준으로 방향 벡터를 계산한다.
             Vector3 moveDir = Quaternion.Euler(0f, playerAngle, 0f) * Vector3.forward;
             //계산된 방향으로 플레이어를 이동시킨다.                             ↓플레이어 이동을 월드좌표계 기준으로 설정한다.
-            transform.Translate(moveDir.normalized * moveSpeed * Time.deltaTime, Space.World);
+            transform.Translate(moveDir.normalized * (moveSpeed * ItemManager.instance.itemToSpeed) * Time.deltaTime, Space.World);
             anim.SetBool("isMove", true); // 이동시에 run 애니메이션 실행
                                           //anim.CrossFade("Run", 0.3f);
 

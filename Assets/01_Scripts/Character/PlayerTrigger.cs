@@ -21,10 +21,10 @@ public class PlayerTrigger : MonoBehaviour
         if (other.gameObject.tag == "Monster")
         {
             //몬스터 공격했을 때 데미지를 주는 코드
-            other.GetComponent<MonsterDamage>().OnDamage(controller.playerSkillsSlot[0].damage);
+            other.GetComponent<MonsterDamage>().OnDamage(controller.playerSkillsSlot[0].damage * ItemManager.instance.itemToAttackDamageRate);
 
             // 2번째 스킬 골랐을 때 10% 확률로 중독 상태이상 거는 코드
-            if(PlayerAttack.instance.isAttackButton2 == true)
+            if(PlayerAttack.instance.isAttackSetting2 == true)
             {
                 float Debuff = Random.Range(0f, 100f);
                 if (Debuff < 10.0f) // 10% 확률
