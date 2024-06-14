@@ -119,6 +119,7 @@ public class InGameCanvasController : UIController
 
     public void StartSkillCoolTime(int Slotnum)
     {
+        print("start");
         skillSlot.startCooltime(Slotnum);
     }
     public void OnFadeIn_Out()

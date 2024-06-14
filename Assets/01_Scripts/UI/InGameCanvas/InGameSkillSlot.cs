@@ -36,6 +36,7 @@ public class InGameSkillSlot : UIModel
             for (int i = 0; i < SkillManager.instance.gainedSkill_Archer.Length; i++)
             {
                 skills[i] = SkillManager.instance.gainedSkill_Archer[i];
+                print(skills.Count);
             }
 
         }
@@ -91,6 +92,7 @@ public class InGameSkillSlot : UIModel
         }
         else if(Slotnum == 0)
         {
+            print("Cool");
             SlotCoolTimeStart?.Invoke(skills[0].cd, 0);
             SlotCoolTimeStart?.Invoke(skills[0].gcd, 1);
         }

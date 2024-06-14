@@ -34,8 +34,8 @@ public class SkillManager : MonoBehaviour
         gainedSkill_Warrior[2] = warriorSkills[8];
 
         gainedSkill_Archer[0] = archerSkills[0];
-        gainedSkill_Archer[1] = warriorSkills[4];
-        gainedSkill_Archer[2] = warriorSkills[8];
+        gainedSkill_Archer[1] = archerSkills[4];
+        gainedSkill_Archer[2] = archerSkills[8];
         changeSkill?.Invoke();
     }
 

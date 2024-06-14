@@ -11,6 +11,7 @@ public class Archer : CharacterAttackController
         playerSkillsSlot[1] = SkillManager.instance.archerSkills[4];
         playerSkillsSlot[2] = SkillManager.instance.archerSkills[8];
         skillSc = this.gameObject.GetComponent<ArcherSkill>();
+        InIt();
         ArcherInit();
     }
 
