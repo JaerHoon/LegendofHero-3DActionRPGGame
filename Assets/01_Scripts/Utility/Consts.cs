@@ -20,5 +20,6 @@ public class Consts
     public const int CircleSlash = 13;
     public const int GolemPJ = 14;
     public const int GolemRock = 15;
+    public const int Coin = 16;
 
 }

@@ -80035,6 +80035,7 @@ GameObject:
   - component: {fileID: 7831795390819894455}
   - component: {fileID: 5842201296999201170}
   - component: {fileID: 4046598808001981091}
+  - component: {fileID: 4194683467128204663}
   m_Layer: 0
   m_Name: Skeleton_Minion
   m_TagString: Monster
@@ -80136,6 +80137,7 @@ MonoBehaviour:
   monsterdDmg: {fileID: 0}
   monsterMove: {fileID: 0}
   monsterUI: {fileID: 0}
+  monsterGetCoin: {fileID: 0}
   monsterStat: 0
   playerTr: {fileID: 0}
   TraceDistanc: 15
@@ -80273,6 +80275,22 @@ MonoBehaviour:
   curseImage: {fileID: 3773380418431445480}
   posionImage: {fileID: 4762142817843155853}
   freezeImage: {fileID: 7524354259245642608}
+--- !u!114 &4194683467128204663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5533736048429200265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5d7c68c3c779cf489b60c42177d875d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CoinsCount: 5
+  explosionForce: 5
+  upForce: 2
+  coinLifetime: 2.5
 --- !u!1 &5568279174333500985
 GameObject:
   m_ObjectHideFlags: 0

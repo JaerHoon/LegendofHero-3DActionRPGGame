@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-
+    [HideInInspector]
+    public Character player;
    
     [HideInInspector]
     public SkillChoiceController skillChoiceController;
@@ -28,6 +29,7 @@ public class Platform : MonoBehaviour
 
     public virtual void Init()
     {
+        player = FindFirstObjectByType<Character>();
         InGameCanvas = GameObject.FindAnyObjectByType<InGameCanvasController>();
         coll = GetComponent<BoxCollider>();
         Icon_mesh = FindInChildren(this.transform, "Icon")?.GetComponent<MeshRenderer>();
