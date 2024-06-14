@@ -67,6 +67,7 @@ public class UI : MonoBehaviour
     public UIController.SlotDragEventchain SlotOffDarg;
     public UIController.SlotDragEventchain SlotDrop;
     public UIController.SlotEventchain SlotCoolTime;
+   
 
 
     protected void Init()
@@ -75,6 +76,8 @@ public class UI : MonoBehaviour
         uIModel.upDateUI += UIUpdate;
         uIModel.SlotCoolTimeStart += SlotstartCoolTime;
         uIModel.OneCoolTimeStart += OneStartCoolTiem;
+        uIModel.SlotCountCoolTime += StartSlotCountTime;
+        uIModel.StopCoolTime += StopCooltime;
     }
 
     protected void SetComopnent(ViewType view)
@@ -180,5 +183,14 @@ public class UI : MonoBehaviour
 
     }
 
+    protected virtual void StartSlotCountTime(float time, int slotnum)
+    {
 
+    }
+
+    protected virtual void StopCooltime(int slotnum, int corutineNum)
+    {
+       
+       
+    }
 }

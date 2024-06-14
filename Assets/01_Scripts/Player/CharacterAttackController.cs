@@ -56,6 +56,7 @@ public class CharacterAttackController : MonoBehaviour
             if (CD < 0)
             {
                 curSkillNum ++;
+                print(curSkillNum);
                 CD = skillCD;
                 
                 if(MaxSkillCount == curSkillNum)
@@ -142,7 +143,7 @@ public class CharacterAttackController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(1) &&  isReadySkills[1] == true &&  curSkillNum >= 1 )
             {
-
+                
                 //PlayerAttack.instance.skillAttack();
                 
 
@@ -157,6 +158,7 @@ public class CharacterAttackController : MonoBehaviour
                     StartCoroutine(SKillCoolDown_CountType("½ºÅ³", playerSkillsSlot[1].skillCount, playerSkillsSlot[1].cd));
 
                 curSkillNum--;
+                print("fire : " + curSkillNum);
                 StartCoroutine(SkillGlobalCoolDown(playerSkillsSlot[1].gcd + ItemManager.instance.itemToSkillGCD));
             }
         }

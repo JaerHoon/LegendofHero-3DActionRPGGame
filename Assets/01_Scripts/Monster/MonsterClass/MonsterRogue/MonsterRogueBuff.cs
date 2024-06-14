@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class MonsterRogueBuff : MonsterBuff
 {
-    private void Start()
+    private void Awake()
     {
         Init();
     }
+
 }

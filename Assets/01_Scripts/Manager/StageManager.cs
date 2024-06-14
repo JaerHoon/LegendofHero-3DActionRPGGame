@@ -96,8 +96,9 @@ public class StageManager : MonoBehaviour
         }
         else
         {
-           
-
+            skillController.stageType = SkillChoiceController.StageType.stage;
+            normalController.stageType = SkillChoiceController.StageType.stage;
+            itemRelicController.stageType = SkillChoiceController.StageType.stage;
             SpawnMonsters(currentStageNum);
         }
     }

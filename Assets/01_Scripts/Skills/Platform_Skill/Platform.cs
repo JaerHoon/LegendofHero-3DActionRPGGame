@@ -98,7 +98,8 @@ public class Platform : MonoBehaviour
         {
             if (stageType == SkillChoiceController.StageType.stage)
             {
-                InGameCanvas.OnskillInfo(item);
+                InGameCanvas.OnskillInfo(item, 1);
+                    
             }
             else
             {

@@ -9,6 +9,7 @@ public class InGameSkillSlot : UIModel
     InGameCanvasController inGameCanvasController;
     public List<SkillInfo> skills = new List<SkillInfo>(new SkillInfo[3]);
     public int? SkillCount = null;
+    
 
 
     private void Start()
@@ -67,21 +68,26 @@ public class InGameSkillSlot : UIModel
                 SlotCoolTimeStart?.Invoke(skills[1].gcd, 0);
             }
 
-            if (skills[1].skillCount > 1 && SkillCount > 0 && SkillCount !=null)
+            if (skills[1].skillCount > 1 &&  SkillCount !=null)
             {
-                SkillCount--;
-                SlotCoolTimeStart?.Invoke(skills[1].gcd, 1);
-                SlotCoolTimeStart?.Invoke(skills[1].gcd, 0);
-                ChangeUI();
-            }
-            
-            if(skills[1].skillCount > 1 && SkillCount == 0 && SkillCount != null)
-            {
-                SlotCoolTimeStart?.Invoke(skills[1].cd, 1);
-                SlotCoolTimeStart?.Invoke(skills[1].gcd, 0);
-                StartCoroutine(CountCoilTime());
-            }
+                if (SkillCount == skills[1].skillCount)
+                {
+                    StartCoroutine(CountCoilTime());
+                }
 
+                if(SkillCount > 0)
+                {
+                    SkillCount--;
+                   
+                    SlotCoolTimeStart?.Invoke(skills[1].gcd, 0);
+                    ChangeUI();
+                   
+                    SlotCoolTimeStart?.Invoke(skills[1].gcd, 1);
+                  
+                }
+               
+            }
+          
         }
         else if(Slotnum == 0)
         {
@@ -92,10 +98,25 @@ public class InGameSkillSlot : UIModel
 
     IEnumerator CountCoilTime()
     {
-        yield return new WaitForSeconds(skills[1].cd);
 
-        SkillCount = skills[1].skillCount;
-        ChangeUI();
+        yield return new WaitForFixedUpdate();
+        while(SkillCount < skills[1].skillCount)
+        {
+            SlotCoolTimeStart?.Invoke(skills[1].cd, 4);
+            yield return new WaitForSeconds(skills[1].cd);
+            if(SkillCount < skills[1].skillCount)
+            {
+                SkillCount++;
+                ChangeUI();
+                if(SkillCount == skills[1].skillCount)
+                {
+                    StopCoolTime(1, 1);
+                    yield break;
+                }
+            }
+          
+        }
+       
     }
  
 

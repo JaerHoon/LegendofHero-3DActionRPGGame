@@ -8,6 +8,7 @@ public class UI_AllType : UI
 {
 
     Coroutine CurrentCorutine;
+    Coroutine CurrentCorutine2;
     private void Start()
     {
         Init();
@@ -144,6 +145,29 @@ public class UI_AllType : UI
         }
        
     }
+
+
+    protected override void StartSlotCountTime(float time, int slotnum)
+    {
+        if (viewType != ViewType.CoolTimeSlot) return;
+        if (slotnum == slotNumber)
+        {
+            if (CurrentCorutine2 != null)
+            {
+                return;
+            }
+            else
+            {
+                CurrentCorutine2 = StartCoroutine(Cooltime(time));
+            }
+        }
+    }
+
+    protected override void StopCooltime(int slotnum, int corutineNum)
+    {
+        StopAllCoroutines();
+    }
+
 
     IEnumerator Cooltime(float cooltime)
     {

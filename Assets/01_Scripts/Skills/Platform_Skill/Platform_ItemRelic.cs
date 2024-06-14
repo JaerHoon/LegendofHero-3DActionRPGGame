@@ -14,8 +14,8 @@ public class Platform_ItemRelic : Platform
     {
         if (other.CompareTag("Player"))
         {
-            IsSkillInfo=true;
-            OnSkillInfo();
+           IsSkillInfo = true;
+           OnSkillInfo();
         }
     }
 
@@ -32,12 +32,23 @@ public class Platform_ItemRelic : Platform
     {
         if (IsSkillInfo && Input.GetKeyDown(KeyCode.E))
         {
-            if(player.GoldValue >= item.value)
+            if(stageType == SkillChoiceController.StageType.Maerket)
+            {
+                if(player.GoldValue >= item.value)
+                {
+                    GetItem();
+                    IsSkillInfo = false;
+                    OffSkillInfo();
+                }
+              
+            }
+            else
             {
                 GetItem();
                 IsSkillInfo = false;
                 OffSkillInfo();
             }
+            
            
         }
     }

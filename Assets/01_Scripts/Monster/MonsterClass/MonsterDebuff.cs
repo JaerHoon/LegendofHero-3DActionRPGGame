@@ -57,6 +57,12 @@ public class MonsterDebuff : MonoBehaviour
 
     private void OnEnable()
     {
+        StartCoroutine(ReSet());
+    }
+
+    IEnumerator ReSet()
+    {
+        yield return new WaitForFixedUpdate();
         monster.monsterdDmg.UpDamage = 0;
         debuffCorouts[0] = StartCoroutine(OnCurseCorout());
         debuffCorouts[1] = StartCoroutine(OnPoisonCorout());

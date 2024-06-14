@@ -7,16 +7,35 @@ public class SwordWave : MonoBehaviour
     [SerializeField]
     float skillPower;
     
-    public ParticleSystem Ex;
+    public GameObject Ex;
+    BoxCollider box;
+    GameObject wave;
     Warrior controller;
     Inventory inventroy;
     int monsterHit = 2;
-    ExplosionDamage exDamage;
+    private void Awake()
+    {
+        controller = GameObject.FindWithTag("Player").GetComponent<Warrior>();
+       
+        box = GetComponent<BoxCollider>();
+        wave = transform.GetChild(0).gameObject;
+        if(transform.childCount== 2)
+        {
+            Ex = transform.GetChild(1).gameObject;
+        }
+        
+    }
     void Start()
     {
         StartCoroutine(DestroyWave());
-        controller = GameObject.FindWithTag("Player").GetComponent<Warrior>();
-        exDamage = GameObject.FindWithTag("EX").GetComponent<ExplosionDamage>();
+        
+    }
+
+    private void OnEnable()
+    {
+        wave.SetActive(true);
+        box.enabled = true;
+        if(Ex != null) Ex.SetActive(false);
     }
 
     IEnumerator DestroyWave()
@@ -43,7 +62,6 @@ public class SwordWave : MonoBehaviour
             if(SkillManager.instance.gainedSkill_Warrior[1].id==7)
             {
                 exPos(transform.position);
-                exDamage.FindAllClosestMonsterWithinRadius(5.0f);
             }
 
             /*if (PlayerAttack.instance.isSkillSetting3)
@@ -73,9 +91,10 @@ public class SwordWave : MonoBehaviour
 
     void exPos(Vector3 pos)
     {
-        Ex.Play();
-        Ex.transform.position = pos;
-        Destroy(this.gameObject);
+        Ex.SetActive(true);
+        box.enabled = false;
+        wave.SetActive(false);
+        Destroy(this.gameObject,0.5f);
     }
 
     // Update is called once per frame
