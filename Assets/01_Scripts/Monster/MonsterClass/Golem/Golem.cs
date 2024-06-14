@@ -14,12 +14,15 @@ public class Golem : Monster
     public bool isRageMode1 = false;
     public bool isRageMode2 = false;
 
+    private void Awake()
+    {
+        Init();
+    }
     
-
     // Start is called before the first frame update
     void Start()
     {
-        Init();
+        
         
         IsPlayerdetected = false;
         golemUI = GetComponent<GolemUI>();

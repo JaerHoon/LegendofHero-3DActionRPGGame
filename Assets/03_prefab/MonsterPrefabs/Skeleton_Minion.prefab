@@ -80036,7 +80036,7 @@ GameObject:
   - component: {fileID: 5842201296999201170}
   - component: {fileID: 4046598808001981091}
   - component: {fileID: 4194683467128204663}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skeleton_Minion
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -80288,9 +80288,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoinsCount: 5
-  explosionForce: 5
-  upForce: 2
-  coinLifetime: 2.5
 --- !u!1 &5568279174333500985
 GameObject:
   m_ObjectHideFlags: 0

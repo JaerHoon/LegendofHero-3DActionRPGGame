@@ -62,7 +62,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-   
+    
     
 
     protected virtual void Init()

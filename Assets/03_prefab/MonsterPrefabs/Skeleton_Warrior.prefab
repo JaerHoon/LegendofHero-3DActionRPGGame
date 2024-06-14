@@ -1680,6 +1680,10 @@ PrefabInstance:
       value: Skeleton_Warrior
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7da949c57b16be240a5a27c41f11572e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7da949c57b16be240a5a27c41f11572e, type: 3}
       propertyPath: m_TagString
       value: Monster
       objectReference: {fileID: 0}
