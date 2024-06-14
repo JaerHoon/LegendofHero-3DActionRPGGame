@@ -38,10 +38,15 @@ public class SwordWave : MonoBehaviour
                 }
             }
 
-            if (PlayerAttack.instance.isSkillSetting3)
+            if(SkillManager.instance.gainedSkill_Warrior[1].id==7)
             {
                 exPos(transform.position);
             }
+
+            /*if (PlayerAttack.instance.isSkillSetting3)
+            {
+                exPos(transform.position);
+            }*/
 
             monsterHit--;
             if(monsterHit <= 0)
