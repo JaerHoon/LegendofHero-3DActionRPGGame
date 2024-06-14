@@ -11,10 +11,12 @@ public class SwordWave : MonoBehaviour
     Warrior controller;
     Inventory inventroy;
     int monsterHit = 2;
+    ExplosionDamage exDamage;
     void Start()
     {
         StartCoroutine(DestroyWave());
         controller = GameObject.FindWithTag("Player").GetComponent<Warrior>();
+        exDamage = GameObject.FindWithTag("EX").GetComponent<ExplosionDamage>();
     }
 
     IEnumerator DestroyWave()
@@ -41,6 +43,7 @@ public class SwordWave : MonoBehaviour
             if(SkillManager.instance.gainedSkill_Warrior[1].id==7)
             {
                 exPos(transform.position);
+                exDamage.FindAllClosestMonsterWithinRadius(5.0f);
             }
 
             /*if (PlayerAttack.instance.isSkillSetting3)

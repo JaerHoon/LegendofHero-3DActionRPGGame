@@ -14,6 +14,7 @@ TagManager:
   - GolemBullet
   - GolemHPBar
   - CoinImage
+  - EX
   layers:
   - Default
   - TransparentFX

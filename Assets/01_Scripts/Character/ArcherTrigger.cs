@@ -31,7 +31,7 @@ public class ArcherTrigger : MonoBehaviour
             }
 
 
-            if (ArcherAttack.instance.isButtonPressed1==true)
+            if (SkillManager.instance.gainedSkill_Archer[1].id==5)
             {
                 
                 // 10% 확률로 디버프를 거는 함수이다.
