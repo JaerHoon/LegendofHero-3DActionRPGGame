@@ -131,8 +131,11 @@ public class StageManager : MonoBehaviour
         }
         for (int a = 0; a < stageDatas[stageNum].GolemCount; a++)
         {
+            inGameCanvasController.OnGolemHP();
             GameObject mon = PoolFactroy.instance.GetPool(Consts.StoneGolem);
             Monsters.Add(mon);
+            mon.transform.position = SpawnPos[0];
+            
         }
 
         int[] num = RandomNumber.RandomCreate(stageDatas[stageNum].MonsterCount(), 0, SpawnPos.Count);

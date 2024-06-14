@@ -17,11 +17,17 @@ public class MonsterDamage : MonoBehaviour
 
     public virtual void OnDamage(float pow)
     {
-       
+        int rand = Random.Range(0, 10);
+        pow += ItemManager.instance.itemToAllSkillDamage;
         monster.DetectedPlayer();
         monster.ChangeStat(Monster.MonsterStat.Damage);
-        monster.CurrenHP -=  pow + (pow*UpDamage/100);
-        DamageFx(pow);
+        float totalDamage; 
+        if(rand == 1)
+            totalDamage = (pow + (pow * UpDamage / 100))*(1.5f+ItemManager.instance.itemToAddCritDamage);
+        else
+            totalDamage = pow + (pow * UpDamage / 100);
+        monster.CurrenHP -= Mathf.FloorToInt(totalDamage);
+        DamageFx(Mathf.FloorToInt(totalDamage));
     }
 
     public virtual void OnPoisonDamage(float pow)

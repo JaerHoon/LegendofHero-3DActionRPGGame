@@ -10,6 +10,10 @@ TagManager:
   - Monster
   - Dummy
   - NPCPlatform
+  - Canvas
+  - GolemBullet
+  - GolemHPBar
+  - CoinImage
   layers:
   - Default
   - TransparentFX

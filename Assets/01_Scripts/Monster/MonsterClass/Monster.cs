@@ -15,6 +15,8 @@ public class Monster : MonoBehaviour
     public MonsterMove monsterMove;
     [HideInInspector]
     public MonsterUIModel monsterUI;
+    [HideInInspector]
+    public MonsterGetCoin monsterGetCoin;
 
     public enum MonsterStat { Generate, Idle, Trace, Damage ,Attack ,Die}
 
@@ -71,6 +73,7 @@ public class Monster : MonoBehaviour
         monsterdDmg = GetComponent<MonsterDamage>();
         monsterMove = GetComponent<MonsterMove>();
         monsterUI = GetComponent<MonsterUIModel>();
+        monsterGetCoin = GetComponent<MonsterGetCoin>();
         monsterStat = MonsterStat.Generate;
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
         myCollider = GetComponent<CapsuleCollider>();
@@ -246,6 +249,7 @@ public class Monster : MonoBehaviour
 
     public virtual void OnDie()
     {
+        monsterGetCoin.Die();
         stageManager.MonsterDie(this.gameObject);
     }
 

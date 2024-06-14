@@ -38,6 +38,7 @@ public class MonsterDebuff : MonoBehaviour
     protected virtual void Init()
     {
         monster = GetComponent<Monster>();
+        monster.monsterdDmg.UpDamage = 0;
 
         curseCD = curseImage.GetComponentsInChildren<Image>()[1];
         poisonCD = posionImage.GetComponentsInChildren<Image>()[1];
@@ -54,13 +55,29 @@ public class MonsterDebuff : MonoBehaviour
         freezeImage.SetActive(false);
     }
 
+    private void OnEnable()
+    {
+        monster.monsterdDmg.UpDamage = 0;
+        debuffCorouts[0] = StartCoroutine(OnCurseCorout());
+        debuffCorouts[1] = StartCoroutine(OnPoisonCorout());
+        debuffCorouts[2] = StartCoroutine(OnFreezeCorout());
+        StopAllCoroutines();
+
+        curseImage.SetActive(false);
+        posionImage.SetActive(false);
+        freezeImage.SetActive(false);
+    }
+
     public virtual void OnCurseState(float duration)
     {
+        StopDebuffCoroutine(0);
         curseDuration = duration;
         enumList[0] = CURSESTATE.Curse;
         curseImage.SetActive(true);
         curseCD.fillAmount = 0;
-        RestartCoroutine(0);
+        //RestartCoroutine(0);
+        monster.monsterdDmg.UpDamage = 10;
+        debuffCorouts[0] = StartCoroutine(OnCurseCorout());
     }
 
     IEnumerator OnCurseCorout()
@@ -75,17 +92,21 @@ public class MonsterDebuff : MonoBehaviour
 
     protected virtual void OffCurseState()
     {
+        monster.monsterdDmg.UpDamage = 0;
         enumList[0] = CURSESTATE.None;
         curseImage.SetActive(false);
     }
 
     public virtual void OnPoisonState(float duration)
     {
+        StopDebuffCoroutine(1);
         poisonDuration = duration;
         enumList[1] = POISONSTATE.Poison;
         posionImage.SetActive(true);
         poisonCD.fillAmount = 0;
-        RestartCoroutine(1);
+        //RestartCoroutine(1);
+
+        debuffCorouts[1] = StartCoroutine(OnPoisonCorout());
     }
 
 
@@ -107,11 +128,14 @@ public class MonsterDebuff : MonoBehaviour
 
     public virtual void OnFreezeState(float duration)
     {
+        StopDebuffCoroutine(2);
         freezeDuration = duration;
         enumList[2] = FREEZESTATE.Freeze;
         freezeImage.SetActive(true);
         freezeCD.fillAmount = 0;
-        RestartCoroutine(2);
+        //RestartCoroutine(2);
+
+        debuffCorouts[2] = StartCoroutine(OnFreezeCorout());
     }
 
     IEnumerator OnFreezeCorout()
@@ -157,10 +181,9 @@ public class MonsterDebuff : MonoBehaviour
 
     public void StopDebuffCoroutine(int index)
     {
-        if (index >= 0 && index < debuffCorouts.Length && debuffCorouts[index] != null)
+        if (debuffCorouts[index] != null)
         {
             StopCoroutine(debuffCorouts[index]);
-            debuffCorouts[index] = null; // 정지된 코루틴을 null로 설정
         }
     }
 

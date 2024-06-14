@@ -15,7 +15,15 @@ public class Inventory : MonoBehaviour
         invenItems.Add(item);
         print($"{item.itemName} æ∆¿Ã≈€ »πµÊ!.");
         itemOdrer(invenItems);
-
+        ItemManager.instance.StopActiveItem();
+        StartCoroutine("ItemActive");
+        
+    }
+    IEnumerator ItemActive()
+    {
+        yield return new WaitForFixedUpdate();
+        ItemManager.instance.UseItemActiveItem();
+        ItemManager.instance.UsePassiveSkillItem();
     }
 
     public void itemOdrer(List<BaseItem> baseItems)

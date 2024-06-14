@@ -3,68 +3,45 @@ using UnityEngine;
 
 public class CircleSlashTrigger : MonoBehaviour
 {
-    public static CircleSlashTrigger instance;
-    public bool isItemAttack = false;
 
     [SerializeField]
     ParticleSystem slash;
-    [SerializeField]
-    Transform slashTr;
-    private void Awake()
+    SphereCollider sphereCollider;
+
+    private void OnEnable()
     {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(gameObject);
+        sphereCollider = gameObject.GetComponent<SphereCollider>();
+        sphereCollider.enabled = false;
+        slash.Play();
+        StartCoroutine(SlashDestroy());
+    }
+
+    IEnumerator SlashDestroy()
+    {
+        yield return new WaitForSeconds(0.2f);
+        sphereCollider.enabled = true;
+        yield return new WaitForSeconds(0.3f);
+        sphereCollider.enabled = false;
+        PoolFactroy.instance.OutPool(this.gameObject, 13);
     }
 
     void Start()
     {
-        gameObject.GetComponent<SphereCollider>().enabled = false;
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Monster")
+        if (other.gameObject.CompareTag("Monster"))
         {
-            other.GetComponent<MonsterDamage>().OnDamage(300);
+
+            other.GetComponent<MonsterDamage>().OnDamage(ItemManager.instance.RelicItems[2].power);
         }
-        else if (other.gameObject.tag == "Dummy")
-        {
-            other.GetComponent<Dummy>().OnHit(300);
-        }
-    }
-
-    public void OnItemAttack()
-    {
-        isItemAttack = !isItemAttack;
-        StartCoroutine(circleAttack());
 
     }
 
-    IEnumerator circleAttack()
-    {
-        yield return new WaitForSeconds(2.0f);
-        slash.Play();
-        slash.transform.position = slashTr.position;
-        yield return new WaitForSeconds(0.2f);
-        OnColliders();
-        yield return new WaitForSeconds(0.5f);
-        OffColliders();
-        StartCoroutine(circleAttack());
-    }
 
-    void OnColliders()
-    {
-        gameObject.GetComponent<SphereCollider>().enabled = true;
 
-    }
-
-    void OffColliders()
-    {
-        gameObject.GetComponent<SphereCollider>().enabled = false;
-
-    }
 
     
 

@@ -32,8 +32,9 @@ public class Character : MonoBehaviour
     {
         get { return goldValue; }
         set 
-        { 
-            value = goldValue;
+        {
+            goldValue = value;
+           
             ChangeUI?.Invoke();
             
         }

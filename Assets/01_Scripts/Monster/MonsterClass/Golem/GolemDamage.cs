@@ -22,8 +22,15 @@ public class GolemDamage : MonsterDamage
    
     public override void OnDamage(float pow)
     {
-        golem.CurrentHP -= pow + (pow * UpDamage / 100);
-        DamageFx(pow);
+        int rand = Random.Range(0, 10);
+        pow += ItemManager.instance.itemToAllSkillDamage;
+        float totalDamage;
+        if (rand == 1)
+            totalDamage = (pow + (pow * UpDamage / 100)) * (1.5f + ItemManager.instance.itemToAddCritDamage);
+        else
+            totalDamage = pow + (pow * UpDamage / 100);
+        golem.CurrentHP -= Mathf.FloorToInt(totalDamage);
+        DamageFx(Mathf.FloorToInt(totalDamage));
         IsRageMonde();
     }
 

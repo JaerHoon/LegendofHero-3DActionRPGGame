@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InGameCanvasController : UIController
 {
@@ -15,6 +16,12 @@ public class InGameCanvasController : UIController
     Vector2 skillinfoPos1 = new Vector2(-395, 0);
     Vector2 skillinfoPos2 = new Vector2(210,0);
     Vector2 skillinfoPos3 = new Vector2(390, 0);
+
+    public Image golemHPBar;
+    public GameObject golemCurse;
+    public GameObject golemPoison;
+    public GameObject golemFreeze;
+
 
     private void Start()
     {
@@ -35,7 +42,8 @@ public class InGameCanvasController : UIController
         Panels[3].SetActive(false);
         Panels[4].SetActive(false);
         Panels[6].SetActive(false);
-       
+        Panels[8].SetActive(false);
+
     }
 
     public void OnInteraction(string text)
@@ -106,5 +114,10 @@ public class InGameCanvasController : UIController
     public void OnFadeIn_Out()
     {
         Panels[6].SetActive(true);
+    }
+
+    public void OnGolemHP()
+    {
+        Panels[8].SetActive(true);
     }
 }

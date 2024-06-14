@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Platform_ItemRelic : Platform
 {
+
     bool IsSkillInfo;
     void Start()
     {
@@ -31,9 +32,13 @@ public class Platform_ItemRelic : Platform
     {
         if (IsSkillInfo && Input.GetKeyDown(KeyCode.E))
         {
-            GetItem();
-            IsSkillInfo = false;
-            OffSkillInfo();
+            if(player.GoldValue >= item.value)
+            {
+                GetItem();
+                IsSkillInfo = false;
+                OffSkillInfo();
+            }
+           
         }
     }
 
