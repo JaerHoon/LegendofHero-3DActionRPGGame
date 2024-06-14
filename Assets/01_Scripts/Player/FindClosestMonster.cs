@@ -6,7 +6,7 @@ public class FindClosestMonster : MonoBehaviour
 {
     public float detectionRadius_Arrow = 14f;  // 탐지 반경
     public float detectionRadius_Poison = 10f;  // 탐지 반경
-    public float detectionRadius_Curse = 5f;  // 탐지 반경
+    public float detectionRadius_Curse = 7f;  // 탐지 반경
     public LayerMask monsterLayer;       // 몬스터 레이어 설정
     public Transform closestMonster;    // 가장 가까운 몬스터의 위치
 
