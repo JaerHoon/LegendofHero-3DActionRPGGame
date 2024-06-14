@@ -36,7 +36,14 @@ public class MonsterBuff : MonoBehaviour
 
         monsterDebuff = GetComponent<MonsterDebuff>();
     }
-   
+
+    private void OnEnable()
+    {
+        OffPoison();
+        OffFreeze();
+        OffPoison();
+    }
+
     public virtual void OnPoison(float duration, float dotTime, float buffpow)
     {
         poison.OnBuff(duration, dotTime, buffpow);
@@ -79,5 +86,11 @@ public class MonsterBuff : MonoBehaviour
     public virtual void OffCurse()
     {
         curseFx.SetActive(false);
+    }
+    private void OnDisable()
+    {
+        OffPoison();
+        OffFreeze();
+        OffPoison();
     }
 }

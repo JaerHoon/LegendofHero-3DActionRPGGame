@@ -46,7 +46,7 @@ public class InGameItemRelic : UIModel
 
     public void OnCursor(int Slotnum)
     {
-        inGameCanvasController.OnskillInfo(gainedItems[Slotnum]);
+        inGameCanvasController.OnskillInfo(gainedItems[Slotnum],3);
     }
 
     public void OffCusor()

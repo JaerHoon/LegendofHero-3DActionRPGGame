@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class MonsterMageDebuff : MonsterDebuff
 {
-    private void Start()
+    private void Awake()
     {
         Init();
     }
+   
 }

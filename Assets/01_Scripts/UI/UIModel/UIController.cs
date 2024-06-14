@@ -20,6 +20,7 @@ public class UIController : MonoBehaviour
     public delegate void UpDateUI();
     public delegate void SlotCoolTime(float time, int slotnum);
     public delegate void OneCoolTime(float time);
+    public delegate void SlotCountCoolTime(int slotnum, int CorutineNum);
 
     public virtual object GetValue(int viewModelNum, string valueName)
     {

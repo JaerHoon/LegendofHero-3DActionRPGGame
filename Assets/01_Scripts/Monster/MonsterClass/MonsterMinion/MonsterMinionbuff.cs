@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class MonsterMinionbuff : MonsterBuff
 {
-    void Start()
+    private void Awake()
     {
         Init();
     }
+
 }

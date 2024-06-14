@@ -287,7 +287,7 @@ public class ItemManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(0.1f);
-            print("юЗаж!");
+            
             for (int i = 0; i < allClosestMonster.Count; i++)
             {
                 allClosestMonster[i].GetComponent<MonsterBuff>().OnCurse(5, 0, 0);

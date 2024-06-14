@@ -168,7 +168,7 @@ public class PlayerAttack : MonoBehaviour
         swordWave = Instantiate(skill, transform.position, transform.rotation);
         //3번째 스킬은 폭발검기를 이용할 때 폭발 파티클을 재생시키기 위해 변수를 담아준다.
         //이렇게 안하면 clone로 나오는 검기들에 파티클이 None 상태로 떠서 파티클 재생이 안되기 때문이다.
-        swordWave.GetComponent<SwordWave>().Ex = waveEX;
+        
         // 캐릭터 앞 쪽에 위치시켜서 이상한 곳에서 안나오도록 고정시키기 위함이다.
         swordWave.transform.position = skillPos.position;
     }
@@ -197,7 +197,7 @@ public class PlayerAttack : MonoBehaviour
         //스킬강화3 버전으로 검기에 닿을 시 폭발하여 데미지를 주도록 설계했다.
         //red 버전의 검기 프리팹을 따로 만들어서 스킬강화3를 선택하면 red색상의 검기가 발사된다.
         GameObject swordWave_red = Instantiate(skill_red, transform.position, transform.rotation);
-        swordWave_red.GetComponent<SwordWave>().Ex = waveEX;
+        
         swordWave_red.transform.position = skillPos.position;
         anim.SetTrigger("Attack");
     }

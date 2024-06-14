@@ -13,8 +13,8 @@ public class InGameCanvasController : UIController
 
     List<GameObject> Panels = new List<GameObject>();
 
-    Vector2 skillinfoPos1 = new Vector2(-395, 0);
-    Vector2 skillinfoPos2 = new Vector2(210,0);
+    Vector2 skillinfoPos1 = new Vector2(250, 0);
+    Vector2 skillinfoPos2 = new Vector2(350,0);
     Vector2 skillinfoPos3 = new Vector2(390, 0);
 
     public Image golemHPBar;
@@ -67,22 +67,32 @@ public class InGameCanvasController : UIController
     {
         if(posnum == 1)
         {
-            Panels[4].GetComponent<RectTransform>().anchoredPosition = skillinfoPos1;
+            Panels[4].GetComponent<RectTransform>().anchoredPosition = skillinfoPos2;
         }
         else
         {
-            Panels[4].GetComponent<RectTransform>().anchoredPosition = skillinfoPos2;
+            Panels[4].GetComponent<RectTransform>().anchoredPosition = skillinfoPos1;
         }
         skillInfo.Setting(skill);
         
         Panels[4].SetActive(true);
     }
 
-    public void OnskillInfo(BaseItem item)
+    public void OnskillInfo(BaseItem item, int posnum)
     {
+        if(posnum == 1)
+        {
+           
+            Panels[4].GetComponent<RectTransform>().anchoredPosition = skillinfoPos1;
+           
+        }
+        else
+        {
+            Panels[4].GetComponent<RectTransform>().anchoredPosition = skillinfoPos3;
+        }
         skillInfo.Setting(item);
-        Panels[4].GetComponent<RectTransform>().anchoredPosition = skillinfoPos3;
         Panels[4].SetActive(true);
+
     }
 
     public void OffSkillinfo()
