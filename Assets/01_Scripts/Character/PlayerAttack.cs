@@ -28,12 +28,12 @@ public class PlayerAttack : MonoBehaviour
     PlayerTrigger playerTrigger;
     public bool isButtonPressed = false;
     public bool isButtonPressed2 = false;
-    public bool isButtonPressed3 = false;
-    bool isCoolTimeBlock = false;
+    public bool isSkillSetting3 = false;
     bool isAttackButton1 = false;
-    public bool isAttackButton2 = false;
+    public bool isAttackSetting2 = false;
     public bool isBlock = false;
     public bool isAttackButton3 = false;
+    GameObject swordWave;
     CharacterDamage die;
     CapsuleCollider cap;
     Warrior controller;
@@ -74,48 +74,51 @@ public class PlayerAttack : MonoBehaviour
             return;
         }
 
-        if (Input.GetMouseButtonDown(0) && !isAttackButton3) // 마우스 왼쪽버튼 클릭했을 때 발동하도록 설정한다.
+        switch (SkillManager.instance.gainedSkill_Warrior[0].id)
         {
-            playerTrigger.OnCollider();
-            //마우스 클릭시 공격 애니메이션이 발동된다.
-            anim.SetTrigger("Attack");
-            //공격 모션에 맞춰서 슬래시 파티클 애니메이션 실행
-            slash.Play();
-            //가끔 슬래쉬 위치가 바뀌는 경우가 있어서 적절한 위치값을 넣어줘서 고정시켜 준다.
-            slash.transform.localPosition = new Vector3(-0.05f,1.44f,0.87f);
-            if (isAttackButton1)
-            {
-                AttackSetting1(); // 어택버튼1 눌렀을 때 평타강화1 함수를 발동한다.
-            }
-            else if(isAttackButton2)
-            {
-                AttackSetting2(); // 어택버튼2 눌렀을 때 평타강화2 함수를 발동한다.
-            }
-        }
-        if (Input.GetMouseButtonDown(0) && isAttackButton3)
-        {
-            //어택버튼3 눌렀을 때 평타강화3 함수를 발동한다.
-            //평타강화3은 위에서 else if로 조건 걸었을 때 고장이 나서 bool로 조건을 걸어주면서 if문을 따로 빼놨다.
-            AttackSetting3();
+            case 0:
+                baseAttack(); // 기본공격
+                break;
+            case 1:
+                AttackSetting1(); // 기본공격 강화 1번셋팅
+                break;
+            case 2:
+                AttackSetting2(); // 기본공격 강화 2번셋팅
+                break;
+            case 3:
+                AttackSetting3(); // 기본공격 강화 3번셋팅
+                break;
         }
     }
-    void AttackSetting1()
+    void baseAttack()
+    {
+        playerTrigger.OnCollider();
+        //마우스 클릭시 공격 애니메이션이 발동된다.
+        anim.SetTrigger("Attack");
+        //공격 모션에 맞춰서 슬래시 파티클 애니메이션 실행
+        slash.Play();
+        //가끔 슬래쉬 위치가 바뀌는 경우가 있어서 적절한 위치값을 넣어줘서 고정시켜 준다.
+        slash.transform.localPosition = new Vector3(-0.05f, 1.44f, 0.87f);
+    }
+    public void AttackSetting1()
     {
         controller.OnChangeSkills(1);
         //평타강화1 버전 => 범위를 늘려준다.
         slash.transform.localScale = new Vector3(1.7f, 1.0f, 1.7f);
+        baseAttack();
     }
     void AttackSetting2()
     {
         controller.OnChangeSkills(2);
+        baseAttack();
         var mainColor = slash.main;
         mainColor.startColor = Color.magenta; // 저주or독 이미지를 생각해서 평타강화2를 누르면 슬래쉬가 보라색으로 변한다.
-        // 10% 확률로 디버프를 거는 함수이다.
         
     }
     void AttackSetting3()
     {
         controller.OnChangeSkills(3);
+        //baseAttack();
         //평타강화3 버전으로 횡베기후에 내려찍는 모션으로 연속공격을 한다.
         playerTrigger.OnCollider();
         anim.SetBool("isAttack",true);
@@ -142,61 +145,37 @@ public class PlayerAttack : MonoBehaviour
         {
             return;
         }
-
-
-        if (Input.GetMouseButtonDown(1) && !isButtonPressed3) // 마우스 오른쪽버튼 클릭했을 때 발동하도록 설정한다.
+        switch (SkillManager.instance.gainedSkill_Warrior[1].id)
         {
-            anim.SetTrigger("Attack");
-            //검기 스킬 발사하도록 Instantiate 이용한다.
-            GameObject swordWave = Instantiate(skill, transform.position, transform.rotation);
-            //3번째 스킬은 폭발검기를 이용할 때 폭발 파티클을 재생시키기 위해 변수를 담아준다.
-            //이렇게 안하면 clone로 나오는 검기들에 파티클이 None 상태로 떠서 파티클 재생이 안되기 때문이다.
-            swordWave.GetComponent<SwordWave>().Ex = waveEX;
-            // 캐릭터 앞 쪽에 위치시켜서 이상한 곳에서 안나오도록 고정시키기 위함이다.
-            swordWave.transform.position = skillPos.position;
-            if (isButtonPressed)
-            {
-                skillsetting1(); // 스킬1 버튼 누르면 스킬강화1 함수 발동한다.
-            }
-            else if (isButtonPressed2)
-            {
-                skillsetting2(swordWave); // 스킬2 버튼 누르면 스킬강화2 함수 발동한다.
-            }
-        }
-        if(Input.GetMouseButtonDown(1) && isButtonPressed3)
-        {
-            anim.SetTrigger("Attack");
-            skillsetting3();
+            case 4:
+                skillBaseAttack(); // 기본공격
+                break;
+            case 5:
+                skillsetting1(); // 기본공격 강화 1번셋팅
+                break;
+            case 6:
+                skillsetting2(); // 기본공격 강화 2번셋팅
+                break;
+            case 7:
+                skillsetting3(); // 기본공격 강화 3번셋팅
+                break;
         }
     }
-    //**********버튼 동작을 위한 함수**********//  
-    public void OnAttackButton_First()
+    void skillBaseAttack()
     {
-        isAttackButton1 = !isAttackButton1;
-    }
-    public void OnAttackButton_Second()
-    {
-        isAttackButton2 = !isAttackButton2;
-    }
-    public void OnAttackButton_Third()
-    {
-        isAttackButton3 = !isAttackButton3;
-    }
-    public void OnButtonSkill_First()
-    {
-        isButtonPressed = !isButtonPressed;
-    }
-    public void OnButtonSkill_Second()
-    {
-        isButtonPressed2 = !isButtonPressed2;
-    }
-    public void OnButtonSkill_Third()
-    {
-        isButtonPressed3 = !isButtonPressed3;
+        anim.SetTrigger("Attack");
+        //검기 스킬 발사하도록 Instantiate 이용한다.
+        swordWave = Instantiate(skill, transform.position, transform.rotation);
+        //3번째 스킬은 폭발검기를 이용할 때 폭발 파티클을 재생시키기 위해 변수를 담아준다.
+        //이렇게 안하면 clone로 나오는 검기들에 파티클이 None 상태로 떠서 파티클 재생이 안되기 때문이다.
+        swordWave.GetComponent<SwordWave>().Ex = waveEX;
+        // 캐릭터 앞 쪽에 위치시켜서 이상한 곳에서 안나오도록 고정시키기 위함이다.
+        swordWave.transform.position = skillPos.position;
     }
     void skillsetting1()
     {
-        
+        controller.OnChangeSkills(5);
+        skillBaseAttack();
         //스킬강화1 버전으로 ↖↑↗ 방향으로 나아가기 위해 ↖↗ 방향으로 나가는 검기들만 따로 설정해 주었다.
         Quaternion WaveRot2 = transform.rotation * Quaternion.Euler(0, 50.0f, 0);
         Quaternion WaveRot3 = transform.rotation * Quaternion.Euler(0, -50.0f, 0);
@@ -205,11 +184,12 @@ public class PlayerAttack : MonoBehaviour
         swordWave2.transform.position = skillPos2.position;
         swordWave3.transform.position = skillPos3.position;
     }
-    void skillsetting2(GameObject wave)
+    void skillsetting2()
     {
         controller.OnChangeSkills(6);
+        skillBaseAttack();
         //스킬강화2 버전으로 검기스킬의 범위를 늘린다.
-        wave.transform.localScale = new Vector3(2.0f, 1.0f, 2.0f);
+        swordWave.transform.localScale = new Vector3(2.0f, 1.0f, 2.0f);
     }
     void skillsetting3()
     {
@@ -219,6 +199,7 @@ public class PlayerAttack : MonoBehaviour
         GameObject swordWave_red = Instantiate(skill_red, transform.position, transform.rotation);
         swordWave_red.GetComponent<SwordWave>().Ex = waveEX;
         swordWave_red.transform.position = skillPos.position;
+        anim.SetTrigger("Attack");
     }
     public void block() // 보호막 함수
     {
@@ -226,11 +207,9 @@ public class PlayerAttack : MonoBehaviour
         {
             return;
         }
-
         //스페이스바를 누르면 보호막 스킬을 사용하여 캐릭터가 방패들 들어 공격을 막을 수 있도록 함수를 구현했다.
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            isCoolTimeBlock = true;
             isBlock = true;
             anim.SetBool("block", true);
             shield.Play();
@@ -241,7 +220,7 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator Endblock()
     {
         //지속시간 1.5초와 같으며 1.5초가 지나면 다시 idle상태로 되돌아 가고 파티클을 멈추도록 설계했다.
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.5f + ItemManager.instance.itemToNonHitTime);
         isBlock = false;
         anim.SetBool("block", false);
         shield.Stop();
@@ -258,13 +237,37 @@ public class PlayerAttack : MonoBehaviour
         {
             //보호막 스킬을 사용하는 동안 캐릭터에 닿는 보스 몬스터의 탄환들을 삭제함.(데미지X)
             PoolFactroy.instance.OutPool(other.gameObject, Consts.GolemPJ);
-            
         }
+    }
+    //**********버튼 동작을 위한 함수**********//  
+    public void OnAttackButton_First()
+    {
+       SkillManager.instance.gainedSkill_Warrior[0] = SkillManager.instance.warriorSkills[1];
+    }
+    public void OnAttackButton_Second()
+    {
+        isAttackSetting2 = true;
+        SkillManager.instance.gainedSkill_Warrior[0] = SkillManager.instance.warriorSkills[2];
+    }
+    public void OnAttackButton_Third()
+    {
+        SkillManager.instance.gainedSkill_Warrior[0] = SkillManager.instance.warriorSkills[3];
+    }
+    public void OnButtonSkill_First()
+    {
+        SkillManager.instance.gainedSkill_Warrior[1] = SkillManager.instance.warriorSkills[5];
+    }
+    public void OnButtonSkill_Second()
+    {
+        SkillManager.instance.gainedSkill_Warrior[1] = SkillManager.instance.warriorSkills[6];
+    }
+    public void OnButtonSkill_Third()
+    {
+        isSkillSetting3 = true;
+        SkillManager.instance.gainedSkill_Warrior[1] = SkillManager.instance.warriorSkills[7];
     }
     // Update is called once per frame
     void Update()
     {
-        
-   
     }
 }

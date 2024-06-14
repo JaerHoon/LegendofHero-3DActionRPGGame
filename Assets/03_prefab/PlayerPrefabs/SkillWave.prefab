@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34eb702c5b142fd459bab3aced0ed1bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillPower: 10
+  skillPower: 15
   Ex: {fileID: 0}
 --- !u!54 &605034467069280926
 Rigidbody:

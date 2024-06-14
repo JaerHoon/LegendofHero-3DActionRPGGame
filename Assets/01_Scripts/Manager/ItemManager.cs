@@ -77,7 +77,7 @@ public class ItemManager : MonoBehaviour
         itemToSkillGCD = 0;
         itemToAllSkillDamage = 0;
         itemToAttackDamageRate = 1;
-        itemToSpeed = 0;
+        itemToSpeed = 1;
         itemToAddCritDamage = 0;
         itemToNonHitTime = 0;
 
