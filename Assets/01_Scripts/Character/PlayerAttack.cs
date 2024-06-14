@@ -151,13 +151,13 @@ public class PlayerAttack : MonoBehaviour
                 skillBaseAttack(); // 기본공격
                 break;
             case 5:
-                skillsetting1(); // 기본공격 강화 1번셋팅
+                skillsetting1(); // 스킬 강화 1번셋팅
                 break;
             case 6:
-                skillsetting2(); // 기본공격 강화 2번셋팅
+                skillsetting2(); // 스킬 강화 2번셋팅
                 break;
             case 7:
-                skillsetting3(); // 기본공격 강화 3번셋팅
+                skillsetting3(); // 스킬 강화 3번셋팅
                 break;
         }
     }
