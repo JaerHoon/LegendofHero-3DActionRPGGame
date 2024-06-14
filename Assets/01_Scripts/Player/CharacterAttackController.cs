@@ -136,10 +136,10 @@ public class CharacterAttackController : MonoBehaviour
                 StartCoroutine(SkillCoolDown("ÆòÅ¸", 0, playerSkillsSlot[0].cd));
                 StartCoroutine(SkillGlobalCoolDown(playerSkillsSlot[0].gcd + ItemManager.instance.itemToSkillGCD));
             }
-            else if (Input.GetMouseButtonUp(0))
+            /*else if (Input.GetMouseButtonUp(0))
             {
                 if (ArcherAttack.instance != null) ArcherAttack.instance.AttackStop();
-            }
+            }*/
 
             if (Input.GetMouseButtonDown(1) &&  isReadySkills[1] == true &&  curSkillNum >= 1 )
             {

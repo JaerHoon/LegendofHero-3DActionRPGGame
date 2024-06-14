@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6562550013878065172}
   - component: {fileID: 8874627793198022576}
   - component: {fileID: 782749267561329784}
+  - component: {fileID: 6058936254808565709}
   m_Layer: 0
   m_Name: Explosion Smoke
   m_TagString: Untagged
@@ -4897,6 +4898,21 @@ MonoBehaviour:
     perlinColor: 0
     perlinColorSpeed: 1
   fadeOutReference: {fileID: 0}
+--- !u!114 &6058936254808565709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5032904600613530757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b2457cb4d1fe134b9411207c1ff18f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &5855529043433847139
 GameObject:
   m_ObjectHideFlags: 0

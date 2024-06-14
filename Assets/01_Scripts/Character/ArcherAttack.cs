@@ -72,47 +72,46 @@ public class ArcherAttack : MonoBehaviour
 
     public void ArrowAttack() // 궁수 캐릭터의 기본공격을 위한 함수
     {
-        if (Input.GetMouseButtonDown(0) && !isAttackButton3) // 마우스 왼쪽버튼 클릭했을 때 발동하도록 설정한다.
+        switch (SkillManager.instance.gainedSkill_Archer[0].id)
         {
-            // 공격 애니메이션에 맞춰서 화살을 나가게 하기 위해 0.3초의 딜레이를 줌
-            Invoke("shotArrow", 0.3f);
-            //마우스 클릭시 공격 애니메이션이 발동된다.
-            anim.SetTrigger("Attack");
-            //공격 모션에 맞춰서 슬래시 파티클 애니메이션 실행
-
-            if(isAttackButton1) // 기본공격 1번 셋팅
-            {
-                Invoke("AttackSetting1", 0.3f);
-            }
-            else if(isAttackButton2) // 기본공격 2번 셋팅
-            {
-                Invoke("AttackSetting2", 0.3f);
-            }
-
+            case 0:
+                baseAttack(); // 기본공격
+                break;
+            case 1:
+                baseAttack();
+                Invoke("AttackSetting1", 0.3f); // 기본공격 강화 1번셋팅
+                break;
+            case 2:
+                AttackSetting2();// 기본공격 강화 2번셋팅
+                break;
+            case 3:
+                AttackSetting3(); // 기본공격 강화 3번셋팅
+                break;
         }
-        
-        //기본공격 3번 셋팅을 위한 if문
-        if(Input.GetMouseButton(0) && isAttackButton3)
-        {
-            
-            isShooting = true;
-            anim.SetBool("holdAttack", true);
-            archerController.OnChangeSkills(3);
-            AttackSetting3();
-        }
-        
-      
+
+    }
+
+    void baseAttack()
+    {
+        // 공격 애니메이션에 맞춰서 화살을 나가게 하기 위해 0.3초의 딜레이를 줌
+        Invoke("shotArrow", 0.3f);
+        //마우스 클릭시 공격 애니메이션이 발동된다.
+        anim.SetTrigger("Attack");
     }
 
     public void AttackStop()
     {
-        if (Input.GetMouseButtonUp(0) && isAttackButton3)
+        if(Input.GetMouseButtonUp(0))
         {
-
-            StopCoroutine(holdAttack);
+            if (holdAttack != null)
+            {
+                StopCoroutine(holdAttack);
+                holdAttack = null; // 코루틴을 중지한 후 null로 설정
+            }
             isShooting = false;
             anim.SetBool("holdAttack", false);
         }
+        
     }
 
     void AttackSetting1() // 기본공격 1번 셋팅으로 ↑↑ 모양으로 화살이 발사됨.
@@ -120,11 +119,13 @@ public class ArcherAttack : MonoBehaviour
         archerController.OnChangeSkills(1);
         GameObject arrowShot2 = Instantiate(arrow, transform.position, transform.rotation);
         arrowShot2.transform.position = arrowPos2.position;
+        
     }
 
     void AttackSetting2() // 기본공격 2번 셋팅으로 누르면 화살 한발이 연이어서 나간다.
     {
         archerController.OnChangeSkills(2);
+        baseAttack();
         StartCoroutine(repeatingArrow());
     }
     IEnumerator repeatingArrow()
@@ -136,6 +137,13 @@ public class ArcherAttack : MonoBehaviour
 
     void AttackSetting3() // 기본공격3번으로 마우스 왼쪽을 누르고 있는 동안 일정 간격으로 화살이 계속 발사됨.
     {
+        if(Input.GetMouseButton(0))
+        {
+            archerController.OnChangeSkills(3);
+            isShooting = true;
+            anim.SetBool("holdAttack", true);
+            
+        }
         holdAttack = StartCoroutine(holdArrowAttack());
     }
 
@@ -155,40 +163,43 @@ public class ArcherAttack : MonoBehaviour
 
     public void skillAttack() // 스킬을 발동하기 위한 함수 => 마우스 오른쪽 버튼을 누르면 스킬이 발동된다.
     {
-        if (Input.GetMouseButtonDown(1) && !isButtonPressed3) // 마우스 오른쪽버튼 클릭했을 때 발동하도록 설정한다.
+        switch (SkillManager.instance.gainedSkill_Archer[1].id)
         {
-            //공격 애니메이션과 싱크를 어느정도 맞추기 위해서 0.4초간의 딜레이를 줌
-            Invoke("usedRay", 0.4f);
-            //마우스 클릭시 공격 애니메이션이 발동된다.
-            anim.SetTrigger("skillAttack");
-            
-            if(isButtonPressed1) // 스킬셋팅 1번을 사용하기 위한 조건
-            {
-                skillSetting1();
-            }
-            else if(isButtonPressed2) // 스킬셋팅 2번을 사용하기 위한 조건
-            {
-                skillSetting2();
-            }
-        }
-        //스킬셋팅 3번을 사용하기 위한 조건
-        if(Input.GetMouseButtonDown(1) && isButtonPressed3)
-        {
-            skillSetting3();
+            case 4:
+                skillBaseAttack(); // 기본공격
+                break;
+            case 5:
+                skillSetting1(); // 기본공격 강화 1번셋팅
+                break;
+            case 6:
+                skillSetting2(); // 기본공격 강화 2번셋팅
+                break;
+            case 7:
+                skillSetting3(); // 기본공격 강화 3번셋팅
+                break;
         }
 
+    }
+
+    void skillBaseAttack()
+    {
+        //공격 애니메이션과 싱크를 어느정도 맞추기 위해서 0.4초간의 딜레이를 줌
+        Invoke("usedRay", 0.4f);
+        //마우스 클릭시 공격 애니메이션이 발동된다.
+        anim.SetTrigger("skillAttack");
     }
 
     void skillSetting1() // 스킬셋팅 1번 함수
     {
         archerController.OnChangeSkills(5);
-        
+        skillBaseAttack();
     }
 
     
     void skillSetting2() // 스킬셋팅 2번 함수
     {
         archerController.OnChangeSkills(6);
+        skillBaseAttack();
         ArrowRainParticle.instance.ParticleControl();
 
         //에로우레인 파티클에서 Emission의 Count값을 조정하는 코드로 2번째 스킬컨셉인 더 많은 타수를
@@ -207,7 +218,7 @@ public class ArcherAttack : MonoBehaviour
     void skillSetting3() // 스킬셋팅 3번 함수
     {
         
-        //archerController.OnChangeSkills(7);
+        archerController.OnChangeSkills(7);
         
         /*skillCount++;
         if(skillCount >=2)
@@ -324,35 +335,35 @@ public class ArcherAttack : MonoBehaviour
     //**********버튼 동작을 위한 함수**********//  
     public void OnArcherAttackButton_First()
     {
-        isAttackButton1 = !isAttackButton1;
+        SkillManager.instance.gainedSkill_Archer[0] = SkillManager.instance.archerSkills[1];
     }
 
     public void OnArcherAttackButton_Second()
     {
-        isAttackButton2 = !isAttackButton2;
+        SkillManager.instance.gainedSkill_Archer[0] = SkillManager.instance.archerSkills[2];
     }
 
     public void OnArcherAttackButton_Third()
     {
-        isAttackButton3 = !isAttackButton3;
+        SkillManager.instance.gainedSkill_Archer[0] = SkillManager.instance.archerSkills[3];
 
-        
+
     }
 
     public void OnButtonArcherSkill_First()
     {
-        isButtonPressed1 = !isButtonPressed1;
+        SkillManager.instance.gainedSkill_Archer[1] = SkillManager.instance.archerSkills[5];
     }
 
     public void OnButtonArcherSkill_Second()
     {
-        isButtonPressed2 = !isButtonPressed2;
+        SkillManager.instance.gainedSkill_Archer[1] = SkillManager.instance.archerSkills[6];
 
     }
 
     public void OnButtonArcherSkill_Third()
     {
-        isButtonPressed3 = !isButtonPressed3;
+        SkillManager.instance.gainedSkill_Archer[1] = SkillManager.instance.archerSkills[7];
     }
 
     // Update is called once per frame
@@ -362,7 +373,8 @@ public class ArcherAttack : MonoBehaviour
         {
             return;
         }
-        
+
+        AttackStop();
         //ArrowAttack();
         //skillAttack();
         //block();
