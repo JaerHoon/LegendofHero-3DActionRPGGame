@@ -169,13 +169,13 @@ public class ArcherAttack : MonoBehaviour
                 skillBaseAttack(); // 기본공격
                 break;
             case 5:
-                skillSetting1(); // 기본공격 강화 1번셋팅
+                skillSetting1(); // 스킬 강화 1번셋팅
                 break;
             case 6:
-                skillSetting2(); // 기본공격 강화 2번셋팅
+                skillSetting2(); // 스킬 강화 2번셋팅
                 break;
             case 7:
-                skillSetting3(); // 기본공격 강화 3번셋팅
+                skillSetting3(); // 스킬 강화 3번셋팅
                 break;
         }
 
