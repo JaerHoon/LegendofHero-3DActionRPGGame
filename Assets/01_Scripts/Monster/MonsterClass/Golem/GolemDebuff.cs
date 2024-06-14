@@ -5,8 +5,7 @@ using UnityEngine;
 public class GolemDebuff : MonsterDebuff
 {
     InGameCanvasController inGameCanvas;
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         inGameCanvas = FindFirstObjectByType<InGameCanvasController>();
         curseImage = inGameCanvas.golemCurse;
@@ -15,10 +14,4 @@ public class GolemDebuff : MonsterDebuff
         Init();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-       
-    }
 }

@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class MonsterMinionDebuff : MonsterDebuff
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        Init();   
+        Init();
     }
-
 }

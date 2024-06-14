@@ -107,11 +107,11 @@ public class ItemManager : MonoBehaviour
         items.Add(relic); RelicItems.Add(relic);
         relic = new Relic(1, "저주의 발톱", null, null, "가까운 범위에 적에게 저주를 부여한다.( 저주 : 5)", 0, 0, 5f, 0);
         items.Add(relic); RelicItems.Add(relic);
-        relic = new Relic(2, "화강암 대검", null, null, "16초마다 자기 주위를 원형으로 크게 베어 700 데미지를 준다.", 0, 300f, 7f, 16f);
+        relic = new Relic(2, "화강암 대검", null, null, "9초마다 자기 주위를 원형으로 크게 베어 300 데미지를 준다.", 0, 300f, 7f, 9f);
         items.Add(relic); RelicItems.Add(relic);
         relic = new Relic(3, "왕비의 왕관", null, null, "크리티컬이 50%가 아닌 150%의 추가 피해를 주게 된다,", 0, 0, 0, 0);
         items.Add(relic); RelicItems.Add(relic);
-        relic = new Relic(4, "담쟁이덩쿨 스태프", null, null, "10초마다 타겟을 향해 투사체를 발사하여 50의 데미지를 주고 5초의 독을 부여한다. (독 : 30(5))", 0, 50f, 0, 10);
+        relic = new Relic(4, "담쟁이덩쿨 스태프", null, null, "7초마다 타겟을 향해 투사체를 발사하여 50의 데미지를 주고 5초의 독을 부여한다. (독 : 30(5))", 0, 50f, 0, 7);
         items.Add(relic); RelicItems.Add(relic);
 
         Skill_Item skill_Item1 = new Skill_Item(5, "뱀송곳니 단검", null, null, "스킬 적중 시 5초의 독을 부여한다. (독 : 30(5))", 0, 0, 0, 0, 0, 0);
@@ -122,7 +122,7 @@ public class ItemManager : MonoBehaviour
         items.Add(skill_Item1); SkillItems.Add(skill_Item1);
         skill_Item1 = new Skill_Item(8, "작은 날개", null, null, "이동속도가 크게 증가한다.", 0, 0, 0, 1.5f, 0, 0);
         items.Add(skill_Item1); SkillItems.Add(skill_Item1);
-        skill_Item1 = new Skill_Item(9, "거대한 곤봉", null, null, "평타의 데미지가 70% 증가하지만 GCD가 0.6초 길어지고 이동속도가 조금 감소한다.", 0, 0, 0, 0.85f, 1.7f, 0.6f);
+        skill_Item1 = new Skill_Item(9, "거대한 곤봉", null, null, "평타의 데미지가 70% 증가하지만 이동속도가 조금 감소한다.", 0, 0, 0, 0.85f, 1.7f, 0.0f);
         items.Add(skill_Item1); SkillItems.Add(skill_Item1);
 
         
