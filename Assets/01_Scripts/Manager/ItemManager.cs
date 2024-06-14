@@ -7,17 +7,17 @@ public class ItemManager : MonoBehaviour
 {
     public static ItemManager instance;
 
-    [HideInInspector]
+    //[HideInInspector]
     public float itemToSkillGCD;//아이템으로 적용된 글로벌 쿨다운
-    [HideInInspector]
+    //[HideInInspector]
     public float itemToAllSkillDamage;
-    [HideInInspector]
+    //[HideInInspector]
     public float itemToAttackDamageRate;
-    [HideInInspector]
+    //[HideInInspector]
     public float itemToSpeed;
-    [HideInInspector]
+    //[HideInInspector]
     public float itemToAddCritDamage;
-    [HideInInspector]
+    //[HideInInspector]
     public float itemToNonHitTime;
 
     Inventory inventory;
@@ -305,9 +305,8 @@ public class ItemManager : MonoBehaviour
     }
     public void PassiveItem9()
     {
-        print($"평타의 데미지가 {(SkillItems[4].damageRate - 1) * 100}% 증가하지만 GCD가 {SkillItems[4].gcd}초 길어지고 이동속도가 조금 감소");
+        print($"평타의 데미지가 {(SkillItems[4].damageRate - 1) * 100}% 증가하지만 이동속도가 조금 감소");
         itemToAttackDamageRate = SkillItems[4].damageRate;
-        itemToSkillGCD = SkillItems[4].gcd;
         itemToSpeed = SkillItems[4].speedRate;
         if (itemDic[8] == 1 && itemDic[9] == 1) itemToSpeed = 1.25f;
     }

@@ -38,12 +38,26 @@ public class MonsterDebuff : MonoBehaviour
     protected virtual void Init()
     {
         monster = GetComponent<Monster>();
+        monster.monsterdDmg.UpDamage = 0;
 
         curseCD = curseImage.GetComponentsInChildren<Image>()[1];
         poisonCD = posionImage.GetComponentsInChildren<Image>()[1];
         freezeCD = freezeImage.GetComponentsInChildren<Image>()[1];
 
         debuffCorouts = new Coroutine[3];
+        debuffCorouts[0] = StartCoroutine(OnCurseCorout());
+        debuffCorouts[1] = StartCoroutine(OnPoisonCorout());
+        debuffCorouts[2] = StartCoroutine(OnFreezeCorout());
+        StopAllCoroutines();
+
+        curseImage.SetActive(false);
+        posionImage.SetActive(false);
+        freezeImage.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        monster.monsterdDmg.UpDamage = 0;
         debuffCorouts[0] = StartCoroutine(OnCurseCorout());
         debuffCorouts[1] = StartCoroutine(OnPoisonCorout());
         debuffCorouts[2] = StartCoroutine(OnFreezeCorout());
@@ -62,7 +76,7 @@ public class MonsterDebuff : MonoBehaviour
         curseImage.SetActive(true);
         curseCD.fillAmount = 0;
         //RestartCoroutine(0);
-
+        monster.monsterdDmg.UpDamage = 10;
         debuffCorouts[0] = StartCoroutine(OnCurseCorout());
     }
 
@@ -78,6 +92,7 @@ public class MonsterDebuff : MonoBehaviour
 
     protected virtual void OffCurseState()
     {
+        monster.monsterdDmg.UpDamage = 0;
         enumList[0] = CURSESTATE.None;
         curseImage.SetActive(false);
     }
