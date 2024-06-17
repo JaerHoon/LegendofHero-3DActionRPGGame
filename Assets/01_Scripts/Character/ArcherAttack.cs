@@ -168,8 +168,10 @@ public class ArcherAttack : MonoBehaviour
 
     public void skillAttack() // 스킬을 발동하기 위한 함수 => 마우스 오른쪽 버튼을 누르면 스킬이 발동된다.
     {
+        print(SkillManager.instance.gainedSkill_Archer[1].id);
         switch (SkillManager.instance.gainedSkill_Archer[1].id)
         {
+            
             case 4:
                 skillBaseAttack(4); // 기본공격
                 break;

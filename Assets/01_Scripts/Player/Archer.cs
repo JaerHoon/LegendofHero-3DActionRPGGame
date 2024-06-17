@@ -37,6 +37,7 @@ public class Archer : CharacterAttackController
         }
         else if (SKillNum >= 4 && SKillNum <= 7)
         {
+            
             playerSkillsSlot[1] = SkillManager.instance.archerSkills[SKillNum];
             maxSkillNum = playerSkillsSlot[1].skillCount;
             curSkillNum = maxSkillNum;
