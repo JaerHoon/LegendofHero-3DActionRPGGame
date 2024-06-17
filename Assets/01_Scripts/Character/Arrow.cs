@@ -34,6 +34,12 @@ public class Arrow : MonoBehaviour
             other.GetComponent<MonsterDamage>().OnDamage(archerController.playerSkillsSlot[0].damage * ItemManager.instance.itemToAttackDamageRate);
             PoolFactroy.instance.OutPool(this.gameObject, Consts.Arrow);
         }
+        else if(other.gameObject.tag == "Dummy")
+        {
+            other.GetComponent<Dummy>().OnHit(archerController.playerSkillsSlot[0].damage * ItemManager.instance.itemToAttackDamageRate);
+            PoolFactroy.instance.OutPool(this.gameObject, Consts.Arrow);
+        }
+        
         
     }
 

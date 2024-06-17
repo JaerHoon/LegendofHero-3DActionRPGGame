@@ -8,10 +8,23 @@ public class NPCMage : MonoBehaviour
     public StageType stageType;
     InGameCanvasController inGame;
     bool IsInteraction;
+    string[] startcoversations = new string[5];
+    string[] marketconversations = new string[4];
 
     private void Start()
     {
         inGame = GameObject.FindFirstObjectByType<InGameCanvasController>();
+        startcoversations[0] = "안녕하신가! 힘세고 강한 아침!";
+        startcoversations[1] = "만일 내게 물어보면 나는 메이지!";
+        startcoversations[2] = "갑자기 마왕 쳐들어 왔다!";
+        startcoversations[3] = "용사여!";
+        startcoversations[4] = "해줘잉!";
+
+        marketconversations[0] = "안녕하신가! 힘세고 강한 점심!";
+        marketconversations[1] = "만일 내게 물어보면 나는 상인 메이지";
+        marketconversations[2] = "골라골라! 싸다 싸!";
+        marketconversations[3] = "돈 없으면 저리가!!";
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -43,10 +56,22 @@ public class NPCMage : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                print("대화시작");
+                OnDailog();
                 inGame.OffInteraction();
                 IsInteraction = false;
             }
+        }
+    }
+
+    void OnDailog()
+    {
+        if(stageType == StageType.Start)
+        {
+            inGame.OnDialog(startcoversations, this.gameObject.transform);
+        }
+        else
+        {
+            inGame.OnDialog(marketconversations, this.gameObject.transform);
         }
     }
 }
