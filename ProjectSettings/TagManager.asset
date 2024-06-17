@@ -15,6 +15,7 @@ TagManager:
   - GolemHPBar
   - CoinImage
   - EX
+  - Rain
   layers:
   - Default
   - TransparentFX

@@ -31,8 +31,8 @@ public class ArcherAttack : MonoBehaviour
 
     Animator anim;
 
-    public bool isButtonPressed1 = false; // 스킬셋팅1번용 플래그
-    public bool isButtonPressed2 = false; // 스킬셋팅2번용 플래그
+    public bool isSkillSetting1 = false; // 스킬셋팅1번용 플래그
+    public bool isSkillsSetting2 = false; // 스킬셋팅2번용 플래그
     public bool isButtonPressed3 = false; // 스킬셋팅3번용 플래그
 
     public bool isAttackButton1 = false; // 기본공격1번용 플래그
@@ -54,6 +54,7 @@ public class ArcherAttack : MonoBehaviour
     Coroutine holdAttack;
     Archer archerController;
     bool isCoolTimeBlock = false;
+    ParticleSystem arrowRain;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -62,6 +63,7 @@ public class ArcherAttack : MonoBehaviour
         cap = GetComponent<CapsuleCollider>();
         die = GetComponent<CharacterDamage>();
         archerController = GameObject.FindWithTag("Player").GetComponent<Archer>();
+        
     }
 
     void shotArrow() // 기본공격 할 때 화살 생성 및 위치를 구현한 함수
@@ -169,7 +171,7 @@ public class ArcherAttack : MonoBehaviour
         switch (SkillManager.instance.gainedSkill_Archer[1].id)
         {
             case 4:
-                skillBaseAttack(); // 기본공격
+                skillBaseAttack(4); // 기본공격
                 break;
             case 5:
                 skillSetting1(); // 스킬 강화 1번셋팅
@@ -184,41 +186,35 @@ public class ArcherAttack : MonoBehaviour
 
     }
 
-    void skillBaseAttack()
+    void skillBaseAttack(int num)
     {
         //공격 애니메이션과 싱크를 어느정도 맞추기 위해서 0.4초간의 딜레이를 줌
-        Invoke("usedRay", 0.4f);
+        StartCoroutine(usedray(num));
         //마우스 클릭시 공격 애니메이션이 발동된다.
         anim.SetTrigger("skillAttack");
+    }
+
+    IEnumerator usedray(int num)
+    {
+        yield return new WaitForSeconds(0.4f);
+        usedRay(num);
     }
 
     void skillSetting1() // 스킬셋팅 1번 함수
     {
         archerController.OnChangeSkills(5);
-        skillBaseAttack();
-
+        skillBaseAttack(5);
+       
     }
 
     
     void skillSetting2() // 스킬셋팅 2번 함수
     {
+        isSkillsSetting2 = true;
         archerController.OnChangeSkills(6);
-        skillBaseAttack();
-        ArrowRainParticle.instance.ParticleControl();
-
-        //에로우레인 파티클에서 Emission의 Count값을 조정하는 코드로 2번째 스킬컨셉인 더 많은 타수를
-        //표현하기 위해서 떨어지는 화살의 갯수를 더 많아보이게 하기 위해 Count값을 조정하는 코드이다.
-        var emi = ArrowRain.emission;
-        var bur = new ParticleSystem.Burst[emi.burstCount];
-        emi.GetBursts(bur);
-
-        for (int i = 0; i < bur.Length; i++)
-        {
-            bur[i].count = 4;
-        }
-
-        emi.SetBursts(bur);
+        skillBaseAttack(6);
     }
+
     void skillSetting3() // 스킬셋팅 3번 함수
     {
         
@@ -243,7 +239,7 @@ public class ArcherAttack : MonoBehaviour
         Debug.Log("스킬을 사용할 수 있습니다");
     }*/
 
-    void usedRay()
+    void usedRay(int num)
     {
         //Plane를 원점 기준으로 정의
         Plane plane = new Plane(Vector3.up, Vector3.zero);
@@ -254,27 +250,56 @@ public class ArcherAttack : MonoBehaviour
         if(plane.Raycast(ray, out disToPlane)) // Ray가 plane과 교차하는지를 검사함.
         {
             Vector3 hitPoint = ray.GetPoint(disToPlane); // 위치 계산
-            // hitPoint 위치에 에로우 레인 파티클 생성
+                                                         // hitPoint 위치에 에로우 레인 파티클 생성
             GameObject ps = PoolFactroy.instance.GetPool(Consts.ArrowRain);
             ps.transform.position = hitPoint;
             ps.transform.rotation = transform.rotation;
-            ParticleSystem arrowRain = ps.GetComponent<ParticleSystem>();
-            arrowRain.Play();
-            
+            arrowRain = ps.GetComponent<ParticleSystem>();
+            StartCoroutine(offarrowRain(ps));
 
-            if (isButtonPressed2)
+
+
+            if (num == 5)
+            {
+                isSkillSetting1 = true;
+
+                ArrowRainParticle arp = arrowRain.GetComponent<ArrowRainParticle>();
+                if (arp != null) arp.ParticleColor();
+            }
+            else if (num == 6)
+            {
+                if (arrowRain != null)
+                {
+                    ArrowRainParticle arp = arrowRain.GetComponent<ArrowRainParticle>();
+                    if (arp != null) arp.ParticleControl();
+
+
+                    //에로우레인 파티클에서 Emission의 Count값을 조정하는 코드로 2번째 스킬컨셉인 더 많은 타수를
+                    //표현하기 위해서 떨어지는 화살의 갯수를 더 많아보이게 하기 위해 Count값을 조정하는 코드이다.
+                    var emi = arrowRain.emission;
+                    var bur = new ParticleSystem.Burst[emi.burstCount];
+                    emi.GetBursts(bur);
+
+                    for (int i = 0; i < bur.Length; i++)
+                    {
+                        bur[i].count = 4;
+                    }
+
+                    emi.SetBursts(bur);
+
+                }
+                
+            }
+            arrowRain.Play();
+
+            /*if (isButtonPressed2)
             {
                 //파티클이 생성되고 설정한 시간값 이후에 파티클이 들어가 있는 게임오브젝트를 Destroy한다.
                 //예시로 duration =2초, startLifetime= 0.5초로 설정했다면 2.5초뒤에 Destroy한다는 뜻이다.
-                PoolFactroy.instance.OutPool(ps, Consts.ArrowRain);
+                Invoke("offarrowRain", 2.5f);
                 //Destroy(arrowRain.gameObject, DestroyDuration + DestroyLifeTime);
-            }
-            else
-            {
-                //파티클이 생성된 후 완전히 종료될 때까지 기다렸다가 파괴한다. 
-                PoolFactroy.instance.OutPool(ps, Consts.ArrowRain);
-                //Destroy(arrowRain.gameObject, arrowRain.main.duration + arrowRain.main.startLifetime.constantMax);
-            }
+            }*/
+
         }
 
         
@@ -301,6 +326,19 @@ public class ArcherAttack : MonoBehaviour
         }*/
     }
 
+    IEnumerator offarrowRain(GameObject psOff)
+    {
+        if(isSkillsSetting2)
+        {
+            yield return new WaitForSeconds(3.5f);
+            PoolFactroy.instance.OutPool(psOff, Consts.ArrowRain);
+        }
+        else
+        {
+            yield return new WaitForSeconds(2.5f);
+            PoolFactroy.instance.OutPool(psOff, Consts.ArrowRain);
+        }
+    }
 
     public void block() // 궁수 보호막 스킬을 사용하기 위한 함수
     {
