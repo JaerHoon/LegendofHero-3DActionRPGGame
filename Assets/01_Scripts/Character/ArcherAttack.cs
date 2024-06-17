@@ -66,8 +66,11 @@ public class ArcherAttack : MonoBehaviour
 
     void shotArrow() // 기본공격 할 때 화살 생성 및 위치를 구현한 함수
     {
-        GameObject arrowShot = Instantiate(arrow, transform.position, transform.rotation);
+        GameObject arrowShot = PoolFactroy.instance.GetPool(Consts.Arrow);
         arrowShot.transform.position = arrowPos.position;
+        arrowShot.transform.rotation = transform.rotation;
+        TrailRenderer Tr = arrowShot.GetComponentInChildren<TrailRenderer>();
+        Tr.enabled = true;
     }
 
     public void ArrowAttack() // 궁수 캐릭터의 기본공격을 위한 함수
@@ -193,6 +196,7 @@ public class ArcherAttack : MonoBehaviour
     {
         archerController.OnChangeSkills(5);
         skillBaseAttack();
+
     }
 
     
@@ -251,19 +255,25 @@ public class ArcherAttack : MonoBehaviour
         {
             Vector3 hitPoint = ray.GetPoint(disToPlane); // 위치 계산
             // hitPoint 위치에 에로우 레인 파티클 생성
-            ParticleSystem ps = Instantiate(ArrowRain, hitPoint, transform.rotation);
-            ps.Play();
+            GameObject ps = PoolFactroy.instance.GetPool(Consts.ArrowRain);
+            ps.transform.position = hitPoint;
+            ps.transform.rotation = transform.rotation;
+            ParticleSystem arrowRain = ps.GetComponent<ParticleSystem>();
+            arrowRain.Play();
+            
 
             if (isButtonPressed2)
             {
                 //파티클이 생성되고 설정한 시간값 이후에 파티클이 들어가 있는 게임오브젝트를 Destroy한다.
                 //예시로 duration =2초, startLifetime= 0.5초로 설정했다면 2.5초뒤에 Destroy한다는 뜻이다.
-                Destroy(ps.gameObject, DestroyDuration + DestroyLifeTime);
+                PoolFactroy.instance.OutPool(ps, Consts.ArrowRain);
+                //Destroy(arrowRain.gameObject, DestroyDuration + DestroyLifeTime);
             }
             else
             {
                 //파티클이 생성된 후 완전히 종료될 때까지 기다렸다가 파괴한다. 
-                Destroy(ps.gameObject, ps.main.duration + ps.main.startLifetime.constantMax);
+                PoolFactroy.instance.OutPool(ps, Consts.ArrowRain);
+                //Destroy(arrowRain.gameObject, arrowRain.main.duration + arrowRain.main.startLifetime.constantMax);
             }
         }
 

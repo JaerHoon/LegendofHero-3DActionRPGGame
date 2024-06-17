@@ -23,8 +23,8 @@ MonoBehaviour:
     Image: {fileID: 21300000, guid: 7fe59d3987bae4441af4dff18b5e48e1, type: 3}
     material: {fileID: 0}
     Damage: 10
-    CD: 0
-    GCD: 1.5
+    CD: 0.5
+    GCD: 0.5
     Scale: 1
     SpeedRate: 1
     EventRate: 1
@@ -36,13 +36,14 @@ MonoBehaviour:
     skillName: "\uB4C0\uC5BC \uC5D0\uB85C\uC6B0\uC5B4\uD0DD"
     ID: 1
     SkillDescription: "\uC804\uBC29 \uC9C1\uC120\uC73C\uB85C \uD654\uC0B4\uC744 \uBC1C\uC0AC\uD558\uC5EC
-      10\uC758 \uB370\uBBF8\uC9C0\uB97C \uC900\uB2E4. (GCD : 1.5\uCD08)"
+      10\uC758 \uB370\uBBF8\uC9C0\uB97C \uC900\uB2E4. \uD654\uC0B4 2\uBC1C\uC774
+      \uB3D9\uC2DC\uC5D0 \uBC1C\uC0AC\uB41C\uB2E4.(GCD : 0.5\uCD08)"
     skillType: 0
     Image: {fileID: 0}
     material: {fileID: 0}
     Damage: 10
-    CD: 0
-    GCD: 1.5
+    CD: 0.5
+    GCD: 0.5
     Scale: 0
     SpeedRate: 0
     EventRate: 0
@@ -55,13 +56,13 @@ MonoBehaviour:
     ID: 2
     SkillDescription: "\uC804\uBC29 \uC9C1\uC120\uC73C\uB85C \uD654\uC0B4\uC744 \uBC1C\uC0AC\uD558\uC5EC
       10\uC758 \uB370\uBBF8\uC9C0\uB97C \uC900\uB2E4. \uD654\uC0B4\uC774 \uC5F0\uC18D\uC73C\uB85C
-      1\uBC1C \uB354 \uBC1C\uC0AC\uB41C\uB2E4.(GCD : 1.5\uCD08)"
+      1\uBC1C \uB354 \uBC1C\uC0AC\uB41C\uB2E4.(GCD : 0.5\uCD08)"
     skillType: 0
     Image: {fileID: 0}
     material: {fileID: 0}
     Damage: 10
-    CD: 0
-    GCD: 1.5
+    CD: 0.5
+    GCD: 0.5
     Scale: 0
     SpeedRate: 0
     EventRate: 0
@@ -75,13 +76,14 @@ MonoBehaviour:
     SkillDescription: "\uC804\uBC29 \uC9C1\uC120\uC73C\uB85C \uD654\uC0B4\uC744 \uBC1C\uC0AC\uD558\uC5EC
       10\uC758 \uB370\uBBF8\uC9C0\uB97C \uC900\uB2E4. \uACF5\uACA9\uBC84\uD2BC \uD640\uB529
       \uC2DC \uD654\uC0B4\uC774 \uACC4\uC18D \uBC1C\uC0AC\uB418\uBA70 \uC2DC\uC804
-      \uC911 \uC6C0\uC9C1\uC77C \uC218 \uC5C6\uB2E4.(GCD : 1.5\uCD08)"
+      \uC911 \uC6C0\uC9C1\uC77C \uC218 \uC5C6\uB2E4.(\uB370\uBBF8\uC9C0 : 5, GCD
+      : 0.5\uCD08)"
     skillType: 0
     Image: {fileID: 0}
     material: {fileID: 0}
     Damage: 5
-    CD: 0
-    GCD: 1.5
+    CD: 0.5
+    GCD: 0.5
     Scale: 0
     SpeedRate: 0
     EventRate: 0
@@ -93,13 +95,13 @@ MonoBehaviour:
     skillName: "\uC5D0\uB85C\uC6B0 \uB808\uC778"
     ID: 4
     SkillDescription: "\uD654\uC0B4\uC774 \uBE44\uCC98\uB7FC \uC3DF\uC544\uC9C0\uBA70
-      1\uC758 \uB370\uBBF8\uC9C0\uB97C \uAC00\uD55C\uB2E4. ( GCD : 2.5\uCD08 )"
+      1\uC758 \uB370\uBBF8\uC9C0\uB97C \uAC00\uD55C\uB2E4. ( GCD : 1\uCD08 )"
     skillType: 1
     Image: {fileID: 0}
     material: {fileID: 0}
     Damage: 1
     CD: 2.5
-    GCD: 2.5
+    GCD: 1
     Scale: 1
     SpeedRate: 1
     EventRate: 1
@@ -113,13 +115,13 @@ MonoBehaviour:
     SkillDescription: "\uD654\uC0B4\uC774 \uBE44\uCC98\uB7FC \uC3DF\uC544\uC9C0\uBA70
       1\uC758 \uB370\uBBF8\uC9C0\uB97C \uAC00\uD55C\uB2E4. \uC77C\uC815 \uD655\uB960\uB85C
       \uBE59\uACB0 \uC0C1\uD0DC\uC774\uC0C1\uC774 \uC801\uC6A9\uB41C\uB2E4.( GCD
-      : 2.5\uCD08 )"
+      : 1\uCD08 )"
     skillType: 1
     Image: {fileID: 0}
     material: {fileID: 0}
     Damage: 1
     CD: 2.5
-    GCD: 2.5
+    GCD: 1
     Scale: 0
     SpeedRate: 0
     EventRate: 0.1
@@ -132,13 +134,13 @@ MonoBehaviour:
     ID: 6
     SkillDescription: "\uD654\uC0B4\uC774 \uBE44\uCC98\uB7FC \uC3DF\uC544\uC9C0\uBA70
       1\uC758 \uB370\uBBF8\uC9C0\uB97C \uAC00\uD55C\uB2E4. \uD0C0\uACA9\uD69F\uC218\uAC00
-      \uC99D\uAC00\uD55C\uB2E4.( GCD : 2.5\uCD08 )"
+      \uC99D\uAC00\uD55C\uB2E4.( GCD : 1\uCD08 )"
     skillType: 1
     Image: {fileID: 0}
     material: {fileID: 0}
     Damage: 1
     CD: 2.5
-    GCD: 2.5
+    GCD: 1
     Scale: 0
     SpeedRate: 0
     EventRate: 0
