@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/SimpleNaturePack/SimpleNaturePack_2020.3_HDRP_v1.24.unitypackage.meta
+guid: 7448807450d3f0c409ea7235eb70e4f7
+========
 guid: 08ce5b6500ef87f42b89999d65ce0e6d
+>>>>>>>> 9f0e1b64123b95d9c4df30c5850ec0eabfdc8e05:Assets/Scenes/Intro.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

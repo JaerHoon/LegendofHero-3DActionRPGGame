@@ -20,7 +20,7 @@ MonoBehaviour:
     SkillDescription: "\uC804\uBC29 \uC9C1\uC120\uC73C\uB85C \uD654\uC0B4\uC744 \uBC1C\uC0AC\uD558\uC5EC
       10\uC758 \uB370\uBBF8\uC9C0\uB97C \uC900\uB2E4. (GCD : 1.5\uCD08)"
     skillType: 0
-    Image: {fileID: 0}
+    Image: {fileID: 21300000, guid: 7fe59d3987bae4441af4dff18b5e48e1, type: 3}
     material: {fileID: 0}
     Damage: 10
     CD: 0
