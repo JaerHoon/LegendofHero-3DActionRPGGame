@@ -33,12 +33,12 @@ public class CharacterManager : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance == null)
+        if (instance == null)
         {
-            _instance = this;
+            instance = this;
         }
         // 인스턴스가 존재하는 경우 새로생기는 인스턴스를 삭제한다.
-        else if (_instance != this)
+        else if (instance != this)
         {
             Destroy(gameObject);
         }

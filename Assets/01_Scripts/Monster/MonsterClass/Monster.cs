@@ -256,6 +256,7 @@ public class Monster : MonoBehaviour
     public virtual void OnFreeze()
     {
         IsFreeze = true;
+        ChangeStat(MonsterStat.Idle);
     }
 
     public virtual void OffFreeze()
