@@ -130,7 +130,6 @@ public class CharacterAttackController : MonoBehaviour
 
                 if(PlayerAttack.instance != null) PlayerAttack.instance.KnightAttack();
                 if(ArcherAttack.instance != null) ArcherAttack.instance.ArrowAttack();
-                print(inGameCanvasController.gameObject.name);
                 inGameCanvasController.StartSkillCoolTime(0);
                 skillSc.UsedSkill(playerSkillsSlot[0], playerCritDamage, playerAttackChargeRate);
                 StartCoroutine(SkillCoolDown("∆Ú≈∏", 0, playerSkillsSlot[0].cd));

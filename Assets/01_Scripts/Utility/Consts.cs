@@ -21,5 +21,6 @@ public class Consts
     public const int GolemPJ = 14;
     public const int GolemRock = 15;
     public const int Coin = 16;
-
+    public const int Arrow = 17;
+    public const int ArrowRain = 18;
 }
