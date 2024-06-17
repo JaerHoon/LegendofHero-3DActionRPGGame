@@ -38582,10 +38582,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 632136792017263436, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1372839278031105575, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
       propertyPath: playerHp
       value: 
       objectReference: {fileID: 875622715}
+    - target: {fileID: 2441390246536437602, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
+      propertyPath: m_Height
+      value: 2.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 2441390246536437602, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
+      propertyPath: m_Radius
+      value: 0.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 2441390246536437602, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
+      propertyPath: m_Center.y
+      value: 1.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5488532047536760925, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
       propertyPath: ArrowRain
       value: 

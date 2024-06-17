@@ -219,7 +219,7 @@ public class ArcherAttack : MonoBehaviour
     {
         
         archerController.OnChangeSkills(7);
-        
+        skillBaseAttack(7);
         /*skillCount++;
         if(skillCount >=2)
         {
