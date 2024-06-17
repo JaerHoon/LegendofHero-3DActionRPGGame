@@ -24,7 +24,7 @@ MonoBehaviour:
     material: {fileID: 0}
     Damage: 10
     CD: 0
-    GCD: 1.5
+    GCD: 0.5
     Scale: 1
     SpeedRate: 1
     EventRate: 1
