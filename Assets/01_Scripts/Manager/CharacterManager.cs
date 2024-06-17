@@ -5,7 +5,11 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour
 {
     public static CharacterManager instance;
-
+   
+    public SkillData KnightData;
+   
+    public SkillData ArcherData;
+    
     public enum ChoicedCharacter { Warrior, Archer}
     public ChoicedCharacter choicedCharacter;
     public Sprite WarriorIcon;
