@@ -156,8 +156,8 @@ MonoBehaviour:
       \uD55C \uBC88\uC5D0 \uC0AC\uC6A9\uAC00\uB2A5\uD55C \uD69F\uC218\uAC00 2\uD68C\uAC00
       \uB41C\uB2E4.( GCD : 4\uCD08 )"
     skillType: 1
-    Image: {fileID: 0}
-    material: {fileID: 0}
+    Image: {fileID: 21300000, guid: d4329fb39d6d4b9498cb8ba2c9436364, type: 3}
+    material: {fileID: 2100000, guid: 6c070423fa13e854da337a60efa3699d, type: 2}
     Damage: 1
     CD: 5
     GCD: 0.3
