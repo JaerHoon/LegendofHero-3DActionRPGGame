@@ -10,6 +10,7 @@ public class InGameCanvasController : UIController
     InteractionPanel interaction;
     MarketSkillInfo marketSkillInfo;
     InGameSkillInfo skillInfo;
+    Dialog dialog;
 
     List<GameObject> Panels = new List<GameObject>();
 
@@ -22,10 +23,16 @@ public class InGameCanvasController : UIController
     public GameObject golemPoison;
     public GameObject golemFreeze;
 
+    CameraController cameraController;
+
+    bool IsDialogging;
+  
+
 
     private void Start()
     {
-       
+        cameraController = FindFirstObjectByType<CameraController>();
+
         for(int i=0; i < transform.childCount; i++)
         {
             GameObject panel = transform.GetChild(i).gameObject;
@@ -37,12 +44,14 @@ public class InGameCanvasController : UIController
         interaction = viewModels[2] as InteractionPanel;
         marketSkillInfo = viewModels[3] as MarketSkillInfo;
         playerInfo = viewModels[0] as PlayerInfo;
+        dialog = viewModels[6] as Dialog;
 
         Panels[2].SetActive(false);
         Panels[3].SetActive(false);
         Panels[4].SetActive(false);
         Panels[6].SetActive(false);
         Panels[8].SetActive(false);
+        Panels[9].SetActive(false);
 
     }
 
@@ -130,5 +139,24 @@ public class InGameCanvasController : UIController
     public void OnGolemHP()
     {
         Panels[8].SetActive(true);
+    }
+
+    public void OnDialog(string[] text, Transform npc)
+    {
+        if(IsDialogging == false)
+        {
+            IsDialogging = true;
+            cameraController.OnNPCdialog(npc);
+            Panels[9].SetActive(true);
+            dialog.OnDialog(text);
+        }
+        
+    }
+
+    public void OffDialog()
+    {
+        IsDialogging = false;
+        cameraController.Offdialog();
+        Panels[9].SetActive(false);
     }
 }

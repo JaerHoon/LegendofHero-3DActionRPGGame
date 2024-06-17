@@ -10,11 +10,23 @@ public class CameraController : MonoBehaviour
 
     private void Awake()
     {
-        fallowCam.m_Priority = 5;
-        NPCcam.m_Priority = 10;
+        fallowCam.m_Priority = 10;
+        NPCcam.m_Priority = 5;
+        NPCcam.gameObject.SetActive(false);
     }
     public void OnNPCdialog(Transform NPC)
     {
+        NPCcam.gameObject.SetActive(true);
+        NPCcam.m_Follow = NPC;
+        NPCcam.m_LookAt = NPC;
+        fallowCam.m_Priority = 5;
+        NPCcam.m_Priority = 10;
+    }
 
+    public void Offdialog()
+    {
+        fallowCam.m_Priority = 10;
+        NPCcam.m_Priority = 5;
+        NPCcam.gameObject.SetActive(false);
     }
 }
