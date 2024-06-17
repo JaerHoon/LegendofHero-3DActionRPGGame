@@ -16,6 +16,9 @@ public class ArrowRainParticle : MonoBehaviour
     {
         if (instance == null)
             instance = this;
+        Aoe = GetComponent<ParticleSystem>();
+        circle = transform.GetChild(5).GetComponent<ParticleSystem>();
+        Light = transform.GetChild(6).GetComponent<ParticleSystem>();
     }
     void Start()
     {
