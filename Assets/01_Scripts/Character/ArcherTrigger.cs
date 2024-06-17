@@ -50,7 +50,7 @@ public class ArcherTrigger : MonoBehaviour
         Invoke("archeroffCollider", 0.2f);
         Invoke("archerOnColliders" ,0.1f);
 
-        if(ArcherAttack.instance != null && ArcherAttack.instance.isButtonPressed2)
+        if(ArcherAttack.instance != null && ArcherAttack.instance.isSkillsSetting2)
         {
             Invoke("archeroffCollider", 0.4f * Time.deltaTime);
             Invoke("archerOnColliders", 0.2f * Time.deltaTime);

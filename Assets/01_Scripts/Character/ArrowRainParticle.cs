@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArrowRainParticle : MonoBehaviour
 {
-    public static ArrowRainParticle instance;
+    
 
     public ParticleSystem Aoe;
     public ParticleSystem circle;
@@ -12,14 +12,17 @@ public class ArrowRainParticle : MonoBehaviour
 
     public float DestroyDuration = 4.0f;
     public float DestroyLifetime = 2.0f;
+
+    
+
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
+
         Aoe = GetComponent<ParticleSystem>();
         circle = transform.GetChild(5).GetComponent<ParticleSystem>();
         Light = transform.GetChild(6).GetComponent<ParticleSystem>();
     }
+
     void Start()
     {
         
@@ -36,6 +39,23 @@ public class ArrowRainParticle : MonoBehaviour
         var mainLight = Light.main;
         mainLight.startLifetime = 4.0f;
 
+    }
+
+    public void ParticleColor()
+    {
+        if (ArcherAttack.instance.isSkillSetting1)
+        {
+            var mainAoe = Aoe.main;
+            mainAoe.startColor = new Color(51.0f / 255.0f, 117.0f / 255.0f, 166.0f / 255.0f);
+
+
+            var CircleColor = circle.main;
+            CircleColor.startColor = new Color(51.0f / 255.0f, 117.0f / 255.0f, 166.0f / 255.0f);
+
+
+            var LightColor = Light.main;
+            LightColor.startColor = new Color(51.0f / 255.0f, 117.0f / 255.0f, 166.0f / 255.0f);
+        }
     }
 
     // Update is called once per frame
