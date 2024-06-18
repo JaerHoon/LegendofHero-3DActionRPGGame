@@ -38,6 +38,7 @@ public class Platform_ItemRelic : Platform
                 {
                     GetItem();
                     IsSkillInfo = false;
+                    player.GoldValue -= item.value;
                     OffSkillInfo();
                 }
               

@@ -9,7 +9,7 @@ public class InGameSkillInfo : UIModel
     public string skillName;
     public string skillDescription;
     public Sprite skillIcon;
-
+   
 
     public void Setting(SkillInfo skill)
     {

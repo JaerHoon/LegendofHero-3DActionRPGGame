@@ -29,14 +29,14 @@ public class Dialog : UIModel
     IEnumerator Dialogging(string text)
     {
         EKey.SetActive(false);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         for (int i = 1; i <= text.Length; i++)
         {
             dialog = text.Substring(0, i);
             //print(dialog);
             ChangeUI();
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
         }
         IsNextKey = true;
        StartCoroutine(NextKey());

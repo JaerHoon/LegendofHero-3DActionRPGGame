@@ -13,9 +13,9 @@ public class MonsterMage : Monster
         ReSet();
     }
 
-    public override void OnDie()
+    
+    public override void OutPool()
     {
-        base.OnDie();
         PoolFactroy.instance.OutPool(this.gameObject, Consts.MonsterMage);
     }
 }

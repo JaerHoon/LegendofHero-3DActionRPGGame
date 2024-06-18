@@ -19,3 +19,4 @@ MonoBehaviour:
   MageCount: 0
   RogueCount: 0
   GolemCount: 0
+  StageNumerText: Start Point

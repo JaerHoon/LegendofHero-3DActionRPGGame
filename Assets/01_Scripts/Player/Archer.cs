@@ -9,18 +9,18 @@ public class Archer : CharacterAttackController
     // Start is called before the first frame update
     void Start()
     {
+       
+        skillSc = this.gameObject.GetComponent<ArcherSkill>();
+        InIt();
+      
+    }
+
+    protected override void InIt()
+    {
+        base.InIt();
         playerSkillsSlot[0] = SkillManager.instance.archerSkills[0];
         playerSkillsSlot[1] = SkillManager.instance.archerSkills[4];
         playerSkillsSlot[2] = SkillManager.instance.archerSkills[8];
-        skillSc = this.gameObject.GetComponent<ArcherSkill>();
-        InIt();
-        ArcherInit();
-    }
-
-    
-
-    void ArcherInit()
-    {
 
         playerSpeed = 1;
         playerCritDamage = 1.5f;
@@ -31,7 +31,9 @@ public class Archer : CharacterAttackController
         for (int i = 0; i < 4; i++) isReadySkills[i] = true;
 
         isNonHit = false;
+
     }
+
 
     public void OnChangeSkills(int SKillNum)
     {

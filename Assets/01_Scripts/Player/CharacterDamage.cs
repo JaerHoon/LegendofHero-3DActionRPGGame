@@ -10,13 +10,9 @@ public class CharacterDamage : MonoBehaviour
     [SerializeField]
     Image playerHp;
 
-    [SerializeField]
-    GameObject panel;
-
     protected Character character;
 
 
-    Image image;
     
     protected Animator anim;
     protected CapsuleCollider cap;
@@ -30,9 +26,7 @@ public class CharacterDamage : MonoBehaviour
         cap = GetComponent<CapsuleCollider>();
         box = GetComponent<BoxCollider>();
 
-        image = GameObject.Find("GameOverPanel").GetComponent<Image>();
-        SetImageAlpha(0f);
-        panel.SetActive(false);
+       
     }
     public virtual void OnDamage(float dmg)
     {
@@ -47,18 +41,8 @@ public class CharacterDamage : MonoBehaviour
         heart.SetActive(true); // 하트 파티클 재생시키는 코드
         onOffRendererCoroutine = StartCoroutine(onOffRenderer()); // 피격 시 캐릭터 점멸되는 코루틴
         Invoke("offSetActive", 2.0f); // 2초 후에 콜라이더 활성화
-
-
-        
-        if(playerHp.fillAmount ==0)
-        {
-            isPlayerDie = true;
-            panelOnOff();
-            heart.SetActive(false); // 파티클 비활성화 해서 죽었을 때 더이상 나오지 않게 하기 위함.
-            //offNavMesh();
-            anim.SetTrigger("Death");
-            CoroutineStop(); // 코루틴 멈추는 함수
-        }
+        character.PlayerHp--;
+     
     }
 
     protected IEnumerator onOffRenderer()
@@ -129,40 +113,5 @@ public class CharacterDamage : MonoBehaviour
         box.enabled = true;
     }
 
-    void panelOnOff()
-    {
-        panel.SetActive(true);
-        StartCoroutine(onoffPanel());
-        
-    }
-
-    IEnumerator onoffPanel()
-    {
-        float dur = 1.0f;
-        float time = 0f;
-        float target = 250.0f / 255.0f;
-
-        while (time < dur)
-        {
-            time += Time.deltaTime;
-            float Alpha = Mathf.Clamp01(time / dur);
-            SetImageAlpha(Alpha);
-            yield return null;
-            
-
-        }
-        SetImageAlpha(target);
-        yield break;
-
-    }
-
-    void SetImageAlpha(float alpha)
-    {
-        if(image != null)
-        {
-            Color color = image.color;
-            color.a = alpha;
-            image.color = color;
-        }
-    }
+    
 }

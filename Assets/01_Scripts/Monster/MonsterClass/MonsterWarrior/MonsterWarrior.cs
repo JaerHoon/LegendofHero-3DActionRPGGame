@@ -12,9 +12,11 @@ public class MonsterWarrior : Monster
     {
         ReSet();
     }
-    public override void OnDie()
+  
+
+    public override void OutPool()
     {
-        base.OnDie();
-        PoolFactroy.instance.OutPool(this.gameObject, Consts.MonsterWarrior);
+       
+        PoolFactroy.instance.OutPool(this.gameObject, Consts.MonsterWarrior); 
     }
 }

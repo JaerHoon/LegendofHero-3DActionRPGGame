@@ -29,17 +29,20 @@ public class PlayerMoving : MonoBehaviour
 
     private void OnEnable()
     {
-        //IsDontMove = true;// 시작할때 안움직임.
+        IsDontMove = true;// 시작할때 안움직임.
     }
 
     public void OnMove()
     {
-        //IsDontMove = false;
+        IsDontMove = false;
     }
 
     public void OffMove()
     {
-        //IsDontMove = true;
+
+        IsDontMove = true;
+        anim?.SetBool("isMove", false);
+
     }
 
     private void Move()

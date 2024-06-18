@@ -14,9 +14,10 @@ public class MonsterMinion : Monster
         ReSet();
     }
 
-    public override void OnDie()
+   
+    public override void OutPool()
     {
-        base.OnDie();
+        print("OutPool");
         PoolFactroy.instance.OutPool(this.gameObject, Consts.MonsterMinion);
     }
 

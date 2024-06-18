@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: StageDate 4
   m_EditorClassIdentifier: 
   stageNumber: 4
-  stageType: 2
+  stageType: 4
   MinionCount: 1
   WarriorCount: 0
   MageCount: 0
   RogueCount: 0
   GolemCount: 0
+  StageNumerText: Market

@@ -22,9 +22,15 @@ public class CharacterAttackController : MonoBehaviour
     protected int curSkillNum;
 
     protected bool IsCanATK;
+
+    public void PlayerReset()
+    {
+        InIt();
+    }
+
     protected virtual void InIt()
     {
-        inGameCanvasController = GameObject.FindFirstObjectByType<InGameCanvasController>();
+       if(inGameCanvasController ==null) inGameCanvasController = GameObject.FindFirstObjectByType<InGameCanvasController>();
     }
 
     public void CanATK()
@@ -159,7 +165,7 @@ public class CharacterAttackController : MonoBehaviour
 
                 if (PlayerAttack.instance != null) PlayerAttack.instance.skillAttack();
                 if (ArcherAttack.instance != null) ArcherAttack.instance.skillAttack();
-                //inGameCanvasController.StartSkillCoolTime(1);
+                inGameCanvasController.StartSkillCoolTime(1);
                 
                 skillSc.UsedSkill(playerSkillsSlot[1], playerCritDamage, playerAttackChargeRate);
                 //StartCoroutine(SkillCoolDown("½ºÅ³", 1, playerSkillsSlot[1].cd));

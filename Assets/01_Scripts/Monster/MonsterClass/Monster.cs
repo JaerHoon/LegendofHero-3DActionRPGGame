@@ -27,6 +27,8 @@ public class Monster : MonoBehaviour
 
     [HideInInspector]
     public Transform playerTr;
+    [HideInInspector]
+    public Character player;
     StageManager stageManager;
 
     [SerializeField]
@@ -62,8 +64,8 @@ public class Monster : MonoBehaviour
         }
     }
 
-    
-    
+  
+
 
     protected virtual void Init()
     {
@@ -76,10 +78,12 @@ public class Monster : MonoBehaviour
         monsterGetCoin = GetComponent<MonsterGetCoin>();
         monsterStat = MonsterStat.Generate;
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
+        player = playerTr.GetComponent<Character>();
         myCollider = GetComponent<CapsuleCollider>();
         MaxHP = monsterData.HP;
         curHP = MaxHP;
         monsterUI.Init();
+       
     }
 
     protected virtual void ReSet()
@@ -87,16 +91,25 @@ public class Monster : MonoBehaviour
         monsterStat = MonsterStat.Generate;
         GenerateStat();
 
-
+        player.playerDie += PlayerDie;
         myCollider.enabled = true;
         MaxHP = monsterData.HP;
         curHP = MaxHP;
         monsterUI.Init();
+
     }
 
     void PlayerDie()
     {
-
+        StopAllCoroutines();
+        anim.OnIdleAnim();
+        monsterAtk.OffATK();
+        IsPlayerdetected = false;
+        IsDamage = false;
+        IsFreeze = false;
+        myCollider.enabled = false;
+        monsterMove.DieMove();
+        OutPool();
     }
 
     private void OnEnable()
@@ -245,12 +258,19 @@ public class Monster : MonoBehaviour
         myCollider.enabled = false;
         monsterMove.DieMove();
 
+       
+
     }
 
     public virtual void OnDie()
     {
-        monsterGetCoin.Die();
         stageManager.MonsterDie(this.gameObject);
+        OutPool();
+    }
+
+    public virtual void OutPool()
+    {
+
     }
 
     public virtual void OnFreeze()
@@ -264,9 +284,10 @@ public class Monster : MonoBehaviour
         IsFreeze = false;
     }
 
-    private void Update()
+    private void OnDisable()
     {
-      
+        player.playerDie -= PlayerDie;
     }
+
 }
 
