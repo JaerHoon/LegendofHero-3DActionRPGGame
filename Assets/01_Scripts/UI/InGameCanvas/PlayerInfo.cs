@@ -14,7 +14,9 @@ public class PlayerInfo : UIModel
     Character player;
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
+        StageManager stageManager = FindFirstObjectByType<StageManager>();
+        stageManager.CreateCharacter();
+        player = stageManager.Player;
         player.ChangeUI += UpDateUI;
         for (int i = 0; i < playerHP; i++)
         {

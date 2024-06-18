@@ -1619,6 +1619,7 @@ GameObject:
   - component: {fileID: 9029372142402311436}
   - component: {fileID: 3454119971559642602}
   - component: {fileID: 4003790536173071180}
+  - component: {fileID: -44678965879059555}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Player
@@ -1755,15 +1756,14 @@ MonoBehaviour:
   arrowPos: {fileID: 3585464037340355859}
   arrowPos2: {fileID: 3576699811402038852}
   shieldPos: {fileID: 1380944147471148125}
-  isButtonPressed1: 0
-  isButtonPressed2: 0
+  isSkillSetting1: 0
+  isSkillsSetting2: 0
   isButtonPressed3: 0
   isAttackButton1: 0
   isAttackButton2: 0
   isAttackButton3: 0
   isShooting: 0
   isCoolTime: 0
-  isFreeze: 0
   isBlock: 0
 --- !u!114 &1372839278031105575
 MonoBehaviour:
@@ -1889,6 +1889,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e2effa65b58953429efb7f84648a5e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-44678965879059555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6986817861099031732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e28d112513a3c6940ab6efa5137d890f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7121959644159748614

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Archer : CharacterAttackController
 {
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +16,8 @@ public class Archer : CharacterAttackController
         InIt();
         ArcherInit();
     }
+
+    
 
     void ArcherInit()
     {
@@ -51,6 +55,10 @@ public class Archer : CharacterAttackController
     // Update is called once per frame
     void Update()
     {
-        OnUseSkill();
+        if(IsCanATK == true)
+        {
+            OnUseSkill();
+        }
+       
     }
 }

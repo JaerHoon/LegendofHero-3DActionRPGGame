@@ -35133,6 +35133,7 @@ GameObject:
   - component: {fileID: 6331099716379559935}
   - component: {fileID: 4718948265243230411}
   - component: {fileID: 4901616380456137696}
+  - component: {fileID: -1656566060371257941}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Player
@@ -35230,8 +35231,8 @@ MonoBehaviour:
   waveEX: {fileID: 0}
   isButtonPressed: 0
   isButtonPressed2: 0
-  isButtonPressed3: 0
-  isAttackButton2: 0
+  isSkillSetting3: 0
+  isAttackSetting2: 0
   isBlock: 1
   isAttackButton3: 0
 --- !u!136 &1689165092615045634
@@ -35408,6 +35409,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a707f710382e4346b06d06ec2b3492b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1656566060371257941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4172812277894937045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e28d112513a3c6940ab6efa5137d890f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4268432369352039291

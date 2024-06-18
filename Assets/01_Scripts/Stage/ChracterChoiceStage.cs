@@ -13,6 +13,7 @@ public class ChracterChoiceStage : UIController
 
     public GameObject knightInfo;
     public GameObject ArcherInfo;
+    public GameObject SelectPanel;
 
     CharacterManager.ChoicedCharacter ChoicedCharacter;
   
@@ -22,6 +23,7 @@ public class ChracterChoiceStage : UIController
         choiceCam.m_Priority = 5;
         knightInfo.SetActive(false);
         ArcherInfo.SetActive(false);
+        SelectPanel.SetActive(false);
     }
 
     private void Update()
@@ -29,19 +31,23 @@ public class ChracterChoiceStage : UIController
         if (Input.GetKeyDown(KeyCode.A))
         {
             ChoicedCharacter = CharacterManager.ChoicedCharacter.Warrior;
+            CharacterManager.instance.choicedCharacter = ChoicedCharacter;
             knightInfo.SetActive(true);
             ArcherInfo.SetActive(false);
+            SelectPanel.SetActive(true);
             ChangeCharacter();
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
             ChoicedCharacter = CharacterManager.ChoicedCharacter.Archer;
+            CharacterManager.instance.choicedCharacter = ChoicedCharacter;
             knightInfo.SetActive(false);
             ArcherInfo.SetActive(true);
+            SelectPanel.SetActive(true);
             ChangeCharacter();
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && SelectPanel.activeSelf == true)
         {
             CharacterManager.instance.choicedCharacter = ChoicedCharacter;
             Onstart();
@@ -71,7 +77,7 @@ public class ChracterChoiceStage : UIController
     
     void Onstart()
     {
-
+        GameManager.instance.OnPlayerStage();
     }
 
 

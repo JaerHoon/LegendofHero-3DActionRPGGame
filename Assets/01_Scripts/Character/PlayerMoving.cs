@@ -17,6 +17,7 @@ public class PlayerMoving : MonoBehaviour
     private Vector3 knockbackVelocity;
     private float knockbackTime;
     private bool isKnockbackActive;
+    private bool IsDontMove;
     CharacterDamage die;
     void Start()
     {
@@ -24,6 +25,21 @@ public class PlayerMoving : MonoBehaviour
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         die = GetComponent<CharacterDamage>();
         
+    }
+
+    private void OnEnable()
+    {
+        IsDontMove = true;// 시작할때 안움직임.
+    }
+
+    public void OnMove()
+    {
+        IsDontMove = false;
+    }
+
+    public void OffMove()
+    {
+        IsDontMove = true;
     }
 
     private void Move()
@@ -124,7 +140,7 @@ public class PlayerMoving : MonoBehaviour
             return;
         }
 
-        if (!isKnockbackActive)
+        if (!isKnockbackActive && !IsDontMove)
         {
             Move();
             Rotate();
