@@ -13,10 +13,11 @@ public class SwordWave : MonoBehaviour
     Warrior controller;
     Inventory inventroy;
     int monsterHit = 2;
+   
     private void Awake()
     {
         controller = GameObject.FindWithTag("Player").GetComponent<Warrior>();
-       
+   
         box = GetComponent<BoxCollider>();
         wave = transform.GetChild(0).gameObject;
         if(transform.childCount== 2)
@@ -49,7 +50,9 @@ public class SwordWave : MonoBehaviour
         if(other.gameObject.tag=="Monster")
         {
             other.GetComponent<MonsterDamage>().OnDamage(controller.playerSkillsSlot[1].damage);
+            
             inventroy = GameObject.FindFirstObjectByType<Inventory>();
+            
             
             foreach (var item in inventroy.invenItems)
             {
@@ -62,6 +65,7 @@ public class SwordWave : MonoBehaviour
             if(SkillManager.instance.gainedSkill_Warrior[1].id==7)
             {
                 exPos(transform.position);
+                
             }
 
             /*if (PlayerAttack.instance.isSkillSetting3)
@@ -92,6 +96,7 @@ public class SwordWave : MonoBehaviour
     void exPos(Vector3 pos)
     {
         Ex.SetActive(true);
+        Ex.GetComponent<ExplosionDamage>().FindAllClosestMonsterWithinRadius(5.0f);
         box.enabled = false;
         wave.SetActive(false);
         Destroy(this.gameObject,0.5f);

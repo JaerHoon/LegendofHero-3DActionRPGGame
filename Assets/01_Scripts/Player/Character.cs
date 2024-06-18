@@ -61,7 +61,6 @@ public class Character : MonoBehaviour
 
     private void OnEnable()
     {
-        
         capsuleCollider.enabled = true;
     }
 
