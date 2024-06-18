@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StageDate 2
   m_EditorClassIdentifier: 
   stageNumber: 2
-  stageType: 2
+  stageType: 1
   MinionCount: 1
   WarriorCount: 0
   MageCount: 0
