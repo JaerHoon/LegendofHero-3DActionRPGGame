@@ -41,5 +41,26 @@ public class Character : MonoBehaviour
     }
 
     public delegate void UISetting();
-    public UISetting ChangeUI;    
+    public UISetting ChangeUI;
+
+    PlayerMoving playerMoving;
+    CharacterAttackController characterAttack;
+
+    private void Awake()
+    {
+        playerMoving = GetComponent<PlayerMoving>();
+        characterAttack = GetComponent<CharacterAttackController>();
+    }
+
+    public void OnPlay()
+    {
+        playerMoving.OnMove();
+        characterAttack.CanATK();
+    }
+
+    public void OffPlay()
+    {
+        playerMoving.OffMove();
+        characterAttack.DontATK();
+    }
 }

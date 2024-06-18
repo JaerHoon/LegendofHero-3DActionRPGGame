@@ -21,9 +21,20 @@ public class CharacterAttackController : MonoBehaviour
     [SerializeField]
     protected int curSkillNum;
 
+    protected bool IsCanATK;
     protected virtual void InIt()
     {
         inGameCanvasController = GameObject.FindFirstObjectByType<InGameCanvasController>();
+    }
+
+    public void CanATK()
+    {
+        IsCanATK = true;
+    }
+
+    public void DontATK()
+    {
+        IsCanATK = false;
     }
 
     IEnumerator SkillCoolDown(string skillType, int isSkillReady, float skillCD)

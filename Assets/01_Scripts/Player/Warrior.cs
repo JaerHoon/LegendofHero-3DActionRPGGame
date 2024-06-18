@@ -57,7 +57,10 @@ public class Warrior : CharacterAttackController
     // Update is called once per frame
     void Update()
     {
-        OnUseSkill();
-      
+        if(IsCanATK == true)
+        {
+            OnUseSkill();
+        }
+        
     }
 }

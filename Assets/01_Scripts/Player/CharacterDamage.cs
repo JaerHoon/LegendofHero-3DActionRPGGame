@@ -9,7 +9,7 @@ public class CharacterDamage : MonoBehaviour
     protected GameObject heart;
     [SerializeField]
     Image playerHp;
-  
+    protected Character character;
 
     protected Animator anim;
     protected CapsuleCollider cap;
@@ -18,6 +18,7 @@ public class CharacterDamage : MonoBehaviour
     protected Coroutine onOffRendererCoroutine;
     private void Start()
     {
+        character = GetComponent<Character>();
         anim = GetComponent<Animator>();
         cap = GetComponent<CapsuleCollider>();
         box = GetComponent<BoxCollider>();
@@ -37,13 +38,7 @@ public class CharacterDamage : MonoBehaviour
         Invoke("offSetActive", 2.0f); // 2초 후에 콜라이더 활성화
 
         
-        playerHp.fillAmount -= 0.2f; // 캐릭터 HP가 1개씩 깎임 => 하트로 5개라서 0.2
-        
-        //소수점 오차로 인해서 0.8에서 0.2만큼 깎였을 때 0.6이 아닌 0.600001 이란 오차가 발생할 수 있다
-        //따라서 Mathf.Round를 이용하여 이를 반올림 하여 가장 가까운 정수로 만들어 준다.
-        //예를 들면 0.60001이 되었을때 100만큼 곱해줘서 60.001를 만들고 Round를 이용하여 반올림해줘서 60으로 만든다.
-        //이를 다시 100으로 나눠서 0.6으로 만들어준다.
-        playerHp.fillAmount = Mathf.Round(playerHp.fillAmount * 100f) / 100f;
+       
         
         if(playerHp.fillAmount ==0)
         {

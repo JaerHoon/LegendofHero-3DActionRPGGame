@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class InGameCanvasController : UIController
 {
+    StageManager stageManager;
     PlayerInfo playerInfo;
     InGameSkillSlot skillSlot;
     InteractionPanel interaction;
@@ -32,6 +33,7 @@ public class InGameCanvasController : UIController
     private void Start()
     {
         cameraController = FindFirstObjectByType<CameraController>();
+        stageManager = FindFirstObjectByType<StageManager>();
 
         for(int i=0; i < transform.childCount; i++)
         {
@@ -149,6 +151,8 @@ public class InGameCanvasController : UIController
             cameraController.OnNPCdialog(npc);
             Panels[9].SetActive(true);
             dialog.OnDialog(text);
+            stageManager.Player.OffPlay();
+            stageManager.Player.transform.position = new Vector3(0.2f, 0, 6);
         }
         
     }
@@ -158,5 +162,6 @@ public class InGameCanvasController : UIController
         IsDialogging = false;
         cameraController.Offdialog();
         Panels[9].SetActive(false);
+        stageManager.Player.OnPlay();
     }
 }

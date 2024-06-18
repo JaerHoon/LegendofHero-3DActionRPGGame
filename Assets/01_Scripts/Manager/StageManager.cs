@@ -1,8 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class StageManager : MonoBehaviour
 {
+    public GameObject Knight;
+    public GameObject Archer;
+
+    CinemachineVirtualCamera fallowCam;
+
     [SerializeField]
     List<StageData> stageDatas = new List<StageData>();
     [SerializeField]
@@ -30,11 +36,10 @@ public class StageManager : MonoBehaviour
     [HideInInspector]
     public int currentStageNum;
 
-    Character Player;
+   public  Character Player;
 
     private void Start()
     {
-        Player = GameObject.FindFirstObjectByType<Character>();
         inGameCanvasController = GameObject.FindFirstObjectByType<InGameCanvasController>();
         NPCPlatform = GameObject.FindGameObjectWithTag("NPCPlatform");
         npcMage = GameObject.FindFirstObjectByType<NPCMage>();
@@ -54,6 +59,27 @@ public class StageManager : MonoBehaviour
         Invoke("GameStart", 1);
     }
 
+    public void CreateCharacter()
+    {
+        fallowCam = FindFirstObjectByType<CinemachineVirtualCamera>();
+        if (CharacterManager.instance.choicedCharacter == CharacterManager.ChoicedCharacter.Warrior)
+        {
+            GameObject play = Instantiate(Knight, Vector3.zero, Quaternion.identity);
+            fallowCam.m_Follow = play.transform;
+            fallowCam.m_LookAt = play.transform;
+            Player = play.GetComponent<Character>();
+            Player.OffPlay();
+        }
+        else
+        {
+            GameObject play = Instantiate(Archer, Vector3.zero, Quaternion.identity);
+            fallowCam.m_Follow = play.transform;
+            fallowCam.m_LookAt = play.transform;
+            Player = play.GetComponent<Character>();
+            Player.OffPlay();
+        }
+    }
+
     void GameStart()
     {
         EnterStage(0);
@@ -61,6 +87,7 @@ public class StageManager : MonoBehaviour
 
     public void EnterStage(int stageNum)
     {
+        Player.OffPlay();
         inGameCanvasController.OnFadeIn_Out();
         currentStageNum = stageNum;
         Invoke("SetStage", 0.5f);
@@ -82,6 +109,7 @@ public class StageManager : MonoBehaviour
             npcMage.gameObject.SetActive(true);
             npcMage.stageType = NPCMage.StageType.Start;
             nextStagePortal.gameObject.SetActive(true);
+            Player.OnPlay();
 
         }
         else if (stageDatas[currentStageNum].stageType == StageData.StageType.Market)
@@ -93,6 +121,7 @@ public class StageManager : MonoBehaviour
             itemRelicController.Setting();
             itemRelicController.stageType = SkillChoiceController.StageType.Maerket;
             nextStagePortal.gameObject.SetActive(true);
+            Player.OnPlay();
         }
         else
         {
@@ -152,6 +181,7 @@ public class StageManager : MonoBehaviour
     void PlayerReady()
     {
         Player.transform.position = Vector3.zero;
+        Player.OnPlay();
     }
 
     public void MonsterDie(GameObject Monster)
