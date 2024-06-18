@@ -8,11 +8,20 @@ public class FadeInOut : MonoBehaviour
     public float fadeDuration = 1.0f; // 페이드 인/아웃 시간
     public float displayDuration = 2.0f; // 패널이 완전히 보이는 시간
 
-    private void OnEnable()
+  
+
+    public void starting()
     {
-        // 패널이 활성화되면 페이드 인 시작
+        canvasGroup.alpha = 1f;
+        StartCoroutine(FadeOut());
+    }
+
+    public void Stage()
+    {
         StartCoroutine(FadeIn());
     }
+
+   
 
     private IEnumerator FadeIn()
     {

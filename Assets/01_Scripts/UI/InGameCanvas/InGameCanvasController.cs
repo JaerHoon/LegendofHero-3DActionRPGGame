@@ -51,7 +51,6 @@ public class InGameCanvasController : UIController
         Panels[2].SetActive(false);
         Panels[3].SetActive(false);
         Panels[4].SetActive(false);
-        Panels[6].SetActive(false);
         Panels[8].SetActive(false);
         Panels[9].SetActive(false);
         Panels[10].SetActive(false);
@@ -135,9 +134,18 @@ public class InGameCanvasController : UIController
         print("start");
         skillSlot.startCooltime(Slotnum);
     }
-    public void OnFadeIn_Out()
+    public void OnFadeIn_Out(int StageNum)
     {
         Panels[6].SetActive(true);
+        if (StageNum == 0)
+        {
+            Panels[6].GetComponent<FadeInOut>().starting();
+        }
+        else
+        {
+            Panels[6].GetComponent<FadeInOut>().Stage();
+        }
+
     }
 
     public void OnGolemHP()

@@ -88,7 +88,7 @@ public class StageManager : MonoBehaviour
     public void EnterStage(int stageNum)
     {
         Player.OffPlay();
-        inGameCanvasController.OnFadeIn_Out();
+        inGameCanvasController.OnFadeIn_Out(stageNum);
         currentStageNum = stageNum;
        
         Invoke("SetStage", 0.5f);
