@@ -38223,10 +38223,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8171574442574270537}
-        m_TargetAssemblyTypeName: Archer, Assembly-CSharp
-        m_MethodName: OnChangeSkills
-        m_Mode: 3
+      - m_Target: {fileID: 8171574442574270533}
+        m_TargetAssemblyTypeName: ArcherAttack, Assembly-CSharp
+        m_MethodName: OnButtonArcherSkill_Third
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -58686,17 +58686,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 137756539591892686, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
   m_PrefabInstance: {fileID: 389177380890610977}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8171574442574270537 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9029372142402311436, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
-  m_PrefabInstance: {fileID: 389177380890610977}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54ca29b98c99c5743b8144cb9b021e4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!198 &8358905327843285532
 ParticleSystem:
   m_ObjectHideFlags: 0
