@@ -99,7 +99,7 @@ MonoBehaviour:
     skillType: 1
     Image: {fileID: 21300000, guid: 415f672e791cea941b6974a3ef917d09, type: 3}
     material: {fileID: 2100000, guid: dc2f2e2679499e34c80c6849bb899f39, type: 2}
-    Damage: 10
+    Damage: 2
     CD: 2.5
     GCD: 1
     Scale: 1
@@ -119,7 +119,7 @@ MonoBehaviour:
     skillType: 1
     Image: {fileID: 21300000, guid: 7fe59d3987bae4441af4dff18b5e48e1, type: 3}
     material: {fileID: 2100000, guid: bc9545e574168a742911ae46a030b223, type: 2}
-    Damage: 1
+    Damage: 2
     CD: 2.5
     GCD: 1
     Scale: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
     skillType: 1
     Image: {fileID: 21300000, guid: 8a1680ec09858bc4aa7b4e3ad474dd89, type: 3}
     material: {fileID: 2100000, guid: b0544805339eed148a86fb43b1f0b8ca, type: 2}
-    Damage: 1
+    Damage: 2
     CD: 2.5
     GCD: 1
     Scale: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
     skillType: 1
     Image: {fileID: 21300000, guid: d4329fb39d6d4b9498cb8ba2c9436364, type: 3}
     material: {fileID: 2100000, guid: 6c070423fa13e854da337a60efa3699d, type: 2}
-    Damage: 1
+    Damage: 2
     CD: 5
     GCD: 0.3
     Scale: 1
