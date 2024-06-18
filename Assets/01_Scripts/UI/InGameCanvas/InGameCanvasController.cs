@@ -17,7 +17,7 @@ public class InGameCanvasController : UIController
 
     Vector2 skillinfoPos1 = new Vector2(250, 0);
     Vector2 skillinfoPos2 = new Vector2(350,0);
-    Vector2 skillinfoPos3 = new Vector2(390, 0);
+    Vector2 skillinfoPos3 = new Vector2(600, 0);
 
     public Image golemHPBar;
     public GameObject golemCurse;
@@ -54,6 +54,7 @@ public class InGameCanvasController : UIController
         Panels[6].SetActive(false);
         Panels[8].SetActive(false);
         Panels[9].SetActive(false);
+        Panels[10].SetActive(false);
 
     }
 
@@ -69,9 +70,9 @@ public class InGameCanvasController : UIController
     }
        
 
-    public void OnPlayerInfo()
+    public void SetPlayerInfo()
     {
-        
+        playerInfo.UpDateUI();
     }
 
     public void OnskillInfo(SkillInfo skill, int posnum)
@@ -163,5 +164,15 @@ public class InGameCanvasController : UIController
         cameraController.Offdialog();
         Panels[9].SetActive(false);
         stageManager.Player.OnPlay();
+    }
+
+    public void OnGameOverPanel()
+    {
+        Panels[10].SetActive(true);
+    }
+
+    public void OffGameOverPanel()
+    {
+        Panels[10].SetActive(false);
     }
 }

@@ -9,8 +9,7 @@ public class StageManager : MonoBehaviour
 
     CinemachineVirtualCamera fallowCam;
 
-    [SerializeField]
-    List<StageData> stageDatas = new List<StageData>();
+    public List<StageData> stageDatas = new List<StageData>();
     [SerializeField]
     GameObject spawnPosParent;
     List<Vector3> SpawnPos = new List<Vector3>();
@@ -37,6 +36,7 @@ public class StageManager : MonoBehaviour
     public int currentStageNum;
 
    public  Character Player;
+    Vector3 StartPos = new Vector3(0, 0, -7);
 
     private void Start()
     {
@@ -90,6 +90,7 @@ public class StageManager : MonoBehaviour
         Player.OffPlay();
         inGameCanvasController.OnFadeIn_Out();
         currentStageNum = stageNum;
+       
         Invoke("SetStage", 0.5f);
     }
 
@@ -102,14 +103,16 @@ public class StageManager : MonoBehaviour
         skill_NormalATK.SetActive(false);
         skill_SkillATK.SetActive(false);
         nextStagePortal.gameObject.SetActive(false);
-
+        inGameCanvasController.SetPlayerInfo();
         if (stageDatas[currentStageNum].stageType == StageData.StageType.Start)
         {
             NPCPlatform.SetActive(true);
             npcMage.gameObject.SetActive(true);
             npcMage.stageType = NPCMage.StageType.Start;
             nextStagePortal.gameObject.SetActive(true);
+            Player.transform.position = Vector3.zero;
             Player.OnPlay();
+            
 
         }
         else if (stageDatas[currentStageNum].stageType == StageData.StageType.Market)
@@ -118,9 +121,10 @@ public class StageManager : MonoBehaviour
             npcMage.gameObject.SetActive(true);
             npcMage.stageType = NPCMage.StageType.Market;
             itemRelicATK.SetActive(true);
-            itemRelicController.Setting();
             itemRelicController.stageType = SkillChoiceController.StageType.Maerket;
+            itemRelicController.Setting();
             nextStagePortal.gameObject.SetActive(true);
+            Player.transform.position = StartPos;
             Player.OnPlay();
         }
         else
@@ -219,7 +223,9 @@ public class StageManager : MonoBehaviour
 
     public void PlayerDie()
     {
-
+        Player.gameObject.SetActive(true);
+        Player.PlayerReset();
+        EnterStage(0);
     }
 
 }

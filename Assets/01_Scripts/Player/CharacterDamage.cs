@@ -9,14 +9,10 @@ public class CharacterDamage : MonoBehaviour
     protected GameObject heart;
     [SerializeField]
     Image playerHp;
-<<<<<<< HEAD
-    [SerializeField]
-    GameObject panel;
-=======
-    protected Character character;
->>>>>>> 3326079c5a7295c9ee6bc58c49ae66a875535c5a
 
-    Image image;
+    protected Character character;
+
+
     
     protected Animator anim;
     protected CapsuleCollider cap;
@@ -30,9 +26,7 @@ public class CharacterDamage : MonoBehaviour
         cap = GetComponent<CapsuleCollider>();
         box = GetComponent<BoxCollider>();
 
-        image = GameObject.Find("GameOverPanel").GetComponent<Image>();
-        SetImageAlpha(0f);
-        panel.SetActive(false);
+       
     }
     public virtual void OnDamage(float dmg)
     {
@@ -47,29 +41,8 @@ public class CharacterDamage : MonoBehaviour
         heart.SetActive(true); // 하트 파티클 재생시키는 코드
         onOffRendererCoroutine = StartCoroutine(onOffRenderer()); // 피격 시 캐릭터 점멸되는 코루틴
         Invoke("offSetActive", 2.0f); // 2초 후에 콜라이더 활성화
-
-        
-<<<<<<< HEAD
-        playerHp.fillAmount -= 0.5f; // 캐릭터 HP가 1개씩 깎임 => 하트로 5개라서 0.2
-        
-        //소수점 오차로 인해서 0.8에서 0.2만큼 깎였을 때 0.6이 아닌 0.600001 이란 오차가 발생할 수 있다
-        //따라서 Mathf.Round를 이용하여 이를 반올림 하여 가장 가까운 정수로 만들어 준다.
-        //예를 들면 0.60001이 되었을때 100만큼 곱해줘서 60.001를 만들고 Round를 이용하여 반올림해줘서 60으로 만든다.
-        //이를 다시 100으로 나눠서 0.6으로 만들어준다.
-        playerHp.fillAmount = Mathf.Round(playerHp.fillAmount * 100f) / 100f;
-=======
-       
->>>>>>> 3326079c5a7295c9ee6bc58c49ae66a875535c5a
-        
-        if(playerHp.fillAmount ==0)
-        {
-            isPlayerDie = true;
-            panelOnOff();
-            heart.SetActive(false); // 파티클 비활성화 해서 죽었을 때 더이상 나오지 않게 하기 위함.
-            //offNavMesh();
-            anim.SetTrigger("Death");
-            CoroutineStop(); // 코루틴 멈추는 함수
-        }
+        character.PlayerHp--;
+     
     }
 
     protected IEnumerator onOffRenderer()
@@ -140,40 +113,5 @@ public class CharacterDamage : MonoBehaviour
         box.enabled = true;
     }
 
-    void panelOnOff()
-    {
-        panel.SetActive(true);
-        StartCoroutine(onoffPanel());
-        
-    }
-
-    IEnumerator onoffPanel()
-    {
-        float dur = 1.0f;
-        float time = 0f;
-        float target = 250.0f / 255.0f;
-
-        while (time < dur)
-        {
-            time += Time.deltaTime;
-            float Alpha = Mathf.Clamp01(time / dur);
-            SetImageAlpha(Alpha);
-            yield return null;
-            
-
-        }
-        SetImageAlpha(target);
-        yield break;
-
-    }
-
-    void SetImageAlpha(float alpha)
-    {
-        if(image != null)
-        {
-            Color color = image.color;
-            color.a = alpha;
-            image.color = color;
-        }
-    }
+    
 }

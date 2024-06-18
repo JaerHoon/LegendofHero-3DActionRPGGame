@@ -96,6 +96,7 @@ public class Platform : MonoBehaviour
     {
         if (skillChoiceController.skillType == SkillChoiceController.SkillType.ItemRelic)
         {
+           
             if (stageType == SkillChoiceController.StageType.stage)
             {
                 InGameCanvas.OnskillInfo(item, 1);
@@ -103,6 +104,7 @@ public class Platform : MonoBehaviour
             }
             else
             {
+                
                 InGameCanvas.OnMarketSkillInfo(item);
             }
         }

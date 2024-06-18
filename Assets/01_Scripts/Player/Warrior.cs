@@ -7,21 +7,26 @@ public class Warrior : CharacterAttackController
     // Start is called before the first frame update
     void Start()
     {
-        playerSkillsSlot[0] = SkillManager.instance.warriorSkills[0];
-        playerSkillsSlot[1] = SkillManager.instance.warriorSkills[4];
-        playerSkillsSlot[2] = SkillManager.instance.warriorSkills[8];
+       
         //playerAttack = SkillManager.instance.warriorSkills[0];
         //playerSkill = SkillManager.instance.warriorSkills[7];
         //skills[0] = this.gameObject.GetComponent<WarriorAttack0>();
         //skills[1] = this.gameObject.GetComponent<WarriorSkill>();
         skillSc = this.gameObject.GetComponent<WarriorSkill>();
-        WarriorInit();
+      
         InIt();
     }
 
-    void WarriorInit()
+    
+
+    protected override void InIt()
     {
-      
+        base.InIt();
+
+        playerSkillsSlot[0] = SkillManager.instance.warriorSkills[0];
+        playerSkillsSlot[1] = SkillManager.instance.warriorSkills[4];
+        playerSkillsSlot[2] = SkillManager.instance.warriorSkills[8];
+
         playerSpeed = 1;
         playerCritDamage = 1.5f;
         playerAttackChargeRate = 1;
@@ -32,6 +37,7 @@ public class Warrior : CharacterAttackController
 
         isNonHit = false;
     }
+
 
     public void OnChangeSkills(int SKillNum)
     {

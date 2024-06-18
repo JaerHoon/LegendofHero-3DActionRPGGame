@@ -85,6 +85,7 @@ public class MonsterAnim : MonoBehaviour
 
     public virtual void OffDyingAnim()
     {
+        monster.monsterGetCoin.Die();
         monster.OnDie();
     }
 

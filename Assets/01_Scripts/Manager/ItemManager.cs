@@ -54,7 +54,7 @@ public class ItemManager : MonoBehaviour
     {
         item_Materials = Resources.LoadAll<Material>("Material/items");
         item_Sprite = Resources.LoadAll<Sprite>("Material/items/Sprite");
-        inventory = gameObject.GetComponent<Inventory>();
+        inventory = FindFirstObjectByType<Inventory>();
         Player = null;
         for (int i = 0; i < 10; i++)
         {
@@ -69,6 +69,7 @@ public class ItemManager : MonoBehaviour
         {
             items[i].itemIcon = item_Sprite[i];
             items[i].itemMaterial = item_Materials[i];
+            items[i].value = 500;
         }
 
         for (int i = 0; i < 10; i++)

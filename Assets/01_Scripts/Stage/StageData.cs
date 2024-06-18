@@ -12,7 +12,7 @@ public class StageData : ScriptableObject
     public int MageCount;
     public int RogueCount;
     public int GolemCount;
-    
+    public string StageNumerText;
 
     public int MonsterCount()
     {

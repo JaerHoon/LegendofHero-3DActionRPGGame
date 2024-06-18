@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
             {
                 playerHp = 0;
                 ChangeUI?.Invoke();
-                playerDie?.Invoke();
+                Die();
             }
             else
             {
@@ -40,16 +40,36 @@ public class Character : MonoBehaviour
         }
     }
 
+    CapsuleCollider capsuleCollider;
+    Animator anim;
+
     public delegate void UISetting();
     public UISetting ChangeUI;
 
     PlayerMoving playerMoving;
     CharacterAttackController characterAttack;
+    InGameCanvasController inGameCanvs;
 
     private void Awake()
     {
+        inGameCanvs = FindFirstObjectByType<InGameCanvasController>();
         playerMoving = GetComponent<PlayerMoving>();
         characterAttack = GetComponent<CharacterAttackController>();
+        capsuleCollider = GetComponent<CapsuleCollider>();
+        anim = GetComponent<Animator>();
+    }
+
+    private void OnEnable()
+    {
+        
+        capsuleCollider.enabled = true;
+    }
+
+    public void PlayerReset()
+    {
+        playerHp = 5;
+        ChangeUI?.Invoke();
+        characterAttack.PlayerReset();
     }
 
     public void OnPlay()
@@ -62,5 +82,21 @@ public class Character : MonoBehaviour
     {
         playerMoving.OffMove();
         characterAttack.DontATK();
+    }
+
+    void Die()
+    {
+        playerDie?.Invoke();
+        OffPlay();
+        anim.SetTrigger("Death");
+        inGameCanvs.OnGameOverPanel();
+
+        Invoke("AfterDie", 0.5f);
+        
+    }
+
+    void AfterDie()
+    {
+        this.gameObject.SetActive(false);
     }
 }

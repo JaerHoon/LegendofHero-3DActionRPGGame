@@ -22,9 +22,15 @@ public class CharacterAttackController : MonoBehaviour
     protected int curSkillNum;
 
     protected bool IsCanATK;
+
+    public void PlayerReset()
+    {
+        InIt();
+    }
+
     protected virtual void InIt()
     {
-        inGameCanvasController = GameObject.FindFirstObjectByType<InGameCanvasController>();
+       if(inGameCanvasController ==null) inGameCanvasController = GameObject.FindFirstObjectByType<InGameCanvasController>();
     }
 
     public void CanATK()

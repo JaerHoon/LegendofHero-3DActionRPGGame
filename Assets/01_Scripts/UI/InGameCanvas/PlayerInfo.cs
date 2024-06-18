@@ -10,11 +10,14 @@ public class PlayerInfo : UIModel
     public List<GameObject> hearts = new List<GameObject>(new GameObject[5]);
     public int playerHP=0;
     public int gold_Value=0;
+    public string StageNum;
+    StageManager stageManager;
 
     Character player;
     private void Start()
     {
-        StageManager stageManager = FindFirstObjectByType<StageManager>();
+        stageManager = FindFirstObjectByType<StageManager>();
+        StageNum = stageManager.stageDatas[stageManager.currentStageNum].StageNumerText;
         stageManager.CreateCharacter();
         player = stageManager.Player;
         player.ChangeUI += UpDateUI;
@@ -39,9 +42,9 @@ public class PlayerInfo : UIModel
         UpDateUI();
     }
 
-    void UpDateUI()
+    public void UpDateUI()
     {
-       
+        
         playerHP = player.PlayerHp;
         
         for (int i = 0; i < playerHP; i++)
@@ -55,7 +58,7 @@ public class PlayerInfo : UIModel
         }
 
         gold_Value = player.GoldValue;
-
+        StageNum = stageManager.stageDatas[stageManager.currentStageNum].StageNumerText;
         ChangeUI();
     }
 }

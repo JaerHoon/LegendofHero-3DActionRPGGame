@@ -140,6 +140,7 @@ public class SkillChoiceController : MonoBehaviour
     
         int[] num = RandomNumber.RandomCreate(platforms.Length, 0, NoGaineditem.Count);
 
+
         for(int i=0; i < platforms.Length; i++)
         {
             platforms[i].stageType = stageType;

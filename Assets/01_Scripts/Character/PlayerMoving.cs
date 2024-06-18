@@ -40,6 +40,7 @@ public class PlayerMoving : MonoBehaviour
     public void OffMove()
     {
         IsDontMove = true;
+        anim?.SetBool("isMove", false);
     }
 
     private void Move()
