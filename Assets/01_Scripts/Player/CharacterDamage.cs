@@ -9,8 +9,11 @@ public class CharacterDamage : MonoBehaviour
     protected GameObject heart;
     [SerializeField]
     Image playerHp;
-  
+    [SerializeField]
+    GameObject panel;
 
+    Image image;
+    
     protected Animator anim;
     protected CapsuleCollider cap;
     protected BoxCollider box;
@@ -21,6 +24,10 @@ public class CharacterDamage : MonoBehaviour
         anim = GetComponent<Animator>();
         cap = GetComponent<CapsuleCollider>();
         box = GetComponent<BoxCollider>();
+
+        image = GameObject.Find("GameOverPanel").GetComponent<Image>();
+        SetImageAlpha(0f);
+        panel.SetActive(false);
     }
     public virtual void OnDamage(float dmg)
     {
@@ -37,7 +44,7 @@ public class CharacterDamage : MonoBehaviour
         Invoke("offSetActive", 2.0f); // 2초 후에 콜라이더 활성화
 
         
-        playerHp.fillAmount -= 0.2f; // 캐릭터 HP가 1개씩 깎임 => 하트로 5개라서 0.2
+        playerHp.fillAmount -= 0.5f; // 캐릭터 HP가 1개씩 깎임 => 하트로 5개라서 0.2
         
         //소수점 오차로 인해서 0.8에서 0.2만큼 깎였을 때 0.6이 아닌 0.600001 이란 오차가 발생할 수 있다
         //따라서 Mathf.Round를 이용하여 이를 반올림 하여 가장 가까운 정수로 만들어 준다.
@@ -48,12 +55,11 @@ public class CharacterDamage : MonoBehaviour
         if(playerHp.fillAmount ==0)
         {
             isPlayerDie = true;
+            panelOnOff();
             heart.SetActive(false); // 파티클 비활성화 해서 죽었을 때 더이상 나오지 않게 하기 위함.
             //offNavMesh();
             anim.SetTrigger("Death");
             CoroutineStop(); // 코루틴 멈추는 함수
-            cap.enabled = false; // 죽었을 때 콜라이더 비활성화
-            box.enabled = false; // 죽었을 때 콜라이더 비활성화 
         }
     }
 
@@ -115,9 +121,50 @@ public class CharacterDamage : MonoBehaviour
 
     protected void offSetActive()
     {
+        if(isPlayerDie==true)
+        {
+            return;
+        }
+        
         heart.SetActive(false);
         cap.enabled = true;
         box.enabled = true;
     }
 
+    void panelOnOff()
+    {
+        panel.SetActive(true);
+        StartCoroutine(onoffPanel());
+        
+    }
+
+    IEnumerator onoffPanel()
+    {
+        float dur = 1.0f;
+        float time = 0f;
+        float target = 250.0f / 255.0f;
+
+        while (time < dur)
+        {
+            time += Time.deltaTime;
+            float Alpha = Mathf.Clamp01(time / dur);
+            SetImageAlpha(Alpha);
+            yield return null;
+            
+
+        }
+        SetImageAlpha(target);
+        yield break;
+
+    }
+
+    void SetImageAlpha(float alpha)
+    {
+        if(image != null)
+        {
+            Color color = image.color;
+            color.a = alpha;
+            image.color = color;
+        }
+    }
 }

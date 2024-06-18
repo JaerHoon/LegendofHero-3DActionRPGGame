@@ -99,7 +99,7 @@ MonoBehaviour:
     skillType: 1
     Image: {fileID: 21300000, guid: 415f672e791cea941b6974a3ef917d09, type: 3}
     material: {fileID: 2100000, guid: dc2f2e2679499e34c80c6849bb899f39, type: 2}
-    Damage: 1
+    Damage: 10
     CD: 2.5
     GCD: 1
     Scale: 1
