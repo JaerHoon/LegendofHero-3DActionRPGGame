@@ -55,6 +55,7 @@ public class InGameCanvasController : UIController
         Panels[8].SetActive(false);
         Panels[9].SetActive(false);
         Panels[10].SetActive(false);
+        Panels[11].SetActive(false);
 
     }
 
@@ -175,4 +176,15 @@ public class InGameCanvasController : UIController
     {
         Panels[10].SetActive(false);
     }
+
+    public void OnStageClear()
+    {
+        Panels[11].SetActive(true);
+    }
+
+    public void OffStageClear()
+    {
+        Panels[11].SetActive(false);
+    }
+          
 }
