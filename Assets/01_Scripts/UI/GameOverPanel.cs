@@ -59,7 +59,7 @@ public class GameOverPanel : MonoBehaviour
     void Restart()
     {
         stageManager.PlayerDie();
-        this.gameObject.SetActive(false);
+        
     }
 
     private void Update()

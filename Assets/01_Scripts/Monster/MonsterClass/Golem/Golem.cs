@@ -19,6 +19,7 @@ public class Golem : Monster
         Init();
     }
 
+    
 
     private void OnEnable()
     {
@@ -27,7 +28,6 @@ public class Golem : Monster
     // Start is called before the first frame update
     void Start()
     {
-        
         
         IsPlayerdetected = false;
         golemUI = GetComponent<GolemUI>();
@@ -49,9 +49,32 @@ public class Golem : Monster
         monsterdDmg = GetComponent<MonsterDamage>();
         monsterMove = GetComponent<MonsterMove>();
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
+        player = playerTr.GetComponent<Character>();
         MaxHP = monsterData.HP;
         curHP = MaxHP;
 
+    }
+
+    protected override void ReSet()
+    {
+        monsterStat = MonsterStat.Generate;
+        GenerateStat();
+        player.playerDie += PlayerDie;
+        MaxHP = monsterData.HP;
+        curHP = MaxHP;
+      
+    }
+
+    protected override void PlayerDie()
+    {
+        monsterMove.DieMove();
+        StopAllCoroutines();
+        anim.OnIdleAnim();
+        monsterAtk.OffATK();
+        IsPlayerdetected = false;
+        IsDamage = false;
+        IsFreeze = false;
+        
     }
 
     public float CurrentHP

@@ -128,6 +128,23 @@ public class StageManager : MonoBehaviour
             Player.transform.position = StartPos;
             Player.OnPlay();
         }
+        else if(stageDatas[currentStageNum].stageType == StageData.StageType.Boss)
+        {
+            skillController.stageType = SkillChoiceController.StageType.stage;
+            normalController.stageType = SkillChoiceController.StageType.stage;
+            itemRelicController.stageType = SkillChoiceController.StageType.stage;
+            inGameCanvasController.OnBossRoomPanel();
+           
+            for (int a = 0; a < stageDatas[currentStageNum].GolemCount; a++)
+            {
+                inGameCanvasController.OnGolemHP();
+                GameObject mon = PoolFactroy.instance.GetPool(Consts.StoneGolem);
+                Monsters.Add(mon);
+                mon.transform.position = SpawnPos[0];
+
+            }
+            PlayerReady();
+        }
         else
         {
             skillController.stageType = SkillChoiceController.StageType.stage;
@@ -164,14 +181,7 @@ public class StageManager : MonoBehaviour
             GameObject mon = PoolFactroy.instance.GetPool(Consts.MonsterRogue);
             Monsters.Add(mon);
         }
-        for (int a = 0; a < stageDatas[stageNum].GolemCount; a++)
-        {
-            inGameCanvasController.OnGolemHP();
-            GameObject mon = PoolFactroy.instance.GetPool(Consts.StoneGolem);
-            Monsters.Add(mon);
-            mon.transform.position = SpawnPos[0];
-            
-        }
+       
 
         int[] num = RandomNumber.RandomCreate(stageDatas[stageNum].MonsterCount(), 0, SpawnPos.Count);
 
@@ -223,10 +233,12 @@ public class StageManager : MonoBehaviour
     }
 
     public void PlayerDie()
-    { 
-        Player.PlayerReset();
+    {
+
+        GameManager.instance.OnPlayerStage();
+        //Player.PlayerReset();
         
-        EnterStage(0);
+        //EnterStage(0);
     }
 
 }

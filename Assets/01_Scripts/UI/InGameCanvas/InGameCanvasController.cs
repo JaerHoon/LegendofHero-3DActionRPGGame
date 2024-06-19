@@ -47,7 +47,7 @@ public class InGameCanvasController : UIController
         marketSkillInfo = viewModels[3] as MarketSkillInfo;
         playerInfo = viewModels[0] as PlayerInfo;
         dialog = viewModels[6] as Dialog;
-
+        Panels[6].SetActive(true);
         Panels[2].SetActive(false);
         Panels[3].SetActive(false);
         Panels[4].SetActive(false);
@@ -55,6 +55,7 @@ public class InGameCanvasController : UIController
         Panels[9].SetActive(false);
         Panels[10].SetActive(false);
         Panels[11].SetActive(false);
+        Panels[13].SetActive(false);
 
     }
 
@@ -195,4 +196,9 @@ public class InGameCanvasController : UIController
         Panels[11].SetActive(false);
     }
           
+    public void OnBossRoomPanel()
+    {
+        Panels[13].SetActive(true);
+       
+    }
 }
