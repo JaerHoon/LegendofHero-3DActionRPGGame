@@ -95,13 +95,13 @@ MonoBehaviour:
     skillName: "\uC5D0\uB85C\uC6B0 \uB808\uC778"
     ID: 4
     SkillDescription: "\uD654\uC0B4\uC774 \uBE44\uCC98\uB7FC \uC3DF\uC544\uC9C0\uBA70
-      1\uC758 \uB370\uBBF8\uC9C0\uB97C \uAC00\uD55C\uB2E4. ( GCD : 1\uCD08 )"
+      2\uC758 \uB370\uBBF8\uC9C0\uB97C \uAC00\uD55C\uB2E4. ( GCD : 0.5\uCD08 )"
     skillType: 1
     Image: {fileID: 21300000, guid: 415f672e791cea941b6974a3ef917d09, type: 3}
     material: {fileID: 2100000, guid: dc2f2e2679499e34c80c6849bb899f39, type: 2}
     Damage: 2
-    CD: 2.5
-    GCD: 1
+    CD: 3.5
+    GCD: 0.5
     Scale: 1
     SpeedRate: 1
     EventRate: 1
@@ -113,15 +113,15 @@ MonoBehaviour:
     skillName: "\uC544\uC774\uC2A4 \uC5D0\uB85C\uC6B0 \uB808\uC778"
     ID: 5
     SkillDescription: "\uD654\uC0B4\uC774 \uBE44\uCC98\uB7FC \uC3DF\uC544\uC9C0\uBA70
-      1\uC758 \uB370\uBBF8\uC9C0\uB97C \uAC00\uD55C\uB2E4. \uC77C\uC815 \uD655\uB960\uB85C
+      2\uC758 \uB370\uBBF8\uC9C0\uB97C \uAC00\uD55C\uB2E4. \uC77C\uC815 \uD655\uB960\uB85C
       \uBE59\uACB0 \uC0C1\uD0DC\uC774\uC0C1\uC774 \uC801\uC6A9\uB41C\uB2E4.( GCD
-      : 1\uCD08 )"
+      : 0.5\uCD08 )"
     skillType: 1
     Image: {fileID: 21300000, guid: 7fe59d3987bae4441af4dff18b5e48e1, type: 3}
     material: {fileID: 2100000, guid: bc9545e574168a742911ae46a030b223, type: 2}
     Damage: 2
-    CD: 2.5
-    GCD: 1
+    CD: 3.5
+    GCD: 0.5
     Scale: 0
     SpeedRate: 0
     EventRate: 0.1
@@ -133,14 +133,14 @@ MonoBehaviour:
     skillName: "\uC5D0\uB85C\uC6B0 \uD5E4\uBE44\uB808\uC778"
     ID: 6
     SkillDescription: "\uD654\uC0B4\uC774 \uBE44\uCC98\uB7FC \uC3DF\uC544\uC9C0\uBA70
-      1\uC758 \uB370\uBBF8\uC9C0\uB97C \uAC00\uD55C\uB2E4. \uD0C0\uACA9\uD69F\uC218\uAC00
-      \uC99D\uAC00\uD55C\uB2E4.( GCD : 1\uCD08 )"
+      2\uC758 \uB370\uBBF8\uC9C0\uB97C \uAC00\uD55C\uB2E4. \uD0C0\uACA9\uD69F\uC218\uAC00
+      \uC99D\uAC00\uD55C\uB2E4.( GCD : 0.5\uCD08 )"
     skillType: 1
     Image: {fileID: 21300000, guid: 8a1680ec09858bc4aa7b4e3ad474dd89, type: 3}
     material: {fileID: 2100000, guid: b0544805339eed148a86fb43b1f0b8ca, type: 2}
     Damage: 2
-    CD: 2.5
-    GCD: 1
+    CD: 3.5
+    GCD: 0.5
     Scale: 0
     SpeedRate: 0
     EventRate: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
     skillName: "\uC5D0\uB85C\uC6B0 \uB808\uC778_\uC2A4\uD0DD"
     ID: 7
     SkillDescription: "\uD654\uC0B4\uC774 \uBE44\uCC98\uB7FC \uC3DF\uC544\uC9C0\uBA70
-      1\uC758 \uB370\uBBF8\uC9C0\uB97C \uAC00\uD55C\uB2E4. GCD\uAC00 \uC99D\uAC00\uD558\uC9C0\uB9CC
+      2\uC758 \uB370\uBBF8\uC9C0\uB97C \uAC00\uD55C\uB2E4. GCD\uAC00 \uC99D\uAC00\uD558\uC9C0\uB9CC
       \uD55C \uBC88\uC5D0 \uC0AC\uC6A9\uAC00\uB2A5\uD55C \uD69F\uC218\uAC00 2\uD68C\uAC00
       \uB41C\uB2E4.( GCD : 4\uCD08 )"
     skillType: 1
