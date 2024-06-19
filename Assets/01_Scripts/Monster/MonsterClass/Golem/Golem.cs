@@ -307,6 +307,10 @@ public class Golem : Monster
         anim.OnDyingAnim();
     }
 
+    public override void OutPool()
+    {
+        PoolFactroy.instance.OutPool(this.gameObject, Consts.StoneGolem);
+    }
 
     // Update is called once per frame
     void Update()
