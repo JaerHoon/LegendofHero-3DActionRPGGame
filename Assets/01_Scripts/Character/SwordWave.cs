@@ -97,6 +97,7 @@ public class SwordWave : MonoBehaviour
     {
         Ex.SetActive(true);
         Ex.GetComponent<ExplosionDamage>().FindAllClosestMonsterWithinRadius(5.0f);
+        KnightSound.instance.OnKnightSkillExSound();
         box.enabled = false;
         wave.SetActive(false);
         Destroy(this.gameObject,0.5f);
