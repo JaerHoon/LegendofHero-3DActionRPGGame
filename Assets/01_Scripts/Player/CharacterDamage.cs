@@ -72,7 +72,7 @@ public class CharacterDamage : MonoBehaviour
         
     }
 
-    protected void CoroutineStop()
+    public void CoroutineStop()
     {
         if (onOffRendererCoroutine != null)
         {
