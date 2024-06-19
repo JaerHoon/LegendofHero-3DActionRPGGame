@@ -18,7 +18,7 @@ public class ArcherTrigger : MonoBehaviour
     {
         if (other.gameObject.tag == "Monster")
         {
-            other.GetComponent<MonsterDamage>().OnDamage(archerController.playerSkillsSlot[1].damage);
+            other.GetComponent<MonsterDamage>().OnDamage(archerController.playerSkillsSlot[1].damage * ItemManager.instance.itemToAttackDamageRate);
             //Freeze.GetComponent<MonsterBuff>().Onfreeze(10.0f, 1.0f, 1.0f);
             inventroy = GameObject.FindFirstObjectByType<Inventory>();
 
