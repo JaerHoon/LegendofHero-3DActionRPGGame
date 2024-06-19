@@ -103,7 +103,7 @@ public class CharacterDamage : MonoBehaviour
 
     protected void offSetActive()
     {
-        if(isPlayerDie==true)
+        if(isPlayerDie==true) // 죽었을 때 콜라이더 비활성화해서 데미지 입지 않게 하기 위함.
         {
             return;
         }

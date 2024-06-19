@@ -27,7 +27,7 @@ public class PlayerTrigger : MonoBehaviour
             if(PlayerAttack.instance.isAttackSetting2 == true)
             {
                 float Debuff = Random.Range(0f, 100f);
-                if (Debuff < 10.0f) // 10% 확률
+                if (Debuff < 10.0f) // 10% 확률로 중독 상태이상을 건다.
                 {
                     Debug.Log("중독상태이상 적용되었습니다!");
                     other.GetComponent<MonsterBuff>().OnPoison(5, 1, 50); // 1초당 50의 중독 데미지를 5초동안 준다.

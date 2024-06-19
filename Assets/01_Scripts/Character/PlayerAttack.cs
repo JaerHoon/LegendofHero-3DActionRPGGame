@@ -246,33 +246,7 @@ public class PlayerAttack : MonoBehaviour
             PoolFactroy.instance.OutPool(other.gameObject, Consts.GolemPJ);
         }
     }
-    //**********버튼 동작을 위한 함수**********//  
-    public void OnAttackButton_First()
-    {
-       SkillManager.instance.gainedSkill_Warrior[0] = SkillManager.instance.warriorSkills[1];
-    }
-    public void OnAttackButton_Second()
-    {
-        isAttackSetting2 = true;
-        SkillManager.instance.gainedSkill_Warrior[0] = SkillManager.instance.warriorSkills[2];
-    }
-    public void OnAttackButton_Third()
-    {
-        SkillManager.instance.gainedSkill_Warrior[0] = SkillManager.instance.warriorSkills[3];
-    }
-    public void OnButtonSkill_First()
-    {
-        SkillManager.instance.gainedSkill_Warrior[1] = SkillManager.instance.warriorSkills[5];
-    }
-    public void OnButtonSkill_Second()
-    {
-        SkillManager.instance.gainedSkill_Warrior[1] = SkillManager.instance.warriorSkills[6];
-    }
-    public void OnButtonSkill_Third()
-    {
-        isSkillSetting3 = true;
-        SkillManager.instance.gainedSkill_Warrior[1] = SkillManager.instance.warriorSkills[7];
-    }
+    
     // Update is called once per frame
     void Update()
     {

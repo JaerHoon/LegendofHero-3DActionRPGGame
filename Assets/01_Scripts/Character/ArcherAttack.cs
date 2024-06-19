@@ -332,11 +332,13 @@ public class ArcherAttack : MonoBehaviour
     {
         if(isSkillsSetting2)
         {
+            //스킬셋팅 2번째에서 더 많은 타격수를 위해서 3.5초뒤에 사라지게 만듬(오브젝트 풀링 이용함)
             yield return new WaitForSeconds(3.5f);
             PoolFactroy.instance.OutPool(psOff, Consts.ArrowRain);
         }
         else
         {
+            //스킬셋팅 2번째가 아닌 경우에는 2.5초뒤에 사라지게 만듬(오브젝트 풀링 이용함)
             yield return new WaitForSeconds(2.5f);
             PoolFactroy.instance.OutPool(psOff, Consts.ArrowRain);
         }
@@ -380,40 +382,6 @@ public class ArcherAttack : MonoBehaviour
             PoolFactroy.instance.OutPool(other.gameObject, Consts.GolemPJ);
             print("오브젝트 사라짐!");
         }
-    }
-
-    //**********버튼 동작을 위한 함수**********//  
-    public void OnArcherAttackButton_First()
-    {
-        SkillManager.instance.gainedSkill_Archer[0] = SkillManager.instance.archerSkills[1];
-    }
-
-    public void OnArcherAttackButton_Second()
-    {
-        SkillManager.instance.gainedSkill_Archer[0] = SkillManager.instance.archerSkills[2];
-    }
-
-    public void OnArcherAttackButton_Third()
-    {
-        SkillManager.instance.gainedSkill_Archer[0] = SkillManager.instance.archerSkills[3];
-
-
-    }
-
-    public void OnButtonArcherSkill_First()
-    {
-        SkillManager.instance.gainedSkill_Archer[1] = SkillManager.instance.archerSkills[5];
-    }
-
-    public void OnButtonArcherSkill_Second()
-    {
-        SkillManager.instance.gainedSkill_Archer[1] = SkillManager.instance.archerSkills[6];
-
-    }
-
-    public void OnButtonArcherSkill_Third()
-    {
-        SkillManager.instance.gainedSkill_Archer[1] = SkillManager.instance.archerSkills[7];
     }
 
     // Update is called once per frame
