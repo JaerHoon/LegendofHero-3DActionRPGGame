@@ -18,7 +18,12 @@ public class Golem : Monster
     {
         Init();
     }
-    
+
+
+    private void OnEnable()
+    {
+        ReSet();
+    }
     // Start is called before the first frame update
     void Start()
     {

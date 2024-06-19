@@ -67,6 +67,7 @@ public class Character : MonoBehaviour
     public void PlayerReset()
     {
         playerHp = 5;
+        SkillManager.instance.ReSet();
         ChangeUI?.Invoke();
         characterAttack.PlayerReset();
     }
