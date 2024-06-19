@@ -24,6 +24,9 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    [SerializeField] GameObject pausePanel;//일시정지 패널 프리팹
+    private bool isPause = false;
+
     AudioSource myAudioSource;
     [SerializeField]
     AudioMixer audioMixer;
@@ -50,15 +53,65 @@ public class SoundManager : MonoBehaviour
 
     }
 
+    public void OnSetPausePanel()
+    {
+        isPause = !isPause;
+        pausePanel.SetActive(isPause);
+    }
+
+    public void AudioMasterControl()
+    {
+        float volume_Master = audioSlider_Master.value;
+        audioMixer.SetFloat("Master", volume_Master);
+        if (volume_Master == -40f) audioMixer.SetFloat("Master", -80f);
+
+    }
+
+    public void AudioBGMControl()
+    {
+        float volume_BGM = audioSlider_BGM.value;
+        audioMixer.SetFloat("BGM", volume_BGM);
+        if (volume_BGM == -40f) audioMixer.SetFloat("BGM", -80f);
+    }
+
+    public void AudioEffectControl()
+    {
+        float volume_Effect = audioSlider_Effect.value;
+        audioMixer.SetFloat("Effect", volume_Effect);
+        if (volume_Effect == -40f) audioMixer.SetFloat("Effect", -80f);
+    }
+
+    int SoundChangeNum = 1;
+
+    public void OnChangeAudioClip()
+    {
+        myAudioSource.Stop();
+        myAudioSource.clip = soundStorage.SoundSrc[SoundChangeNum % soundStorage.SoundSrc.Length].SoundFile;
+        myAudioSource.Play();
+        SoundChangeNum++;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         myAudioSource = GetComponent<AudioSource>();
     }
 
+
+    void SetPausePanel()
+    {
+        isPause = !isPause;
+        int flagAsInt = isPause ? 0 : 1;
+        Time.timeScale = flagAsInt;
+        pausePanel.SetActive(isPause);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            SetPausePanel();
+        }
     }
 }
