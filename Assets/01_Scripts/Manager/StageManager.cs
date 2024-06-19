@@ -96,6 +96,7 @@ public class StageManager : MonoBehaviour
 
     public void SetStage()
     {
+        Player.gameObject.SetActive(true);
         NPCPlatform.SetActive(false);
         npcMage.gameObject.SetActive(false);
         nextStagePortal.gameObject.SetActive(false);
@@ -224,7 +225,7 @@ public class StageManager : MonoBehaviour
     public void PlayerDie()
     { 
         Player.PlayerReset();
-        Player.gameObject.SetActive(true);
+        
         EnterStage(0);
     }
 
