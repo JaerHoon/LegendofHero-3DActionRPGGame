@@ -222,9 +222,9 @@ public class StageManager : MonoBehaviour
     }
 
     public void PlayerDie()
-    {
-        Player.gameObject.SetActive(true);
+    { 
         Player.PlayerReset();
+        Player.gameObject.SetActive(true);
         EnterStage(0);
     }
 

@@ -29,6 +29,11 @@ public class SkillManager : MonoBehaviour
 
     private void Start()
     {
+        ReSet();
+    }
+
+    public void ReSet()
+    {
         gainedSkill_Warrior[0] = warriorSkills[0];
         gainedSkill_Warrior[1] = warriorSkills[4];
         gainedSkill_Warrior[2] = warriorSkills[8];
