@@ -12,4 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd7e53d1167e1f48a08cdd1a9493762, type: 3}
   m_Name: Warrior_sfx
   m_EditorClassIdentifier: 
-  soundSrc: []
+  soundSrc:
+  - id: 0
+    name: "\uBCA0\uAE30 \uC0AC\uC6B4\uB4DC"
+    audioClip: {fileID: 8300000, guid: 4fb77d7f3c5f57d4799cd7419394e438, type: 3}
+  - id: 1
+    name: "\uAC80\uAE30 \uC0AC\uC6B4\uB4DC"
+    audioClip: {fileID: 8300000, guid: b3f9d276c4251f84d8d58d857331ff3f, type: 3}
+  - id: 2
+    name: "\uAC80\uAE30 \uD3ED\uBC1C \uC0AC\uC6B4\uB4DC"
+    audioClip: {fileID: 8300000, guid: bc2863113499c154d81c08994fdb2d9b, type: 3}

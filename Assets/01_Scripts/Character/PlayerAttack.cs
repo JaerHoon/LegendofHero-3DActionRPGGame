@@ -37,6 +37,11 @@ public class PlayerAttack : MonoBehaviour
     CharacterDamage die;
     CapsuleCollider cap;
     Warrior controller;
+
+    //[SerializeField]
+    //AudioStorage soundStorage;
+
+    //AudioSource myaudio;
     private void Awake()
     {
         if (instance == null)
@@ -47,11 +52,13 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        //myaudio = GetComponent<AudioSource>();
         playerTrigger = GetComponentInChildren<PlayerTrigger>();
         die = GetComponent<CharacterDamage>();
         cap = GetComponent<CapsuleCollider>();
         controller = GameObject.FindWithTag("Player").GetComponent<Warrior>();
         isBlock = false;
+        
     }
     /*void usedRay()
     {
@@ -92,11 +99,13 @@ public class PlayerAttack : MonoBehaviour
     }
     void baseAttack()
     {
+        
         playerTrigger.OnCollider();
         //마우스 클릭시 공격 애니메이션이 발동된다.
         anim.SetTrigger("Attack");
         //공격 모션에 맞춰서 슬래시 파티클 애니메이션 실행
         slash.Play();
+        KnightSound.instance.OnKnightBaseAttackSound();
         //가끔 슬래쉬 위치가 바뀌는 경우가 있어서 적절한 위치값을 넣어줘서 고정시켜 준다.
         slash.transform.localPosition = new Vector3(-0.05f, 1.44f, 0.87f);
     }
@@ -166,9 +175,7 @@ public class PlayerAttack : MonoBehaviour
         anim.SetTrigger("Attack");
         //검기 스킬 발사하도록 Instantiate 이용한다.
         swordWave = Instantiate(skill, transform.position, transform.rotation);
-        //3번째 스킬은 폭발검기를 이용할 때 폭발 파티클을 재생시키기 위해 변수를 담아준다.
-        //이렇게 안하면 clone로 나오는 검기들에 파티클이 None 상태로 떠서 파티클 재생이 안되기 때문이다.
-        
+        KnightSound.instance.OnKnightSkillSound();
         // 캐릭터 앞 쪽에 위치시켜서 이상한 곳에서 안나오도록 고정시키기 위함이다.
         swordWave.transform.position = skillPos.position;
     }
@@ -197,7 +204,7 @@ public class PlayerAttack : MonoBehaviour
         //스킬강화3 버전으로 검기에 닿을 시 폭발하여 데미지를 주도록 설계했다.
         //red 버전의 검기 프리팹을 따로 만들어서 스킬강화3를 선택하면 red색상의 검기가 발사된다.
         GameObject swordWave_red = Instantiate(skill_red, transform.position, transform.rotation);
-        
+        KnightSound.instance.OnKnightSkillSound();
         swordWave_red.transform.position = skillPos.position;
         anim.SetTrigger("Attack");
     }
