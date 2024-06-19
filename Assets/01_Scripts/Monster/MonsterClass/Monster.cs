@@ -90,7 +90,6 @@ public class Monster : MonoBehaviour
     {
         monsterStat = MonsterStat.Generate;
         GenerateStat();
-
         player.playerDie += PlayerDie;
         myCollider.enabled = true;
         MaxHP = monsterData.HP;
@@ -99,7 +98,7 @@ public class Monster : MonoBehaviour
 
     }
 
-    void PlayerDie()
+    protected virtual void PlayerDie()
     {
         StopAllCoroutines();
         anim.OnIdleAnim();
@@ -109,7 +108,7 @@ public class Monster : MonoBehaviour
         IsFreeze = false;
         myCollider.enabled = false;
         monsterMove.DieMove();
-        OutPool();
+        
     }
 
     private void OnEnable()

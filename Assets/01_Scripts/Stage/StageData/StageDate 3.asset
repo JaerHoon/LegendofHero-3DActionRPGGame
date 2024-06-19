@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageNumber: 3
   stageType: 3
-  MinionCount: 2
-  WarriorCount: 2
-  MageCount: 2
-  RogueCount: 2
+  MinionCount: 3
+  WarriorCount: 0
+  MageCount: 3
+  RogueCount: 3
   GolemCount: 0
   StageNumerText: Stage 1 -3

@@ -98,6 +98,6 @@ public class Character : MonoBehaviour
 
     void AfterDie()
     {
-        this.gameObject.SetActive(false);
+       
     }
 }

@@ -17,7 +17,7 @@ public class MonsterMinion : Monster
    
     public override void OutPool()
     {
-        print("OutPool");
+      
         PoolFactroy.instance.OutPool(this.gameObject, Consts.MonsterMinion);
     }
 

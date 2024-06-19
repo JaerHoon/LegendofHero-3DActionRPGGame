@@ -40,15 +40,14 @@ public class MonsterMove : MonoBehaviour
     public virtual void OffMove()
     {
         IsMove = false;
-         
         agent.destination = this.transform.position;
     }
 
     public virtual void DieMove()
     {
+        agent.destination = this.transform.position;
         IsMove = false;
         agent.speed = 0;
-        agent.destination = this.transform.position;
     }
 
     protected virtual void Move()
