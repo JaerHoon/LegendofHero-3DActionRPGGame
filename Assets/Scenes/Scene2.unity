@@ -37633,11 +37633,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1562013222}
   m_CullTransparentMesh: 1
---- !u!1 &1566621134 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2573116315444403993, guid: 5718ff51ee9e46a49a6cb011dc0491a7, type: 3}
-  m_PrefabInstance: {fileID: 5816317405933424201}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1566621135 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 479359459475060600, guid: 5718ff51ee9e46a49a6cb011dc0491a7, type: 3}
@@ -38146,17 +38141,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1931100641}
   m_CullTransparentMesh: 1
---- !u!114 &1939244082 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8028682826884667209, guid: 5718ff51ee9e46a49a6cb011dc0491a7, type: 3}
-  m_PrefabInstance: {fileID: 5816317405933424201}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1941427739
 GameObject:
   m_ObjectHideFlags: 0
@@ -38611,57 +38595,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 632136792017263436, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
-      propertyPath: m_Size.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1372839278031105575, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
-      propertyPath: panel
-      value: 
-      objectReference: {fileID: 1566621134}
     - target: {fileID: 1372839278031105575, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
       propertyPath: playerHp
       value: 
       objectReference: {fileID: 875622715}
-    - target: {fileID: 1372839278031105575, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
-      propertyPath: GameOverImage
-      value: 
-      objectReference: {fileID: 1939244082}
-    - target: {fileID: 2369627023593883872, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2441390246536437602, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
-      propertyPath: m_Height
-      value: 2.98
-      objectReference: {fileID: 0}
-    - target: {fileID: 2441390246536437602, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
-      propertyPath: m_Radius
-      value: 0.52
-      objectReference: {fileID: 0}
-    - target: {fileID: 2441390246536437602, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
-      propertyPath: m_Center.y
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5488532047536760925, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
-      propertyPath: ArrowRain
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6415943877309060602, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
-      propertyPath: moveSpeed
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 6986817861099031732, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
       propertyPath: m_Name
       value: Archer
-      objectReference: {fileID: 0}
-    - target: {fileID: 6986817861099031732, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9195864838408046943, guid: d9f74be4670fd444985527b9231ef85c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

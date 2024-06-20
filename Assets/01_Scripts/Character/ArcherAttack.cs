@@ -69,6 +69,7 @@ public class ArcherAttack : MonoBehaviour
     void shotArrow() // 기본공격 할 때 화살 생성 및 위치를 구현한 함수
     {
         GameObject arrowShot = PoolFactroy.instance.GetPool(Consts.Arrow);
+        CharacterSound.instance.OnArcherBaseAttackSound();
         arrowShot.transform.position = arrowPos.position;
         arrowShot.transform.rotation = transform.rotation;
         TrailRenderer Tr = arrowShot.GetComponentInChildren<TrailRenderer>();
@@ -200,6 +201,7 @@ public class ArcherAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(0.4f);
         usedRay(num);
+        CharacterSound.instance.OnArcherSkillSound();
     }
 
     void skillSetting1() // 스킬셋팅 1번 함수
@@ -352,6 +354,7 @@ public class ArcherAttack : MonoBehaviour
             isCoolTimeBlock = true;
             isBlock = true;
             magicShield.Play();
+            CharacterSound.instance.OnArcherShieldSound();
             magicShield.transform.position = shieldPos.position;
             cap.enabled = false;
             StartCoroutine(Endblock());

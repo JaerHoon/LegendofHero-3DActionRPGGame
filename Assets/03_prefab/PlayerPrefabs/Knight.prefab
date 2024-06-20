@@ -35136,7 +35136,7 @@ GameObject:
   - component: {fileID: -1656566060371257941}
   - component: {fileID: 2834174521917275044}
   - component: {fileID: 3649259431074005620}
-  - component: {fileID: 3546980875307738994}
+  - component: {fileID: 8183382624373086261}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Player
@@ -35545,7 +35545,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3546980875307738994
+--- !u!114 &8183382624373086261
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -35554,10 +35554,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4172812277894937045}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33d62da69367f9b4d99951b40ff48e94, type: 3}
+  m_Script: {fileID: 11500000, guid: b143d9e464cbf3b428101ad57c9ec123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundStorage: {fileID: 11400000, guid: bb11e2477e8b8424ca218929fbf11b84, type: 2}
+  soundStorage_Knight: {fileID: 11400000, guid: bb11e2477e8b8424ca218929fbf11b84, type: 2}
+  soundStorage_Archer: {fileID: 11400000, guid: 66adc9760036f3342a032782a58c27fe, type: 2}
 --- !u!1 &4268432369352039291
 GameObject:
   m_ObjectHideFlags: 0

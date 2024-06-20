@@ -12,7 +12,7 @@ public class SwordWave : MonoBehaviour
     GameObject wave;
     Warrior controller;
     Inventory inventroy;
-    int monsterHit = 2;
+    //int monsterHit = 2;
    
     private void Awake()
     {
@@ -73,11 +73,11 @@ public class SwordWave : MonoBehaviour
                 exPos(transform.position);
             }*/
 
-            monsterHit--;
+            /*monsterHit--;
             if(monsterHit <= 0)
             {
                 Destroy(this.gameObject);
-            }
+            }*/
 
 
         }
@@ -97,7 +97,7 @@ public class SwordWave : MonoBehaviour
     {
         Ex.SetActive(true);
         Ex.GetComponent<ExplosionDamage>().FindAllClosestMonsterWithinRadius(5.0f);
-        KnightSound.instance.OnKnightSkillExSound();
+        CharacterSound.instance.OnKnightSkillExSound();
         box.enabled = false;
         wave.SetActive(false);
         Destroy(this.gameObject,0.5f);

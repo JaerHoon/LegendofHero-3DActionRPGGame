@@ -1620,6 +1620,8 @@ GameObject:
   - component: {fileID: 3454119971559642602}
   - component: {fileID: 4003790536173071180}
   - component: {fileID: -44678965879059555}
+  - component: {fileID: 2932564084827268410}
+  - component: {fileID: 1815254635813583927}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Player
@@ -1692,10 +1694,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.99
-  m_Height: 3.48
+  m_Radius: 0.52
+  m_Height: 2.98
   m_Direction: 1
-  m_Center: {x: 0, y: 1.64, z: 0}
+  m_Center: {x: 0, y: 1.3, z: 0}
 --- !u!54 &4079618460215015792
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1735,7 +1737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5649f8be3a0181a40a2b18b9773b3404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 7
   rotSpeed: 100
   moveRange: 20
 --- !u!114 &5488532047536760925
@@ -1799,7 +1801,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.8, y: 2.6, z: 1.34}
+  m_Size: {x: 1.5, y: 2.6, z: 1.34}
   m_Center: {x: 0, y: 1.36, z: -0.03}
 --- !u!114 &9029372142402311436
 MonoBehaviour:
@@ -1903,6 +1905,116 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e28d112513a3c6940ab6efa5137d890f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &2932564084827268410
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6986817861099031732}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.7
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1815254635813583927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6986817861099031732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b143d9e464cbf3b428101ad57c9ec123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundStorage_Knight: {fileID: 11400000, guid: bb11e2477e8b8424ca218929fbf11b84, type: 2}
+  soundStorage_Archer: {fileID: 11400000, guid: 66adc9760036f3342a032782a58c27fe, type: 2}
 --- !u!1 &7121959644159748614
 GameObject:
   m_ObjectHideFlags: 0
@@ -2824,6 +2936,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 137756539591892686}
     m_Modifications:
+    - target: {fileID: 1663985915484320673, guid: 473d4f280d750aa4d94aff5a829df6a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5218395709515624990, guid: 473d4f280d750aa4d94aff5a829df6a6, type: 3}
       propertyPath: m_Name
       value: ArcherHeart

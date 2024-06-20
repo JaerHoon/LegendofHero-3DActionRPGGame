@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd7e53d1167e1f48a08cdd1a9493762, type: 3}
   m_Name: Archer_sfx
   m_EditorClassIdentifier: 
-  soundSrc: []
+  soundSrc:
+  - id: 0
+    name: "\uD654\uC0B4 \uBC1C\uC0AC"
+    audioClip: {fileID: 8300000, guid: 2bf84749d1328c141a4b4dda90ebb901, type: 3}
+  - id: 1
+    name: "\uC2A4\uD0AC \uC0AC\uC6B4\uB4DC"
+    audioClip: {fileID: 8300000, guid: 2bf84749d1328c141a4b4dda90ebb901, type: 3}
+  - id: 2
+    name: "\uBCF4\uD638\uB9C9 \uC0AC\uC6B4\uB4DC"
+    audioClip: {fileID: 8300000, guid: 28081404bb7f8a64b8305fdc2b01b80a, type: 3}
+  - id: 3
+    name: "\uC2A4\uD0AC \uD788\uD2B8 \uC0AC\uC6B4\uB4DC"
+    audioClip: {fileID: 8300000, guid: 2eec3760d045f7741ba34ac102737d74, type: 3}

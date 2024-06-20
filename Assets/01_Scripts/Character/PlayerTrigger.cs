@@ -34,7 +34,12 @@ public class PlayerTrigger : MonoBehaviour
                 }
                 
             }
-            //Debug.Log("충돌감지!!");
+            
+            if(PlayerAttack.instance.isBlock==true)
+            {
+                CharacterSound.instance.OnKnightShieldSound();
+            }
+
         }
         else if (other.gameObject.tag == "Dummy" )
         {

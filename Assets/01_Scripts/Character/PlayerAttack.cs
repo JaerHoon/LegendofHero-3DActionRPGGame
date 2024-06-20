@@ -105,7 +105,7 @@ public class PlayerAttack : MonoBehaviour
         anim.SetTrigger("Attack");
         //공격 모션에 맞춰서 슬래시 파티클 애니메이션 실행
         slash.Play();
-        KnightSound.instance.OnKnightBaseAttackSound();
+        CharacterSound.instance.OnKnightBaseAttackSound();
         //가끔 슬래쉬 위치가 바뀌는 경우가 있어서 적절한 위치값을 넣어줘서 고정시켜 준다.
         slash.transform.localPosition = new Vector3(-0.05f, 1.44f, 0.87f);
     }
@@ -119,6 +119,7 @@ public class PlayerAttack : MonoBehaviour
     void AttackSetting2()
     {
         controller.OnChangeSkills(2);
+        isAttackSetting2 = true;
         baseAttack();
         var mainColor = slash.main;
         mainColor.startColor = Color.magenta; // 저주or독 이미지를 생각해서 평타강화2를 누르면 슬래쉬가 보라색으로 변한다.
@@ -175,7 +176,7 @@ public class PlayerAttack : MonoBehaviour
         anim.SetTrigger("Attack");
         //검기 스킬 발사하도록 Instantiate 이용한다.
         swordWave = Instantiate(skill, transform.position, transform.rotation);
-        KnightSound.instance.OnKnightSkillSound();
+        CharacterSound.instance.OnKnightSkillSound();
         // 캐릭터 앞 쪽에 위치시켜서 이상한 곳에서 안나오도록 고정시키기 위함이다.
         swordWave.transform.position = skillPos.position;
     }
@@ -204,7 +205,7 @@ public class PlayerAttack : MonoBehaviour
         //스킬강화3 버전으로 검기에 닿을 시 폭발하여 데미지를 주도록 설계했다.
         //red 버전의 검기 프리팹을 따로 만들어서 스킬강화3를 선택하면 red색상의 검기가 발사된다.
         GameObject swordWave_red = Instantiate(skill_red, transform.position, transform.rotation);
-        KnightSound.instance.OnKnightSkillSound();
+        CharacterSound.instance.OnKnightSkillSound();
         swordWave_red.transform.position = skillPos.position;
         anim.SetTrigger("Attack");
     }
@@ -239,11 +240,13 @@ public class PlayerAttack : MonoBehaviour
         {
             //보호막 스킬을 사용하는 동안 캐릭터에 닿는 일반 몬스터들의 탄환들을 삭제함.(데미지X)
             PoolFactroy.instance.OutPool(other.gameObject, Consts.MagicBullet);
+            CharacterSound.instance.OnKnightShieldSound();
         }
         if (other.gameObject.tag == "GolemBullet" && isBlock == true)
         {
             //보호막 스킬을 사용하는 동안 캐릭터에 닿는 보스 몬스터의 탄환들을 삭제함.(데미지X)
             PoolFactroy.instance.OutPool(other.gameObject, Consts.GolemPJ);
+            CharacterSound.instance.OnKnightShieldSound();
         }
     }
     
