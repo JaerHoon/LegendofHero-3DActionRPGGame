@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundSrc:
   - id: 0
-    name: "\uD654\uC0B4 \uBC1C\uC0AC"
+    name: "\uD654\uC0B4 \uBC1C\uC0AC \uC0AC\uC6B4\uB4DC"
     audioClip: {fileID: 8300000, guid: 2bf84749d1328c141a4b4dda90ebb901, type: 3}
   - id: 1
     name: "\uC2A4\uD0AC \uC0AC\uC6B4\uB4DC"
-    audioClip: {fileID: 8300000, guid: 2bf84749d1328c141a4b4dda90ebb901, type: 3}
+    audioClip: {fileID: 8300000, guid: 7c47b20bb9874304a809dc5580d403ba, type: 3}
   - id: 2
     name: "\uBCF4\uD638\uB9C9 \uC0AC\uC6B4\uB4DC"
     audioClip: {fileID: 8300000, guid: 28081404bb7f8a64b8305fdc2b01b80a, type: 3}

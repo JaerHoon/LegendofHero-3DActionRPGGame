@@ -23,5 +23,5 @@ MonoBehaviour:
     name: "\uAC80\uAE30 \uD3ED\uBC1C \uC0AC\uC6B4\uB4DC"
     audioClip: {fileID: 8300000, guid: bc2863113499c154d81c08994fdb2d9b, type: 3}
   - id: 3
-    name: "\uBC29\uD328 \uC18C\uB9AC"
+    name: "\uBC29\uD328 \uC0AC\uC6B4\uB4DC"
     audioClip: {fileID: 8300000, guid: 72e8faa5795ee77478225c0a9eab4261, type: 3}
