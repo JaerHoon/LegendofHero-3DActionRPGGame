@@ -63,18 +63,20 @@ public class CharacterAttackController : MonoBehaviour
 
     IEnumerator SKillCoolDown_CountType(string skillType, int MaxSkillCount, float skillCD)
     {
-        print(skillCD);
-        float CD = skillCD-1;
+        
+        float CD = skillCD;
         yield return new WaitForFixedUpdate();
         while (MaxSkillCount > curSkillNum)
         {
-            yield return new WaitForSeconds(0.1f);
-            CD -= 0.1f;
+            yield return  null;
+            CD -= Time.deltaTime;
+            print(CD);
             if (CD < 0)
             {
+                print("CD_Reset");
                 curSkillNum ++;
                
-                CD = skillCD-1;
+                CD = skillCD;
                 
                 if(MaxSkillCount == curSkillNum)
                     yield break;
