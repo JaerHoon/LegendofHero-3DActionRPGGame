@@ -67,9 +67,10 @@ public class SoundManager : MonoBehaviour
 
     }
 
-    public void ChangeBGM(int StageNum)
+    public void ChangeBGM(int StageType)//0로비 1,2몬스테이지 3마켓 4보스
     {
-
+        myAudioSource.Stop();
+        myAudioSource.PlayOneShot(soundStorage.SoundSrc[StageType].SoundFile);
     }
 
     public void AudioBGMControl()
@@ -100,6 +101,8 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         myAudioSource = GetComponent<AudioSource>();
+        GameObject.FindFirstObjectByType<GameManager>().GetComponent<AudioSource>().Stop();
+        //ChangeBGM(0);
     }
 
 

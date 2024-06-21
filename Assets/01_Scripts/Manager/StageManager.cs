@@ -107,6 +107,8 @@ public class StageManager : MonoBehaviour
         inGameCanvasController.SetPlayerInfo();
         if (stageDatas[currentStageNum].stageType == StageData.StageType.Start)
         {
+            SoundManager.instance.ChangeBGM(0);
+
             NPCPlatform.SetActive(true);
             npcMage.gameObject.SetActive(true);
             npcMage.stageType = NPCMage.StageType.Start;
@@ -118,6 +120,7 @@ public class StageManager : MonoBehaviour
         }
         else if (stageDatas[currentStageNum].stageType == StageData.StageType.Market)
         {
+            SoundManager.instance.ChangeBGM(3);
             NPCPlatform.SetActive(true);
             npcMage.gameObject.SetActive(true);
             npcMage.stageType = NPCMage.StageType.Market;
@@ -130,6 +133,7 @@ public class StageManager : MonoBehaviour
         }
         else if(stageDatas[currentStageNum].stageType == StageData.StageType.Boss)
         {
+            SoundManager.instance.ChangeBGM(4);
             skillController.stageType = SkillChoiceController.StageType.stage;
             normalController.stageType = SkillChoiceController.StageType.stage;
             itemRelicController.stageType = SkillChoiceController.StageType.stage;
@@ -147,6 +151,8 @@ public class StageManager : MonoBehaviour
         }
         else
         {
+            int rand2 = Random.Range(1, 3);
+            SoundManager.instance.ChangeBGM(rand2);
             skillController.stageType = SkillChoiceController.StageType.stage;
             normalController.stageType = SkillChoiceController.StageType.stage;
             itemRelicController.stageType = SkillChoiceController.StageType.stage;
