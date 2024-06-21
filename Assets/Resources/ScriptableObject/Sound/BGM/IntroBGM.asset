@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd7e53d1167e1f48a08cdd1a9493762, type: 3}
   m_Name: IntroBGM
   m_EditorClassIdentifier: 
-  soundSrc: []
+  soundSrc:
+  - id: 0
+    name: title
+    audioClip: {fileID: 8300000, guid: 2939cdc4a31f2514a9bf97d8999cf2dd, type: 3}

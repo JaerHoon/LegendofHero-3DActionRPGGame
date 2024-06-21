@@ -14,8 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundSrc:
   - id: 0
-    name: projectile
-    audioClip: {fileID: 8300000, guid: d03c832d5e2ac604a96301039f24a9ae, type: 3}
-  - id: 1
-    name: RockAttack
-    audioClip: {fileID: 8300000, guid: 7e26c9daf4c32483b9c2790e662d3f1b, type: 3}
+    name: DropRock
+    audioClip: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
