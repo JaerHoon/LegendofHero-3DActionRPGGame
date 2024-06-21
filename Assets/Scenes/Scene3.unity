@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3321,7 +3321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KnightData: {fileID: 11400000, guid: 02dcfcad944779447a129e479e5ab0cc, type: 2}
   ArcherData: {fileID: 11400000, guid: 14743e9228ce16c46a2b36ebfe35a2d4, type: 2}
-  choicedCharacter: 0
+  choicedCharacter: 1
   WarriorIcon: {fileID: 1624841218, guid: a72cc6781929233459594383e9bb4f62, type: 3}
   ArcherIcon: {fileID: -27363946, guid: c06fc013d6ccceb48b7694c80c8300b7, type: 3}
 --- !u!1 &340570036
@@ -5382,7 +5382,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8355980240209063437, guid: be409d5e5ddb80140a8f2463dc1af199, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 3a232335420c55d49a14615447543ac8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 82b6012ed38132b468aaadff6b9f504f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -9656,7 +9656,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1359723764}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.028350456, y: -0.6354187, z: -0.023356102, w: 0.7712936}
+  m_LocalRotation: {x: -0.028350435, y: -0.6354187, z: -0.023356088, w: 0.7712936}
   m_LocalPosition: {x: 20.3, y: 0, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

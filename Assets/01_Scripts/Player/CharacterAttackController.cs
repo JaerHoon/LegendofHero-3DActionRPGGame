@@ -64,7 +64,7 @@ public class CharacterAttackController : MonoBehaviour
     IEnumerator SKillCoolDown_CountType(string skillType, int MaxSkillCount, float skillCD)
     {
         
-        float CD = skillCD;
+        float CD = skillCD-1;
         yield return new WaitForFixedUpdate();
         while (MaxSkillCount > curSkillNum)
         {
@@ -73,8 +73,8 @@ public class CharacterAttackController : MonoBehaviour
             if (CD < 0)
             {
                 curSkillNum ++;
-                print(curSkillNum);
-                CD = skillCD;
+               
+                CD = skillCD-1;
                 
                 if(MaxSkillCount == curSkillNum)
                     yield break;

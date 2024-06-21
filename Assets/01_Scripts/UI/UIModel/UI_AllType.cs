@@ -165,7 +165,11 @@ public class UI_AllType : UI
 
     protected override void StopCooltime(int slotnum, int corutineNum)
     {
-        StopAllCoroutines();
+        if (slotNumber == slotnum)
+        {
+            StopAllCoroutines();
+        }
+       
     }
 
 
