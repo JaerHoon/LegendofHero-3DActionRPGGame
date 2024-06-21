@@ -73,7 +73,7 @@ public class CharacterAttackController : MonoBehaviour
             if (CD < 0)
             {
                 curSkillNum ++;
-                print(curSkillNum);
+               
                 CD = skillCD-1;
                 
                 if(MaxSkillCount == curSkillNum)
