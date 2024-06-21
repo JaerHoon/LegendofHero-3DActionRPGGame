@@ -13,6 +13,18 @@ MonoBehaviour:
   m_Name: MainBGM
   m_EditorClassIdentifier: 
   soundSrc:
+  - id: 0
+    name: Lobby
+    audioClip: {fileID: 8300000, guid: 3a232335420c55d49a14615447543ac8, type: 3}
   - id: 1
-    name: 
-    audioClip: {fileID: 8300000, guid: 82b6012ed38132b468aaadff6b9f504f, type: 3}
+    name: MonsterStage
+    audioClip: {fileID: 8300000, guid: 7ca77a516db1dd240a81b5d496324507, type: 3}
+  - id: 2
+    name: MonsterStage
+    audioClip: {fileID: 8300000, guid: 9579bd2b2b6e1994389ce07ed38ff26f, type: 3}
+  - id: 3
+    name: Market
+    audioClip: {fileID: 8300000, guid: 7103455fd24aaf7449a8e03113ebd62b, type: 3}
+  - id: 4
+    name: boss
+    audioClip: {fileID: 8300000, guid: a75946b98101b1d41b2d33cf25f41de5, type: 3}

@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd7e53d1167e1f48a08cdd1a9493762, type: 3}
   m_Name: Boss_sfx
   m_EditorClassIdentifier: 
-  soundSrc: []
+  soundSrc:
+  - id: 0
+    name: projectile
+    audioClip: {fileID: 8300000, guid: d03c832d5e2ac604a96301039f24a9ae, type: 3}
+  - id: 1
+    name: RockAttack
+    audioClip: {fileID: 8300000, guid: 7e26c9daf4c32483b9c2790e662d3f1b, type: 3}

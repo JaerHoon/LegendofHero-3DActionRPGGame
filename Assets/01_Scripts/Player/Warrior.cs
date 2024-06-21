@@ -13,7 +13,7 @@ public class Warrior : CharacterAttackController
         //skills[0] = this.gameObject.GetComponent<WarriorAttack0>();
         //skills[1] = this.gameObject.GetComponent<WarriorSkill>();
         skillSc = this.gameObject.GetComponent<WarriorSkill>();
-      
+        SkillManager.instance.changeSkill += ListenChangeSkill;
         InIt();
     }
 
@@ -58,14 +58,18 @@ public class Warrior : CharacterAttackController
         }
     }
 
-
+    void ListenChangeSkill()
+    {
+        maxSkillNum = SkillManager.instance.gainedSkill_Warrior[1].skillCount;
+        curSkillNum = maxSkillNum;
+    }
 
     // Update is called once per frame
     void Update()
     {
         if(IsCanATK == true)
         {
-            OnUseSkill();
+            OnUseSkill(SkillManager.instance.gainedSkill_Warrior);
         }
         
     }

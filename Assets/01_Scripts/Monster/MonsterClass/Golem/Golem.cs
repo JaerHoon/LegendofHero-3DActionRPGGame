@@ -10,6 +10,8 @@ public class Golem : Monster
     public enum BOSSATTACKTYPE { None,Attack, AttackProjectile, AttackGround}
     public BOSSATTACKTYPE bossAttackType;
 
+    protected InGameCanvasController inGameCanvasController;
+
     public GolemUI golemUI;
     public bool isRageMode1 = false;
     public bool isRageMode2 = false;
@@ -28,11 +30,12 @@ public class Golem : Monster
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (inGameCanvasController == null) inGameCanvasController = GameObject.FindFirstObjectByType<InGameCanvasController>();
         IsPlayerdetected = false;
         golemUI = GetComponent<GolemUI>();
         ChangeState(MONSTERSTATE.Wait);
         //StartCoroutine(CalDis());
+        Invoke("ActiveGolem", 1.5f);
       
     }
 
@@ -88,6 +91,7 @@ public class Golem : Monster
             if (value <= 0)
             {
                 ChangeState(MONSTERSTATE.Die);
+                inGameCanvasController.OnStageClear();
                 curHP = 0;
             }
             else

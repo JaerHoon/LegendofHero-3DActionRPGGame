@@ -9,8 +9,8 @@ public class InGameSkillSlot : UIModel
     InGameCanvasController inGameCanvasController;
     public List<SkillInfo> skills = new List<SkillInfo>(new SkillInfo[3]);
     public int? SkillCount = null;
-    
 
+    Coroutine coroutine;
 
     private void Start()
     {
@@ -71,9 +71,9 @@ public class InGameSkillSlot : UIModel
 
             if (skills[1].skillCount > 1 &&  SkillCount !=null)
             {
-                if (SkillCount == skills[1].skillCount)
+                if (SkillCount <= skills[1].skillCount && coroutine == null)
                 {
-                    StartCoroutine(CountCoilTime());
+                     coroutine = StartCoroutine(CountCoilTime());
                 }
 
                 if(SkillCount > 0)
@@ -106,15 +106,15 @@ public class InGameSkillSlot : UIModel
         {
             SlotCoolTimeStart?.Invoke(skills[1].cd, 4);
             yield return new WaitForSeconds(skills[1].cd);
-            if(SkillCount < skills[1].skillCount)
+            SkillCount++;
+            print(SkillCount);
+            ChangeUI();
+
+            if (SkillCount == skills[1].skillCount)
             {
-                SkillCount++;
-                ChangeUI();
-                if(SkillCount == skills[1].skillCount)
-                {
-                    StopCoolTime(1, 1);
-                    yield break;
-                }
+                StopCoolTime(1, 4);
+                coroutine = null;
+                yield break;
             }
           
         }

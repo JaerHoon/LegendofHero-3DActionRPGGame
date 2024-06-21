@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f13a337a98bd91f4f9a17a4eb8656e4b, type: 3}
   m_Name: StageDate 6
   m_EditorClassIdentifier: 
-  stageNumber: 5
+  stageNumber: 6
   stageType: 5
   MinionCount: 0
   WarriorCount: 0

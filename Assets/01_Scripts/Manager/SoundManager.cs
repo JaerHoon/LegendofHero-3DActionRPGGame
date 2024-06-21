@@ -67,6 +67,11 @@ public class SoundManager : MonoBehaviour
 
     }
 
+    public void ChangeBGM(int StageNum)
+    {
+
+    }
+
     public void AudioBGMControl()
     {
         float volume_BGM = audioSlider_BGM.value;
