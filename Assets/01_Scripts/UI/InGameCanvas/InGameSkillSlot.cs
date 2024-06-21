@@ -106,15 +106,18 @@ public class InGameSkillSlot : UIModel
         {
             SlotCoolTimeStart?.Invoke(skills[1].cd, 4);
             yield return new WaitForSeconds(skills[1].cd);
-            if(SkillCount < skills[1].skillCount)
+
+            SkillCount++;
+            ChangeUI();
+            if (SkillCount < skills[1].skillCount)
             {
-                SkillCount++;
-                ChangeUI();
-                if(SkillCount == skills[1].skillCount)
-                {
-                    StopCoolTime(1, 1);
-                    yield break;
-                }
+                SlotCoolTimeStart?.Invoke(skills[1].cd, 4);
+
+            }
+            else if(SkillCount == skills[1].skillCount)
+            {
+                StopCoolTime(1, 4);
+                yield break;
             }
           
         }
