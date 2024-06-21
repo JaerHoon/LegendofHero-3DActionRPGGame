@@ -33,6 +33,7 @@ public class Golem : Monster
         golemUI = GetComponent<GolemUI>();
         ChangeState(MONSTERSTATE.Wait);
         //StartCoroutine(CalDis());
+        Invoke("ActiveGolem", 1.5f);
       
     }
 

@@ -11,6 +11,7 @@ public class Archer : CharacterAttackController
     {
        
         skillSc = this.gameObject.GetComponent<ArcherSkill>();
+        SkillManager.instance.changeSkill += ListenChangeSkill;
         InIt();
       
     }
@@ -37,21 +38,28 @@ public class Archer : CharacterAttackController
 
     public void OnChangeSkills(int SKillNum)
     {
-        if (SKillNum >= 0 && SKillNum <= 3)
-        {
-            playerSkillsSlot[0] = SkillManager.instance.archerSkills[SKillNum];
-        }
-        else if (SKillNum >= 4 && SKillNum <= 7)
-        {
+        //if (SKillNum >= 0 && SKillNum <= 3)
+        //{
+        //    playerSkillsSlot[0] = SkillManager.instance.archerSkills[SKillNum];
+        //}
+        //else if (SKillNum >= 4 && SKillNum <= 7)
+        //{
             
-            playerSkillsSlot[1] = SkillManager.instance.archerSkills[SKillNum];
-            maxSkillNum = playerSkillsSlot[1].skillCount;
-            curSkillNum = maxSkillNum;
-        }
-        else
-        {
-            print("잘못된 값이 OnChangeSkills에 입력됨");
-        }
+        //    playerSkillsSlot[1] = SkillManager.instance.archerSkills[SKillNum];
+        //    maxSkillNum = playerSkillsSlot[1].skillCount;
+        //    curSkillNum = maxSkillNum;
+        //}
+        //else
+        //{
+        //    print("잘못된 값이 OnChangeSkills에 입력됨");
+        //}
+    }
+
+    void ListenChangeSkill()
+    {
+        print("아이텝 체인지 이벤트 발생");
+        maxSkillNum = SkillManager.instance.gainedSkill_Archer[1].skillCount;
+        curSkillNum = maxSkillNum;
     }
 
     // Update is called once per frame
@@ -59,7 +67,7 @@ public class Archer : CharacterAttackController
     {
         if(IsCanATK == true)
         {
-            OnUseSkill();
+            OnUseSkill(SkillManager.instance.gainedSkill_Archer);
         }
        
     }
