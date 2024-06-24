@@ -19,3 +19,4 @@ MonoBehaviour:
   Lv: 10
   MoveSpeed: 5
   ATKSpeed: 1
+  RewordCoinCount: 0
