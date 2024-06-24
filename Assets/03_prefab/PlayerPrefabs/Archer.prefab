@@ -1622,6 +1622,7 @@ GameObject:
   - component: {fileID: -44678965879059555}
   - component: {fileID: 2932564084827268410}
   - component: {fileID: 1815254635813583927}
+  - component: {fileID: 6393292151425394421}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Player
@@ -2015,6 +2016,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundStorage_Knight: {fileID: 11400000, guid: bb11e2477e8b8424ca218929fbf11b84, type: 2}
   soundStorage_Archer: {fileID: 11400000, guid: 66adc9760036f3342a032782a58c27fe, type: 2}
+--- !u!114 &6393292151425394421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6986817861099031732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c11e7a9ea6f9cf3429463222e5225d2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRadius_Arrow: 14
+  detectionRadius_Poison: 10
+  detectionRadius_Curse: 7
+  monsterLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  closestMonster: {fileID: 0}
+  colors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 1, a: 1}
 --- !u!1 &7121959644159748614
 GameObject:
   m_ObjectHideFlags: 0
