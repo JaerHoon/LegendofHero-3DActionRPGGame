@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: 467087450262955891}
   - component: {fileID: 7646336622070700117}
   - component: {fileID: 3001398797920071911}
+  - component: {fileID: -3481556998571139676}
   m_Layer: 6
   m_Name: Stone Golem
   m_TagString: Monster
@@ -213,8 +214,11 @@ MonoBehaviour:
   monsterdDmg: {fileID: 0}
   monsterMove: {fileID: 0}
   monsterUI: {fileID: 0}
+  monsterGetCoin: {fileID: 0}
   monsterStat: 0
+  IsFreeze: 0
   playerTr: {fileID: 0}
+  player: {fileID: 0}
   TraceDistanc: 10
   AttackDistanc: 5
   monsterstate: 0
@@ -237,6 +241,7 @@ MonoBehaviour:
   GenFX: {fileID: 0}
   GroundAttackEffect: {fileID: 4754544882002930698}
   shakeCameraSC: {fileID: 3001398797920071911}
+  soundStorage: {fileID: 11400000, guid: 688458b6c88908e439da90c00befd817, type: 2}
 --- !u!114 &7071001537193590620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,6 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9421e2e11e94b2c418b2581c2c7ccfe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitBox: {fileID: 0}
   time: 1
   maxXrange: 0
   maxZrange: 0
@@ -378,6 +384,102 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 0}
+--- !u!82 &-3481556998571139676
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188464615969464675}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -5210661875453453200, guid: be409d5e5ddb80140a8f2463dc1af199, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &357558441240204871
 GameObject:
   m_ObjectHideFlags: 0

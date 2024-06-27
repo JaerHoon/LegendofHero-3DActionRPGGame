@@ -23,6 +23,8 @@ public class GolemAttack : MonsterAttack
     public float maxZrange;
     public int rockNum;
 
+    
+
     BoxCollider handBoxColl;
 
     // Start is called before the first frame update
@@ -40,6 +42,7 @@ public class GolemAttack : MonsterAttack
         handBoxColl = GetComponentsInChildren<BoxCollider>()[1];
         handBoxColl.enabled = false;
 
+        
 
         maxXrange = 20;
         maxZrange = 20;
@@ -105,6 +108,7 @@ public class GolemAttack : MonsterAttack
 
     void SpawnProjectile(int skillType, int projectileNum, float angle, float addAngle)
     {
+       
         for (int i = 0; i < projectileNum; i++)
         {
             //GameObject projectile = projectileFactory.GetObject(parentProjectile);

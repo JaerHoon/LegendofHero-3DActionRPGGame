@@ -17,9 +17,14 @@ public class GolemAnim : MonsterAnim
     [SerializeField]
     ShakeCamera shakeCameraSC;
 
+    AudioSource myAudioSource;
+    [SerializeField]
+    AudioStorage soundStorage;
+
     // Start is called before the first frame update
     void Start()
     {
+        myAudioSource = GetComponent<AudioSource>();
         Init();
     }
 
@@ -46,6 +51,8 @@ public class GolemAnim : MonsterAnim
 
     public override void OnAtk2Anim()
     {
+        myAudioSource.Stop();
+        myAudioSource.PlayOneShot(soundStorage.SoundSrc[0].SoundFile);
         animator.SetInteger(Stat, ATTACKP);
         Invoke("DelayIdle", 0.3f);
     }
@@ -61,6 +68,8 @@ public class GolemAnim : MonsterAnim
 
     void DelayShakeCamera()
     {
+        myAudioSource.Stop();
+        myAudioSource.PlayOneShot(soundStorage.SoundSrc[1].SoundFile);
         shakeCameraSC.StartShake(1f, 2, 2);
     }
 
