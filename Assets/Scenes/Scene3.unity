@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4220,8 +4220,8 @@ GameObject:
   - component: {fileID: 443654599}
   - component: {fileID: 443654601}
   - component: {fileID: 443654600}
-  - component: {fileID: 443654602}
   - component: {fileID: 443654603}
+  - component: {fileID: 443654604}
   m_Layer: 5
   m_Name: Icon
   m_TagString: Untagged
@@ -4288,32 +4288,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 443654598}
   m_CullTransparentMesh: 1
---- !u!114 &443654602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 443654598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d948bd7c04c9d154f8de1dcf74de0591, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewType: 1
-  slotNumber: 0
-  uIModel: {fileID: 2098924236}
-  viewController: {fileID: 2098924238}
-  value1_type: 1
-  value2_type: 0
-  uITypeNumber: 1
-  SetectedValue: skills
-  SetectedValue1: 
-  SetectedValue2: 
-  SetectedValue3: 
-  valueText: null
-  valueText2: 
-  SelectedValue1: image
 --- !u!114 &443654603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4359,6 +4333,32 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &443654604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443654598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d948bd7c04c9d154f8de1dcf74de0591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewType: 1
+  slotNumber: 0
+  uIModel: {fileID: 2098924236}
+  viewController: {fileID: 2098924238}
+  value1_type: 1
+  value2_type: 0
+  uITypeNumber: 1
+  SetectedValue: skills
+  SetectedValue1: 
+  SetectedValue2: 
+  SetectedValue3: 
+  valueText: null
+  valueText2: 
+  SelectedValue1: image
 --- !u!1 &448329174
 GameObject:
   m_ObjectHideFlags: 0
@@ -9926,7 +9926,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1359723764}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.028350456, y: -0.6354187, z: -0.023356102, w: 0.7712936}
+  m_LocalRotation: {x: -0.028350435, y: -0.6354187, z: -0.023356088, w: 0.7712936}
   m_LocalPosition: {x: 20.3, y: 0, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
