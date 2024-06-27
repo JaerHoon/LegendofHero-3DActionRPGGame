@@ -120,12 +120,13 @@ public class SoundManager : MonoBehaviour
         int flagAsInt = isPause ? 0 : 1;
         Time.timeScale = flagAsInt;
         pausePanel.SetActive(isPause);
+       
     }
 
     public void GameExitButton()
     {
         Application.Quit();
-        print("게임 종료");
+       
     }
 
 
@@ -133,7 +134,8 @@ public class SoundManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+       
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             SetPausePanel();
         }

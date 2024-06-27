@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class GolemAttack : MonsterAttack
 {
-    [Range(0,2)]
-    public float time = 1.0f;
+   
 
     GameObject rockPrefab;
     GameObject projectilePrefab;
@@ -198,9 +197,5 @@ public class GolemAttack : MonsterAttack
         handBoxColl.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Time.timeScale = time;
-    }
+    
 }
