@@ -14,6 +14,7 @@ public class ShakeCamera : MonoBehaviour
 
     void Start()
     {
+        virtualCamera = GameObject.Find("FallowCam").GetComponent<CinemachineVirtualCamera>();
         if (virtualCamera != null)
         {
             perlinNoise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();

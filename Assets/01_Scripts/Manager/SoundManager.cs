@@ -24,6 +24,9 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    InGameCanvasController inGameCanvasController;
+
+
     [SerializeField] GameObject pausePanel;//일시정지 패널 프리팹
     private bool isPause = false;
 
@@ -100,6 +103,9 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        inGameCanvasController = FindAnyObjectByType<InGameCanvasController>();
+
         myAudioSource = GetComponent<AudioSource>();
         GameObject.FindFirstObjectByType<GameManager>().GetComponent<AudioSource>().Stop();
         //ChangeBGM(0);
@@ -108,11 +114,21 @@ public class SoundManager : MonoBehaviour
 
     void SetPausePanel()
     {
+        inGameCanvasController.OffGameOverPanel();
+        inGameCanvasController.OffStageClear();
         isPause = !isPause;
         int flagAsInt = isPause ? 0 : 1;
         Time.timeScale = flagAsInt;
         pausePanel.SetActive(isPause);
     }
+
+    public void GameExitButton()
+    {
+        Application.Quit();
+        print("게임 종료");
+    }
+
+
 
     // Update is called once per frame
     void Update()
