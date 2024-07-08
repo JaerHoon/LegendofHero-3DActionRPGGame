@@ -16,3 +16,4 @@
 # 프로젝트 기술서
 https://drive.google.com/file/d/1eSxhn9dHwjgRgXKX92juQcoIcl3jjRP0/view?usp=drive_link
 # 게임 플레이 영상
+https://www.youtube.com/watch?v=17Mxcn3YJn0
