@@ -14,6 +14,6 @@
 - 캐릭터 스킬 선택, 아이템 선택 구성 및 구현
 - 모든 UI 시스템 구현
 # 프로젝트 기술서
-https://drive.google.com/file/d/1eSxhn9dHwjgRgXKX92juQcoIcl3jjRP0/view?usp=drive_link
+https://drive.google.com/file/d/1FUhtttTUf01KB-kCnfiZuZdLt4T0l4Gi/view?usp=drive_link
 # 게임 플레이 영상
 https://www.youtube.com/watch?v=17Mxcn3YJn0
